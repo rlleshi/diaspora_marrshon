@@ -60,16 +60,16 @@ export const shirtsPageContent: Record<
     homeHref: "/",
     homeLabel: "Kthehu te faqja kryesore",
     hero: {
-      kicker: "Veshja e përbashkët",
-      title: "Një pamje, një mesazh.",
+      kicker: "Veshje sugjeruese",
+      title: "Nëse do, mbaj të njëjtin mesazh.",
       body:
-        "Për marshimin, diaspora duhet të duket e bashkuar: flamuri i vendit ku jetojmë pranë flamurit shqiptar, pa logo partie dhe pa simbole të tjera.",
-      downloadAll: "Shkarko të gjitha",
+        "Këto dizajne janë sugjerime për një pamje të përbashkët dhe për një mesazh më të dukshëm në shesh.",
+      downloadAll: "Shkarko sugjerimet",
     },
     notice: {
-      title: "Shënim për shkarkimin",
+      title: "Për përdorim të lirë",
       body:
-        "Këto pamje mund të përdoren për koordinim dhe shpërndarje online. Skedarët me rezolucion profesional për printim do të shtohen së shpejti.",
+        "Mund t'i përdorësh për koordinim, shpërndarje online ose si ide për printim personal. Skedarët me rezolucion profesional për printim do të shtohen së shpejti.",
     },
     versions: {
       black: {
@@ -94,16 +94,16 @@ export const shirtsPageContent: Record<
     homeHref: "/en",
     homeLabel: "Back to homepage",
     hero: {
-      kicker: "Shared clothing",
-      title: "One look, one message.",
+      kicker: "Suggested clothing",
+      title: "If you want, carry the same message.",
       body:
-        "For the march, the diaspora should look united: the flag of the country where we live next to the Albanian flag, with no party logos and no extra symbols.",
-      downloadAll: "Download all",
+        "These designs are suggestions for a shared look and a more visible message in the square.",
+      downloadAll: "Download suggestions",
     },
     notice: {
-      title: "Download note",
+      title: "Free to use",
       body:
-        "These previews can be used for coordination and online sharing. Professional-resolution print files will be added shortly.",
+        "You can use these for coordination, online sharing, or as an idea for personal printing. Professional-resolution print files will be added shortly.",
     },
     versions: {
       black: {

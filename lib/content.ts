@@ -168,13 +168,13 @@ export const content: Record<Locale, SiteContent> = {
     },
     shirtsTeaser: {
       kicker: "Veshja e përbashkët",
-      title: "Bluza që na bashkon në shesh.",
+      title: "Veshje sugjeruese për pamje të përbashkët.",
       body:
-        "Shiko versionet e zeza dhe të bardha për diasporën dhe shkarko pamjet paraprake për shpërndarje.",
+        "Nëse dëshiron, mund të përdorësh këto versione që diaspora të duket më e bashkuar në shesh.",
       href: "/veshja",
-      cta: "Shiko bluzat",
+      cta: "Shiko sugjerimet",
       previewAlt:
-        "Pamje paraprake e bluzave të diasporës në version të zi dhe të bardhë",
+        "Sugjerim për bluza të diasporës në version të zi dhe të bardhë",
     },
     whatsapp: {
       title: "Skano QR-in",
@@ -418,13 +418,13 @@ Mund të ndihmoj me: [opsionale]`,
     },
     shirtsTeaser: {
       kicker: "Shared clothing",
-      title: "The shirt that unifies us in the square.",
+      title: "Suggested clothing for a shared look.",
       body:
-        "View the black and white diaspora versions and download preview assets for sharing.",
+        "If you want, you can use these versions to help the diaspora look more united in the square.",
       href: "/en/veshja",
-      cta: "View shirts",
+      cta: "View suggestions",
       previewAlt:
-        "Preview of the diaspora shirts in black and white versions",
+        "Suggested black and white diaspora shirt versions",
     },
     whatsapp: {
       title: "Scan the QR",
