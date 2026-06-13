@@ -196,7 +196,7 @@ c) te Stacioni i Trenit - 17:00
 d) te Sheshi - 18:00
 
 Mund të ndihmoj me: [opsionale]`,
-      badges: ["WhatsApp", "Miratim nga adminët", "Mesazh i shkurtër"],
+      badges: ["Miratim nga adminët", "Mesazh i shkurtër"],
     },
     itinerary: {
       kicker: "Itinerari",
@@ -446,7 +446,7 @@ c) at the Train Station - 17:00
 d) at the Square - 18:00
 
 I can help with: [optional]`,
-      badges: ["WhatsApp", "Admin approval", "Short intro message"],
+      badges: ["Admin approval", "Short intro message"],
     },
     itinerary: {
       kicker: "Route",

@@ -106,16 +106,12 @@ export function HomePage({ locale }: { locale: Locale }) {
               <p>{t.pledgeIntro.body}</p>
               <div className="assurance-list" aria-label="Pledge safeguards">
                 <span>
-                  <MessageCircle aria-hidden="true" size={18} />
+                  <ShieldCheck aria-hidden="true" size={18} />
                   {t.whatsapp.badges[0]}
                 </span>
                 <span>
-                  <ShieldCheck aria-hidden="true" size={18} />
-                  {t.whatsapp.badges[1]}
-                </span>
-                <span>
                   <CheckCircle2 aria-hidden="true" size={18} />
-                  {t.whatsapp.badges[2]}
+                  {t.whatsapp.badges[1]}
                 </span>
               </div>
             </div>
