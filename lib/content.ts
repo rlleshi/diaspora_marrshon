@@ -36,6 +36,14 @@ export type SiteContent = {
     title: string;
     body: string;
   };
+  shirtsTeaser: {
+    kicker: string;
+    title: string;
+    body: string;
+    href: string;
+    cta: string;
+    previewAlt: string;
+  };
   whatsapp: {
     title: string;
     body: string;
@@ -158,6 +166,16 @@ export const content: Record<Locale, SiteContent> = {
       body:
         "Skano QR-in, kërko të hysh në grup dhe pas miratimit nga administratorët shkruaj mesazhin e shkurtër më poshtë.",
     },
+    shirtsTeaser: {
+      kicker: "Veshja e përbashkët",
+      title: "Bluza që na bashkon në shesh.",
+      body:
+        "Shiko versionet e zeza dhe të bardha për diasporën dhe shkarko pamjet paraprake për shpërndarje.",
+      href: "/veshja",
+      cta: "Shiko bluzat",
+      previewAlt:
+        "Pamje paraprake e bluzave të diasporës në version të zi dhe të bardhë",
+    },
     whatsapp: {
       title: "Skano QR-in",
       body:
@@ -253,7 +271,7 @@ Marshoj për Shqipërinë, paqësisht dhe vetëm nën flamurin shqiptar.`,
       kicker: "Parimet tona",
       title: "Vetëm qytetari, disiplinë dhe flamuri shqiptar",
       body:
-        "Këto parime janë premisa publike e marshimit. Ato nuk janë fushë e veçantë regjistrimi.",
+        "Këto parime janë premisa publike e marshimit. Ato nuk janë të negociueshme.",
       items: [
         {
           title: "Vetëm nën flamurin shqiptar",
@@ -397,6 +415,16 @@ Marshoj për Shqipërinë, paqësisht dhe vetëm nën flamurin shqiptar.`,
       body:
         "Scan the QR, request to join the group, and after admin approval post the short template below.",
     },
+    shirtsTeaser: {
+      kicker: "Shared clothing",
+      title: "The shirt that unifies us in the square.",
+      body:
+        "View the black and white diaspora versions and download preview assets for sharing.",
+      href: "/en/veshja",
+      cta: "View shirts",
+      previewAlt:
+        "Preview of the diaspora shirts in black and white versions",
+    },
     whatsapp: {
       title: "Scan the QR",
       body:
@@ -492,7 +520,7 @@ I march for Albania, peacefully and only under the Albanian flag.`,
       kicker: "Our principles",
       title: "Civic discipline and the Albanian flag only",
       body:
-        "These principles are the public premise of the march. They are not a separate signup checkbox.",
+        "These principles are the public premise of the march. They are not negotiable.",
       items: [
         {
           title: "Only under the Albanian flag",

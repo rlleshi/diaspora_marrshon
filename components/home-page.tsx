@@ -14,6 +14,7 @@ import {
   MessageCircle,
   QrCode,
   ShieldCheck,
+  Shirt,
   Timer,
   Utensils,
 } from "lucide-react";
@@ -126,6 +127,36 @@ export function HomePage({ locale }: { locale: Locale }) {
                 turnstileSiteKey={turnstileSiteKey}
               />
             </div>
+          </div>
+        </section>
+
+        <section className="section shirts-teaser-band">
+          <div className="section-inner shirts-teaser">
+            <div className="section-copy">
+              <p className="kicker">{t.shirtsTeaser.kicker}</p>
+              <h2>{t.shirtsTeaser.title}</h2>
+              <p>{t.shirtsTeaser.body}</p>
+              <Link className="button button-secondary" href={t.shirtsTeaser.href}>
+                <Shirt aria-hidden="true" size={20} />
+                {t.shirtsTeaser.cta}
+              </Link>
+            </div>
+            <figure className="shirts-teaser-preview">
+              <div>
+                <Image
+                  src="/shirts/black-germany.jpg"
+                  alt={t.shirtsTeaser.previewAlt}
+                  width={256}
+                  height={448}
+                />
+                <Image
+                  src="/shirts/white-germany.jpg"
+                  alt=""
+                  width={256}
+                  height={488}
+                />
+              </div>
+            </figure>
           </div>
         </section>
 

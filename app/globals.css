@@ -527,6 +527,171 @@ textarea:focus {
   display: none;
 }
 
+.shirts-teaser-band {
+  background: #151515;
+  color: var(--white);
+}
+
+.shirts-teaser {
+  display: grid;
+  grid-template-columns: minmax(0, 0.88fr) minmax(320px, 0.72fr);
+  gap: clamp(28px, 5vw, 70px);
+  align-items: center;
+}
+
+.shirts-teaser .kicker {
+  color: #fecaca;
+}
+
+.shirts-teaser .section-copy p {
+  color: rgba(255, 255, 255, 0.78);
+}
+
+.shirts-teaser .button {
+  width: fit-content;
+  margin-top: 24px;
+}
+
+.shirts-teaser-preview {
+  margin: 0;
+}
+
+.shirts-teaser-preview > div,
+.shirts-hero-preview {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: clamp(10px, 2vw, 18px);
+}
+
+.shirts-teaser-preview img,
+.shirts-hero-preview img {
+  display: block;
+  width: min(42vw, 190px);
+  height: auto;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 8px;
+  background: #f7f7f7;
+  box-shadow: 0 20px 44px rgba(0, 0, 0, 0.34);
+}
+
+.shirts-teaser-preview img:first-child,
+.shirts-hero-preview img:first-child {
+  transform: translateY(-10px);
+}
+
+.shirts-shell {
+  background: var(--bg);
+}
+
+.shirts-hero {
+  padding: clamp(58px, 8vw, 104px) clamp(18px, 4vw, 56px);
+  background: #151515;
+  color: var(--white);
+}
+
+.shirts-hero-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(320px, 0.7fr);
+  gap: clamp(30px, 6vw, 82px);
+  align-items: center;
+}
+
+.shirts-hero h1 {
+  max-width: 700px;
+  font-size: clamp(3rem, 7vw, 5.4rem);
+}
+
+.shirts-hero-copy > p:not(.eyebrow) {
+  max-width: 680px;
+  margin: 22px 0 0;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 1.12rem;
+  line-height: 1.62;
+}
+
+.shirts-hero .button {
+  width: fit-content;
+  margin-top: 30px;
+}
+
+.shirt-resource-band {
+  background: var(--paper);
+}
+
+.shirt-notice {
+  display: grid;
+  gap: 6px;
+  margin-bottom: clamp(34px, 5vw, 58px);
+  padding: 18px;
+  border: 1px solid var(--line);
+  border-left: 4px solid var(--green);
+  border-radius: 8px;
+  background: var(--white);
+}
+
+.shirt-notice p {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.55;
+}
+
+.shirt-version + .shirt-version {
+  margin-top: clamp(54px, 7vw, 86px);
+}
+
+.shirt-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+  margin-top: 32px;
+}
+
+.shirt-card {
+  display: grid;
+  gap: 14px;
+  padding: 16px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--white);
+}
+
+.shirt-card img {
+  display: block;
+  width: 100%;
+  max-width: 256px;
+  height: auto;
+  justify-self: center;
+  border-radius: 6px;
+  background: #f6f6f6;
+}
+
+.shirt-card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding-top: 12px;
+  border-top: 1px solid var(--line);
+}
+
+.download-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  min-height: 38px;
+  padding: 8px 11px;
+  border: 1px solid rgba(185, 28, 28, 0.28);
+  border-radius: 6px;
+  color: var(--red-dark);
+  font-weight: 780;
+}
+
+.download-link:hover {
+  background: rgba(185, 28, 28, 0.08);
+}
+
 .route-band {
   background: #f2eee6;
 }
@@ -808,6 +973,8 @@ textarea:focus {
   }
 
   .pledge-grid,
+  .shirts-teaser,
+  .shirts-hero-grid,
   .route-layout,
   .route-timeline,
   .context-grid {
@@ -823,6 +990,10 @@ textarea:focus {
   }
 
   .rules-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .shirt-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
@@ -862,6 +1033,16 @@ textarea:focus {
     width: 100%;
   }
 
+  .shirts-teaser .button,
+  .shirts-hero .button {
+    width: 100%;
+  }
+
+  .shirts-teaser-preview img,
+  .shirts-hero-preview img {
+    width: min(44vw, 160px);
+  }
+
   .route-map img {
     border-radius: 6px;
   }
@@ -869,7 +1050,8 @@ textarea:focus {
   .form-grid,
   .timeline li,
   .advice-grid,
-  .rules-grid {
+  .rules-grid,
+  .shirt-grid {
     grid-template-columns: 1fr;
   }
 
