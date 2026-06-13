@@ -186,15 +186,16 @@ export const content: Record<Locale, SiteContent> = {
         "Për arsye sigurie, grupi përdor miratim nga administratorët.",
       templateTitle: "Mesazhi që duhet të shkruash pas hyrjes",
       templateIntro:
-        "Kopjoje, plotësoje dhe dërgoje në grup që organizatorët të kuptojnë ku do të bashkohesh.",
-      template: `Përshëndetje, jam [Emri].
+        "Kopjoje mesazhin, plotëso emrin dhe zgjidh pikën ku do të bashkohesh.",
+      template: `Përshëndetje, jam [Emri] nga [Shteti / qyteti].
 
-Vij nga: [Shteti / qyteti]
-Do të bashkohem te: [Aeroporti 10:00 / Bulevardi i Ri 16:00 / Stacioni i Trenit 17:00 / Sheshi 18:00]
-Pjesëmarrja: [Marshoj / Bashkohem në Tiranë / Ndihmoj si vullnetar/e]
-Mund të ndihmoj me: [logjistikë / media / përkthim / rend / ligjore / tjetër]
+Do të bashkohem:
+a) te Aeroporti "Nënë Tereza" - 10:00
+b) te Bulevardi i Ri - 16:00
+c) te Stacioni i Trenit - 17:00
+d) te Sheshi - 18:00
 
-Marshoj për Shqipërinë, paqësisht dhe vetëm nën flamurin shqiptar.`,
+Mund të ndihmoj me: [opsionale]`,
       badges: ["WhatsApp", "Miratim nga adminët", "Mesazh i shkurtër"],
     },
     itinerary: {
@@ -435,15 +436,16 @@ Marshoj për Shqipërinë, paqësisht dhe vetëm nën flamurin shqiptar.`,
         "For safety, the group uses admin approval.",
       templateTitle: "Message to post after joining",
       templateIntro:
-        "Copy, complete, and send this in the group so organizers understand where you will join.",
-      template: `Hi, I am [Name].
+        "Copy the message, add your name, and choose where you will join.",
+      template: `Hi, I am [Name] from [Country / city].
 
-I come from: [Country / city]
-I will join at: [Airport 10:00 / New Boulevard 16:00 / Train Station 17:00 / Square 18:00]
-Participation: [I march / I join in Tirana / I can volunteer]
-I can help with: [logistics / media / translation / stewardship / legal / other]
+I will join:
+a) at Tirana International Airport - 10:00
+b) at New Boulevard - 16:00
+c) at the Train Station - 17:00
+d) at the Square - 18:00
 
-I march for Albania, peacefully and only under the Albanian flag.`,
+I can help with: [optional]`,
       badges: ["WhatsApp", "Admin approval", "Short intro message"],
     },
     itinerary: {
