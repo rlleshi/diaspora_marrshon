@@ -1,0 +1,603 @@
+import type {
+  JoiningPoint,
+  ParticipationType,
+  SourceLanguage,
+} from "@/lib/pledge-options";
+
+export type Locale = SourceLanguage;
+
+type Option<T extends string> = {
+  value: T;
+  label: string;
+};
+
+export type SiteContent = {
+  langLabel: string;
+  altLangHref: string;
+  altLangLabel: string;
+  nav: {
+    route: string;
+    advice: string;
+    rules: string;
+    context: string;
+    pledge: string;
+  };
+  hero: {
+    eyebrow: string;
+    title: string;
+    subtitle: string;
+    primaryCta: string;
+    secondaryCta: string;
+    statLabel: string;
+    statValue: string;
+  };
+  pledgeIntro: {
+    kicker: string;
+    title: string;
+    body: string;
+  };
+  whatsapp: {
+    title: string;
+    body: string;
+    qrAlt: string;
+    openLabel: string;
+    approvalNote: string;
+    templateTitle: string;
+    templateIntro: string;
+    template: string;
+    badges: string[];
+  };
+  itinerary: {
+    kicker: string;
+    title: string;
+    body: string;
+    points: Array<{
+      time: string;
+      title: string;
+      body: string;
+    }>;
+  };
+  practicalAdvice: {
+    kicker: string;
+    title: string;
+    body: string;
+    items: Array<{
+      title: string;
+      body: string;
+    }>;
+  };
+  rules: {
+    kicker: string;
+    title: string;
+    body: string;
+    items: Array<{
+      title: string;
+      body: string;
+    }>;
+  };
+  context: {
+    kicker: string;
+    title: string;
+    body: string;
+    demands: string[];
+    closing: string;
+  };
+  form: {
+    title: string;
+    body: string;
+    firstName: string;
+    email: string;
+    country: string;
+    city: string;
+    joiningPoint: string;
+    participationType: string;
+    whatsappOptIn: string;
+    whatsappNumber: string;
+    volunteerOptIn: string;
+    volunteerInterest: string;
+    consent: string;
+    consentVersion: string;
+    submit: string;
+    submitting: string;
+    successTitle: string;
+    successBody: string;
+    genericError: string;
+    validationError: string;
+    botError: string;
+    required: string;
+    invalidEmail: string;
+    joiningPointOptions: Option<JoiningPoint>[];
+    participationTypeOptions: Option<ParticipationType>[];
+    volunteerPlaceholder: string;
+  };
+  footer: {
+    privacy: string;
+    noLinks: string;
+  };
+  confirm: {
+    confirmedTitle: string;
+    confirmedBody: string;
+    usedTitle: string;
+    usedBody: string;
+    expiredTitle: string;
+    expiredBody: string;
+    invalidTitle: string;
+    invalidBody: string;
+    home: string;
+  };
+};
+
+export const content: Record<Locale, SiteContent> = {
+  sq: {
+    langLabel: "Shqip",
+    altLangHref: "/en",
+    altLangLabel: "English",
+    nav: {
+      route: "Itinerari",
+      advice: "Këshilla",
+      rules: "Parimet",
+      context: "Pse marshojmë",
+      pledge: "Marshoj për Shqipërinë",
+    },
+    hero: {
+      eyebrow: "Diaspora marshon në Tiranë",
+      title: "Kur atdheu thërret, ne i përgjigjemi.",
+      subtitle:
+        "Një marshim qytetar, paqësor dhe i pavarur nga Aeroporti \"Nënë Tereza\" drejt Kryeministrisë, vetëm nën flamurin shqiptar.",
+      primaryCta: "Marshoj për Shqipërinë",
+      secondaryCta: "Shiko itinerarin",
+      statLabel: "Qëllimi i faqes",
+      statValue:
+        "Ta bashkojmë diasporën në protestë për Shqipërinë, në numër sa më të madh.",
+    },
+    pledgeIntro: {
+      kicker: "Premtimi",
+      title: "Bashkohu në WhatsApp për koordinim fillestar.",
+      body:
+        "Skano QR-in, kërko të hysh në grup dhe pas miratimit nga administratorët shkruaj mesazhin e shkurtër më poshtë.",
+    },
+    whatsapp: {
+      title: "Skano QR-in",
+      body:
+        "Ky është grupi i hyrjes për diasporën. Anëtarët miratohen nga administratorët para se të hyjnë.",
+      qrAlt: "QR për grupin WhatsApp të diasporës",
+      openLabel: "Hap WhatsApp",
+      approvalNote:
+        "Për arsye sigurie, grupi përdor miratim nga administratorët.",
+      templateTitle: "Mesazhi që duhet të shkruash pas hyrjes",
+      templateIntro:
+        "Kopjoje, plotësoje dhe dërgoje në grup që organizatorët të kuptojnë ku do të bashkohesh.",
+      template: `Përshëndetje, jam [Emri].
+
+Vij nga: [Shteti / qyteti]
+Do të bashkohem te: [Aeroporti 10:00 / Bulevardi i Ri 16:00 / Stacioni i Trenit 17:00 / Sheshi 18:00]
+Pjesëmarrja: [Marshoj / Bashkohem në Tiranë / Ndihmoj si vullnetar/e]
+Mund të ndihmoj me: [logjistikë / media / përkthim / rend / ligjore / tjetër]
+
+Marshoj për Shqipërinë, paqësisht dhe vetëm nën flamurin shqiptar.`,
+      badges: ["WhatsApp", "Miratim nga adminët", "Mesazh i shkurtër"],
+    },
+    itinerary: {
+      kicker: "Itinerari",
+      title: "Nga Rinasi drejt sheshit",
+      body:
+        "Marshimi nis sapo diaspora zbret në aeroport dhe bashkohet hap pas hapi me qytetarët në Tiranë.",
+      points: [
+        {
+          time: "10:00",
+          title: "Aeroporti \"Nënë Tereza\"",
+          body: "Nisja simbolike nga Rinasi drejt Tiranës.",
+        },
+        {
+          time: "16:00",
+          title: "Bulevardi i Ri",
+          body:
+            "Bashkim me pjesëmarrës të tjerë të diasporës dhe vijim i organizuar.",
+        },
+        {
+          time: "17:00",
+          title: "Zona e Stacionit të Trenit",
+          body: "Bashkim me protestues të tjerë nga Tirana.",
+        },
+        {
+          time: "18:00",
+          title: "Sheshi pranë Kryeministrisë",
+          body: "Diaspora bashkohet me protestën kryesore në shesh.",
+        },
+      ],
+    },
+    practicalAdvice: {
+      kicker: "Këshilla praktike",
+      title: "Përgatitu për ecje të gjatë në asfalt",
+      body:
+        "Mbaji gjërat të thjeshta: ujë, ushqim i lehtë, ritëm i qetë dhe këpucë të provuara. Qëllimi është të arrijmë të gjithë të bashkuar dhe në gjendje të mirë.",
+      items: [
+        {
+          title: "Ujë",
+          body:
+            "Pi ujë rregullisht gjatë ecjes. Merr një shishe të madhe me vete dhe mbushe sa herë të kesh mundësi, sidomos sepse dita do të jetë e nxehtë.",
+        },
+        {
+          title: "Ushqim",
+          body:
+            "Merr banane, sanduiç, arra ose bar energjetik. Ha vakte të vogla rreth çdo 2 orë.",
+        },
+        {
+          title: "Pauza",
+          body:
+            "Do të ndalojmë rreth 5 minuta çdo 1 orë. Çdo 2 orë do të bëjmë një pauzë më të gjatë, rreth 15 minuta.",
+        },
+        {
+          title: "Këpucët",
+          body:
+            "Vish atlete ecjeje me taban të butë. Mos vish këpucë të reja pa i provuar më parë.",
+        },
+        {
+          title: "Lodhja",
+          body:
+            "Rruga nga Rinasi deri në shesh zgjat shumë orë dhe bëhet kryesisht në asfalt. Ritmi do të jetë i qetë, rreth 4 km/orë, që grupi të qëndrojë i bashkuar.",
+        },
+        {
+          title: "Çanta",
+          body:
+            "Mbaje të lehtë, nën 3 kg nëse mundesh. Çanta me rrip beli e shpërndan peshën më mirë.",
+        },
+      ],
+    },
+    rules: {
+      kicker: "Parimet tona",
+      title: "Vetëm qytetari, disiplinë dhe flamuri shqiptar",
+      body:
+        "Këto parime janë premisa publike e marshimit. Ato nuk janë fushë e veçantë regjistrimi.",
+      items: [
+        {
+          title: "Vetëm nën flamurin shqiptar",
+          body:
+            "Marshimi nuk përfaqëson parti politike, organizatë apo grup interesi.",
+        },
+        {
+          title: "Protestë paqësore dhe qytetare",
+          body:
+            "E drejta demokratike ushtrohet me respekt për ligjin dhe për njerëzit përreth.",
+        },
+        {
+          title: "Respekt për njëri-tjetrin",
+          body:
+            "Nuk pranohen fyerje, kërcënime, provokime, diskriminim apo nxitje dhune.",
+        },
+        {
+          title: "Qetësi ndaj çdo provokimi",
+          body:
+            "Përgjigjja ndaj provokimit është qetësia, dinjiteti dhe largimi nga përplasja.",
+        },
+        {
+          title: "Përgjegjësi personale",
+          body:
+            "Çdo pjesëmarrës mban përgjegjësi për veprimet dhe deklaratat e veta.",
+        },
+        {
+          title: "Bashkim përtej bindjeve",
+          body:
+            "Ajo që na bashkon është interesi për të ardhmen e Shqipërisë.",
+        },
+      ],
+    },
+    context: {
+      kicker: "Pse marshojmë",
+      title: "Për përgjegjësi publike dhe interes kombëtar",
+      body:
+        "Marshimi është në solidaritet me qytetarët që kërkojnë mbrojtjen e interesit publik, natyrës, trashëgimisë kulturore dhe të ardhmes së vendit.",
+      demands: [
+        "Dorëheqjen e qeverisë.",
+        "Shfuqizimin e statusit dhe kuadrit ligjor të investitorëve strategjikë.",
+        "Shfuqizimin e Paketës së Maleve.",
+        "Anulimin e ndryshimeve në ligjin për zonat e mbrojtura.",
+        "Anulimin e ndryshimeve në ligjin për trashëgiminë kulturore.",
+      ],
+      closing:
+        "Ne vijmë nga vende të ndryshme, por kur Shqipëria thërret, përgjigjja jonë është veprim i qetë, i bashkuar dhe konkret.",
+    },
+    form: {
+      title: "Premto pjesëmarrjen",
+      body:
+        "Pas dërgimit do të marrësh një email konfirmimi. Nuk shfaqen lidhje private koordinimi në faqe.",
+      firstName: "Emri",
+      email: "Email",
+      country: "Shteti nga vjen",
+      city: "Qyteti",
+      joiningPoint: "Pika ku planifikon të bashkohesh",
+      participationType: "Si do të marrësh pjesë",
+      whatsappOptIn: "Dua koordinim privat në WhatsApp",
+      whatsappNumber: "Numri WhatsApp",
+      volunteerOptIn: "Dua të ndihmoj si vullnetar/e",
+      volunteerInterest: "Si mund të ndihmosh",
+      consent:
+        "Pajtohem që të dhënat e mia të përdoren nga organizatorët e besuar për konfirmim, koordinim privat dhe njoftime rreth marshimit.",
+      consentVersion:
+        "Të dhënat fshihen automatikisht pas fushatës.",
+      submit: "Dërgo premtimin",
+      submitting: "Duke dërguar...",
+      successTitle: "Kontrollo emailin",
+      successBody:
+        "Nëse të dhënat u pranuan, do të marrësh një lidhje konfirmimi. Premtimi llogaritet vetëm pasi emaili konfirmohet.",
+      genericError:
+        "Kërkesa nuk mund të përfundohej tani. Provo përsëri pas pak.",
+      validationError: "Kontrollo fushat dhe provo përsëri.",
+      botError: "Verifikimi nuk u krye. Rifresko faqen dhe provo përsëri.",
+      required: "Kjo fushë kërkohet.",
+      invalidEmail: "Shkruaj një email të vlefshëm.",
+      joiningPointOptions: [
+        { value: "airport", label: "Aeroporti \"Nënë Tereza\"" },
+        { value: "new-boulevard", label: "Bulevardi i Ri" },
+        { value: "train-station", label: "Zona e Stacionit të Trenit" },
+        { value: "prime-minister-office", label: "Sheshi pranë Kryeministrisë" },
+        { value: "coordinate-later", label: "Do ta koordinoj më vonë" },
+      ],
+      participationTypeOptions: [
+        { value: "full-airport-march", label: "Marshoj nga aeroporti" },
+        { value: "join-in-tirana", label: "Bashkohem në Tiranë" },
+        { value: "volunteer-steward", label: "Ndihmoj me rend, përkthim ose logjistikë" },
+        { value: "coordination-support", label: "Ndihmoj me koordinim privat" },
+      ],
+      volunteerPlaceholder:
+        "P.sh. përkthim, logjistikë, media, ligjore, aksesueshmëri...",
+    },
+    footer: {
+      privacy:
+        "Të dhënat ruhen vetëm për koordinim të marshimit dhe nuk publikohen.",
+      noLinks:
+        "Lidhjet private të grupeve jepen vetëm pas konfirmimit dhe shqyrtimit nga organizatorët.",
+    },
+    confirm: {
+      confirmedTitle: "Emaili u konfirmua",
+      confirmedBody:
+        "Premtimi yt tani është i verifikuar. Koordinimi privat bëhet vetëm nga organizatorët e besuar.",
+      usedTitle: "Lidhja është përdorur",
+      usedBody:
+        "Ky konfirmim është përpunuar më parë. Nuk nevojitet veprim tjetër.",
+      expiredTitle: "Lidhja ka skaduar",
+      expiredBody:
+        "Për siguri, lidhjet e konfirmimit skadojnë. Dërgo premtimin përsëri për një lidhje të re.",
+      invalidTitle: "Lidhja nuk është e vlefshme",
+      invalidBody:
+        "Nuk mund ta konfirmonim këtë lidhje. Kontrollo emailin ose dërgo premtimin përsëri.",
+      home: "Kthehu te faqja kryesore",
+    },
+  },
+  en: {
+    langLabel: "English",
+    altLangHref: "/",
+    altLangLabel: "Shqip",
+    nav: {
+      route: "Route",
+      advice: "Tips",
+      rules: "Principles",
+      context: "Why we march",
+      pledge: "I march for Albania",
+    },
+    hero: {
+      eyebrow: "The diaspora marches in Tirana",
+      title: "When Albania calls, we answer.",
+      subtitle:
+        "A peaceful, civic, independent march from Tirana International Airport \"Nënë Tereza\" toward the Prime Minister's Office, only under the Albanian flag.",
+      primaryCta: "I march for Albania",
+      secondaryCta: "View the route",
+      statLabel: "Site purpose",
+      statValue:
+        "Bring the diaspora together to protest for Albania, in the largest numbers possible.",
+    },
+    pledgeIntro: {
+      kicker: "The pledge",
+      title: "Join WhatsApp for first-step coordination.",
+      body:
+        "Scan the QR, request to join the group, and after admin approval post the short template below.",
+    },
+    whatsapp: {
+      title: "Scan the QR",
+      body:
+        "This is the diaspora intake group. Members are approved by admins before joining.",
+      qrAlt: "QR for the diaspora WhatsApp group",
+      openLabel: "Open WhatsApp",
+      approvalNote:
+        "For safety, the group uses admin approval.",
+      templateTitle: "Message to post after joining",
+      templateIntro:
+        "Copy, complete, and send this in the group so organizers understand where you will join.",
+      template: `Hi, I am [Name].
+
+I come from: [Country / city]
+I will join at: [Airport 10:00 / New Boulevard 16:00 / Train Station 17:00 / Square 18:00]
+Participation: [I march / I join in Tirana / I can volunteer]
+I can help with: [logistics / media / translation / stewardship / legal / other]
+
+I march for Albania, peacefully and only under the Albanian flag.`,
+      badges: ["WhatsApp", "Admin approval", "Short intro message"],
+    },
+    itinerary: {
+      kicker: "Route",
+      title: "From Rinas toward the square",
+      body:
+        "The march begins as the diaspora lands at the airport and joins citizens in Tirana step by step.",
+      points: [
+        {
+          time: "10:00",
+          title: "Tirana International Airport \"Nënë Tereza\"",
+          body: "Symbolic departure from Rinas toward Tirana.",
+        },
+        {
+          time: "16:00",
+          title: "New Boulevard",
+          body:
+            "Diaspora participants gather and continue in an organized way.",
+        },
+        {
+          time: "17:00",
+          title: "Train Station area",
+          body: "Joining other protesters from Tirana.",
+        },
+        {
+          time: "18:00",
+          title: "Square near the Prime Minister's Office",
+          body: "The diaspora joins the main protest in the square.",
+        },
+      ],
+    },
+    practicalAdvice: {
+      kicker: "Practical tips",
+      title: "Prepare for a long walk on asphalt",
+      body:
+        "Keep it simple: water, light food, a steady pace, and shoes you have already tested. The goal is to arrive together and in good condition.",
+      items: [
+        {
+          title: "Water",
+          body:
+            "Drink water regularly during the walk. Bring a large bottle and refill whenever possible, especially because the day will be hot.",
+        },
+        {
+          title: "Food",
+          body:
+            "Bring bananas, sandwiches, nuts, or an energy bar. Eat small portions about every 2 hours.",
+        },
+        {
+          title: "Breaks",
+          body:
+            "We will stop for about 5 minutes every hour. Every 2 hours, we will take a longer break of about 15 minutes.",
+        },
+        {
+          title: "Shoes",
+          body:
+            "Wear walking trainers with soft soles. Do not wear new shoes without testing them first.",
+        },
+        {
+          title: "Fatigue",
+          body:
+            "The route from Rinas to the square takes many hours and is mostly on asphalt. The pace will stay calm, about 4 km/hour, so the group remains together.",
+        },
+        {
+          title: "Bag",
+          body:
+            "Keep it light, under 3 kg if possible. A waist strap helps distribute the weight.",
+        },
+      ],
+    },
+    rules: {
+      kicker: "Our principles",
+      title: "Civic discipline and the Albanian flag only",
+      body:
+        "These principles are the public premise of the march. They are not a separate signup checkbox.",
+      items: [
+        {
+          title: "Only under the Albanian flag",
+          body:
+            "The march does not represent any political party, organization, or interest group.",
+        },
+        {
+          title: "Peaceful civic protest",
+          body:
+            "Democratic rights are exercised with respect for the law and the people around us.",
+        },
+        {
+          title: "Respect for each other",
+          body:
+            "Insults, threats, provocation, discrimination, and incitement to violence are rejected.",
+        },
+        {
+          title: "Calm in the face of provocation",
+          body:
+            "The answer to provocation is calm, dignity, and stepping away from escalation.",
+        },
+        {
+          title: "Personal responsibility",
+          body:
+            "Each participant is responsible for their own actions and statements.",
+        },
+        {
+          title: "Unity beyond beliefs",
+          body:
+            "What unites us is the future of Albania.",
+        },
+      ],
+    },
+    context: {
+      kicker: "Why we march",
+      title: "For public responsibility and the national interest",
+      body:
+        "The march stands in solidarity with citizens calling for the protection of the public interest, nature, cultural heritage, and Albania's future.",
+      demands: [
+        "Government resignation.",
+        "Repeal of the strategic investor status and related legal framework.",
+        "Repeal of the Mountains Package.",
+        "Reversal of changes to protected-areas law.",
+        "Reversal of changes to cultural-heritage law.",
+      ],
+      closing:
+        "We come from different countries, but when Albania calls, our answer is calm, united, concrete action.",
+    },
+    form: {
+      title: "Pledge your participation",
+      body:
+        "After submitting, you will receive a confirmation email. Private coordination links are not shown on the public site.",
+      firstName: "First name",
+      email: "Email",
+      country: "Country you come from",
+      city: "City",
+      joiningPoint: "Where you plan to join",
+      participationType: "How you will participate",
+      whatsappOptIn: "I want private WhatsApp coordination",
+      whatsappNumber: "WhatsApp number",
+      volunteerOptIn: "I want to help as a volunteer",
+      volunteerInterest: "How you can help",
+      consent:
+        "I agree that trusted organizers may use my data for confirmation, private coordination, and march-related updates.",
+      consentVersion:
+        "Data is deleted automatically after the campaign.",
+      submit: "Send pledge",
+      submitting: "Sending...",
+      successTitle: "Check your email",
+      successBody:
+        "If the details were accepted, you will receive a confirmation link. The pledge counts only after email confirmation.",
+      genericError:
+        "The request could not be completed right now. Try again shortly.",
+      validationError: "Check the fields and try again.",
+      botError: "Verification did not complete. Refresh the page and try again.",
+      required: "This field is required.",
+      invalidEmail: "Enter a valid email address.",
+      joiningPointOptions: [
+        { value: "airport", label: "Tirana International Airport" },
+        { value: "new-boulevard", label: "New Boulevard" },
+        { value: "train-station", label: "Train Station area" },
+        { value: "prime-minister-office", label: "Square near the Prime Minister's Office" },
+        { value: "coordinate-later", label: "I will coordinate later" },
+      ],
+      participationTypeOptions: [
+        { value: "full-airport-march", label: "I march from the airport" },
+        { value: "join-in-tirana", label: "I join in Tirana" },
+        { value: "volunteer-steward", label: "I help with stewardship, translation, or logistics" },
+        { value: "coordination-support", label: "I help with private coordination" },
+      ],
+      volunteerPlaceholder:
+        "For example translation, logistics, media, legal, accessibility...",
+    },
+    footer: {
+      privacy:
+        "Participant data is kept only for march coordination and is not published.",
+      noLinks:
+        "Private group links are sent only after confirmation and organizer review.",
+    },
+    confirm: {
+      confirmedTitle: "Email confirmed",
+      confirmedBody:
+        "Your pledge is now verified. Private coordination is handled only by trusted organizers.",
+      usedTitle: "Link already used",
+      usedBody:
+        "This confirmation has already been processed. No further action is needed.",
+      expiredTitle: "Link expired",
+      expiredBody:
+        "For security, confirmation links expire. Submit the pledge again to receive a new link.",
+      invalidTitle: "Invalid link",
+      invalidBody:
+        "We could not confirm this link. Check your email or submit the pledge again.",
+      home: "Back to the homepage",
+    },
+  },
+};

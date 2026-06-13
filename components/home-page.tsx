@@ -1,0 +1,276 @@
+import Image from "next/image";
+import Link from "next/link";
+import {
+  Activity,
+  ArrowDown,
+  ArrowRight,
+  Backpack,
+  CheckCircle2,
+  Droplets,
+  Flag,
+  Footprints,
+  Languages,
+  MapPinned,
+  MessageCircle,
+  QrCode,
+  ShieldCheck,
+  Timer,
+  Utensils,
+} from "lucide-react";
+import { content, type Locale, type SiteContent } from "@/lib/content";
+import { PledgeForm } from "@/components/pledge-form";
+
+const whatsAppInviteUrl =
+  "https://chat.whatsapp.com/L6oe4JyUi8k0h13oJSv7DP?mode=gi_t";
+
+const practicalAdviceIcons = [
+  Droplets,
+  Utensils,
+  Timer,
+  Footprints,
+  Activity,
+  Backpack,
+];
+
+export function HomePage({ locale }: { locale: Locale }) {
+  const t = content[locale];
+  const turnstileSiteKey =
+    process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY ??
+    process.env.TURNSTILE_SITE_KEY ??
+    "";
+
+  return (
+    <div className="site-shell">
+      <header className="site-header">
+        <Link href={locale === "sq" ? "/" : "/en"} className="brand">
+          <Flag aria-hidden="true" size={22} />
+          <span>Diaspora marshon</span>
+        </Link>
+        <nav aria-label="Primary navigation">
+          <a href="#route">{t.nav.route}</a>
+          <a href="#rules">{t.nav.rules}</a>
+          <a href="#context">{t.nav.context}</a>
+          <a href="#advice">{t.nav.advice}</a>
+          <a className="nav-cta" href="#pledge">
+            {t.nav.pledge}
+          </a>
+          <Link className="lang-switch" href={t.altLangHref}>
+            <Languages aria-hidden="true" size={18} />
+            <span>{t.altLangLabel}</span>
+          </Link>
+        </nav>
+      </header>
+
+      <section className="hero">
+        <Image
+          src="/diaspora-march-hero.png"
+          alt=""
+          fill
+          priority
+          sizes="100vw"
+          className="hero-image"
+        />
+        <div className="hero-tint" />
+        <div className="hero-content">
+          <p className="eyebrow">
+            <Flag aria-hidden="true" size={18} />
+            {t.hero.eyebrow}
+          </p>
+          <h1>{t.hero.title}</h1>
+          <p className="hero-copy">{t.hero.subtitle}</p>
+          <div className="hero-actions">
+            <a className="button button-primary" href="#pledge">
+              <ArrowRight aria-hidden="true" size={20} />
+              {t.hero.primaryCta}
+            </a>
+            <a className="button button-secondary" href="#route">
+              <ArrowDown aria-hidden="true" size={20} />
+              {t.hero.secondaryCta}
+            </a>
+          </div>
+          <div className="hero-proof" aria-label={t.hero.statLabel}>
+            <span>{t.hero.statLabel}</span>
+            <strong>{t.hero.statValue}</strong>
+          </div>
+        </div>
+      </section>
+
+      <main>
+        <section className="section pledge-band" id="pledge">
+          <div className="section-inner pledge-grid">
+            <div className="section-copy">
+              <p className="kicker">{t.pledgeIntro.kicker}</p>
+              <h2>{t.pledgeIntro.title}</h2>
+              <p>{t.pledgeIntro.body}</p>
+              <div className="assurance-list" aria-label="Pledge safeguards">
+                <span>
+                  <MessageCircle aria-hidden="true" size={18} />
+                  {t.whatsapp.badges[0]}
+                </span>
+                <span>
+                  <ShieldCheck aria-hidden="true" size={18} />
+                  {t.whatsapp.badges[1]}
+                </span>
+                <span>
+                  <CheckCircle2 aria-hidden="true" size={18} />
+                  {t.whatsapp.badges[2]}
+                </span>
+              </div>
+            </div>
+            <WhatsAppIntakePanel content={t.whatsapp} />
+            <div className="hidden-pledge-form" hidden>
+              <PledgeForm
+                locale={locale}
+                content={t.form}
+                turnstileSiteKey={turnstileSiteKey}
+              />
+            </div>
+          </div>
+        </section>
+
+        <section className="section route-band" id="route">
+          <div className="section-inner">
+            <div className="section-heading">
+              <p className="kicker">{t.itinerary.kicker}</p>
+              <h2>{t.itinerary.title}</h2>
+              <p>{t.itinerary.body}</p>
+            </div>
+            <div className="route-layout">
+              <div className="route-visual" aria-hidden="true">
+                <MapPinned size={34} />
+                <div className="route-line">
+                  {t.itinerary.points.map((point) => (
+                    <span key={point.time} />
+                  ))}
+                </div>
+              </div>
+              <ol className="timeline">
+                {t.itinerary.points.map((point) => (
+                  <li key={`${point.time}-${point.title}`}>
+                    <span className="timeline-time">{point.time}</span>
+                    <div>
+                      <h3>{point.title}</h3>
+                      <p>{point.body}</p>
+                    </div>
+                  </li>
+                ))}
+              </ol>
+            </div>
+          </div>
+        </section>
+
+        <section className="section rules-band" id="rules">
+          <div className="section-inner">
+            <div className="section-heading">
+              <p className="kicker">{t.rules.kicker}</p>
+              <h2>{t.rules.title}</h2>
+              <p>{t.rules.body}</p>
+            </div>
+            <div className="rules-grid">
+              {t.rules.items.map((item) => (
+                <article className="rule-item" key={item.title}>
+                  <CheckCircle2 aria-hidden="true" size={22} />
+                  <h3>{item.title}</h3>
+                  <p>{item.body}</p>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section className="section context-band" id="context">
+          <div className="section-inner context-grid">
+            <div>
+              <p className="kicker">{t.context.kicker}</p>
+              <h2>{t.context.title}</h2>
+              <p>{t.context.body}</p>
+              <p className="context-closing">{t.context.closing}</p>
+            </div>
+            <ul className="demand-list">
+              {t.context.demands.map((demand) => (
+                <li key={demand}>
+                  <CheckCircle2 aria-hidden="true" size={18} />
+                  <span>{demand}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </section>
+
+        <section className="section advice-band" id="advice">
+          <div className="section-inner">
+            <div className="section-heading">
+              <p className="kicker">{t.practicalAdvice.kicker}</p>
+              <h2>{t.practicalAdvice.title}</h2>
+              <p>{t.practicalAdvice.body}</p>
+            </div>
+            <div className="advice-grid">
+              {t.practicalAdvice.items.map((item, index) => {
+                const AdviceIcon =
+                  practicalAdviceIcons[index] ?? CheckCircle2;
+
+                return (
+                  <article className="advice-item" key={item.title}>
+                    <span className="advice-icon">
+                      <AdviceIcon aria-hidden="true" size={22} />
+                    </span>
+                    <div>
+                      <h3>{item.title}</h3>
+                      <p>{item.body}</p>
+                    </div>
+                  </article>
+                );
+              })}
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <footer className="site-footer">
+        <p>{t.footer.privacy}</p>
+        <p>{t.footer.noLinks}</p>
+      </footer>
+    </div>
+  );
+}
+
+function WhatsAppIntakePanel({
+  content,
+}: {
+  content: SiteContent["whatsapp"];
+}) {
+  return (
+    <aside className="whatsapp-panel" aria-labelledby="whatsapp-title">
+      <div className="whatsapp-panel-heading">
+        <span className="qr-icon">
+          <QrCode aria-hidden="true" size={22} />
+        </span>
+        <div>
+          <h2 id="whatsapp-title">{content.title}</h2>
+          <p>{content.body}</p>
+        </div>
+      </div>
+
+      <div className="qr-card">
+        <img src="/whatsapp-intake-qr.svg" alt={content.qrAlt} />
+        <a
+          className="button button-primary"
+          href={whatsAppInviteUrl}
+          target="_blank"
+          rel="noreferrer"
+        >
+          <MessageCircle aria-hidden="true" size={20} />
+          {content.openLabel}
+        </a>
+      </div>
+
+      <p className="approval-note">{content.approvalNote}</p>
+
+      <div className="template-panel">
+        <h3>{content.templateTitle}</h3>
+        <p>{content.templateIntro}</p>
+        <pre>{content.template}</pre>
+      </div>
+    </aside>
+  );
+}
