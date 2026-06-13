@@ -161,7 +161,7 @@ textarea {
 
 .hero-date {
   display: inline-flex;
-  align-items: center;
+  align-items: flex-start;
   gap: 10px;
   max-width: 100%;
   margin: 0 0 20px;
@@ -179,7 +179,26 @@ textarea {
 
 .hero-date svg {
   flex: 0 0 auto;
+  margin-top: 1px;
   color: var(--red);
+}
+
+.hero-date-copy {
+  display: grid;
+  gap: 2px;
+}
+
+.hero-date-copy span {
+  display: block;
+}
+
+.hero-date-copy span:first-child {
+  font-weight: 850;
+}
+
+.hero-date-copy span:last-child {
+  font-size: 0.9em;
+  font-weight: 760;
 }
 
 h1,

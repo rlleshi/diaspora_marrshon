@@ -80,9 +80,15 @@ export function HomePage({ locale }: { locale: Locale }) {
             <Flag aria-hidden="true" size={18} />
             {t.hero.eyebrow}
           </p>
-          <div className="hero-date" aria-label={t.hero.dateLabel}>
+          <div
+            className="hero-date"
+            aria-label={`${t.hero.dateLabel}: ${t.hero.dateText}, ${t.hero.dateDetails}`}
+          >
             <CalendarDays aria-hidden="true" size={20} />
-            <span>{t.hero.dateText}</span>
+            <span className="hero-date-copy">
+              <span>{t.hero.dateText}</span>
+              <span>{t.hero.dateDetails}</span>
+            </span>
           </div>
           <h1>{t.hero.title}</h1>
           <p className="hero-copy">{t.hero.subtitle}</p>
