@@ -61,6 +61,7 @@ export type SiteContent = {
     body: string;
     mapAlt: string;
     mapOpenLabel: string;
+    mapExternalLabel: string;
     points: Array<{
       time: string;
       title: string;
@@ -206,6 +207,7 @@ Mund të ndihmoj me: [opsionale]`,
       mapAlt:
         "Harta e marshimit nga Aeroporti Nënë Tereza në Bulevardin e Ri, Stacionin e Trenit dhe Kryeministri",
       mapOpenLabel: "Hap hartën e marshimit në madhësi të plotë",
+      mapExternalLabel: "Hap itinerarin në Google Maps",
       points: [
         {
           time: "10:00",
@@ -456,6 +458,7 @@ I can help with: [optional]`,
       mapAlt:
         "Map of the march from Tirana International Airport to New Boulevard, the Train Station, and the Prime Minister's Office",
       mapOpenLabel: "Open the march map full size",
+      mapExternalLabel: "Open route in Google Maps",
       points: [
         {
           time: "10:00",

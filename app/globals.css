@@ -767,6 +767,25 @@ textarea:focus {
   opacity: 0.97;
 }
 
+.route-map-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 42px;
+  margin-top: 12px;
+  padding: 10px 13px;
+  border: 1px solid rgba(185, 28, 28, 0.22);
+  border-radius: 6px;
+  background: var(--white);
+  color: var(--red-dark);
+  font-weight: 780;
+}
+
+.route-map-link:hover {
+  background: rgba(185, 28, 28, 0.08);
+}
+
 .timeline {
   display: grid;
   gap: 12px;

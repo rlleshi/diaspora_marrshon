@@ -24,6 +24,7 @@ import routeMapImage from "@/docs/marshimi_i_diaspores_4_pika_precize_v3.png";
 
 const whatsAppInviteUrl =
   "https://chat.whatsapp.com/L6oe4JyUi8k0h13oJSv7DP?mode=gi_t";
+const googleMapsRouteUrl = "https://maps.app.goo.gl/XMmPymdGEwmdKyvN7";
 
 const practicalAdviceIcons = [
   Droplets,
@@ -167,6 +168,15 @@ export function HomePage({ locale }: { locale: Locale }) {
                     alt={t.itinerary.mapAlt}
                     sizes="(max-width: 900px) calc(100vw - 28px), 520px"
                   />
+                </a>
+                <a
+                  className="route-map-link"
+                  href={googleMapsRouteUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  <MapPinned aria-hidden="true" size={18} />
+                  {t.itinerary.mapExternalLabel}
                 </a>
               </figure>
             </div>
