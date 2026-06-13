@@ -51,6 +51,8 @@ export type SiteContent = {
     kicker: string;
     title: string;
     body: string;
+    mapAlt: string;
+    mapOpenLabel: string;
     points: Array<{
       time: string;
       title: string;
@@ -182,6 +184,9 @@ Marshoj për Shqipërinë, paqësisht dhe vetëm nën flamurin shqiptar.`,
       title: "Nga Rinasi drejt sheshit",
       body:
         "Marshimi nis sapo diaspora zbret në aeroport dhe bashkohet hap pas hapi me qytetarët në Tiranë.",
+      mapAlt:
+        "Harta e marshimit nga Aeroporti Nënë Tereza në Bulevardin e Ri, Stacionin e Trenit dhe Kryeministri",
+      mapOpenLabel: "Hap hartën e marshimit në madhësi të plotë",
       points: [
         {
           time: "10:00",
@@ -418,6 +423,9 @@ I march for Albania, peacefully and only under the Albanian flag.`,
       title: "From Rinas toward the square",
       body:
         "The march begins as the diaspora lands at the airport and joins citizens in Tirana step by step.",
+      mapAlt:
+        "Map of the march from Tirana International Airport to New Boulevard, the Train Station, and the Prime Minister's Office",
+      mapOpenLabel: "Open the march map full size",
       points: [
         {
           time: "10:00",

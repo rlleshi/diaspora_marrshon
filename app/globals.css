@@ -539,10 +539,17 @@ textarea:focus {
 
 .route-layout {
   display: grid;
-  grid-template-columns: 220px minmax(0, 1fr);
+  grid-template-columns: minmax(0, 1fr) minmax(360px, 0.92fr);
   gap: clamp(22px, 4vw, 54px);
-  align-items: stretch;
+  align-items: start;
   margin-top: 38px;
+}
+
+.route-timeline {
+  display: grid;
+  grid-template-columns: 92px minmax(0, 1fr);
+  gap: clamp(16px, 3vw, 28px);
+  align-items: stretch;
 }
 
 .route-visual {
@@ -572,6 +579,27 @@ textarea:focus {
   border-radius: 999px;
   background: var(--red);
   box-shadow: 0 0 0 1px rgba(21, 21, 21, 0.18);
+}
+
+.route-map {
+  margin: 0;
+}
+
+.route-map a {
+  display: block;
+  border-radius: 8px;
+  outline-offset: 4px;
+}
+
+.route-map img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid rgba(21, 21, 21, 0.12);
+  border-radius: 8px;
+  background: var(--white);
+  box-shadow: var(--shadow);
+  opacity: 0.97;
 }
 
 .timeline {
@@ -781,6 +809,7 @@ textarea:focus {
 
   .pledge-grid,
   .route-layout,
+  .route-timeline,
   .context-grid {
     grid-template-columns: 1fr;
   }
@@ -831,6 +860,10 @@ textarea:focus {
 
   .button {
     width: 100%;
+  }
+
+  .route-map img {
+    border-radius: 6px;
   }
 
   .form-grid,

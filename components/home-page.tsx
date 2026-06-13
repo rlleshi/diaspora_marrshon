@@ -19,6 +19,7 @@ import {
 } from "lucide-react";
 import { content, type Locale, type SiteContent } from "@/lib/content";
 import { PledgeForm } from "@/components/pledge-form";
+import routeMapImage from "@/docs/marshimi_i_diaspores_4_pika_precize_v3.png";
 
 const whatsAppInviteUrl =
   "https://chat.whatsapp.com/L6oe4JyUi8k0h13oJSv7DP?mode=gi_t";
@@ -136,25 +137,41 @@ export function HomePage({ locale }: { locale: Locale }) {
               <p>{t.itinerary.body}</p>
             </div>
             <div className="route-layout">
-              <div className="route-visual" aria-hidden="true">
-                <MapPinned size={34} />
-                <div className="route-line">
-                  {t.itinerary.points.map((point) => (
-                    <span key={point.time} />
-                  ))}
+              <div className="route-timeline">
+                <div className="route-visual" aria-hidden="true">
+                  <MapPinned size={34} />
+                  <div className="route-line">
+                    {t.itinerary.points.map((point) => (
+                      <span key={point.time} />
+                    ))}
+                  </div>
                 </div>
+                <ol className="timeline">
+                  {t.itinerary.points.map((point) => (
+                    <li key={`${point.time}-${point.title}`}>
+                      <span className="timeline-time">{point.time}</span>
+                      <div>
+                        <h3>{point.title}</h3>
+                        <p>{point.body}</p>
+                      </div>
+                    </li>
+                  ))}
+                </ol>
               </div>
-              <ol className="timeline">
-                {t.itinerary.points.map((point) => (
-                  <li key={`${point.time}-${point.title}`}>
-                    <span className="timeline-time">{point.time}</span>
-                    <div>
-                      <h3>{point.title}</h3>
-                      <p>{point.body}</p>
-                    </div>
-                  </li>
-                ))}
-              </ol>
+              <figure className="route-map">
+                <a
+                  href={routeMapImage.src}
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label={t.itinerary.mapOpenLabel}
+                >
+                  <Image
+                    src={routeMapImage}
+                    alt={t.itinerary.mapAlt}
+                    sizes="(max-width: 900px) calc(100vw - 28px), 520px"
+                  />
+                </a>
+              </figure>
             </div>
           </div>
         </section>
