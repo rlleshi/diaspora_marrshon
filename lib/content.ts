@@ -24,6 +24,8 @@ export type SiteContent = {
   };
   hero: {
     eyebrow: string;
+    dateLabel: string;
+    dateText: string;
     title: string;
     subtitle: string;
     primaryCta: string;
@@ -58,6 +60,7 @@ export type SiteContent = {
   itinerary: {
     kicker: string;
     title: string;
+    dateLine: string;
     body: string;
     mapAlt: string;
     mapOpenLabel: string;
@@ -152,6 +155,9 @@ export const content: Record<Locale, SiteContent> = {
     },
     hero: {
       eyebrow: "Diaspora marshon në Tiranë",
+      dateLabel: "Data e marshimit",
+      dateText:
+        "E shtunë, 20 qershor 2026 · 10:00 · Aeroporti \"Nënë Tereza\"",
       title: "Kur atdheu thërret, ne i përgjigjemi.",
       subtitle:
         "Një marshim qytetar, paqësor dhe i pavarur nga Aeroporti \"Nënë Tereza\" drejt Kryeministrisë, vetëm nën flamurin shqiptar.",
@@ -202,6 +208,7 @@ Mund të ndihmoj me: [opsionale]`,
     itinerary: {
       kicker: "Itinerari",
       title: "Nga Rinasi drejt sheshit",
+      dateLine: "Data: 20 qershor 2026",
       body:
         "Marshimi nis sapo diaspora zbret në aeroport dhe bashkohet hap pas hapi me qytetarët në Tiranë.",
       mapAlt:
@@ -403,6 +410,9 @@ Mund të ndihmoj me: [opsionale]`,
     },
     hero: {
       eyebrow: "The diaspora marches in Tirana",
+      dateLabel: "March date",
+      dateText:
+        "Saturday, June 20, 2026 · 10:00 · Tirana International Airport",
       title: "When Albania calls, we answer.",
       subtitle:
         "A peaceful, civic, independent march from Tirana International Airport \"Nënë Tereza\" toward the Prime Minister's Office, only under the Albanian flag.",
@@ -453,6 +463,7 @@ I can help with: [optional]`,
     itinerary: {
       kicker: "Route",
       title: "From Rinas toward the square",
+      dateLine: "Date: June 20, 2026",
       body:
         "The march begins as the diaspora lands at the airport and joins citizens in Tirana step by step.",
       mapAlt:

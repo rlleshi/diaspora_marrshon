@@ -5,6 +5,7 @@ import {
   ArrowDown,
   ArrowRight,
   Backpack,
+  CalendarDays,
   CheckCircle2,
   Droplets,
   Flag,
@@ -79,6 +80,10 @@ export function HomePage({ locale }: { locale: Locale }) {
             <Flag aria-hidden="true" size={18} />
             {t.hero.eyebrow}
           </p>
+          <div className="hero-date" aria-label={t.hero.dateLabel}>
+            <CalendarDays aria-hidden="true" size={20} />
+            <span>{t.hero.dateText}</span>
+          </div>
           <h1>{t.hero.title}</h1>
           <p className="hero-copy">{t.hero.subtitle}</p>
           <div className="hero-actions">
@@ -132,6 +137,7 @@ export function HomePage({ locale }: { locale: Locale }) {
             <div className="section-heading">
               <p className="kicker">{t.itinerary.kicker}</p>
               <h2>{t.itinerary.title}</h2>
+              <p className="route-date">{t.itinerary.dateLine}</p>
               <p>{t.itinerary.body}</p>
             </div>
             <div className="route-layout">

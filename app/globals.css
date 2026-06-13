@@ -159,6 +159,29 @@ textarea {
   color: var(--red);
 }
 
+.hero-date {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  max-width: 100%;
+  margin: 0 0 20px;
+  padding: 10px 13px;
+  border: 1px solid rgba(255, 255, 255, 0.42);
+  border-left: 4px solid #ef4444;
+  border-radius: 6px;
+  background: rgba(255, 250, 242, 0.94);
+  color: #171717;
+  font-size: 1.02rem;
+  font-weight: 820;
+  line-height: 1.25;
+  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.2);
+}
+
+.hero-date svg {
+  flex: 0 0 auto;
+  color: var(--red);
+}
+
 h1,
 h2,
 h3,
@@ -702,6 +725,17 @@ textarea:focus {
   max-width: 780px;
 }
 
+.route-date {
+  width: fit-content;
+  margin: 0;
+  padding: 8px 10px;
+  border-left: 4px solid var(--red);
+  border-radius: 6px;
+  background: var(--white);
+  color: #242424 !important;
+  font-weight: 820;
+}
+
 .route-layout {
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(360px, 0.92fr);
@@ -1041,6 +1075,12 @@ textarea:focus {
 
   .hero-copy {
     font-size: 1.02rem;
+  }
+
+  .hero-date {
+    width: 100%;
+    align-items: flex-start;
+    font-size: 0.98rem;
   }
 
   .hero-actions,
