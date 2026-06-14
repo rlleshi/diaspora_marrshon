@@ -21,6 +21,7 @@ import {
 } from "lucide-react";
 import { content, type Locale, type SiteContent } from "@/lib/content";
 import { PledgeForm } from "@/components/pledge-form";
+import { SectionViewTracker, TrackedLink } from "@/components/analytics-events";
 import routeMapImage from "@/docs/marshimi_i_diaspores_4_pika_precize_v3.png";
 
 const whatsAppInviteUrl =
@@ -38,6 +39,7 @@ const practicalAdviceIcons = [
 
 export function HomePage({ locale }: { locale: Locale }) {
   const t = content[locale];
+  const alternateLocale = locale === "sq" ? "en" : "sq";
   const heroDateLabel = `${t.hero.dateLabel}: ${t.hero.dateText}; ${t.hero.dateRows
     .map((row) => `${row.time}, ${row.location}`)
     .join("; ")}`;
@@ -61,10 +63,19 @@ export function HomePage({ locale }: { locale: Locale }) {
           <a className="nav-cta" href="#pledge">
             {t.nav.pledge}
           </a>
-          <Link className="lang-switch" href={t.altLangHref}>
+          <TrackedLink
+            className="lang-switch"
+            href={t.altLangHref}
+            eventName="Language Switched"
+            eventProperties={{
+              from: locale,
+              to: alternateLocale,
+              placement: "home_header",
+            }}
+          >
             <Languages aria-hidden="true" size={18} />
             <span>{t.altLangLabel}</span>
-          </Link>
+          </TrackedLink>
         </nav>
       </header>
 
@@ -141,7 +152,7 @@ export function HomePage({ locale }: { locale: Locale }) {
                 </span>
               </div>
             </div>
-            <WhatsAppIntakePanel content={t.whatsapp} />
+            <WhatsAppIntakePanel content={t.whatsapp} locale={locale} />
             <div className="hidden-pledge-form" hidden>
               <PledgeForm
                 locale={locale}
@@ -153,6 +164,11 @@ export function HomePage({ locale }: { locale: Locale }) {
         </section>
 
         <section className="section route-band" id="route">
+          <SectionViewTracker
+            targetId="route"
+            eventName="Route Section Viewed"
+            eventProperties={{ locale }}
+          />
           <div className="section-inner">
             <div className="section-heading">
               <p className="kicker">{t.itinerary.kicker}</p>
@@ -195,15 +211,17 @@ export function HomePage({ locale }: { locale: Locale }) {
                     sizes="(max-width: 900px) calc(100vw - 28px), 520px"
                   />
                 </a>
-                <a
+                <TrackedLink
                   className="route-map-link"
                   href={googleMapsRouteUrl}
                   target="_blank"
                   rel="noreferrer"
+                  eventName="Google Maps Opened"
+                  eventProperties={{ locale, placement: "route_map" }}
                 >
                   <MapPinned aria-hidden="true" size={18} />
                   {t.itinerary.mapExternalLabel}
-                </a>
+                </TrackedLink>
               </figure>
             </div>
           </div>
@@ -281,10 +299,15 @@ export function HomePage({ locale }: { locale: Locale }) {
               <p className="kicker">{t.shirtsTeaser.kicker}</p>
               <h2>{t.shirtsTeaser.title}</h2>
               <p>{t.shirtsTeaser.body}</p>
-              <Link className="button button-secondary" href={t.shirtsTeaser.href}>
+              <TrackedLink
+                className="button button-secondary"
+                href={t.shirtsTeaser.href}
+                eventName="Shirts Page Opened"
+                eventProperties={{ locale, placement: "home_teaser" }}
+              >
                 <Shirt aria-hidden="true" size={20} />
                 {t.shirtsTeaser.cta}
-              </Link>
+              </TrackedLink>
             </div>
             <figure className="shirts-teaser-preview">
               <div>
@@ -316,8 +339,10 @@ export function HomePage({ locale }: { locale: Locale }) {
 
 function WhatsAppIntakePanel({
   content,
+  locale,
 }: {
   content: SiteContent["whatsapp"];
+  locale: Locale;
 }) {
   return (
     <aside className="whatsapp-panel" aria-labelledby="whatsapp-title">
@@ -333,15 +358,17 @@ function WhatsAppIntakePanel({
 
       <div className="qr-card">
         <img src="/whatsapp-intake-qr.svg" alt={content.qrAlt} />
-        <a
+        <TrackedLink
           className="button button-primary"
           href={whatsAppInviteUrl}
           target="_blank"
           rel="noreferrer"
+          eventName="WhatsApp Opened"
+          eventProperties={{ locale, placement: "qr_panel" }}
         >
           <MessageCircle aria-hidden="true" size={20} />
           {content.openLabel}
-        </a>
+        </TrackedLink>
       </div>
 
       <p className="approval-note">{content.approvalNote}</p>

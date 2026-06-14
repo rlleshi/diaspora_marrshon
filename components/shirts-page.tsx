@@ -15,11 +15,13 @@ import {
   shirtsPageContent,
   type ShirtVersion,
 } from "@/lib/shirts-content";
+import { TrackedLink } from "@/components/analytics-events";
 
 const versionOrder: ShirtVersion[] = ["black", "white"];
 
 export function ShirtsPage({ locale }: { locale: Locale }) {
   const t = shirtsPageContent[locale];
+  const alternateLocale = locale === "sq" ? "en" : "sq";
 
   return (
     <div className="site-shell shirts-shell">
@@ -33,10 +35,19 @@ export function ShirtsPage({ locale }: { locale: Locale }) {
             <ArrowLeft aria-hidden="true" size={18} />
             <span>{t.homeLabel}</span>
           </Link>
-          <Link className="lang-switch" href={t.altLangHref}>
+          <TrackedLink
+            className="lang-switch"
+            href={t.altLangHref}
+            eventName="Language Switched"
+            eventProperties={{
+              from: locale,
+              to: alternateLocale,
+              placement: "shirts_header",
+            }}
+          >
             <Languages aria-hidden="true" size={18} />
             <span>{t.altLangLabel}</span>
-          </Link>
+          </TrackedLink>
         </nav>
       </header>
 
@@ -50,14 +61,16 @@ export function ShirtsPage({ locale }: { locale: Locale }) {
               </p>
               <h1>{t.hero.title}</h1>
               <p>{t.hero.body}</p>
-              <a
+              <TrackedLink
                 className="button button-primary"
                 href="/shirts/diaspora-shirts-preview.zip"
                 download="diaspora-shirts-preview.zip"
+                eventName="Shirts Downloaded"
+                eventProperties={{ locale, type: "all" }}
               >
                 <Download aria-hidden="true" size={20} />
                 {t.hero.downloadAll}
-              </a>
+              </TrackedLink>
             </div>
             <div className="shirts-hero-preview" aria-hidden="true">
               <Image
@@ -111,14 +124,20 @@ export function ShirtsPage({ locale }: { locale: Locale }) {
                           />
                           <div className="shirt-card-footer">
                             <h3>{countryLabel}</h3>
-                            <a
+                            <TrackedLink
                               className="download-link"
                               href={imagePath}
                               download={shirtDownloadName(version, country)}
+                              eventName="Shirt Downloaded"
+                              eventProperties={{
+                                locale,
+                                version,
+                                country: country.slug,
+                              }}
                             >
                               <Download aria-hidden="true" size={18} />
                               {t.downloadLabel}
-                            </a>
+                            </TrackedLink>
                           </div>
                         </article>
                       );
