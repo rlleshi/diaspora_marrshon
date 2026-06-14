@@ -55,8 +55,8 @@ export function HomePage({ locale }: { locale: Locale }) {
         </Link>
         <nav aria-label="Primary navigation">
           <a href="#route">{t.nav.route}</a>
-          <a href="#rules">{t.nav.rules}</a>
           <a href="#context">{t.nav.context}</a>
+          <a href="#rules">{t.nav.rules}</a>
           <a href="#advice">{t.nav.advice}</a>
           <a className="nav-cta" href="#pledge">
             {t.nav.pledge}
@@ -209,25 +209,6 @@ export function HomePage({ locale }: { locale: Locale }) {
           </div>
         </section>
 
-        <section className="section rules-band" id="rules">
-          <div className="section-inner">
-            <div className="section-heading">
-              <p className="kicker">{t.rules.kicker}</p>
-              <h2>{t.rules.title}</h2>
-              <p>{t.rules.body}</p>
-            </div>
-            <div className="rules-grid">
-              {t.rules.items.map((item) => (
-                <article className="rule-item" key={item.title}>
-                  <CheckCircle2 aria-hidden="true" size={22} />
-                  <h3>{item.title}</h3>
-                  <p>{item.body}</p>
-                </article>
-              ))}
-            </div>
-          </div>
-        </section>
-
         <section className="section context-band" id="context">
           <div className="section-inner context-grid">
             <div>
@@ -244,6 +225,25 @@ export function HomePage({ locale }: { locale: Locale }) {
                 </li>
               ))}
             </ul>
+          </div>
+        </section>
+
+        <section className="section rules-band" id="rules">
+          <div className="section-inner">
+            <div className="section-heading">
+              <p className="kicker">{t.rules.kicker}</p>
+              <h2>{t.rules.title}</h2>
+              <p>{t.rules.body}</p>
+            </div>
+            <div className="rules-grid">
+              {t.rules.items.map((item) => (
+                <article className="rule-item" key={item.title}>
+                  <CheckCircle2 aria-hidden="true" size={22} />
+                  <h3>{item.title}</h3>
+                  <p>{item.body}</p>
+                </article>
+              ))}
+            </div>
           </div>
         </section>
 
