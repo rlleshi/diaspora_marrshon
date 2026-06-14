@@ -26,7 +26,10 @@ export type SiteContent = {
     eyebrow: string;
     dateLabel: string;
     dateText: string;
-    dateDetails: string;
+    dateRows: Array<{
+      time: string;
+      location: string;
+    }>;
     title: string;
     subtitle: string;
     primaryCta: string;
@@ -158,7 +161,10 @@ export const content: Record<Locale, SiteContent> = {
       eyebrow: "Diaspora marshon në Tiranë",
       dateLabel: "Data e marshimit",
       dateText: "E shtunë, 20 qershor 2026",
-      dateDetails: "10:00 · Aeroporti \"Nënë Tereza\"",
+      dateRows: [
+        { time: "10:00", location: "Aeroporti \"Nënë Tereza\"" },
+        { time: "16:00", location: "Bulevardi i Ri" },
+      ],
       title: "Kur atdheu thërret, ne i përgjigjemi.",
       subtitle:
         "Një marshim qytetar, paqësor dhe i pavarur nga Aeroporti \"Nënë Tereza\" drejt Kryeministrisë, vetëm nën flamurin shqiptar.",
@@ -413,7 +419,10 @@ Mund të ndihmoj me: [opsionale]`,
       eyebrow: "The diaspora marches in Tirana",
       dateLabel: "March date",
       dateText: "Saturday, June 20, 2026",
-      dateDetails: "10:00 · Tirana International Airport",
+      dateRows: [
+        { time: "10:00", location: "Tirana International Airport" },
+        { time: "16:00", location: "Bulevardi i Ri" },
+      ],
       title: "When Albania calls, we answer.",
       subtitle:
         "A peaceful, civic, independent march from Tirana International Airport \"Nënë Tereza\" toward the Prime Minister's Office, only under the Albanian flag.",

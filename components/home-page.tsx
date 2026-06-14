@@ -38,6 +38,9 @@ const practicalAdviceIcons = [
 
 export function HomePage({ locale }: { locale: Locale }) {
   const t = content[locale];
+  const heroDateLabel = `${t.hero.dateLabel}: ${t.hero.dateText}; ${t.hero.dateRows
+    .map((row) => `${row.time}, ${row.location}`)
+    .join("; ")}`;
   const turnstileSiteKey =
     process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY ??
     process.env.TURNSTILE_SITE_KEY ??
@@ -82,12 +85,23 @@ export function HomePage({ locale }: { locale: Locale }) {
           </p>
           <div
             className="hero-date"
-            aria-label={`${t.hero.dateLabel}: ${t.hero.dateText}, ${t.hero.dateDetails}`}
+            aria-label={heroDateLabel}
           >
             <CalendarDays aria-hidden="true" size={20} />
             <span className="hero-date-copy">
-              <span>{t.hero.dateText}</span>
-              <span>{t.hero.dateDetails}</span>
+              <span className="hero-date-title">{t.hero.dateText}</span>
+              <span className="hero-date-schedule">
+                {t.hero.dateRows.map((row) => (
+                  <span
+                    className="hero-date-row"
+                    key={`${row.time}-${row.location}`}
+                  >
+                    <span className="hero-date-time">{row.time}</span>
+                    <span aria-hidden="true">·</span>
+                    <span>{row.location}</span>
+                  </span>
+                ))}
+              </span>
             </span>
           </div>
           <h1>{t.hero.title}</h1>

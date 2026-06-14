@@ -185,20 +185,33 @@ textarea {
 
 .hero-date-copy {
   display: grid;
-  gap: 2px;
+  gap: 6px;
+  min-width: 0;
 }
 
-.hero-date-copy span {
+.hero-date-title {
   display: block;
-}
-
-.hero-date-copy span:first-child {
   font-weight: 850;
 }
 
-.hero-date-copy span:last-child {
+.hero-date-schedule {
+  display: grid;
+  gap: 2px;
   font-size: 0.9em;
   font-weight: 760;
+}
+
+.hero-date-row {
+  display: grid;
+  grid-template-columns: max-content max-content minmax(0, 1fr);
+  align-items: baseline;
+  gap: 6px;
+}
+
+.hero-date-time {
+  font-variant-numeric: tabular-nums;
+  font-weight: 850;
+  white-space: nowrap;
 }
 
 h1,
