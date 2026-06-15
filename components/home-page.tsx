@@ -112,7 +112,10 @@ export function HomePage({ locale }: { locale: Locale }) {
             </span>
           </div>
           <h1>{t.hero.title}</h1>
-          <p className="hero-copy">{t.hero.subtitle}</p>
+          <p className="hero-copy">
+            {t.hero.subtitle}{" "}
+            <strong>{t.hero.subtitleEmphasis}</strong>
+          </p>
           <div className="hero-badges" aria-label={t.hero.subtitle}>
             {t.hero.badges.map((badge) => (
               <span key={badge}>{badge}</span>

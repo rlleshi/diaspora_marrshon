@@ -35,6 +35,7 @@ export type SiteContent = {
     }>;
     title: string;
     subtitle: string;
+    subtitleEmphasis: string;
     badges: string[];
     primaryCta: string;
     secondaryCta: string;
@@ -174,7 +175,8 @@ export const content: Record<Locale, SiteContent> = {
       ],
       title: "Kur atdheu thërret, diaspora zbarkon.",
       subtitle:
-        "Marshim qytetar, simbolik dhe paqësor drejt protestës kryesore. Ecim të organizuar, pa qëllim bllokimin e rrugëve, vetëm nën flamurin shqiptar.",
+        "Marshim qytetar, simbolik dhe paqësor drejt protestës kryesore. Ecim të organizuar, vetëm nën flamurin shqiptar.",
+      subtitleEmphasis: "Pa qëllim bllokimin e rrugëve.",
       badges: ["Paqësor", "Simbolik", "Nuk bllokon rrugë", "I pavarur"],
       primaryCta: "Bashkohu në WhatsApp",
       secondaryCta: "Shiko itinerarin",
@@ -436,7 +438,8 @@ Mund të ndihmoj me: [opsionale]`,
       ],
       title: "When Albania calls, the diaspora shows up.",
       subtitle:
-        "A civic, symbolic, peaceful march toward the main protest. We walk in an organized way, with no intention to block roads, only under the Albanian flag.",
+        "A civic, symbolic, peaceful march toward the main protest. We walk in an organized way, only under the Albanian flag.",
+      subtitleEmphasis: "No intention to block roads.",
       badges: ["Peaceful", "Symbolic", "No road blocking", "Independent"],
       primaryCta: "Join WhatsApp",
       secondaryCta: "View the route",

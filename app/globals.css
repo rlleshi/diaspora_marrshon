@@ -299,6 +299,14 @@ h3 {
   line-height: 1.55;
 }
 
+.hero-copy strong {
+  display: inline;
+  color: #ffffff;
+  font-size: 1.18em;
+  font-weight: 920;
+  line-height: 1.18;
+}
+
 .hero-badges {
   display: flex;
   flex-wrap: wrap;
