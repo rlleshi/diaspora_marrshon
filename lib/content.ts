@@ -25,6 +25,9 @@ export type SiteContent = {
   hero: {
     eyebrow: string;
     dateLabel: string;
+    dateDay: string;
+    dateMonth: string;
+    dateMeta: string;
     dateText: string;
     dateRows: Array<{
       time: string;
@@ -32,6 +35,7 @@ export type SiteContent = {
     }>;
     title: string;
     subtitle: string;
+    badges: string[];
     primaryCta: string;
     secondaryCta: string;
     statLabel: string;
@@ -160,15 +164,19 @@ export const content: Record<Locale, SiteContent> = {
     hero: {
       eyebrow: "Diaspora marshon në Tiranë",
       dateLabel: "Data e marshimit",
+      dateDay: "20",
+      dateMonth: "QERSHOR",
+      dateMeta: "E shtunë · 2026",
       dateText: "E shtunë, 20 qershor 2026",
       dateRows: [
         { time: "10:00", location: "Aeroporti \"Nënë Tereza\"" },
         { time: "16:00", location: "Bulevardi i Ri" },
       ],
-      title: "Kur atdheu thërret, ne i përgjigjemi.",
+      title: "Kur atdheu thërret, diaspora zbarkon.",
       subtitle:
-        "Një marshim qytetar, paqësor dhe i pavarur nga Aeroporti \"Nënë Tereza\" drejt Kryeministrisë, vetëm nën flamurin shqiptar.",
-      primaryCta: "Marshoj për Shqipërinë",
+        "Marshim qytetar, simbolik dhe paqësor drejt protestës kryesore. Ecim të organizuar, pa qëllim bllokimin e rrugëve, vetëm nën flamurin shqiptar.",
+      badges: ["Paqësor", "Simbolik", "Nuk bllokon rrugë", "I pavarur"],
+      primaryCta: "Bashkohu në WhatsApp",
       secondaryCta: "Shiko itinerarin",
       statLabel: "Qëllimi i faqes",
       statValue:
@@ -418,15 +426,19 @@ Mund të ndihmoj me: [opsionale]`,
     hero: {
       eyebrow: "The diaspora marches in Tirana",
       dateLabel: "March date",
+      dateDay: "20",
+      dateMonth: "JUNE",
+      dateMeta: "Saturday · 2026",
       dateText: "Saturday, June 20, 2026",
       dateRows: [
         { time: "10:00", location: "Tirana International Airport" },
         { time: "16:00", location: "Bulevardi i Ri" },
       ],
-      title: "When Albania calls, we answer.",
+      title: "When Albania calls, the diaspora shows up.",
       subtitle:
-        "A peaceful, civic, independent march from Tirana International Airport \"Nënë Tereza\" toward the Prime Minister's Office, only under the Albanian flag.",
-      primaryCta: "I march for Albania",
+        "A civic, symbolic, peaceful march toward the main protest. We walk in an organized way, with no intention to block roads, only under the Albanian flag.",
+      badges: ["Peaceful", "Symbolic", "No road blocking", "Independent"],
+      primaryCta: "Join WhatsApp",
       secondaryCta: "View the route",
       statLabel: "Site purpose",
       statValue:

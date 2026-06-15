@@ -5,7 +5,6 @@ import {
   ArrowDown,
   ArrowRight,
   Backpack,
-  CalendarDays,
   CheckCircle2,
   Droplets,
   Flag,
@@ -94,13 +93,11 @@ export function HomePage({ locale }: { locale: Locale }) {
             <Flag aria-hidden="true" size={18} />
             {t.hero.eyebrow}
           </p>
-          <div
-            className="hero-date"
-            aria-label={heroDateLabel}
-          >
-            <CalendarDays aria-hidden="true" size={20} />
+          <div className="hero-date" aria-label={heroDateLabel}>
+            <span className="hero-date-day">{t.hero.dateDay}</span>
             <span className="hero-date-copy">
-              <span className="hero-date-title">{t.hero.dateText}</span>
+              <span className="hero-date-month">{t.hero.dateMonth}</span>
+              <span className="hero-date-meta">{t.hero.dateMeta}</span>
               <span className="hero-date-schedule">
                 {t.hero.dateRows.map((row) => (
                   <span
@@ -108,7 +105,6 @@ export function HomePage({ locale }: { locale: Locale }) {
                     key={`${row.time}-${row.location}`}
                   >
                     <span className="hero-date-time">{row.time}</span>
-                    <span aria-hidden="true">·</span>
                     <span>{row.location}</span>
                   </span>
                 ))}
@@ -117,6 +113,11 @@ export function HomePage({ locale }: { locale: Locale }) {
           </div>
           <h1>{t.hero.title}</h1>
           <p className="hero-copy">{t.hero.subtitle}</p>
+          <div className="hero-badges" aria-label={t.hero.subtitle}>
+            {t.hero.badges.map((badge) => (
+              <span key={badge}>{badge}</span>
+            ))}
+          </div>
           <div className="hero-actions">
             <a className="button button-primary" href="#pledge">
               <ArrowRight aria-hidden="true" size={20} />
@@ -126,10 +127,6 @@ export function HomePage({ locale }: { locale: Locale }) {
               <ArrowDown aria-hidden="true" size={20} />
               {t.hero.secondaryCta}
             </a>
-          </div>
-          <div className="hero-proof" aria-label={t.hero.statLabel}>
-            <span>{t.hero.statLabel}</span>
-            <strong>{t.hero.statValue}</strong>
           </div>
         </div>
       </section>

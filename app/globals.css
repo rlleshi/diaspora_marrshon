@@ -138,9 +138,13 @@ textarea {
 .hero-content {
   position: relative;
   z-index: 1;
-  width: min(760px, calc(100% - 36px));
-  margin-left: clamp(18px, 7vw, 92px);
-  padding: 58px 0 72px;
+  display: grid;
+  grid-template-columns: minmax(0, 620px) minmax(330px, 420px);
+  column-gap: clamp(34px, 7vw, 106px);
+  align-items: start;
+  width: min(1180px, calc(100% - 72px));
+  margin: 0 auto;
+  padding: 68px 0 82px;
   color: var(--white);
 }
 
@@ -159,56 +163,93 @@ textarea {
   color: var(--red);
 }
 
+.hero .eyebrow {
+  display: flex;
+  width: fit-content;
+  grid-column: 1;
+  grid-row: 1;
+}
+
 .hero-date {
-  display: inline-flex;
-  align-items: flex-start;
-  gap: 10px;
-  max-width: 100%;
-  margin: 0 0 20px;
-  padding: 10px 13px;
+  display: grid;
+  grid-template-columns: max-content minmax(0, 1fr);
+  align-items: center;
+  gap: 14px;
+  width: fit-content;
+  max-width: min(100%, 570px);
+  margin: 0 0 18px;
+  padding: 12px 16px 14px;
   border: 1px solid rgba(255, 255, 255, 0.42);
   border-left: 4px solid #ef4444;
   border-radius: 6px;
   background: rgba(255, 250, 242, 0.94);
   color: #171717;
-  font-size: 1.02rem;
   font-weight: 820;
   line-height: 1.25;
   box-shadow: 0 14px 34px rgba(0, 0, 0, 0.2);
+  grid-column: 2;
+  grid-row: 2 / span 4;
+  justify-self: start;
+  align-self: start;
+  margin-top: 4px;
 }
 
-.hero-date svg {
-  flex: 0 0 auto;
-  margin-top: 1px;
+.hero-date-day {
+  display: block;
+  padding-right: 14px;
+  border-right: 1px solid rgba(127, 17, 17, 0.28);
   color: var(--red);
+  font-size: 4.6rem;
+  font-weight: 950;
+  line-height: 0.82;
+  letter-spacing: 0;
 }
 
 .hero-date-copy {
   display: grid;
-  gap: 6px;
+  gap: 3px;
   min-width: 0;
 }
 
-.hero-date-title {
+.hero-date-month {
   display: block;
-  font-weight: 850;
+  color: #111111;
+  font-size: 2.1rem;
+  font-weight: 950;
+  line-height: 0.9;
+}
+
+.hero-date-meta {
+  color: var(--red);
+  font-size: 0.84rem;
+  font-weight: 880;
+  text-transform: uppercase;
 }
 
 .hero-date-schedule {
   display: grid;
-  gap: 2px;
-  font-size: 0.9em;
+  gap: 6px;
+  margin-top: 6px;
+  padding-top: 8px;
+  border-top: 1px solid rgba(127, 17, 17, 0.24);
+  font-size: 0.92rem;
   font-weight: 760;
 }
 
 .hero-date-row {
   display: grid;
-  grid-template-columns: max-content max-content minmax(0, 1fr);
-  align-items: baseline;
-  gap: 6px;
+  grid-template-columns: 64px minmax(0, 1fr);
+  align-items: center;
+  gap: 9px;
 }
 
 .hero-date-time {
+  display: inline-flex;
+  justify-content: center;
+  padding: 3px 7px;
+  border-radius: 4px;
+  background: var(--red);
+  color: var(--white);
   font-variant-numeric: tabular-nums;
   font-weight: 850;
   white-space: nowrap;
@@ -243,18 +284,52 @@ h3 {
   letter-spacing: 0;
 }
 
+.hero h1 {
+  grid-column: 1;
+  grid-row: 2;
+}
+
 .hero-copy {
+  grid-column: 1;
+  grid-row: 3;
   max-width: 650px;
-  margin: 22px 0 0;
+  margin: 18px 0 0;
   color: rgba(255, 255, 255, 0.9);
   font-size: 1.18rem;
   line-height: 1.55;
+}
+
+.hero-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  grid-column: 1;
+  grid-row: 4;
+  max-width: 650px;
+  margin-top: 16px;
+}
+
+.hero-badges span {
+  display: inline-flex;
+  align-items: center;
+  min-height: 32px;
+  padding: 6px 10px;
+  border: 1px solid rgba(255, 255, 255, 0.42);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.12);
+  color: #ffffff;
+  font-size: 0.86rem;
+  font-weight: 820;
+  line-height: 1.15;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.16);
 }
 
 .hero-actions {
   display: flex;
   flex-wrap: wrap;
   gap: 12px;
+  grid-column: 1;
+  grid-row: 5;
   margin-top: 28px;
 }
 
@@ -1044,6 +1119,8 @@ textarea:focus {
   }
 
   .hero-content {
+    display: block;
+    width: calc(100% - 36px);
     margin-inline: 18px;
     padding-block: 48px 60px;
   }
@@ -1111,8 +1188,39 @@ textarea:focus {
 
   .hero-date {
     width: 100%;
-    align-items: flex-start;
-    font-size: 0.98rem;
+    gap: 10px;
+    padding: 10px 11px 12px;
+  }
+
+  .hero-date-day {
+    padding-right: 10px;
+    font-size: 3.3rem;
+  }
+
+  .hero-date-month {
+    font-size: 1.55rem;
+  }
+
+  .hero-date-meta {
+    font-size: 0.76rem;
+  }
+
+  .hero-date-schedule {
+    font-size: 0.86rem;
+  }
+
+  .hero-date-row {
+    grid-template-columns: 56px minmax(0, 1fr);
+  }
+
+  .hero-badges {
+    gap: 7px;
+  }
+
+  .hero-badges span {
+    min-height: 30px;
+    padding: 6px 9px;
+    font-size: 0.8rem;
   }
 
   .hero-actions,
