@@ -25,7 +25,7 @@ import routeMapImage from "@/docs/marshimi_i_diaspores_4_pika_precize_v3.png";
 
 const whatsAppInviteUrl =
   "https://chat.whatsapp.com/L6oe4JyUi8k0h13oJSv7DP?mode=gi_t";
-const googleMapsRouteUrl = "https://maps.app.goo.gl/XMmPymdGEwmdKyvN7";
+const googleMapsRouteUrl = "https://maps.app.goo.gl/LrAiX8135ZuHPaSp6";
 
 const practicalAdviceIcons = [
   Droplets,
