@@ -124,20 +124,24 @@ export function HomePage({ locale }: { locale: Locale }) {
               <span className="hero-date-month">{t.hero.dateMonth}</span>
               <span className="hero-date-meta">{t.hero.dateMeta}</span>
               <span className="hero-date-schedule">
-                {t.hero.dateRows.map((row) => (
+                {t.hero.dateRows.map((row, index) => (
                   <span
                     className="hero-date-row"
                     key={`${row.time}-${row.location}`}
                   >
-                    <span className="hero-date-time">{row.time}</span>
-                    <span className="hero-date-walk-marker">
-                      <span
-                        aria-hidden="true"
-                        className="hero-date-walk-arrow"
-                      />
-                      <WalkingPersonIcon className="hero-date-walker" />
+                    <span className="hero-date-time-track">
+                      <span className="hero-date-time">{row.time}</span>
+                      {index < t.hero.dateRows.length - 1 ? (
+                        <span className="hero-date-walk-marker">
+                          <span
+                            aria-hidden="true"
+                            className="hero-date-walk-arrow"
+                          />
+                          <WalkingPersonIcon className="hero-date-walker" />
+                        </span>
+                      ) : null}
                     </span>
-                    <span>{row.location}</span>
+                    <span className="hero-date-location">{row.location}</span>
                   </span>
                 ))}
               </span>

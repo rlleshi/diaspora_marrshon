@@ -240,9 +240,8 @@ Mund të ndihmoj me: [opsionale]`,
         },
         {
           time: "17:00",
-          title: "Bulevardi i Ri",
-          body:
-            "Bashkim me pjesëmarrës të tjerë të diasporës dhe vijim i organizuar.",
+          title: "Hyrja te Bulevardi i Ri",
+          body: "Shiko Google Maps për pikën e saktë.",
         },
         {
           time: "19:00",
@@ -497,9 +496,8 @@ I can help with: [optional]`,
         },
         {
           time: "17:00",
-          title: "Bulevardi i Ri",
-          body:
-            "Diaspora participants gather and continue in an organized way.",
+          title: "Entrance to Bulevardi i Ri",
+          body: "See Google Maps for the exact point.",
         },
         {
           time: "19:00",
