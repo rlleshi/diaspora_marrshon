@@ -173,10 +173,10 @@ textarea {
 .hero-date {
   display: grid;
   grid-template-columns: max-content minmax(0, 1fr);
-  align-items: center;
+  align-items: start;
   gap: 14px;
   width: fit-content;
-  max-width: min(100%, 570px);
+  max-width: min(100%, 620px);
   margin: 0 0 18px;
   padding: 12px 16px 14px;
   border: 1px solid rgba(255, 255, 255, 0.42);
@@ -228,7 +228,7 @@ textarea {
 
 .hero-date-schedule {
   display: grid;
-  gap: 6px;
+  gap: 7px;
   margin-top: 6px;
   padding-top: 8px;
   border-top: 1px solid rgba(127, 17, 17, 0.24);
@@ -238,9 +238,10 @@ textarea {
 
 .hero-date-row {
   display: grid;
-  grid-template-columns: 64px minmax(0, 1fr);
+  grid-template-columns: 64px 24px minmax(0, 1fr);
   align-items: center;
-  gap: 9px;
+  gap: 8px;
+  min-height: 28px;
 }
 
 .hero-date-time {
@@ -253,6 +254,12 @@ textarea {
   font-variant-numeric: tabular-nums;
   font-weight: 850;
   white-space: nowrap;
+}
+
+.hero-date-walker {
+  width: 22px;
+  height: 22px;
+  color: var(--red-dark);
 }
 
 h1,
@@ -1218,7 +1225,13 @@ textarea:focus {
   }
 
   .hero-date-row {
-    grid-template-columns: 56px minmax(0, 1fr);
+    grid-template-columns: 56px 22px minmax(0, 1fr);
+    gap: 6px;
+  }
+
+  .hero-date-walker {
+    width: 20px;
+    height: 20px;
   }
 
   .hero-badges {

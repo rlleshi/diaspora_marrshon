@@ -170,8 +170,10 @@ export const content: Record<Locale, SiteContent> = {
       dateMeta: "E shtunë · 2026",
       dateText: "E shtunë, 20 qershor 2026",
       dateRows: [
-        { time: "10:00", location: "Aeroporti \"Nënë Tereza\"" },
-        { time: "16:00", location: "Bulevardi i Ri" },
+        { time: "11:00", location: "Aeroporti \"Nënë Tereza\"" },
+        { time: "17:00", location: "Bulevardi i Ri" },
+        { time: "18:00", location: "Zona e Stacionit të Trenit" },
+        { time: "19:00", location: "Sheshi pranë Kryeministrisë" },
       ],
       title: "Kur atdheu thërret, diaspora zbarkon.",
       subtitle:
@@ -214,10 +216,10 @@ export const content: Record<Locale, SiteContent> = {
       template: `Përshëndetje, jam [Emri] nga [Shteti / qyteti].
 
 Do të bashkohem:
-a) te Aeroporti "Nënë Tereza" - 10:00
-b) te Bulevardi i Ri - 16:00
-c) te Stacioni i Trenit - 17:00
-d) te Sheshi - 18:00
+a) te Aeroporti "Nënë Tereza" - 11:00
+b) te Bulevardi i Ri - 17:00
+c) te Stacioni i Trenit - 18:00
+d) te Sheshi - 19:00
 
 Mund të ndihmoj me: [opsionale]`,
       badges: ["Miratim nga adminët", "Mesazh i shkurtër"],
@@ -234,23 +236,23 @@ Mund të ndihmoj me: [opsionale]`,
       mapExternalLabel: "Hap itinerarin në Google Maps",
       points: [
         {
-          time: "10:00",
+          time: "11:00",
           title: "Aeroporti \"Nënë Tereza\"",
           body: "Nisja simbolike nga Rinasi drejt Tiranës.",
         },
         {
-          time: "16:00",
+          time: "17:00",
           title: "Bulevardi i Ri",
           body:
             "Bashkim me pjesëmarrës të tjerë të diasporës dhe vijim i organizuar.",
         },
         {
-          time: "17:00",
+          time: "18:00",
           title: "Zona e Stacionit të Trenit",
           body: "Bashkim me protestues të tjerë nga Tirana.",
         },
         {
-          time: "18:00",
+          time: "19:00",
           title: "Sheshi pranë Kryeministrisë",
           body: "Diaspora bashkohet me protestën kryesore në shesh.",
         },
@@ -433,8 +435,10 @@ Mund të ndihmoj me: [opsionale]`,
       dateMeta: "Saturday · 2026",
       dateText: "Saturday, June 20, 2026",
       dateRows: [
-        { time: "10:00", location: "Tirana International Airport" },
-        { time: "16:00", location: "Bulevardi i Ri" },
+        { time: "11:00", location: "Tirana International Airport" },
+        { time: "17:00", location: "Bulevardi i Ri" },
+        { time: "18:00", location: "Train Station area" },
+        { time: "19:00", location: "Square near the Prime Minister's Office" },
       ],
       title: "When Albania calls, the diaspora shows up.",
       subtitle:
@@ -477,10 +481,10 @@ Mund të ndihmoj me: [opsionale]`,
       template: `Hi, I am [Name] from [Country / city].
 
 I will join:
-a) at Tirana International Airport - 10:00
-b) at New Boulevard - 16:00
-c) at the Train Station - 17:00
-d) at the Square - 18:00
+a) at Tirana International Airport - 11:00
+b) at New Boulevard - 17:00
+c) at the Train Station - 18:00
+d) at the Square - 19:00
 
 I can help with: [optional]`,
       badges: ["Admin approval", "Short intro message"],
@@ -497,23 +501,23 @@ I can help with: [optional]`,
       mapExternalLabel: "Open route in Google Maps",
       points: [
         {
-          time: "10:00",
+          time: "11:00",
           title: "Tirana International Airport \"Nënë Tereza\"",
           body: "Symbolic departure from Rinas toward Tirana.",
         },
         {
-          time: "16:00",
+          time: "17:00",
           title: "New Boulevard",
           body:
             "Diaspora participants gather and continue in an organized way.",
         },
         {
-          time: "17:00",
+          time: "18:00",
           title: "Train Station area",
           body: "Joining other protesters from Tirana.",
         },
         {
-          time: "18:00",
+          time: "19:00",
           title: "Square near the Prime Minister's Office",
           body: "The diaspora joins the main protest in the square.",
         },

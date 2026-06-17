@@ -21,7 +21,7 @@ import {
 import { content, type Locale, type SiteContent } from "@/lib/content";
 import { PledgeForm } from "@/components/pledge-form";
 import { SectionViewTracker, TrackedLink } from "@/components/analytics-events";
-import routeMapImage from "@/docs/marshimi_i_diaspores_4_pika_precize_v3.png";
+import routeMapImage from "@/docs/marshimi_i_diaspores_4_pika_map_v8.png";
 
 const whatsAppInviteUrl =
   "https://chat.whatsapp.com/L6oe4JyUi8k0h13oJSv7DP?mode=gi_t";
@@ -35,6 +35,31 @@ const practicalAdviceIcons = [
   Activity,
   Backpack,
 ];
+
+function WalkingPersonIcon({
+  className,
+}: {
+  className?: string;
+}) {
+  return (
+    <svg
+      aria-hidden="true"
+      className={className}
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <circle cx="13.5" cy="4.4" r="2.2" fill="currentColor" />
+      <path
+        d="M12.6 7.4 9.3 12.1l4.4 2.4 2.7 5.6M10.2 12.5 6.7 20M11.2 8.9l-4.1 1.8M13.3 10.3l3.9 2.1"
+        stroke="currentColor"
+        strokeWidth="2.4"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
 
 export function HomePage({ locale }: { locale: Locale }) {
   const t = content[locale];
@@ -105,6 +130,7 @@ export function HomePage({ locale }: { locale: Locale }) {
                     key={`${row.time}-${row.location}`}
                   >
                     <span className="hero-date-time">{row.time}</span>
+                    <WalkingPersonIcon className="hero-date-walker" />
                     <span>{row.location}</span>
                   </span>
                 ))}
