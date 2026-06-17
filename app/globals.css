@@ -283,23 +283,25 @@ textarea {
   content: "";
   position: absolute;
   top: 2px;
-  left: 4px;
+  left: 50%;
   width: 2px;
   height: 19px;
   border-radius: 999px;
   background: var(--red-dark);
+  transform: translateX(-50%);
 }
 
 .hero-date-walk-arrow::after {
   content: "";
   position: absolute;
-  left: 1px;
-  bottom: 2px;
-  width: 8px;
-  height: 8px;
-  border-right: 2px solid var(--red-dark);
-  border-bottom: 2px solid var(--red-dark);
-  transform: rotate(45deg);
+  left: 50%;
+  bottom: 1px;
+  width: 0;
+  height: 0;
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+  border-top: 7px solid var(--red-dark);
+  transform: translateX(-50%);
 }
 
 h1,

@@ -21,7 +21,7 @@ import {
 import { content, type Locale, type SiteContent } from "@/lib/content";
 import { PledgeForm } from "@/components/pledge-form";
 import { SectionViewTracker, TrackedLink } from "@/components/analytics-events";
-import routeMapImage from "@/docs/marshimi_i_diaspores_4_pika_map_v8.png";
+import routeMapImage from "@/docs/marshimi_i_diaspores_3_pika_1100_1700_1900.png";
 
 const whatsAppInviteUrl =
   "https://chat.whatsapp.com/L6oe4JyUi8k0h13oJSv7DP?mode=gi_t";

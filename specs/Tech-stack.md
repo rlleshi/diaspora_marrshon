@@ -28,7 +28,7 @@ The MVP should include:
 - Clear "march for Albania" pledge call to action.
 - Short route-aware pledge form for the airport-to-Tirana march and other joining points.
 - Peaceful participation rules.
-- March itinerary content, starting from Tirana International Airport "Nene Tereza" and continuing toward the Prime Minister's Office.
+- March itinerary content, starting from Tirana International Airport "Nene Tereza" and continuing toward Skanderbeg Square / Sheshi Skenderbej.
 - Consent language for data use and private follow-up.
 - No public WhatsApp or private coordination links.
 

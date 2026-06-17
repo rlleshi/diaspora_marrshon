@@ -16,7 +16,7 @@ Every major page, call to action, and workflow should support that goal before e
 
 The march frame is:
 
-**Diaspora marshon ne Tirane: from Tirana International Airport "Nene Tereza" toward the Prime Minister's Office.**
+**Diaspora marshon ne Tirane: from Tirana International Airport "Nene Tereza" toward Skanderbeg Square / Sheshi Skenderbej.**
 
 ## Audience
 

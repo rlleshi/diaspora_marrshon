@@ -172,8 +172,7 @@ export const content: Record<Locale, SiteContent> = {
       dateRows: [
         { time: "11:00", location: "Aeroporti \"Nënë Tereza\"" },
         { time: "17:00", location: "Bulevardi i Ri" },
-        { time: "18:00", location: "Zona e Stacionit të Trenit" },
-        { time: "19:00", location: "Sheshi pranë Kryeministrisë" },
+        { time: "19:00", location: "Sheshi Skënderbej" },
       ],
       title: "Kur atdheu thërret, diaspora zbarkon.",
       subtitle:
@@ -218,20 +217,19 @@ export const content: Record<Locale, SiteContent> = {
 Do të bashkohem:
 a) te Aeroporti "Nënë Tereza" - 11:00
 b) te Bulevardi i Ri - 17:00
-c) te Stacioni i Trenit - 18:00
-d) te Sheshi - 19:00
+c) te Sheshi Skënderbej - 19:00
 
 Mund të ndihmoj me: [opsionale]`,
       badges: ["Miratim nga adminët", "Mesazh i shkurtër"],
     },
     itinerary: {
       kicker: "Itinerari",
-      title: "Nga Rinasi drejt sheshit",
+      title: "Nga Rinasi drejt Sheshit Skënderbej",
       dateLine: "Data: 20 qershor 2026",
       body:
         "Marshimi nis sapo diaspora zbret në aeroport dhe bashkohet hap pas hapi me qytetarët në Tiranë.",
       mapAlt:
-        "Harta e marshimit nga Aeroporti Nënë Tereza në Bulevardin e Ri, Stacionin e Trenit dhe Kryeministri",
+        "Harta e marshimit nga Aeroporti Nënë Tereza në Bulevardin e Ri dhe Sheshin Skënderbej",
       mapOpenLabel: "Hap hartën e marshimit në madhësi të plotë",
       mapExternalLabel: "Hap itinerarin në Google Maps",
       points: [
@@ -247,14 +245,9 @@ Mund të ndihmoj me: [opsionale]`,
             "Bashkim me pjesëmarrës të tjerë të diasporës dhe vijim i organizuar.",
         },
         {
-          time: "18:00",
-          title: "Zona e Stacionit të Trenit",
-          body: "Bashkim me protestues të tjerë nga Tirana.",
-        },
-        {
           time: "19:00",
-          title: "Sheshi pranë Kryeministrisë",
-          body: "Diaspora bashkohet me protestën kryesore në shesh.",
+          title: "Sheshi Skënderbej",
+          body: "Diaspora bashkohet me protestën kryesore në Sheshin Skënderbej.",
         },
       ],
     },
@@ -381,8 +374,7 @@ Mund të ndihmoj me: [opsionale]`,
       joiningPointOptions: [
         { value: "airport", label: "Aeroporti \"Nënë Tereza\"" },
         { value: "new-boulevard", label: "Bulevardi i Ri" },
-        { value: "train-station", label: "Zona e Stacionit të Trenit" },
-        { value: "prime-minister-office", label: "Sheshi pranë Kryeministrisë" },
+        { value: "skanderbeg-square", label: "Sheshi Skënderbej" },
         { value: "coordinate-later", label: "Do ta koordinoj më vonë" },
       ],
       participationTypeOptions: [
@@ -437,8 +429,7 @@ Mund të ndihmoj me: [opsionale]`,
       dateRows: [
         { time: "11:00", location: "Tirana International Airport" },
         { time: "17:00", location: "Bulevardi i Ri" },
-        { time: "18:00", location: "Train Station area" },
-        { time: "19:00", location: "Square near the Prime Minister's Office" },
+        { time: "19:00", location: "Skanderbeg Square" },
       ],
       title: "When Albania calls, the diaspora shows up.",
       subtitle:
@@ -482,21 +473,20 @@ Mund të ndihmoj me: [opsionale]`,
 
 I will join:
 a) at Tirana International Airport - 11:00
-b) at New Boulevard - 17:00
-c) at the Train Station - 18:00
-d) at the Square - 19:00
+b) at Bulevardi i Ri - 17:00
+c) at Skanderbeg Square - 19:00
 
 I can help with: [optional]`,
       badges: ["Admin approval", "Short intro message"],
     },
     itinerary: {
       kicker: "Route",
-      title: "From Rinas toward the square",
+      title: "From Rinas toward Skanderbeg Square",
       dateLine: "Date: June 20, 2026",
       body:
         "The march begins as the diaspora lands at the airport and joins citizens in Tirana step by step.",
       mapAlt:
-        "Map of the march from Tirana International Airport to New Boulevard, the Train Station, and the Prime Minister's Office",
+        "Map of the march from Tirana International Airport to Bulevardi i Ri and Skanderbeg Square",
       mapOpenLabel: "Open the march map full size",
       mapExternalLabel: "Open route in Google Maps",
       points: [
@@ -507,19 +497,14 @@ I can help with: [optional]`,
         },
         {
           time: "17:00",
-          title: "New Boulevard",
+          title: "Bulevardi i Ri",
           body:
             "Diaspora participants gather and continue in an organized way.",
         },
         {
-          time: "18:00",
-          title: "Train Station area",
-          body: "Joining other protesters from Tirana.",
-        },
-        {
           time: "19:00",
-          title: "Square near the Prime Minister's Office",
-          body: "The diaspora joins the main protest in the square.",
+          title: "Skanderbeg Square",
+          body: "The diaspora joins the main protest at Skanderbeg Square.",
         },
       ],
     },
@@ -645,9 +630,8 @@ I can help with: [optional]`,
       invalidEmail: "Enter a valid email address.",
       joiningPointOptions: [
         { value: "airport", label: "Tirana International Airport" },
-        { value: "new-boulevard", label: "New Boulevard" },
-        { value: "train-station", label: "Train Station area" },
-        { value: "prime-minister-office", label: "Square near the Prime Minister's Office" },
+        { value: "new-boulevard", label: "Bulevardi i Ri" },
+        { value: "skanderbeg-square", label: "Skanderbeg Square" },
         { value: "coordinate-later", label: "I will coordinate later" },
       ],
       participationTypeOptions: [

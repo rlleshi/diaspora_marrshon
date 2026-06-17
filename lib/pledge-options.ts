@@ -5,8 +5,7 @@ export type SourceLanguage = (typeof sourceLanguageValues)[number];
 export const joiningPointValues = [
   "airport",
   "new-boulevard",
-  "train-station",
-  "prime-minister-office",
+  "skanderbeg-square",
   "coordinate-later",
 ] as const;
 
