@@ -130,7 +130,13 @@ export function HomePage({ locale }: { locale: Locale }) {
                     key={`${row.time}-${row.location}`}
                   >
                     <span className="hero-date-time">{row.time}</span>
-                    <WalkingPersonIcon className="hero-date-walker" />
+                    <span className="hero-date-walk-marker">
+                      <span
+                        aria-hidden="true"
+                        className="hero-date-walk-arrow"
+                      />
+                      <WalkingPersonIcon className="hero-date-walker" />
+                    </span>
                     <span>{row.location}</span>
                   </span>
                 ))}
