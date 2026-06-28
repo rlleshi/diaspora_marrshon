@@ -84,6 +84,7 @@ export function HomePage({ locale }: { locale: Locale }) {
           <a href="#context">{t.nav.context}</a>
           <a href="#rules">{t.nav.rules}</a>
           <a href="#advice">{t.nav.advice}</a>
+          <a href="#history">{t.nav.history}</a>
           <a className="nav-cta" href="#pledge">
             {t.nav.pledge}
           </a>
@@ -273,9 +274,18 @@ export function HomePage({ locale }: { locale: Locale }) {
             </div>
             <ul className="demand-list">
               {t.context.demands.map((demand) => (
-                <li key={demand}>
+                <li key={demand.text}>
                   <CheckCircle2 aria-hidden="true" size={18} />
-                  <span>{demand}</span>
+                  <div className="demand-content">
+                    <span>{demand.text}</span>
+                    {demand.items ? (
+                      <ul className="demand-subgroup">
+                        {demand.items.map((item) => (
+                          <li key={item}>{item}</li>
+                        ))}
+                      </ul>
+                    ) : null}
+                  </div>
                 </li>
               ))}
             </ul>
@@ -325,6 +335,32 @@ export function HomePage({ locale }: { locale: Locale }) {
                   </article>
                 );
               })}
+            </div>
+          </div>
+        </section>
+
+        <section className="section history-band" id="history">
+          <div className="section-inner">
+            <div className="section-heading">
+              <p className="kicker">{t.pastMarches.kicker}</p>
+              <h2>{t.pastMarches.title}</h2>
+              <p>{t.pastMarches.body}</p>
+            </div>
+            <div className="history-grid">
+              {t.pastMarches.items.map((item) => (
+                <article className="history-item" key={item.dateLabel}>
+                  <span className="history-date">
+                    <Flag aria-hidden="true" size={18} />
+                    {item.dateLabel}
+                  </span>
+                  <h3>{item.title}</h3>
+                  <p className="history-route">
+                    <MapPinned aria-hidden="true" size={16} />
+                    {item.route}
+                  </p>
+                  <p>{item.summary}</p>
+                </article>
+              ))}
             </div>
           </div>
         </section>

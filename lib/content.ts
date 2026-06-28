@@ -20,6 +20,7 @@ export type SiteContent = {
     advice: string;
     rules: string;
     context: string;
+    history: string;
     pledge: string;
   };
   hero: {
@@ -102,8 +103,22 @@ export type SiteContent = {
     kicker: string;
     title: string;
     body: string;
-    demands: string[];
+    demands: Array<{
+      text: string;
+      items?: string[];
+    }>;
     closing: string;
+  };
+  pastMarches: {
+    kicker: string;
+    title: string;
+    body: string;
+    items: Array<{
+      dateLabel: string;
+      title: string;
+      route: string;
+      summary: string;
+    }>;
   };
   form: {
     title: string;
@@ -160,15 +175,16 @@ export const content: Record<Locale, SiteContent> = {
       advice: "Këshilla",
       rules: "Parimet",
       context: "Pse marshojmë",
+      history: "Marshimet e kaluara",
       pledge: "Marshoj për Shqipërinë",
     },
     hero: {
       eyebrow: "Diaspora marshon në Tiranë",
       dateLabel: "Data e marshimit",
-      dateDay: "20",
-      dateMonth: "QERSHOR",
+      dateDay: "4",
+      dateMonth: "KORRIK",
       dateMeta: "E shtunë · 2026",
-      dateText: "E shtunë, 20 qershor 2026",
+      dateText: "E shtunë, 4 korrik 2026",
       dateRows: [
         { time: "11:00", location: "Aeroporti \"Nënë Tereza\"" },
         { time: "17:00", location: "Bulevardi i Ri" },
@@ -225,7 +241,7 @@ Mund të ndihmoj me: [opsionale]`,
     itinerary: {
       kicker: "Itinerari",
       title: "Nga Rinasi drejt Sheshit Skënderbej",
-      dateLine: "Data: 20 qershor 2026",
+      dateLine: "Data: 4 korrik 2026",
       body:
         "Marshimi nis sapo diaspora zbret në aeroport dhe bashkohet hap pas hapi me qytetarët në Tiranë.",
       mapAlt:
@@ -332,14 +348,50 @@ Mund të ndihmoj me: [opsionale]`,
       body:
         "Marshimi është në solidaritet me qytetarët që kërkojnë mbrojtjen e interesit publik, natyrës, trashëgimisë kulturore dhe të ardhmes së vendit.",
       demands: [
-        "Dorëheqjen e qeverisë.",
-        "Shfuqizimin e statusit dhe kuadrit ligjor të investitorëve strategjikë.",
-        "Shfuqizimin e Paketës së Maleve.",
-        "Anulimin e ndryshimeve në ligjin për zonat e mbrojtura.",
-        "Anulimin e ndryshimeve në ligjin për trashëgiminë kulturore.",
+        { text: "Dorëheqjen e panegociueshme të Kryeministrit dhe të qeverisë." },
+        {
+          text: "Krijimin e një qeverie teknike tranzitore, jopartiake, me mandat 12-mujor.",
+        },
+        {
+          text:
+            "Ndryshime kushtetuese, ku të gjithë shtetasit shqiptarë të jenë të barabartë para ligjit, të miratuara me referendum popullor, duke përfshirë ndër të tjera:",
+          items: [
+            "Ndryshimin e Kodit Zgjedhor.",
+            "Ndryshimin e ligjit për financimin e partive politike dhe organizatave të ndryshme.",
+            "Kufizimin e ushtrimit të detyrës së Kryeministrit në jo më shumë se dy mandate, të plota ose të pjesshme, gjatë gjithë jetës politike të një individi.",
+          ],
+        },
+        {
+          text: "Paralelisht, kërkojmë:",
+          items: [
+            "Anulimin e ndryshimeve të bëra në ligjin për \"Zonat e Mbrojtura\".",
+            "Anulimin e ndryshimeve të bëra në ligjin për \"Trashëgiminë kulturore\".",
+            "Shfuqizimin e paketës ligjore të njohur si \"Paketa e Maleve\".",
+            "Shfuqizimin e statusit dhe të kuadrit ligjor për \"Investimet Strategjike\".",
+          ],
+        },
+        {
+          text:
+            "Hartimin e një kontrate të re sociale mes qytetarëve dhe shtetit, pas konsultimit me intelektualë, ekspertë teknikë dhe qytetarë apartiakë të propozuar nga sheshi i protestës.",
+        },
       ],
       closing:
         "Ne vijmë nga vende të ndryshme, por kur Shqipëria thërret, përgjigjja jonë është veprim i qetë, i bashkuar dhe konkret.",
+    },
+    pastMarches: {
+      kicker: "Marshimet e kaluara",
+      title: "Çfarë kemi bërë deri tani",
+      body:
+        "Një histori e shkurtër e marshimeve të mëparshme të diasporës.",
+      items: [
+        {
+          dateLabel: "20 qershor 2026",
+          title: "Marshimi i parë i diasporës",
+          route: "Bulevardi i Ri → Sheshi Skënderbej",
+          summary:
+            "Marshimi i parë qytetar dhe paqësor i diasporës, nga Bulevardi i Ri drejt Sheshit Skënderbej, me mbi 5 mijë pjesëmarrës, në mbështetje të protestës kryesore.",
+        },
+      ],
     },
     form: {
       title: "Premto pjesëmarrjen",
@@ -416,15 +468,16 @@ Mund të ndihmoj me: [opsionale]`,
       advice: "Tips",
       rules: "Principles",
       context: "Why we march",
+      history: "Past marches",
       pledge: "I march for Albania",
     },
     hero: {
       eyebrow: "The diaspora marches in Tirana",
       dateLabel: "March date",
-      dateDay: "20",
-      dateMonth: "JUNE",
+      dateDay: "4",
+      dateMonth: "JULY",
       dateMeta: "Saturday · 2026",
-      dateText: "Saturday, June 20, 2026",
+      dateText: "Saturday, July 4, 2026",
       dateRows: [
         { time: "11:00", location: "Tirana International Airport" },
         { time: "17:00", location: "Bulevardi i Ri" },
@@ -481,7 +534,7 @@ I can help with: [optional]`,
     itinerary: {
       kicker: "Route",
       title: "From Rinas toward Skanderbeg Square",
-      dateLine: "Date: June 20, 2026",
+      dateLine: "Date: July 4, 2026",
       body:
         "The march begins as the diaspora lands at the airport and joins citizens in Tirana step by step.",
       mapAlt:
@@ -588,14 +641,50 @@ I can help with: [optional]`,
       body:
         "The march stands in solidarity with citizens calling for the protection of the public interest, nature, cultural heritage, and Albania's future.",
       demands: [
-        "Government resignation.",
-        "Repeal of the strategic investor status and related legal framework.",
-        "Repeal of the Mountains Package.",
-        "Reversal of changes to protected-areas law.",
-        "Reversal of changes to cultural-heritage law.",
+        { text: "The non-negotiable resignation of the Prime Minister and the government." },
+        {
+          text: "The creation of a non-partisan, transitional technical government with a 12-month mandate.",
+        },
+        {
+          text:
+            "Constitutional amendments making all Albanian citizens equal before the law, approved by popular referendum, including among others:",
+          items: [
+            "Reform of the Electoral Code.",
+            "Reform of the law on the financing of political parties and other organizations.",
+            "Limiting the office of Prime Minister to no more than two terms, full or partial, over an individual's entire political life.",
+          ],
+        },
+        {
+          text: "In parallel, we demand:",
+          items: [
+            "Reversal of the changes made to the law on \"Protected Areas\".",
+            "Reversal of the changes made to the law on \"Cultural Heritage\".",
+            "Repeal of the legal package known as the \"Mountains Package\".",
+            "Repeal of the status and legal framework for \"Strategic Investments\".",
+          ],
+        },
+        {
+          text:
+            "A new social contract between citizens and the state, drafted after consultation with intellectuals, technical experts, and non-partisan citizens proposed by the protest square.",
+        },
       ],
       closing:
         "We come from different countries, but when Albania calls, our answer is calm, united, concrete action.",
+    },
+    pastMarches: {
+      kicker: "Past marches",
+      title: "What we have done so far",
+      body:
+        "A short history of the diaspora's previous marches.",
+      items: [
+        {
+          dateLabel: "June 20, 2026",
+          title: "The first diaspora march",
+          route: "Bulevardi i Ri → Skanderbeg Square",
+          summary:
+            "The diaspora's first civic, peaceful march, from Bulevardi i Ri toward Skanderbeg Square, with over 5,000 participants, in support of the main protest.",
+        },
+      ],
     },
     form: {
       title: "Pledge your participation",

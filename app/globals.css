@@ -1122,6 +1122,7 @@ textarea:focus {
 }
 
 .demand-list li {
+  align-items: flex-start;
   gap: 10px;
   padding: 14px 15px;
   color: #242424;
@@ -1130,7 +1131,80 @@ textarea:focus {
 
 .demand-list svg {
   flex: 0 0 auto;
+  margin-top: 2px;
   color: var(--red);
+}
+
+.demand-content {
+  display: grid;
+  gap: 8px;
+}
+
+.demand-subgroup {
+  display: grid;
+  gap: 6px;
+  margin: 0;
+  padding-left: 20px;
+  list-style: disc;
+}
+
+.demand-subgroup li {
+  display: list-item;
+  padding: 0;
+  color: #242424;
+  font-weight: 600;
+}
+
+.history-band {
+  background: var(--paper);
+}
+
+.history-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+  margin-top: 34px;
+}
+
+.history-item {
+  display: grid;
+  gap: 10px;
+  padding: 18px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--white);
+}
+
+.history-item h3 {
+  margin: 0;
+}
+
+.history-date {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 850;
+  color: var(--red);
+}
+
+.history-route {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.history-route svg {
+  flex: 0 0 auto;
+  color: var(--green);
+}
+
+.history-item p:last-child {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.5;
 }
 
 .site-footer {
@@ -1348,6 +1422,7 @@ textarea:focus {
   .timeline li,
   .advice-grid,
   .rules-grid,
+  .history-grid,
   .shirt-grid {
     grid-template-columns: 1fr;
   }
