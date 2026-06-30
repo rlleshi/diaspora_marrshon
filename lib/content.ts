@@ -187,7 +187,7 @@ export const content: Record<Locale, SiteContent> = {
     altLangHref: "/en",
     altLangLabel: "English",
     nav: {
-      tracker: "Pulsi",
+      tracker: "Pulsi i protestës",
       context: "Pse marshojmë",
       history: "Historiku",
       march: "Marshimi",
@@ -500,7 +500,7 @@ Mund të ndihmoj me: [opsionale]`,
     altLangHref: "/",
     altLangLabel: "Shqip",
     nav: {
-      tracker: "Pulse",
+      tracker: "Protest pulse",
       context: "Why we march",
       history: "History",
       march: "The march",
