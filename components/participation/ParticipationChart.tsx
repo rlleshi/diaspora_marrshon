@@ -16,6 +16,7 @@ import {
 import {
   participation,
   participationEvents,
+  type ParticipationDay,
   type ParticipationEvent,
 } from "@/data/participation";
 import { buildGeometry } from "@/components/participation/geometry";
@@ -305,6 +306,11 @@ export function ParticipationChart({
           const py = yOf(participation[ev.day - 1].peak);
           const ly = LABEL_Y[ev.day] ?? py - 60;
           const isPeak = ev.tier === "peak";
+          // center-placed chips sit on top of the leader line, so stop the line
+          // just below the label text instead of running it through the words.
+          const frac = fracOf(ev.day);
+          const centered = !isPeak && frac >= 0.12 && frac <= 0.85;
+          const leadEnd = isPeak ? ly + 58 : centered ? ly + 22 : ly;
           return (
             <g
               key={`lead-${ev.day}`}
@@ -316,7 +322,7 @@ export function ParticipationChart({
                 x1={px}
                 y1={py}
                 x2={px}
-                y2={isPeak ? ly + 58 : ly}
+                y2={leadEnd}
                 stroke={isPeak ? "#7f1111" : "#8a8378"}
                 strokeWidth={isPeak ? 1.6 : 1}
                 strokeDasharray={isPeak ? "0" : "3 3"}
@@ -443,37 +449,7 @@ export function ParticipationChart({
           }}
           role="status"
         >
-          <div className="pc-tip-head">
-            <strong>
-              {labels.axisDay} {activeDay.day}
-            </strong>
-            <span>
-              {formatDate(activeDay.date, locale)}
-              {activeDay.saturday ? ` · ${labels.saturday}` : ""}
-            </span>
-          </div>
-          <div className="pc-tip-stats">
-            <span className="pc-tip-peak">
-              <em>{activeDay.peak.toFixed(0)}</em>
-              {labels.tooltipPeakUnit}
-            </span>
-            <span>
-              {labels.tooltipMean} {activeDay.mean.toFixed(1)}
-            </span>
-            <span>
-              {labels.tooltipMedian} {activeDay.median.toFixed(1)}
-            </span>
-          </div>
-          <p className="pc-tip-note">{activeDay.note[locale]}</p>
-          <a
-            className="pc-tip-link"
-            href={activeDay.source}
-            target="_blank"
-            rel="noreferrer"
-          >
-            <ExternalLink size={13} aria-hidden="true" />
-            {labels.tooltipSource}
-          </a>
+          <TipBody day={activeDay} locale={locale} labels={labels} />
         </div>
       )}
 
@@ -510,24 +486,83 @@ export function ParticipationChart({
       </table>
     </div>
 
-    {/* compact event list, shown on small screens in place of floating chips */}
+    {/* full-width detail card for small screens (the floating tooltip is hidden there) */}
+    {activeDay && (
+      <div className="pc-tip-panel" role="status">
+        <TipBody day={activeDay} locale={locale} labels={labels} />
+      </div>
+    )}
+
+    {/* compact event list, shown on small screens in place of floating chips; tap to open a day */}
     <ul className="pc-events-list">
       {participationEvents.map((ev) => {
         const Icon = ICONS[ev.icon];
         return (
           <li key={`ev-li-${ev.day}`}>
-            <span className="pc-ev-day">
-              {labels.axisDay} {ev.day}
-            </span>
-            <Icon size={16} aria-hidden="true" />
-            <span className="pc-ev-text">
-              <strong>{ev.label[locale]}</strong>
-              <span>{ev.sub[locale]}</span>
-            </span>
+            <button
+              type="button"
+              className={`pc-ev-btn${active === ev.day ? " is-active" : ""}`}
+              onClick={() => setActive(active === ev.day ? null : ev.day)}
+            >
+              <span className="pc-ev-day">
+                {labels.axisDay} {ev.day}
+              </span>
+              <Icon size={16} aria-hidden="true" />
+              <span className="pc-ev-text">
+                <strong>{ev.label[locale]}</strong>
+                <span>{ev.sub[locale]}</span>
+              </span>
+            </button>
           </li>
         );
       })}
     </ul>
+    </>
+  );
+}
+
+function TipBody({
+  day,
+  locale,
+  labels,
+}: {
+  day: ParticipationDay;
+  locale: Locale;
+  labels: ChartLabels;
+}) {
+  return (
+    <>
+      <div className="pc-tip-head">
+        <strong>
+          {labels.axisDay} {day.day}
+        </strong>
+        <span>
+          {formatDate(day.date, locale)}
+          {day.saturday ? ` · ${labels.saturday}` : ""}
+        </span>
+      </div>
+      <div className="pc-tip-stats">
+        <span className="pc-tip-peak">
+          <em>{day.peak.toFixed(0)}</em>
+          {labels.tooltipPeakUnit}
+        </span>
+        <span>
+          {labels.tooltipMean} {day.mean.toFixed(1)}
+        </span>
+        <span>
+          {labels.tooltipMedian} {day.median.toFixed(1)}
+        </span>
+      </div>
+      <p className="pc-tip-note">{day.note[locale]}</p>
+      <a
+        className="pc-tip-link"
+        href={day.source}
+        target="_blank"
+        rel="noreferrer"
+      >
+        <ExternalLink size={13} aria-hidden="true" />
+        {labels.tooltipSource}
+      </a>
     </>
   );
 }
