@@ -316,7 +316,7 @@ export function ParticipationChart({
                 x1={px}
                 y1={py}
                 x2={px}
-                y2={ly}
+                y2={isPeak ? ly + 58 : ly}
                 stroke={isPeak ? "#7f1111" : "#8a8378"}
                 strokeWidth={isPeak ? 1.6 : 1}
                 strokeDasharray={isPeak ? "0" : "3 3"}

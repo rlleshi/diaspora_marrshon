@@ -16,7 +16,6 @@ const COPY: Record<
     title: string;
     liveLabel: string;
     intro: string;
-    introMore: string;
     methodology: string;
     hint: string;
     disclaimer: string;
@@ -27,12 +26,10 @@ const COPY: Record<
     homeHref: "/",
     homeLabel: "Kthehu te faqja kryesore",
     eyebrow: "Pulsi i protestës për Shqipërinë e re",
-    title: "30 ditë në shesh për një mjekërrosh laraman",
+    title: "30 ditë në shesh për një mjekërrosh bardhërosh",
     liveLabel: "Live",
     intro:
       "Nga mbrojtja e Zvërnecit tek një lëvizje njëmujore për krijimin e një Shqipërie të re.",
-    introMore:
-      "Më poshtë: pulsi ditor i pjesëmarrjes së vlerësuar, me momentet kyçe që shënuan muajin: nga vala e parë e 6 qershorit te marshimi drejt Rinasit dhe kulmi i diasporës më 20 qershor.",
     methodology:
       "Indeks i pjesëmarrjes së vlerësuar, i normalizuar: 100 = dita më e madhe (20 qershor). Dy tubimet më të mëdha (6 dhe 20 qershor) janë ankoruar me vlerësime gjeometrike në terren; ditët e tjera pasqyrojnë intensitetin e dukshëm në kamerat e News24, të analizuar me një model numërimi turme.",
     hint: "Lëviz mbi çdo ditë për detaje.",
@@ -59,12 +56,10 @@ const COPY: Record<
     homeHref: "/en",
     homeLabel: "Back to the homepage",
     eyebrow: "Protest pulse for a new Albania",
-    title: "30 days in the square for a two-faced Rama",
+    title: "30 days in the square for a grey-bearded Rama",
     liveLabel: "Live",
     intro:
       "From defending Zvërnec to a month-long movement for the creation of a new Albania.",
-    introMore:
-      "Below: the daily pulse of estimated participation, with the key moments that defined the month: from the 6 June surge to the Rinas march and the 20 June diaspora peak.",
     methodology:
       "An estimated participation index, normalized so 100 = the largest day (20 June). The two largest gatherings (6 and 20 June) are anchored to on-the-ground geometry estimates; other days reflect camera-visible intensity from News24 livestreams, analyzed with a crowd-counting model.",
     hint: "Hover any day for detail.",
@@ -135,9 +130,6 @@ export function LiveTrackerPage({ locale }: { locale: Locale }) {
                 </span>
               </h1>
               <p className="participation-caption">{t.intro}</p>
-              <p className="participation-caption participation-caption--more">
-                {t.introMore}
-              </p>
               <p className="participation-hint">{t.hint}</p>
             </div>
             <figure className="participation-figure">
