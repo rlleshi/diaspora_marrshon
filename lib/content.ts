@@ -360,7 +360,7 @@ Mund të ndihmoj me: [opsionale]`,
         {
           title: "Qetësi ndaj çdo provokimi",
           body:
-            "Përgjigjja ndaj provokimit është qetësia, dinjiteti dhe largimi nga përplasja.",
+            "Përgjigjja ndaj provokimit është qetësia, dinjiteti dhe përgjigjja në grup.",
         },
         {
           title: "Përgjegjësi personale",
@@ -673,7 +673,7 @@ I can help with: [optional]`,
         {
           title: "Calm in the face of provocation",
           body:
-            "The answer to provocation is calm, dignity, and stepping away from escalation.",
+            "The answer to provocation is calm, dignity, and a collective response.",
         },
         {
           title: "Personal responsibility",
