@@ -33,12 +33,12 @@ const ICONS: Record<ParticipationEvent["icon"], LucideIcon> = {
 
 // Where each event's label sits in viewBox-Y (hand-placed, editorial feel).
 const LABEL_Y: Record<number, number> = {
-  7: 58,
-  9: 150,
-  15: 246,
-  21: 250,
-  25: 408,
-  30: 372,
+  7: 250,
+  9: 320,
+  15: 360,
+  21: 58,
+  25: 430,
+  30: 410,
 };
 
 const MONTHS_SQ = [
@@ -131,7 +131,7 @@ export function ParticipationChart({
     .join(" ");
 
   const { view, plot, points, gridLines, xOf, yOf, fracOf } = geo;
-  const peakDelay = fracOf(7) * DRAW_MS + 220;
+  const peakDelay = fracOf(21) * DRAW_MS + 220;
 
   const activeDay = active != null ? participation[active - 1] : null;
   const activePt = active != null ? points[active - 1] : null;
@@ -293,7 +293,7 @@ export function ParticipationChart({
         {/* peak apex glow + pulse */}
         <circle
           className="pc-peak-glow"
-          cx={xOf(7)}
+          cx={xOf(21)}
           cy={yOf(100)}
           r="46"
           fill="url(#pc-peak-glow)"
