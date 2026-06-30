@@ -32,7 +32,7 @@ const COPY: Record<
     intro:
       "Nga mbrojtja e Zvërnecit tek një lëvizje njëmujore për krijimin e një Shqipërie të re.",
     introMore:
-      "Më poshtë: pulsi ditor i pjesëmarrjes së dukshme në kamera, me momentet kyçe që shënuan muajin: nga kulmi i 6 qershorit te marshimi drejt Rinasit dhe bashkimi i diasporës. Lëviz mbi çdo ditë për detaje.",
+      "Më poshtë: pulsi ditor i pjesëmarrjes së dukshme në kamera, me momentet kyçe që shënuan muajin: nga kulmi i 6 qershorit te marshimi drejt Rinasit dhe bashkimi i diasporës.",
     methodology:
       "Indeks i pjesëmarrjes së dukshme në kamera, i normalizuar: 100 = dita më e madhe (6 qershor). Burimi: transmetimet e drejtpërdrejta të News24, të analizuara me një model numërimi turme.",
     hint: "Lëviz mbi çdo ditë për detaje.",
@@ -64,7 +64,7 @@ const COPY: Record<
     intro:
       "From defending Zvërnec to a month-long movement for the creation of a new Albania.",
     introMore:
-      "Below: the daily pulse of camera-visible participation, with the key moments that defined the month: from the 6 June peak to the march on Rinas airport and the diaspora joining in. Hover any day for detail.",
+      "Below: the daily pulse of camera-visible participation, with the key moments that defined the month: from the 6 June peak to the march on Rinas airport and the diaspora joining in.",
     methodology:
       "A camera-visible participation index, normalized so 100 = the largest day (6 June). Source: News24 livestreams, analyzed with a crowd-counting model.",
     hint: "Hover any day for detail.",
@@ -138,13 +138,13 @@ export function LiveTrackerPage({ locale }: { locale: Locale }) {
               <p className="participation-caption participation-caption--more">
                 {t.introMore}
               </p>
+              <p className="participation-hint">{t.hint}</p>
             </div>
             <figure className="participation-figure">
               <ParticipationChart locale={locale} labels={t.labels} />
               <figcaption className="participation-method">
                 <Activity aria-hidden="true" size={15} />
                 <span>{t.methodology}</span>
-                <span className="participation-hint">{t.hint}</span>
                 <span className="participation-disclaimer">{t.disclaimer}</span>
               </figcaption>
             </figure>

@@ -13,7 +13,6 @@ import {
   MapPinned,
   MessageCircle,
   QrCode,
-  ShieldCheck,
   Shirt,
   Timer,
   Utensils,
@@ -92,12 +91,10 @@ export function HomePage({ locale }: { locale: Locale }) {
           <span>Diaspora marshon</span>
         </Link>
         <nav aria-label="Primary navigation">
-          <a href="#route">{t.nav.route}</a>
           <Link href={t.trackerTeaser.href}>{t.nav.tracker}</Link>
           <a href="#context">{t.nav.context}</a>
-          <a href="#rules">{t.nav.rules}</a>
-          <a href="#advice">{t.nav.advice}</a>
           <a href="#history">{t.nav.history}</a>
+          <a href="#marshimi">{t.nav.march}</a>
           <a className="nav-cta" href="#pledge">
             {t.nav.pledge}
           </a>
@@ -119,7 +116,7 @@ export function HomePage({ locale }: { locale: Locale }) {
 
       <section className="hero">
         <Image
-          src="/diaspora-march-hero.png"
+          src="/diaspora-march-hero.jpeg"
           alt=""
           fill
           priority
@@ -155,7 +152,12 @@ export function HomePage({ locale }: { locale: Locale }) {
                         </span>
                       ) : null}
                     </span>
-                    <span className="hero-date-location">{row.location}</span>
+                    <span className="hero-date-location">
+                      {row.location}
+                      {row.note ? (
+                        <span className="hero-date-note">{row.note}</span>
+                      ) : null}
+                    </span>
                   </span>
                 ))}
               </span>
@@ -176,7 +178,7 @@ export function HomePage({ locale }: { locale: Locale }) {
               <ArrowRight aria-hidden="true" size={20} />
               {t.hero.primaryCta}
             </a>
-            <a className="button button-secondary" href="#route">
+            <a className="button button-secondary" href="#marshimi">
               <ArrowDown aria-hidden="true" size={20} />
               {t.hero.secondaryCta}
             </a>
@@ -188,19 +190,8 @@ export function HomePage({ locale }: { locale: Locale }) {
         <section className="section pledge-band" id="pledge">
           <div className="section-inner pledge-grid">
             <div className="section-copy">
-              <p className="kicker">{t.pledgeIntro.kicker}</p>
               <h2>{t.pledgeIntro.title}</h2>
               <p>{t.pledgeIntro.body}</p>
-              <div className="assurance-list" aria-label="Pledge safeguards">
-                <span>
-                  <ShieldCheck aria-hidden="true" size={18} />
-                  {t.whatsapp.badges[0]}
-                </span>
-                <span>
-                  <CheckCircle2 aria-hidden="true" size={18} />
-                  {t.whatsapp.badges[1]}
-                </span>
-              </div>
             </div>
             <WhatsAppIntakePanel content={t.whatsapp} locale={locale} />
             <div className="hidden-pledge-form" hidden>
@@ -213,67 +204,59 @@ export function HomePage({ locale }: { locale: Locale }) {
           </div>
         </section>
 
-        <section className="section route-band" id="route">
+        <section className="section pulse-feature-band" id="pulse">
           <SectionViewTracker
-            targetId="route"
-            eventName="Route Section Viewed"
+            targetId="pulse"
+            eventName="Pulse Section Viewed"
             eventProperties={{ locale }}
           />
-          <div className="section-inner">
-            <div className="section-heading">
-              <p className="kicker">{t.itinerary.kicker}</p>
-              <h2>{t.itinerary.title}</h2>
-              <p className="route-date">{t.itinerary.dateLine}</p>
-              <p>{t.itinerary.body}</p>
+          <div className="section-inner pulse-feature">
+            <div className="pulse-feature-copy">
+              <p className="kicker">{t.trackerTeaser.kicker}</p>
+              <h2>{t.trackerTeaser.title}</h2>
+              <p>{t.trackerTeaser.body}</p>
+              <ul className="pulse-stats">
+                {t.trackerTeaser.stats.map((stat) => (
+                  <li key={stat.label}>
+                    <span className="pulse-stat-value">{stat.value}</span>
+                    <span className="pulse-stat-label">{stat.label}</span>
+                  </li>
+                ))}
+              </ul>
+              <TrackedLink
+                className="button button-primary"
+                href={t.trackerTeaser.href}
+                eventName="Tracker Page Opened"
+                eventProperties={{ locale, placement: "home_feature" }}
+              >
+                <Activity aria-hidden="true" size={20} />
+                {t.trackerTeaser.cta}
+              </TrackedLink>
             </div>
-            <div className="route-layout">
-              <div className="route-timeline">
-                <div className="route-visual" aria-hidden="true">
-                  <MapPinned size={34} />
-                  <div className="route-line">
-                    {t.itinerary.points.map((point) => (
-                      <span key={point.time} />
-                    ))}
-                  </div>
-                </div>
-                <ol className="timeline">
-                  {t.itinerary.points.map((point) => (
-                    <li key={`${point.time}-${point.title}`}>
-                      <span className="timeline-time">{point.time}</span>
-                      <div>
-                        <h3>{point.title}</h3>
-                        <p>{point.body}</p>
-                      </div>
-                    </li>
-                  ))}
-                </ol>
-              </div>
-              <figure className="route-map">
-                <a
-                  href={routeMapImage.src}
-                  target="_blank"
-                  rel="noreferrer"
-                  aria-label={t.itinerary.mapOpenLabel}
-                >
-                  <Image
-                    src={routeMapImage}
-                    alt={t.itinerary.mapAlt}
-                    sizes="(max-width: 900px) calc(100vw - 28px), 520px"
-                  />
-                </a>
-                <TrackedLink
-                  className="route-map-link"
-                  href={googleMapsRouteUrl}
-                  target="_blank"
-                  rel="noreferrer"
-                  eventName="Google Maps Opened"
-                  eventProperties={{ locale, placement: "route_map" }}
-                >
-                  <MapPinned aria-hidden="true" size={18} />
-                  {t.itinerary.mapExternalLabel}
-                </TrackedLink>
-              </figure>
-            </div>
+            <figure className="pulse-feature-preview" aria-hidden="true">
+              <svg
+                viewBox={`0 0 ${sparkWidth} ${sparkHeight}`}
+                preserveAspectRatio="none"
+                role="img"
+              >
+                <defs>
+                  <linearGradient id="pulse-spark" x1="0" x2="0" y1="0" y2="1">
+                    <stop offset="0%" stopColor="rgba(185,28,28,0.34)" />
+                    <stop offset="100%" stopColor="rgba(185,28,28,0)" />
+                  </linearGradient>
+                </defs>
+                <polygon points={sparkArea} fill="url(#pulse-spark)" />
+                <polyline
+                  points={sparkPoints}
+                  fill="none"
+                  stroke="#ef4444"
+                  strokeWidth="2.4"
+                  strokeLinejoin="round"
+                  strokeLinecap="round"
+                  vectorEffect="non-scaling-stroke"
+                />
+              </svg>
+            </figure>
           </div>
         </section>
 
@@ -282,7 +265,18 @@ export function HomePage({ locale }: { locale: Locale }) {
             <div>
               <p className="kicker">{t.context.kicker}</p>
               <h2>{t.context.title}</h2>
-              <p>{t.context.body}</p>
+              <p>
+                {t.context.body.before}
+                <a
+                  className="context-link"
+                  href={t.context.body.href}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  {t.context.body.link}
+                </a>
+                {t.context.body.after}
+              </p>
               <p className="context-closing">{t.context.closing}</p>
             </div>
             <ul className="demand-list">
@@ -302,102 +296,6 @@ export function HomePage({ locale }: { locale: Locale }) {
                 </li>
               ))}
             </ul>
-          </div>
-        </section>
-
-        <section className="section tracker-teaser-band">
-          <div className="section-inner tracker-teaser">
-            <div className="section-copy">
-              <p className="kicker">{t.trackerTeaser.kicker}</p>
-              <h2>{t.trackerTeaser.title}</h2>
-              <p>{t.trackerTeaser.body}</p>
-              <TrackedLink
-                className="button button-secondary"
-                href={t.trackerTeaser.href}
-                eventName="Tracker Page Opened"
-                eventProperties={{ locale, placement: "home_teaser" }}
-              >
-                <Activity aria-hidden="true" size={20} />
-                {t.trackerTeaser.cta}
-              </TrackedLink>
-            </div>
-            <figure className="tracker-teaser-preview" aria-hidden="true">
-              <svg
-                viewBox={`0 0 ${sparkWidth} ${sparkHeight}`}
-                preserveAspectRatio="none"
-                role="img"
-              >
-                <defs>
-                  <linearGradient
-                    id="tracker-spark"
-                    x1="0"
-                    x2="0"
-                    y1="0"
-                    y2="1"
-                  >
-                    <stop offset="0%" stopColor="rgba(185,28,28,0.34)" />
-                    <stop offset="100%" stopColor="rgba(185,28,28,0)" />
-                  </linearGradient>
-                </defs>
-                <polygon points={sparkArea} fill="url(#tracker-spark)" />
-                <polyline
-                  points={sparkPoints}
-                  fill="none"
-                  stroke="#ef4444"
-                  strokeWidth="2.4"
-                  strokeLinejoin="round"
-                  strokeLinecap="round"
-                  vectorEffect="non-scaling-stroke"
-                />
-              </svg>
-            </figure>
-          </div>
-        </section>
-
-        <section className="section rules-band" id="rules">
-          <div className="section-inner">
-            <div className="section-heading">
-              <p className="kicker">{t.rules.kicker}</p>
-              <h2>{t.rules.title}</h2>
-              <p>{t.rules.body}</p>
-            </div>
-            <div className="rules-grid">
-              {t.rules.items.map((item) => (
-                <article className="rule-item" key={item.title}>
-                  <CheckCircle2 aria-hidden="true" size={22} />
-                  <h3>{item.title}</h3>
-                  <p>{item.body}</p>
-                </article>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        <section className="section advice-band" id="advice">
-          <div className="section-inner">
-            <div className="section-heading">
-              <p className="kicker">{t.practicalAdvice.kicker}</p>
-              <h2>{t.practicalAdvice.title}</h2>
-              <p>{t.practicalAdvice.body}</p>
-            </div>
-            <div className="advice-grid">
-              {t.practicalAdvice.items.map((item, index) => {
-                const AdviceIcon =
-                  practicalAdviceIcons[index] ?? CheckCircle2;
-
-                return (
-                  <article className="advice-item" key={item.title}>
-                    <span className="advice-icon">
-                      <AdviceIcon aria-hidden="true" size={22} />
-                    </span>
-                    <div>
-                      <h3>{item.title}</h3>
-                      <p>{item.body}</p>
-                    </div>
-                  </article>
-                );
-              })}
-            </div>
           </div>
         </section>
 
@@ -423,6 +321,118 @@ export function HomePage({ locale }: { locale: Locale }) {
                   <p>{item.summary}</p>
                 </article>
               ))}
+            </div>
+          </div>
+        </section>
+
+        <section className="section marshimi-band" id="marshimi">
+          <SectionViewTracker
+            targetId="marshimi"
+            eventName="March Section Viewed"
+            eventProperties={{ locale }}
+          />
+          <div className="section-inner">
+            <div className="section-heading marshimi-heading">
+              <p className="kicker">{t.march.kicker}</p>
+              <h2>{t.march.title}</h2>
+              <p>{t.march.body}</p>
+            </div>
+
+            <div className="marshimi-part">
+              <div className="marshimi-part-head">
+                <h3>{t.itinerary.title}</h3>
+                <p className="route-date">{t.itinerary.dateLine}</p>
+                <p>{t.itinerary.body}</p>
+              </div>
+              <div className="route-layout">
+                <div className="route-timeline">
+                  <div className="route-visual" aria-hidden="true">
+                    <MapPinned size={34} />
+                    <div className="route-line">
+                      {t.itinerary.points.map((point) => (
+                        <span key={point.time} />
+                      ))}
+                    </div>
+                  </div>
+                  <ol className="timeline">
+                    {t.itinerary.points.map((point) => (
+                      <li key={`${point.time}-${point.title}`}>
+                        <span className="timeline-time">{point.time}</span>
+                        <div>
+                          <h3>{point.title}</h3>
+                          <p>{point.body}</p>
+                        </div>
+                      </li>
+                    ))}
+                  </ol>
+                </div>
+                <figure className="route-map">
+                  <a
+                    href={routeMapImage.src}
+                    target="_blank"
+                    rel="noreferrer"
+                    aria-label={t.itinerary.mapOpenLabel}
+                  >
+                    <Image
+                      src={routeMapImage}
+                      alt={t.itinerary.mapAlt}
+                      sizes="(max-width: 900px) calc(100vw - 28px), 520px"
+                    />
+                  </a>
+                  <TrackedLink
+                    className="route-map-link"
+                    href={googleMapsRouteUrl}
+                    target="_blank"
+                    rel="noreferrer"
+                    eventName="Google Maps Opened"
+                    eventProperties={{ locale, placement: "route_map" }}
+                  >
+                    <MapPinned aria-hidden="true" size={18} />
+                    {t.itinerary.mapExternalLabel}
+                  </TrackedLink>
+                </figure>
+              </div>
+            </div>
+
+            <div className="marshimi-part">
+              <div className="marshimi-part-head">
+                <h3>{t.rules.title}</h3>
+                <p>{t.rules.body}</p>
+              </div>
+              <div className="rules-grid">
+                {t.rules.items.map((item) => (
+                  <article className="rule-item" key={item.title}>
+                    <CheckCircle2 aria-hidden="true" size={22} />
+                    <h3>{item.title}</h3>
+                    <p>{item.body}</p>
+                  </article>
+                ))}
+              </div>
+            </div>
+
+            <div className="marshimi-part">
+              <div className="marshimi-part-head">
+                <h3>{t.practicalAdvice.title}</h3>
+                <p>{t.practicalAdvice.body}</p>
+              </div>
+              <div className="advice-grid">
+                {t.practicalAdvice.items.map((item, index) => {
+                  const AdviceIcon =
+                    practicalAdviceIcons[index] ?? CheckCircle2;
+
+                  return (
+                    <article className="advice-item" key={item.title}>
+                      <span className="advice-icon">
+                        <AdviceIcon aria-hidden="true" size={22} />
+                      </span>
+                      <div>
+                        <h3>{item.title}</h3>
+                        <p>{item.body}</p>
+                      </div>
+                    </article>
+                  );
+                })}
+              </div>
             </div>
           </div>
         </section>

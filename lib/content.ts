@@ -16,12 +16,10 @@ export type SiteContent = {
   altLangHref: string;
   altLangLabel: string;
   nav: {
-    route: string;
     tracker: string;
-    advice: string;
-    rules: string;
     context: string;
     history: string;
+    march: string;
     pledge: string;
   };
   hero: {
@@ -34,6 +32,7 @@ export type SiteContent = {
     dateRows: Array<{
       time: string;
       location: string;
+      note?: string;
     }>;
     title: string;
     subtitle: string;
@@ -45,7 +44,6 @@ export type SiteContent = {
     statValue: string;
   };
   pledgeIntro: {
-    kicker: string;
     title: string;
     body: string;
   };
@@ -63,6 +61,12 @@ export type SiteContent = {
     body: string;
     href: string;
     cta: string;
+    stats: Array<{ value: string; label: string }>;
+  };
+  march: {
+    kicker: string;
+    title: string;
+    body: string;
   };
   whatsapp: {
     title: string;
@@ -73,7 +77,6 @@ export type SiteContent = {
     templateTitle: string;
     templateIntro: string;
     template: string;
-    badges: string[];
   };
   itinerary: {
     kicker: string;
@@ -110,7 +113,12 @@ export type SiteContent = {
   context: {
     kicker: string;
     title: string;
-    body: string;
+    body: {
+      before: string;
+      link: string;
+      href: string;
+      after: string;
+    };
     demands: Array<{
       text: string;
       items?: string[];
@@ -179,12 +187,10 @@ export const content: Record<Locale, SiteContent> = {
     altLangHref: "/en",
     altLangLabel: "English",
     nav: {
-      route: "Itinerari",
       tracker: "Pulsi",
-      advice: "Këshilla",
-      rules: "Parimet",
       context: "Pse marshojmë",
-      history: "Marshimet e kaluara",
+      history: "Historiku",
+      march: "Marshimi",
       pledge: "Marshoj për Shqipërinë",
     },
     hero: {
@@ -195,15 +201,15 @@ export const content: Record<Locale, SiteContent> = {
       dateMeta: "E shtunë · 2026",
       dateText: "E shtunë, 4 korrik 2026",
       dateRows: [
-        { time: "11:00", location: "Aeroporti \"Nënë Tereza\"" },
+        { time: "11:00", location: "Aeroporti \"Nënë Tereza\"", note: "bazuar në kërkesën" },
         { time: "17:00", location: "Bulevardi i Ri" },
         { time: "19:00", location: "Sheshi Skënderbej" },
       ],
-      title: "Kur atdheu thërret, diaspora zbarkon.",
+      title: "Kur dheu jep zë, diaspora zbret.",
       subtitle:
         "Marshim qytetar, simbolik dhe paqësor drejt protestës kryesore. Ecim të organizuar, vetëm nën flamurin shqiptar.",
       subtitleEmphasis: "Pa qëllim bllokimin e rrugëve.",
-      badges: ["Paqësor", "Simbolik", "Nuk bllokon rrugë", "I pavarur"],
+      badges: ["Paqësor", "Simbolik", "Katharsis"],
       primaryCta: "Bashkohu në WhatsApp",
       secondaryCta: "Shiko itinerarin",
       statLabel: "Qëllimi i faqes",
@@ -211,8 +217,7 @@ export const content: Record<Locale, SiteContent> = {
         "Ta bashkojmë diasporën në protestë për Shqipërinë, në numër sa më të madh.",
     },
     pledgeIntro: {
-      kicker: "Premtimi",
-      title: "Bashkohu në WhatsApp për koordinim fillestar.",
+      title: "Bashkohu në WhatsApp për koordinim.",
       body:
         "Skano QR-in, kërko të hysh në grup dhe pas miratimit nga administratorët shkruaj mesazhin e shkurtër më poshtë.",
     },
@@ -230,9 +235,20 @@ export const content: Record<Locale, SiteContent> = {
       kicker: "Indeksi i pjesëmarrjes",
       title: "30 ditë në shesh, ditë pas dite.",
       body:
-        "Ndiq pulsin e protestës: pjesëmarrja e dukshme në kamera përgjatë një muaji, me momentet kyçe: nga kulmi i 6 qershorit te marshimi drejt Rinasit dhe bashkimi i diasporës.",
+        "Ndiq pulsin e protestës: pjesëmarrje e dokumentuar qartësisht në kamera, përgjatë një muaji, me momentet kyçe: nga kulmi i 6 qershorit te marshimi drejt Rinasit dhe bashkimi i diasporës.",
       href: "/pulsi",
       cta: "Shiko pulsin e protestës",
+      stats: [
+        { value: "30", label: "ditë protestë" },
+        { value: "06.06", label: "kulmi i pjesëmarrjes" },
+        { value: "100K+", label: "diaspora, dita 21" },
+      ],
+    },
+    march: {
+      kicker: "Marshimi",
+      title: "Marshimi i 4 korrikut",
+      body:
+        "Gjithçka për ditën e marshimit: itinerari, parimet dhe këshillat praktike.",
     },
     whatsapp: {
       title: "Skano QR-in",
@@ -242,7 +258,7 @@ export const content: Record<Locale, SiteContent> = {
       openLabel: "Hap WhatsApp",
       approvalNote:
         "Për arsye sigurie, grupi përdor miratim nga administratorët.",
-      templateTitle: "Mesazhi që duhet të shkruash pas hyrjes",
+      templateTitle: "Mesazhi që mund të shkruash pas hyrjes",
       templateIntro:
         "Kopjoje mesazhin, plotëso emrin dhe zgjidh pikën ku do të bashkohesh.",
       template: `Përshëndetje, jam [Emri] nga [Shteti / qyteti].
@@ -253,7 +269,6 @@ b) te Bulevardi i Ri - 17:00
 c) te Sheshi Skënderbej - 19:00
 
 Mund të ndihmoj me: [opsionale]`,
-      badges: ["Miratim nga adminët", "Mesazh i shkurtër"],
     },
     itinerary: {
       kicker: "Itinerari",
@@ -361,9 +376,13 @@ Mund të ndihmoj me: [opsionale]`,
     },
     context: {
       kicker: "Pse marshojmë",
-      title: "Për përgjegjësi publike dhe interes kombëtar",
-      body:
-        "Marshimi është në solidaritet me qytetarët që kërkojnë mbrojtjen e interesit publik, natyrës, trashëgimisë kulturore dhe të ardhmes së vendit.",
+      title: "Për të futur Shqipërinë në rrugën e zhvillimit të përshpejtuar",
+      body: {
+        before: "Zaten si ",
+        link: "tigrat e Azisë",
+        href: "https://www.youtube.com/watch?v=XF3nEmKziWU",
+        after: " në shekullin e kaluar.",
+      },
       demands: [
         { text: "Dorëheqjen e panegociueshme të Kryeministrit dhe të qeverisë." },
         {
@@ -393,7 +412,7 @@ Mund të ndihmoj me: [opsionale]`,
         },
       ],
       closing:
-        "Ne vijmë nga vende të ndryshme, por kur Shqipëria thërret, përgjigjja jonë është veprim i qetë, i bashkuar dhe konkret.",
+        "Gjithë shqiptaria zbret kur mëmëdheu thërret.",
     },
     pastMarches: {
       kicker: "Marshimet e kaluara",
@@ -481,12 +500,10 @@ Mund të ndihmoj me: [opsionale]`,
     altLangHref: "/",
     altLangLabel: "Shqip",
     nav: {
-      route: "Route",
       tracker: "Pulse",
-      advice: "Tips",
-      rules: "Principles",
       context: "Why we march",
-      history: "Past marches",
+      history: "History",
+      march: "The march",
       pledge: "I march for Albania",
     },
     hero: {
@@ -497,15 +514,15 @@ Mund të ndihmoj me: [opsionale]`,
       dateMeta: "Saturday · 2026",
       dateText: "Saturday, July 4, 2026",
       dateRows: [
-        { time: "11:00", location: "Tirana International Airport" },
+        { time: "11:00", location: "Tirana International Airport", note: "based on demand" },
         { time: "17:00", location: "Bulevardi i Ri" },
         { time: "19:00", location: "Skanderbeg Square" },
       ],
-      title: "When Albania calls, the diaspora shows up.",
+      title: "When the land speaks, the diaspora descends.",
       subtitle:
         "A civic, symbolic, peaceful march toward the main protest. We walk in an organized way, only under the Albanian flag.",
       subtitleEmphasis: "No intention to block roads.",
-      badges: ["Peaceful", "Symbolic", "No road blocking", "Independent"],
+      badges: ["Peaceful", "Symbolic", "Catharsis"],
       primaryCta: "Join WhatsApp",
       secondaryCta: "View the route",
       statLabel: "Site purpose",
@@ -513,8 +530,7 @@ Mund të ndihmoj me: [opsionale]`,
         "Bring the diaspora together to protest for Albania, in the largest numbers possible.",
     },
     pledgeIntro: {
-      kicker: "The pledge",
-      title: "Join WhatsApp for first-step coordination.",
+      title: "Join WhatsApp for coordination.",
       body:
         "Scan the QR, request to join the group, and after admin approval post the short template below.",
     },
@@ -532,9 +548,20 @@ Mund të ndihmoj me: [opsionale]`,
       kicker: "Participation index",
       title: "30 days in the square, day by day.",
       body:
-        "Follow the pulse of the protest: camera-visible participation across a month, with the key moments: from the 6 June peak to the march on Rinas airport and the diaspora joining in.",
+        "Follow the pulse of the protest: participation clearly documented on camera, across a month, with the key moments: from the 6 June peak to the march on Rinas airport and the diaspora joining in.",
       href: "/en/pulsi",
       cta: "See the protest pulse",
+      stats: [
+        { value: "30", label: "days of protest" },
+        { value: "06.06", label: "participation peak" },
+        { value: "100K+", label: "diaspora, day 21" },
+      ],
+    },
+    march: {
+      kicker: "The march",
+      title: "The July 4 march",
+      body:
+        "Everything for march day: the route, the principles, and practical tips.",
     },
     whatsapp: {
       title: "Scan the QR",
@@ -544,7 +571,7 @@ Mund të ndihmoj me: [opsionale]`,
       openLabel: "Open WhatsApp",
       approvalNote:
         "For safety, the group uses admin approval.",
-      templateTitle: "Message to post after joining",
+      templateTitle: "Message you can post after joining",
       templateIntro:
         "Copy the message, add your name, and choose where you will join.",
       template: `Hi, I am [Name] from [Country / city].
@@ -555,7 +582,6 @@ b) at Bulevardi i Ri - 17:00
 c) at Skanderbeg Square - 19:00
 
 I can help with: [optional]`,
-      badges: ["Admin approval", "Short intro message"],
     },
     itinerary: {
       kicker: "Route",
@@ -663,9 +689,13 @@ I can help with: [optional]`,
     },
     context: {
       kicker: "Why we march",
-      title: "For public responsibility and the national interest",
-      body:
-        "The march stands in solidarity with citizens calling for the protection of the public interest, nature, cultural heritage, and Albania's future.",
+      title: "To put Albania on the path of accelerated development",
+      body: {
+        before: "Like the ",
+        link: "Asian tigers",
+        href: "https://www.youtube.com/watch?v=XF3nEmKziWU",
+        after: " of the last century.",
+      },
       demands: [
         { text: "The non-negotiable resignation of the Prime Minister and the government." },
         {
@@ -695,7 +725,7 @@ I can help with: [optional]`,
         },
       ],
       closing:
-        "We come from different countries, but when Albania calls, our answer is calm, united, concrete action.",
+        "All Albanians turn out when the motherland calls.",
     },
     pastMarches: {
       kicker: "Past marches",
