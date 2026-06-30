@@ -17,6 +17,7 @@ export type SiteContent = {
   altLangLabel: string;
   nav: {
     route: string;
+    tracker: string;
     advice: string;
     rules: string;
     context: string;
@@ -55,6 +56,13 @@ export type SiteContent = {
     href: string;
     cta: string;
     previewAlt: string;
+  };
+  trackerTeaser: {
+    kicker: string;
+    title: string;
+    body: string;
+    href: string;
+    cta: string;
   };
   whatsapp: {
     title: string;
@@ -172,6 +180,7 @@ export const content: Record<Locale, SiteContent> = {
     altLangLabel: "English",
     nav: {
       route: "Itinerari",
+      tracker: "Pulsi",
       advice: "Këshilla",
       rules: "Parimet",
       context: "Pse marshojmë",
@@ -216,6 +225,14 @@ export const content: Record<Locale, SiteContent> = {
       cta: "Shiko sugjerimet",
       previewAlt:
         "Sugjerim për bluza të diasporës në version të zi dhe të bardhë",
+    },
+    trackerTeaser: {
+      kicker: "Indeksi i pjesëmarrjes",
+      title: "30 ditë në shesh, ditë pas dite.",
+      body:
+        "Ndiq pulsin e protestës: pjesëmarrja e dukshme në kamera përgjatë një muaji, me momentet kyçe: nga kulmi i 6 qershorit te marshimi drejt Rinasit dhe bashkimi i diasporës.",
+      href: "/pulsi",
+      cta: "Shiko pulsin e protestës",
     },
     whatsapp: {
       title: "Skano QR-in",
@@ -465,6 +482,7 @@ Mund të ndihmoj me: [opsionale]`,
     altLangLabel: "Shqip",
     nav: {
       route: "Route",
+      tracker: "Pulse",
       advice: "Tips",
       rules: "Principles",
       context: "Why we march",
@@ -509,6 +527,14 @@ Mund të ndihmoj me: [opsionale]`,
       cta: "View suggestions",
       previewAlt:
         "Suggested black and white diaspora shirt versions",
+    },
+    trackerTeaser: {
+      kicker: "Participation index",
+      title: "30 days in the square, day by day.",
+      body:
+        "Follow the pulse of the protest: camera-visible participation across a month, with the key moments: from the 6 June peak to the march on Rinas airport and the diaspora joining in.",
+      href: "/en/pulsi",
+      cta: "See the protest pulse",
     },
     whatsapp: {
       title: "Scan the QR",

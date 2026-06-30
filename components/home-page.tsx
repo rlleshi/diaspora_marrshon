@@ -19,6 +19,7 @@ import {
   Utensils,
 } from "lucide-react";
 import { content, type Locale, type SiteContent } from "@/lib/content";
+import { participation } from "@/data/participation";
 import { PledgeForm } from "@/components/pledge-form";
 import { SectionViewTracker, TrackedLink } from "@/components/analytics-events";
 import routeMapImage from "@/docs/marshimi_i_diaspores_3_pika_1100_1700_1900.png";
@@ -72,6 +73,17 @@ export function HomePage({ locale }: { locale: Locale }) {
     process.env.TURNSTILE_SITE_KEY ??
     "";
 
+  const sparkWidth = 260;
+  const sparkHeight = 96;
+  const sparkPoints = participation
+    .map((entry, index) => {
+      const x = (index / (participation.length - 1)) * sparkWidth;
+      const y = sparkHeight - 4 - (entry.peak / 100) * (sparkHeight - 12);
+      return `${x.toFixed(1)},${y.toFixed(1)}`;
+    })
+    .join(" ");
+  const sparkArea = `0,${sparkHeight} ${sparkPoints} ${sparkWidth},${sparkHeight}`;
+
   return (
     <div className="site-shell">
       <header className="site-header">
@@ -81,6 +93,7 @@ export function HomePage({ locale }: { locale: Locale }) {
         </Link>
         <nav aria-label="Primary navigation">
           <a href="#route">{t.nav.route}</a>
+          <Link href={t.trackerTeaser.href}>{t.nav.tracker}</Link>
           <a href="#context">{t.nav.context}</a>
           <a href="#rules">{t.nav.rules}</a>
           <a href="#advice">{t.nav.advice}</a>
@@ -289,6 +302,55 @@ export function HomePage({ locale }: { locale: Locale }) {
                 </li>
               ))}
             </ul>
+          </div>
+        </section>
+
+        <section className="section tracker-teaser-band">
+          <div className="section-inner tracker-teaser">
+            <div className="section-copy">
+              <p className="kicker">{t.trackerTeaser.kicker}</p>
+              <h2>{t.trackerTeaser.title}</h2>
+              <p>{t.trackerTeaser.body}</p>
+              <TrackedLink
+                className="button button-secondary"
+                href={t.trackerTeaser.href}
+                eventName="Tracker Page Opened"
+                eventProperties={{ locale, placement: "home_teaser" }}
+              >
+                <Activity aria-hidden="true" size={20} />
+                {t.trackerTeaser.cta}
+              </TrackedLink>
+            </div>
+            <figure className="tracker-teaser-preview" aria-hidden="true">
+              <svg
+                viewBox={`0 0 ${sparkWidth} ${sparkHeight}`}
+                preserveAspectRatio="none"
+                role="img"
+              >
+                <defs>
+                  <linearGradient
+                    id="tracker-spark"
+                    x1="0"
+                    x2="0"
+                    y1="0"
+                    y2="1"
+                  >
+                    <stop offset="0%" stopColor="rgba(185,28,28,0.34)" />
+                    <stop offset="100%" stopColor="rgba(185,28,28,0)" />
+                  </linearGradient>
+                </defs>
+                <polygon points={sparkArea} fill="url(#tracker-spark)" />
+                <polyline
+                  points={sparkPoints}
+                  fill="none"
+                  stroke="#ef4444"
+                  strokeWidth="2.4"
+                  strokeLinejoin="round"
+                  strokeLinecap="round"
+                  vectorEffect="non-scaling-stroke"
+                />
+              </svg>
+            </figure>
           </div>
         </section>
 

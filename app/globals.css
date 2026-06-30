@@ -1285,6 +1285,7 @@ textarea:focus {
 
   .pledge-grid,
   .shirts-teaser,
+  .tracker-teaser,
   .shirts-hero-grid,
   .route-layout,
   .route-timeline,
@@ -1434,4 +1435,639 @@ textarea:focus {
   .form-panel {
     padding: 16px;
   }
+}
+
+/* ============================================================
+   Participation chart: "The Rising Square"
+   ============================================================ */
+
+.participation-band {
+  background: radial-gradient(120% 90% at 22% 0%, #fffaf2 0%, var(--bg) 62%);
+}
+
+.participation-caption {
+  max-width: 640px;
+  margin-top: 10px;
+  color: var(--muted);
+  font-size: 1.08rem;
+  font-style: italic;
+  line-height: 1.5;
+}
+
+.participation-figure {
+  margin: 34px 0 0;
+}
+
+.participation-method {
+  display: grid;
+  grid-template-columns: 18px minmax(0, 1fr);
+  gap: 9px;
+  align-items: start;
+  max-width: 760px;
+  margin-top: 18px;
+  color: var(--muted);
+  font-size: 0.86rem;
+  line-height: 1.5;
+}
+
+.participation-method svg {
+  margin-top: 2px;
+  color: var(--red);
+}
+
+/* ---- chart shell ---- */
+.pc {
+  position: relative;
+  width: 100%;
+  border: 1px solid rgba(21, 21, 21, 0.07);
+  border-radius: 12px;
+  background: #fffaf2;
+  box-shadow: 0 22px 50px rgba(127, 17, 17, 0.08);
+  overflow: hidden;
+}
+
+.pc-svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.pc-ylabel {
+  font-size: 13px;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+.pc-xlabel {
+  font-size: 14px;
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+}
+
+.pc-hit {
+  cursor: pointer;
+  outline: none;
+}
+
+.pc-hit:focus-visible {
+  outline: 2px solid var(--red);
+  outline-offset: -2px;
+}
+
+/* ---- legend ---- */
+.pc-legend {
+  position: absolute;
+  top: 14px;
+  right: 16px;
+  display: flex;
+  gap: 14px;
+  font-size: 0.78rem;
+  font-weight: 650;
+}
+
+.pc-legend span {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--muted);
+}
+
+.pc-legend span::before {
+  content: "";
+  width: 14px;
+  height: 3px;
+  border-radius: 2px;
+}
+
+.pc-legend-peak::before {
+  background: linear-gradient(90deg, #b91c1c, #b7791f);
+}
+
+.pc-legend-mean::before {
+  background: repeating-linear-gradient(
+    90deg,
+    #5f625f 0 3px,
+    transparent 3px 6px
+  );
+}
+
+/* ---- event chips (HTML overlay) ---- */
+.pc-chip {
+  position: absolute;
+  display: grid;
+  gap: 2px;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  text-align: center;
+}
+
+.pc-chip.pc-place-start {
+  transform: translate(-6%, -50%);
+  text-align: left;
+}
+
+.pc-chip.pc-place-end {
+  transform: translate(-94%, -50%);
+  text-align: right;
+}
+
+.pc-chip-label {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  color: var(--ink);
+  font-size: 0.82rem;
+  font-weight: 750;
+  line-height: 1.15;
+  white-space: nowrap;
+}
+
+.pc-chip-label svg {
+  color: var(--red);
+  flex: 0 0 auto;
+}
+
+.pc-chip--secondary .pc-chip-label {
+  color: var(--muted);
+  font-size: 0.76rem;
+  font-weight: 700;
+}
+
+.pc-chip--secondary .pc-chip-label svg {
+  color: #8a8378;
+}
+
+.pc-chip-sub {
+  color: var(--muted);
+  font-size: 0.7rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+/* the peak number */
+.pc-chip--peak {
+  gap: 0;
+}
+
+.pc-peak-num {
+  font-family: "Fraunces", Georgia, "Times New Roman", serif;
+  font-size: clamp(2.6rem, 6vw, 4rem);
+  font-weight: 600;
+  line-height: 0.86;
+  letter-spacing: -0.01em;
+  background: linear-gradient(120deg, #7f1111, #b91c1c 55%, #b7791f);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.pc-peak-meta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  margin-top: 4px;
+  color: var(--red-dark);
+  font-size: 0.84rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.pc-peak-sub {
+  color: var(--muted);
+  font-size: 0.74rem;
+  font-weight: 600;
+}
+
+/* ---- tooltip ---- */
+.pc-tip {
+  position: absolute;
+  z-index: 4;
+  width: min(248px, 62vw);
+  padding: 12px 13px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: #fffaf2;
+  box-shadow: 0 16px 36px rgba(21, 21, 21, 0.18);
+  transform: translate(-50%, -115%);
+  text-align: left;
+}
+
+.pc-tip.pc-tip--start {
+  transform: translate(-10%, -115%);
+}
+.pc-tip.pc-tip--end {
+  transform: translate(-90%, -115%);
+}
+.pc-tip.pc-tip--below {
+  transform: translate(-50%, 16%);
+}
+.pc-tip.pc-tip--below.pc-tip--start {
+  transform: translate(-10%, 16%);
+}
+.pc-tip.pc-tip--below.pc-tip--end {
+  transform: translate(-90%, 16%);
+}
+
+.pc-tip-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 8px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--line);
+}
+
+.pc-tip-head strong {
+  color: var(--red-dark);
+  font-size: 0.96rem;
+}
+
+.pc-tip-head span {
+  color: var(--muted);
+  font-size: 0.78rem;
+  font-weight: 600;
+}
+
+.pc-tip-stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 12px;
+  color: var(--muted);
+  font-size: 0.78rem;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+.pc-tip-peak {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 5px;
+  color: var(--ink);
+}
+
+.pc-tip-peak em {
+  font-size: 1.4rem;
+  font-weight: 800;
+  font-style: normal;
+  color: var(--red);
+}
+
+.pc-tip-note {
+  margin: 9px 0 0;
+  color: #2b2b2b;
+  font-size: 0.82rem;
+  line-height: 1.45;
+}
+
+.pc-tip-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 10px;
+  color: var(--red-dark);
+  font-size: 0.78rem;
+  font-weight: 750;
+}
+
+.pc-tip-link:hover {
+  text-decoration: underline;
+}
+
+/* ---- replay button ---- */
+.pc-replay {
+  position: absolute;
+  left: 16px;
+  top: 14px;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  min-height: 34px;
+  padding: 6px 12px;
+  border: 1px solid rgba(185, 28, 28, 0.24);
+  border-radius: 999px;
+  background: rgba(255, 250, 242, 0.86);
+  color: var(--red-dark);
+  font-size: 0.8rem;
+  font-weight: 700;
+  cursor: pointer;
+  backdrop-filter: blur(4px);
+}
+
+.pc-replay:hover {
+  background: rgba(185, 28, 28, 0.08);
+}
+
+.pc-sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  border: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+/* ============ animation states ============ */
+
+/* line draws on (pathLength=1) */
+.pc.is-armed:not(.is-revealed) .pc-line {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+}
+.pc.is-revealed .pc-line {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 0;
+  transition: stroke-dashoffset var(--draw-ms) cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* area + mean wipe left→right */
+.pc-wipe-rect {
+  transform-box: fill-box;
+  transform-origin: left center;
+}
+.pc.is-armed:not(.is-revealed) .pc-wipe-rect {
+  transform: scaleX(0);
+}
+.pc.is-revealed .pc-wipe-rect {
+  transform: scaleX(1);
+  transition: transform var(--draw-ms) cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Saturday bands fade in early */
+.pc.is-armed:not(.is-revealed) .pc-band {
+  opacity: 0;
+}
+.pc.is-revealed .pc-band {
+  transition: opacity 0.6s ease;
+}
+
+/* events + chips stagger as the line passes */
+.pc.is-armed:not(.is-revealed) .pc-event,
+.pc.is-armed:not(.is-revealed) .pc-chip {
+  opacity: 0;
+}
+.pc.is-revealed .pc-event {
+  transition: opacity 0.5s ease;
+  transition-delay: var(--delay);
+}
+.pc.is-revealed .pc-chip {
+  transition: opacity 0.55s ease;
+  transition-delay: var(--delay);
+}
+
+/* peak glow: hidden until the line reaches it, then one pulse */
+.pc-peak-glow {
+  opacity: 0;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+.pc.is-revealed .pc-peak-glow {
+  animation: pcPulse 0.9s ease-out var(--peak-delay) 1 forwards;
+}
+@keyframes pcPulse {
+  0% {
+    opacity: 0;
+    transform: scale(0.6);
+  }
+  45% {
+    opacity: 1;
+    transform: scale(1.12);
+  }
+  100% {
+    opacity: 0.85;
+    transform: scale(1);
+  }
+}
+
+.pc-scrub {
+  pointer-events: none;
+}
+
+.pc-events-list {
+  display: none;
+}
+
+@media (max-width: 720px) {
+  /* keep only the peak number on the chart; everything else goes to the list */
+  .pc-chip:not(.pc-chip--peak) {
+    display: none;
+  }
+  .pc-event:not(.pc-event--peak) .pc-lead {
+    display: none;
+  }
+  .pc-legend {
+    top: 10px;
+    right: 10px;
+    gap: 10px;
+    font-size: 0.7rem;
+  }
+  .pc-xlabel {
+    font-size: 18px;
+  }
+  .pc-ylabel {
+    font-size: 17px;
+  }
+  .pc-replay {
+    font-size: 0.9rem;
+  }
+
+  .pc-events-list {
+    display: grid;
+    gap: 8px;
+    margin: 16px 0 0;
+    padding: 0;
+    list-style: none;
+  }
+  .pc-events-list li {
+    display: grid;
+    grid-template-columns: auto 18px minmax(0, 1fr);
+    align-items: center;
+    gap: 11px;
+    padding: 10px 12px;
+    border: 1px solid var(--line);
+    border-left: 3px solid var(--red);
+    border-radius: 8px;
+    background: #fffaf2;
+  }
+  .pc-ev-day {
+    color: var(--red);
+    font-size: 0.74rem;
+    font-weight: 800;
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+  }
+  .pc-events-list li svg {
+    color: var(--red);
+  }
+  .pc-ev-text {
+    display: grid;
+    min-width: 0;
+  }
+  .pc-ev-text strong {
+    color: var(--ink);
+    font-size: 0.88rem;
+    line-height: 1.2;
+  }
+  .pc-ev-text span {
+    color: var(--muted);
+    font-size: 0.78rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pc .pc-line,
+  .pc .pc-wipe-rect,
+  .pc .pc-band,
+  .pc .pc-event,
+  .pc .pc-chip {
+    transition: none !important;
+  }
+  .pc .pc-line {
+    stroke-dasharray: none;
+    stroke-dashoffset: 0;
+  }
+  .pc .pc-wipe-rect {
+    transform: scaleX(1);
+  }
+  .pc .pc-band,
+  .pc .pc-event,
+  .pc .pc-chip {
+    opacity: 1;
+  }
+  .pc-peak-glow {
+    opacity: 0.85;
+    animation: none;
+  }
+}
+
+/* Live tracker page (/pulsi) + homepage teaser */
+.tracker-shell {
+  background: var(--bg);
+}
+
+.tracker-band {
+  padding-top: clamp(40px, 6vw, 76px);
+  background: radial-gradient(120% 90% at 22% 0%, #fffaf2 0%, var(--bg) 62%);
+}
+
+.tracker-band .section-heading h1.tracker-title {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin: 6px 0 0;
+  font-size: clamp(2.1rem, 4.4vw, 3.1rem);
+  line-height: 1.04;
+}
+
+.tracker-live {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 5px 12px 5px 10px;
+  border: 1px solid rgba(185, 28, 28, 0.32);
+  border-radius: 999px;
+  background: rgba(185, 28, 28, 0.07);
+  color: var(--red);
+  font-size: 0.92rem;
+  font-weight: 850;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  line-height: 1;
+  transform: translateY(2px);
+}
+
+.tracker-live-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--red);
+  box-shadow: 0 0 0 0 rgba(185, 28, 28, 0.5);
+  animation: trackerLivePulse 1.8s ease-out infinite;
+}
+
+@keyframes trackerLivePulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(185, 28, 28, 0.5);
+  }
+  70% {
+    box-shadow: 0 0 0 8px rgba(185, 28, 28, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(185, 28, 28, 0);
+  }
+}
+
+.participation-caption--more {
+  margin-top: 14px;
+  font-style: normal;
+  font-size: 1rem;
+  color: var(--muted);
+}
+
+.participation-hint {
+  grid-column: 2;
+  margin-top: 14px;
+  color: var(--ink);
+  font-weight: 650;
+}
+
+.participation-disclaimer {
+  grid-column: 2;
+  margin-top: 8px;
+  font-style: italic;
+  opacity: 0.82;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tracker-live-dot {
+    animation: none;
+  }
+}
+
+.tracker-teaser-band {
+  background: #151515;
+  color: var(--white);
+}
+
+.tracker-teaser {
+  display: grid;
+  grid-template-columns: minmax(0, 0.92fr) minmax(280px, 0.7fr);
+  gap: clamp(28px, 5vw, 70px);
+  align-items: center;
+}
+
+.tracker-teaser .kicker {
+  color: #fecaca;
+}
+
+.tracker-teaser .section-copy p {
+  color: rgba(255, 255, 255, 0.78);
+}
+
+.tracker-teaser .button {
+  width: fit-content;
+  margin-top: 24px;
+}
+
+.tracker-teaser-preview {
+  margin: 0;
+  padding: clamp(16px, 3vw, 26px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 14px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(0, 0, 0, 0.18));
+  box-shadow: 0 24px 50px rgba(0, 0, 0, 0.34);
+}
+
+.tracker-teaser-preview svg {
+  display: block;
+  width: 100%;
+  height: clamp(96px, 18vw, 130px);
+  overflow: visible;
 }
