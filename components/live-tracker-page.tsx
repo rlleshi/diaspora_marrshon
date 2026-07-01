@@ -15,7 +15,7 @@ const COPY: Record<
     eyebrow: string;
     title: string;
     liveLabel: string;
-    intro: string;
+    intro: { before: string; link: string; href: string; after: string };
     methodology: string;
     hint: string;
     disclaimer: string;
@@ -26,10 +26,15 @@ const COPY: Record<
     homeHref: "/",
     homeLabel: "Kthehu te faqja kryesore",
     eyebrow: "Pulsi i protestës për Shqipërinë e re",
-    title: "30 ditë në shesh për një mjekërrosh bardhërosh",
+    title: "31 ditë në shesh për një mjekërrosh bardhërosh",
     liveLabel: "Live",
-    intro:
-      "Nga mbrojtja e Zvërnecit tek një lëvizje njëmujore për krijimin e një Shqipërie të re.",
+    intro: {
+      before:
+        "Nga mbrojtja e Zvërnecit tek një lëvizje njëmujore për krijimin e një Shqipërie të re, që i futet rrugës së ",
+      link: "zhvillimit të përshpejtuar",
+      href: "https://www.youtube.com/watch?v=XF3nEmKziWU",
+      after: ".",
+    },
     methodology:
       "Indeks i pjesëmarrjes së vlerësuar, i normalizuar: 100 = dita më e madhe (20 qershor). Dy tubimet më të mëdha (6 dhe 20 qershor) janë ankoruar me vlerësime gjeometrike në terren; ditët e tjera pasqyrojnë intensitetin e dukshëm në kamerat e News24, të analizuar me një model numërimi turme.",
     hint: "Lëviz mbi çdo ditë për detaje.",
@@ -49,17 +54,22 @@ const COPY: Record<
       replay: "Rishfaq",
       saturday: "e shtunë",
       ariaSummary:
-        "Indeksi i pjesëmarrjes në protesta përgjatë 30 ditëve, me kulmin në ditën e 21-të (20 qershor 2026).",
+        "Indeksi i pjesëmarrjes në protesta përgjatë 31 ditëve, me kulmin në ditën e 21-të (20 qershor 2026).",
     },
   },
   en: {
     homeHref: "/en",
     homeLabel: "Back to the homepage",
     eyebrow: "Protest pulse for a new Albania",
-    title: "30 days in the square for a grey-bearded Rama",
+    title: "31 days in the square for a grey-bearded Rama",
     liveLabel: "Live",
-    intro:
-      "From defending Zvërnec to a month-long movement for the creation of a new Albania.",
+    intro: {
+      before:
+        "From defending Zvërnec to a month-long movement for the creation of a new Albania that sets out on the path of ",
+      link: "accelerated development",
+      href: "https://www.youtube.com/watch?v=XF3nEmKziWU",
+      after: ".",
+    },
     methodology:
       "An estimated participation index, normalized so 100 = the largest day (20 June). The two largest gatherings (6 and 20 June) are anchored to on-the-ground geometry estimates; other days reflect camera-visible intensity from News24 livestreams, analyzed with a crowd-counting model.",
     hint: "Hover any day for detail.",
@@ -79,7 +89,7 @@ const COPY: Record<
       replay: "Replay",
       saturday: "Saturday",
       ariaSummary:
-        "Protest participation index across 30 days, peaking on day 21 (20 June 2026).",
+        "Protest participation index across 31 days, peaking on day 21 (20 June 2026).",
     },
   },
 };
@@ -129,7 +139,18 @@ export function LiveTrackerPage({ locale }: { locale: Locale }) {
                   {t.liveLabel}
                 </span>
               </h1>
-              <p className="participation-caption">{t.intro}</p>
+              <p className="participation-caption">
+                {t.intro.before}
+                <a
+                  className="context-link"
+                  href={t.intro.href}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  {t.intro.link}
+                </a>
+                {t.intro.after}
+              </p>
               <p className="participation-hint">{t.hint}</p>
             </div>
             <figure className="participation-figure">

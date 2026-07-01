@@ -1,12 +1,16 @@
-// 30-day participation index for the June 2026 "Revolucioni i Flamingove" protests.
+// 31-day participation index for the June 2026 "Revolucioni i Flamingove" protests.
 //
 // Source: News24 live broadcasts of each day's protest in Tirana, analyzed with a
-// crowd-counting model. The headline series is `peak` (top-10 peak frame average),
-// normalized so 100 = the single largest day (Day 7, 6 June 2026 / 2026-06-06).
-// `mean` and `median` are the same crowd model averaged across the whole broadcast.
+// crowd-counting model. The headline series is `peak` (top-10 peak frame average).
+// The two anchor days (7 and 21 / 6 and 20 June) are tied to on-the-ground geometry
+// estimates so 100 = the largest day (Day 21, 20 June 2026); every other day scales
+// the model output on the same Day-7 reference (top-10 avg 2582.5 -> index 50).
+// `mean` and `median` are the same crowd model over the retained broadcast frames.
 //
-// Data: outputs/protesta_summary/crowd_visibility_index_1_30.csv
-// Story: outputs/protesta_summary/protest_story_notes_1_30.md
+// Data: outputs/protesta_summary/crowd_visibility_index_1_30.csv (days 1-30)
+// Story: outputs/protesta_summary/protest_story_notes_1_31.md
+// Day 31 computed from the protesta_31 timeline (top-10 peak avg 697.6, mean 229.9,
+// median 212.5), normalized on the same Day-7 reference as days 1-30.
 
 export type ParticipationDay = {
   day: number;
@@ -24,6 +28,8 @@ export type ParticipationDay = {
   source: string;
   /** Short story note. */
   note: { sq: string; en: string };
+  /** Optional inline link inside the note, anchored on `word` (per locale). */
+  noteLink?: { href: string; word: { sq: string; en: string } };
 };
 
 const yt = (id: string) => `https://www.youtube.com/watch?v=${id}`;
@@ -89,6 +95,9 @@ export const participation: ParticipationDay[] = [
     note: { sq: "Prag i shenjës njëmujore: “s’dalim nga sheshi pa rënë mjekrra”.", en: "On the eve of the one-month mark: “we won't leave the square until Rama falls”." } },
   { day: 30, date: "2026-06-29", saturday: false, peak: 9.47, mean: 3.81, median: 3.61, source: yt("Hi8GIraUxSo"),
     note: { sq: "Një muaj protestë: qytetarët “pushtojnë” rrugët e Tiranës.", en: "One month of protest: citizens “occupy” the streets of Tirana." } },
+  { day: 31, date: "2026-06-30", saturday: false, peak: 13.51, mean: 4.45, median: 4.11, source: yt("eXqGp85o7uk"),
+    note: { sq: "Protesta galvanizohet pasi nëpunësit e regjimit ushtrojnë dhunë krejtësisht të paprovokuar tek protestuesit.", en: "The protest is galvanized after regime officials use completely unprovoked violence against protesters." },
+    noteLink: { href: "https://youtu.be/Nye2pigb8fc", word: { sq: "të paprovokuar", en: "unprovoked" } } },
 ];
 
 export type ParticipationEvent = {
@@ -123,6 +132,9 @@ export const participationEvents: ParticipationEvent[] = [
   { day: 30, tier: "primary", icon: "flag", mobile: true,
     label: { sq: "1 muaj protestë", en: "One month" },
     sub: { sq: "29 qershor", en: "29 June" } },
+  { day: 31, tier: "primary", icon: "spark", mobile: true,
+    label: { sq: "Dhuna brutale e regjimit", en: "The regime's brutal violence" },
+    sub: { sq: "galvanizon protestën", en: "galvanizes the protest" } },
 ];
 
 /** Normalization reference shown in the methodology note. */

@@ -40,6 +40,7 @@ const LABEL_Y: Record<number, number> = {
   21: 58,
   25: 430,
   30: 410,
+  31: 300,
 };
 
 const MONTHS_SQ = [
@@ -251,7 +252,7 @@ export function ParticipationChart({
         ))}
 
         {/* x axis labels */}
-        {[1, 5, 10, 15, 20, 25, 30].map((day) => (
+        {[1, 5, 10, 15, 20, 25, 31].map((day) => (
           <text
             key={`x-${day}`}
             className="pc-xlabel"
@@ -521,6 +522,29 @@ export function ParticipationChart({
   );
 }
 
+function renderNote(day: ParticipationDay, locale: Locale) {
+  const text = day.note[locale];
+  const link = day.noteLink;
+  if (!link) return text;
+  const word = link.word[locale];
+  const i = text.indexOf(word);
+  if (i === -1) return text;
+  return (
+    <>
+      {text.slice(0, i)}
+      <a
+        className="pc-tip-note-link"
+        href={link.href}
+        target="_blank"
+        rel="noreferrer"
+      >
+        {word}
+      </a>
+      {text.slice(i + word.length)}
+    </>
+  );
+}
+
 function TipBody({
   day,
   locale,
@@ -553,7 +577,7 @@ function TipBody({
           {labels.tooltipMedian} {day.median.toFixed(1)}
         </span>
       </div>
-      <p className="pc-tip-note">{day.note[locale]}</p>
+      <p className="pc-tip-note">{renderNote(day, locale)}</p>
       <a
         className="pc-tip-link"
         href={day.source}

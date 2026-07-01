@@ -1744,6 +1744,17 @@ textarea:focus {
   line-height: 1.45;
 }
 
+.pc-tip-note-link {
+  color: var(--red-dark);
+  font-weight: 750;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.pc-tip-note-link:hover {
+  text-decoration: none;
+}
+
 .pc-tip-link {
   display: inline-flex;
   align-items: center;
