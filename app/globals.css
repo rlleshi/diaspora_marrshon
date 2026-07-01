@@ -1891,6 +1891,14 @@ textarea:focus {
   .pc-chip:not(.pc-chip--peak) {
     display: none;
   }
+  /* short mobile chart clips the top-centered peak number; top-anchor it so the
+     big "100" grows downward from its point instead of overflowing above .pc. */
+  .pc-chip--peak {
+    transform: translate(-50%, 0);
+  }
+  .pc-peak-num {
+    font-size: 2.2rem;
+  }
   .pc-event:not(.pc-event--peak) .pc-lead {
     display: none;
   }
