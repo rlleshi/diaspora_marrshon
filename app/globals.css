@@ -2159,6 +2159,39 @@ textarea:focus {
   overflow: visible;
 }
 
+/*
+ * Mobile stacking for the pulse band. This must live AFTER the base
+ * .pulse-feature grid definition above: media queries add no specificity,
+ * so the earlier max-width:900px rule (up near the other grids) is defeated
+ * by this later base rule and the copy column collapses to a sliver.
+ */
+@media (max-width: 900px) {
+  .pulse-feature {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+}
+
+@media (max-width: 620px) {
+  .pulse-feature-preview {
+    padding: 16px;
+    border-radius: 14px;
+  }
+
+  .pulse-feature-preview svg {
+    height: 130px;
+  }
+
+  .pulse-stats {
+    gap: 20px 28px;
+    margin-top: 22px;
+  }
+
+  .pulse-feature .button {
+    width: 100%;
+  }
+}
+
 /* Marshimi block - route + rules + tips grouped under one section */
 .marshimi-band {
   background: var(--bg);
