@@ -3,8 +3,12 @@ import type {
   ParticipationType,
   SourceLanguage,
 } from "@/lib/pledge-options";
+import { participation } from "@/data/participation";
 
 export type Locale = SourceLanguage;
+
+// Derived from the tracker data so the homepage teaser never lags behind /pulsi.
+const protestDays = String(participation.length);
 
 type Option<T extends string> = {
   value: T;
@@ -233,13 +237,13 @@ export const content: Record<Locale, SiteContent> = {
     },
     trackerTeaser: {
       kicker: "Indeksi i pjesëmarrjes",
-      title: "30 ditë në shesh, ditë pas dite.",
+      title: `${protestDays} ditë në shesh, ditë pas dite.`,
       body:
         "Ndiq pulsin e protestës: pjesëmarrje e dokumentuar qartësisht në kamera, përgjatë një muaji, me momentet kyçe: nga vala e parë e 6 qershorit te marshimi drejt Rinasit dhe kulmi i diasporës më 20 qershor.",
       href: "/pulsi",
       cta: "Shiko pulsin e protestës",
       stats: [
-        { value: "30", label: "ditë protestë" },
+        { value: protestDays, label: "ditë protestë" },
         { value: "20.06", label: "dita më e madhe" },
         { value: "100K+", label: "vlerësim në shesh" },
       ],
@@ -546,13 +550,13 @@ Mund të ndihmoj me: [opsionale]`,
     },
     trackerTeaser: {
       kicker: "Participation index",
-      title: "30 days in the square, day by day.",
+      title: `${protestDays} days in the square, day by day.`,
       body:
         "Follow the pulse of the protest: participation clearly documented on camera, across a month, with the key moments: from the 6 June surge to the Rinas march and the 20 June diaspora peak.",
       href: "/en/pulsi",
       cta: "See the protest pulse",
       stats: [
-        { value: "30", label: "days of protest" },
+        { value: protestDays, label: "days of protest" },
         { value: "20.06", label: "the biggest day" },
         { value: "100K+", label: "estimated in the square" },
       ],
