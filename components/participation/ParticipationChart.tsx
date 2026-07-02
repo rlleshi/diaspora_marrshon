@@ -85,9 +85,21 @@ export function ParticipationChart({
 }) {
   const geo = useMemo(() => buildGeometry(participation), []);
   const rootRef = useRef<HTMLDivElement | null>(null);
+  const panelRef = useRef<HTMLDivElement | null>(null);
+  const scrollToPanel = useRef(false);
   const [armed, setArmed] = useState(false);
   const [revealed, setRevealed] = useState(false);
   const [active, setActive] = useState<number | null>(null);
+
+  // The events list sits below the detail panel, so picking a day from it
+  // updates content that may be off-screen; bring the panel into view.
+  useEffect(() => {
+    if (!scrollToPanel.current) return;
+    scrollToPanel.current = false;
+    if (active != null) {
+      panelRef.current?.scrollIntoView({ behavior: "smooth", block: "center" });
+    }
+  }, [active]);
 
   // Arm before paint so SSR/no-JS shows the finished chart, JS animates it.
   useEffect(() => {
@@ -241,7 +253,7 @@ export function ParticipationChart({
               opacity={g.value === 0 ? 0.9 : 0.5}
             />
             <text
-              className="pc-ylabel"
+              className={g.value === 100 ? "pc-ylabel pc-ylabel--top" : "pc-ylabel"}
               x={plot.left + 4}
               y={g.y - 6}
               fill="#8a8378"
@@ -489,7 +501,7 @@ export function ParticipationChart({
 
     {/* full-width detail card for small screens (the floating tooltip is hidden there) */}
     {activeDay && (
-      <div className="pc-tip-panel" role="status">
+      <div className="pc-tip-panel" role="status" ref={panelRef}>
         <TipBody day={activeDay} locale={locale} labels={labels} />
       </div>
     )}
@@ -503,7 +515,10 @@ export function ParticipationChart({
             <button
               type="button"
               className={`pc-ev-btn${active === ev.day ? " is-active" : ""}`}
-              onClick={() => setActive(active === ev.day ? null : ev.day)}
+              onClick={() => {
+                scrollToPanel.current = active !== ev.day;
+                setActive(active === ev.day ? null : ev.day);
+              }}
             >
               <span className="pc-ev-day">
                 {labels.axisDay} {ev.day}

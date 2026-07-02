@@ -1660,6 +1660,7 @@ textarea:focus {
   color: var(--muted);
   font-size: 0.74rem;
   font-weight: 600;
+  white-space: nowrap;
 }
 
 /* ---- tooltip ---- */
@@ -1913,6 +1914,10 @@ textarea:focus {
   }
   .pc-ylabel {
     font-size: 17px;
+  }
+  /* the replay button sits over the top gridline label on the short chart */
+  .pc-ylabel--top {
+    display: none;
   }
   .pc-replay {
     font-size: 0.9rem;

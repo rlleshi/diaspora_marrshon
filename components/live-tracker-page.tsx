@@ -37,7 +37,7 @@ const COPY: Record<
     },
     methodology:
       "Indeks i pjesëmarrjes së vlerësuar, i normalizuar: 100 = dita më e madhe (20 qershor). Dy tubimet më të mëdha (6 dhe 20 qershor) janë ankoruar me vlerësime gjeometrike në terren; ditët e tjera pasqyrojnë intensitetin e dukshëm në kamerat e News24, të analizuar me një model numërimi turme.",
-    hint: "Lëviz mbi çdo ditë për detaje.",
+    hint: "Prek ose lëviz mbi çdo ditë për detaje.",
     disclaimer:
       "Shënim: shifrat nuk mund të jenë plotësisht të sakta, për shkak të kufizimeve të kamerave gjatë transmetimit si dhe saktësisë së modeleve të inteligjencës artificiale.",
     labels: {
@@ -72,7 +72,7 @@ const COPY: Record<
     },
     methodology:
       "An estimated participation index, normalized so 100 = the largest day (20 June). The two largest gatherings (6 and 20 June) are anchored to on-the-ground geometry estimates; other days reflect camera-visible intensity from News24 livestreams, analyzed with a crowd-counting model.",
-    hint: "Hover any day for detail.",
+    hint: "Tap or hover any day for detail.",
     disclaimer:
       "Note: the numbers cannot be fully accurate due to camera limitations during the livestream and the accuracy of machine-learning models.",
     labels: {
