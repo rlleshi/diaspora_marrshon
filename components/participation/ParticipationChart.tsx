@@ -252,7 +252,7 @@ export function ParticipationChart({
         ))}
 
         {/* x axis labels */}
-        {[1, 5, 10, 15, 20, 25, 31].map((day) => (
+        {[1, 5, 10, 15, 20, 25, 32].map((day) => (
           <text
             key={`x-${day}`}
             className="pc-xlabel"
