@@ -1,4 +1,4 @@
-// 32-day participation index for the June 2026 "Revolucioni i Flamingove" protests.
+// 33-day participation index for the June 2026 "Revolucioni i Flamingove" protests.
 //
 // Source: News24 live broadcasts of each day's protest in Tirana, analyzed with a
 // crowd-counting model. The headline series is `peak` (top-10 peak frame average).
@@ -8,11 +8,13 @@
 // `mean` and `median` are the same crowd model over the retained broadcast frames.
 //
 // Data: outputs/protesta_summary/crowd_visibility_index_1_30.csv (days 1-30)
-// Story: outputs/protesta_summary/protest_story_notes_1_32.md
+// Story: outputs/protesta_summary/protest_story_notes_1_33.md
 // Day 31 computed from the protesta_31 timeline (top-10 peak avg 697.6, mean 229.9,
 // median 212.5), normalized on the same Day-7 reference as days 1-30.
 // Day 32 computed from the protesta_32 timeline, retained frames only (top-10 peak
 // avg 327.6, mean 190.6, median 176.5), normalized on the same Day-7 reference.
+// Day 33 computed from the protesta_33 timeline, retained frames only (top-10 peak
+// avg 389.3, mean 216.1, median 215.0), normalized on the same Day-7 reference.
 
 export type ParticipationDay = {
   day: number;
@@ -102,6 +104,8 @@ export const participation: ParticipationDay[] = [
     noteLink: { href: "https://youtu.be/Nye2pigb8fc", word: { sq: "të paprovokuar", en: "unprovoked" } } },
   { day: 32, date: "2026-07-01", saturday: false, peak: 6.34, mean: 3.69, median: 3.42, source: yt("CbddHOZPo3s"),
     note: { sq: "Presion institucional: dosja “Albanian Files” dorëzohet në SPAK, marshimi i mbrëmjes ndalon para Parlamentit.", en: "Institutional pressure: the “Albanian Files” dossier is submitted to SPAK, and the evening march stops before Parliament." } },
+  { day: 33, date: "2026-07-02", saturday: false, peak: 7.54, mean: 4.18, median: 4.16, source: yt("Wq-5bgoNv8w"),
+    note: { sq: "Dita e dytë e dhunës brutale nga policia dhe arrestime te Kuvendi në mëngjes; natën marshim drejt Komisariatit Nr. 3 për lirimin e të ndaluarve.", en: "Second day of brutal police violence and arrests at Parliament in the morning; at night a march to Police Station No. 3 demanding the detainees' release." } },
 ];
 
 export type ParticipationEvent = {
@@ -139,6 +143,9 @@ export const participationEvents: ParticipationEvent[] = [
   { day: 31, tier: "primary", icon: "spark", mobile: true,
     label: { sq: "Dhuna brutale e regjimit", en: "The regime's brutal violence" },
     sub: { sq: "galvanizon protestën", en: "galvanizes the protest" } },
+  { day: 33, tier: "primary", icon: "people", mobile: true,
+    label: { sq: "Kuvendi + Komisariati Nr. 3", en: "Parliament + Police Station 3" },
+    sub: { sq: "arrestime, marshim natën", en: "arrests, night march" } },
 ];
 
 /** Normalization reference shown in the methodology note. */

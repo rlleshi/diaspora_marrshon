@@ -41,6 +41,7 @@ const LABEL_Y: Record<number, number> = {
   25: 430,
   30: 410,
   31: 300,
+  33: 200,
 };
 
 const MONTHS_SQ = [
@@ -264,7 +265,7 @@ export function ParticipationChart({
         ))}
 
         {/* x axis labels */}
-        {[1, 5, 10, 15, 20, 25, 32].map((day) => (
+        {[1, 5, 10, 15, 20, 25, 33].map((day) => (
           <text
             key={`x-${day}`}
             className="pc-xlabel"
