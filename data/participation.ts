@@ -1,26 +1,33 @@
-// 33-day participation index for the June 2026 "Revolucioni i Flamingove" protests.
+// 37-day participation index for the June 2026 "Revolucioni i Flamingove" protests.
 //
 // Source: News24 live broadcasts of each day's protest in Tirana, analyzed with a
 // crowd-counting model. The headline series is `peak` (top-10 peak frame average).
-// The two anchor days (7 and 21 / 6 and 20 June) are tied to on-the-ground geometry
-// estimates so 100 = the largest day (Day 21, 20 June 2026); every other day scales
-// the model output on the same Day-7 reference (top-10 avg 2582.5 -> index 50).
+// The anchor days (7, 21 and 35 / 6, 20 June and 4 July) are tied to on-the-ground
+// geometry estimates so 100 = the largest day (Day 21, 20 June 2026); every other day
+// scales the model output on the same Day-7 reference (top-10 avg 2582.5 -> index 50).
 // `mean` and `median` are the same crowd model over the retained broadcast frames.
 //
 // Data: outputs/protesta_summary/crowd_visibility_index_1_30.csv (days 1-30)
-// Story: outputs/protesta_summary/protest_story_notes_1_33.md
+// Story: outputs/protesta_summary/protest_story_notes_1_37.md
 // Day 31 computed from the protesta_31 timeline (top-10 peak avg 697.6, mean 229.9,
 // median 212.5), normalized on the same Day-7 reference as days 1-30.
 // Day 32 computed from the protesta_32 timeline, retained frames only (top-10 peak
 // avg 327.6, mean 190.6, median 176.5), normalized on the same Day-7 reference.
 // Day 33 computed from the protesta_33 timeline, retained frames only (top-10 peak
 // avg 389.3, mean 216.1, median 215.0), normalized on the same Day-7 reference.
+// Days 34-37 computed from the protesta_34..37 timelines, retained frames only
+// (top-10 peak avgs 299.8 / 1132.9 / 365.3 / 267.6; means 174.2 / 242.5 / 191.3 / 156.5;
+// medians 174.4 / 199.2 / 186.5 / 154.8), normalized on the same Day-7 reference.
+// Day 35 (4 July) is geometry-anchored like days 7 and 21: the ground estimate of
+// ~60k (upper extension of the 30k-50k working range, 2.5 km procession scenario,
+// research/day_35_density_estimate.md) sets peak = 60.0 (index 100 = ~100k); its
+// mean/median are scaled by the same anchor factor (2.736), matching Day 21's method.
 
 export type ParticipationDay = {
   day: number;
   /** ISO date of the protest day. Day 1 = 2026-05-31. */
   date: string;
-  /** Saturday flag: Saturdays drove the biggest turnouts (days 7, 14, 21, 28). */
+  /** Saturday flag: Saturdays drove the biggest turnouts (days 7, 14, 21, 28, 35). */
   saturday: boolean;
   /** Headline index, normalized 0–100 (100 = Day 7). */
   peak: number;
@@ -88,7 +95,7 @@ export const participation: ParticipationDay[] = [
   { day: 24, date: "2026-06-23", saturday: false, peak: 6.75, mean: 3.80, median: 3.83, source: yt("cRHVNDIJuq0"),
     note: { sq: "Kërkesa konkretizohen në 5 pika gjithëpërfshirëse, thirrje drejtuar SPAK-ut.", en: "Demands are distilled into 5 comprehensive points, with calls on the anti-corruption body." } },
   { day: 25, date: "2026-06-24", saturday: false, peak: 5.51, mean: 3.41, median: 3.37, source: yt("KYS-Ln89w-c"),
-    note: { sq: "Dita me shi: pika më e ulët e indeksit, por sheshi mbetet aktiv.", en: "The rainy day: the lowest index point, yet the square stays active." } },
+    note: { sq: "Dita me shi: pika më e ulët e qershorit, por sheshi mbetet aktiv.", en: "The rainy day: June's lowest index point, yet the square stays active." } },
   { day: 26, date: "2026-06-25", saturday: false, peak: 7.38, mean: 4.03, median: 3.83, source: yt("okiM_gxThDk"),
     note: { sq: "Rikuperim pas shiut; vazhdojnë thirrjet për dorëheqje.", en: "Recovery after the rain; the calls to resign continue." } },
   { day: 27, date: "2026-06-26", saturday: false, peak: 6.37, mean: 3.74, median: 3.74, source: yt("JaJsOgGSLXY"),
@@ -106,6 +113,14 @@ export const participation: ParticipationDay[] = [
     note: { sq: "Presion institucional: dosja “Albanian Files” dorëzohet në SPAK, marshimi i mbrëmjes ndalon para Parlamentit.", en: "Institutional pressure: the “Albanian Files” dossier is submitted to SPAK, and the evening march stops before Parliament." } },
   { day: 33, date: "2026-07-02", saturday: false, peak: 7.54, mean: 4.18, median: 4.16, source: yt("Wq-5bgoNv8w"),
     note: { sq: "Dita e dytë e dhunës brutale nga policia dhe arrestime te Kuvendi në mëngjes; natën marshim drejt Komisariatit Nr. 3 për lirimin e të ndaluarve.", en: "Second day of brutal police violence and arrests at Parliament in the morning; at night a march to Police Station No. 3 demanding the detainees' release." } },
+  { day: 34, date: "2026-07-03", saturday: false, peak: 5.80, mean: 3.37, median: 3.38, source: yt("lOz1SMino3Q"),
+    note: { sq: "Ditë urë drejt 4 korrikut: nga sheshi bëhet thirrja për protestë mbarëkombëtare, “nga Konispoli në Vermosh”.", en: "A bridge day toward July 4: from the square comes the call for a nationwide protest, “from Konispol to Vermosh”." } },
+  { day: 35, date: "2026-07-04", saturday: true, peak: 60.0, mean: 12.84, median: 10.55, source: yt("LPBjPPJiU6w"),
+    note: { sq: "Protesta mbarëkombëtare e 4 korrikut: diaspora dhe qytetarët mbushin bulevardin. Rrëzohet busti simbolik i “diktatorit të fundit”; natën marshim për lirimin e të ndaluarve.", en: "The July 4 nationwide protest: the diaspora and citizens fill the boulevard. The symbolic bust of “the last dictator” is toppled; at night a march demanding the detainees' release." } },
+  { day: 36, date: "2026-07-05", saturday: false, peak: 7.07, mean: 3.70, median: 3.61, source: yt("rTf-MJiVoBY"),
+    note: { sq: "Dita pas kulmit: protestës i bashkohen protestuesit e liruar po atë ditë; në shesh flitet për organizim politik.", en: "The day after the peak: protesters released that same day join the protest; talk in the square turns to political organizing." } },
+  { day: 37, date: "2026-07-06", saturday: false, peak: 5.18, mean: 3.03, median: 3.00, source: yt("I8u9NuBICTk"),
+    note: { sq: "Pas fundjavës së protestës mbarëkombëtare pjesëmarrja bie ndjeshëm, por marshimi i përditshëm drejt Kryeministrisë vazhdon; revista franceze Paris Match shkruan për lëvizjen, nga Tirana në Paris.", en: "After the nationwide-protest weekend turnout dips noticeably, but the daily march toward the PM's office continues; the French magazine Paris Match covers the movement, from Tirana to Paris." } },
 ];
 
 export type ParticipationEvent = {
@@ -136,7 +151,7 @@ export const participationEvents: ParticipationEvent[] = [
     sub: { sq: "Diaspora · 20 qershor", en: "Diaspora · 20 June" } },
   { day: 25, tier: "secondary", icon: "rain", mobile: false,
     label: { sq: "Dita me shi", en: "The rainy day" },
-    sub: { sq: "Pika më e ulët", en: "Lowest point" } },
+    sub: { sq: "Pika më e ulët e qershorit", en: "June's lowest point" } },
   { day: 30, tier: "primary", icon: "flag", mobile: true,
     label: { sq: "1 muaj protestë", en: "One month" },
     sub: { sq: "29 qershor", en: "29 June" } },
@@ -146,6 +161,9 @@ export const participationEvents: ParticipationEvent[] = [
   { day: 33, tier: "primary", icon: "people", mobile: true,
     label: { sq: "Kuvendi + Komisariati Nr. 3", en: "Parliament + Police Station 3" },
     sub: { sq: "arrestime, marshim natën", en: "arrests, night march" } },
+  { day: 35, tier: "primary", icon: "people", mobile: true,
+    label: { sq: "Protesta mbarëkombëtare", en: "The nationwide protest" },
+    sub: { sq: "4 korrik · diaspora", en: "4 July · diaspora" } },
 ];
 
 /** Normalization reference shown in the methodology note. */
