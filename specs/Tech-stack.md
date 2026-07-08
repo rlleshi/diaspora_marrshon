@@ -2,65 +2,163 @@
 
 ## Product Shape
 
-Build the first version as a full web app, not only a static landing page.
+This is a Next.js web app for an Albanian-first civic campaign.
 
-The app should support an Albanian-first public website with English as a secondary language, secure pledge collection for the diaspora march, email confirmation, trusted organizer review, and coordinator exports. The stack should remain simple enough to launch quickly, but it must treat spam prevention and participant privacy as first-class requirements.
+The current public product is:
 
-## Recommended Architecture
+- A bilingual public homepage at `/` and `/en`.
+- A bilingual protest participation tracker at `/pulsi` and `/en/pulsi`.
+- A bilingual suggested clothing/download page at `/veshja` and `/en/veshja`.
+- A hidden legacy pledge form and API that can be re-enabled if needed.
+- A WhatsApp-first coordination flow on the homepage.
 
-- Next-style web application with server-rendered public pages.
-- Server-side form handling for all pledge submissions.
-- Firebase Firestore-backed pledge records for the MVP.
-- Firebase Admin SDK for all server-side writes to pledge data.
-- Resend or equivalent transactional email provider for confirmation and follow-up messages.
-- Cloudflare Turnstile for bot checks on public pledge submissions.
-- Firebase Console access for trusted organizers in the MVP.
-- Rate limiting and bot protection at the form/API boundary.
-- Structured exports for coordinators after review.
+The stack should remain simple enough to update quickly during the campaign, while treating participant safety, privacy, spam resistance, and source-linked public claims as first-class requirements.
 
-Public participants should not create accounts. Trusted organizers may access Firebase directly through Google/Firebase IAM instead of a custom admin-user system.
+## Runtime And Framework
 
-## Public Experience
+- Next.js App Router.
+- React server components by default, client components only where interactivity is needed.
+- TypeScript.
+- Global CSS in `app/globals.css`.
+- Vercel Analytics for page and custom-event tracking.
+- Static assets under `public/` and campaign source assets under `docs/`.
 
-The MVP should include:
+## Public Routes
 
-- Albanian-first public copy, with English translations as the secondary language.
-- Clear "march for Albania" pledge call to action.
-- Short route-aware pledge form for the airport-to-Tirana march and other joining points.
-- Peaceful participation rules.
-- March itinerary content, starting from Tirana International Airport "Nene Tereza" and continuing toward Skanderbeg Square / Sheshi Skenderbej.
-- Consent language for data use and private follow-up.
-- No public WhatsApp or private coordination links.
+- `/`: Albanian homepage.
+- `/en`: English homepage.
+- `/pulsi`: Albanian protest pulse / participation index.
+- `/en/pulsi`: English protest pulse / participation index.
+- `/veshja`: Albanian suggested clothing/downloads page.
+- `/en/veshja`: English suggested clothing/downloads page.
+- `/confirm-email`: legacy pledge email-confirmation route.
+- `/api/pledges`: legacy pledge submission API.
 
-## Minimal Pledge Data
+## Content Model
 
-Collect only what is needed for early coordination:
+Primary public copy lives in `lib/content.ts`.
 
-- First name.
-- Email address.
-- Country.
-- City.
-- Route, joining point, or participation choice.
-- Optional WhatsApp number.
-- Optional volunteer interest.
-- Required consent to data use for campaign coordination.
-- Email confirmation status.
-- Review status for coordinator follow-up.
+The content model includes:
 
-Avoid collecting sensitive personal data unless a later, explicit workflow justifies it.
+- Navigation labels.
+- Homepage hero date and route checkpoints.
+- WhatsApp QR panel copy and intro template.
+- Protest pulse teaser copy.
+- Civic demands and context.
+- Past marches/history.
+- March itinerary, rules, and practical advice.
+- Hidden pledge form copy.
+- Email-confirmation messages.
+
+Shirt page copy lives in `lib/shirts-content.ts`.
+
+Participation tracker data lives in `data/participation.ts`.
+
+## Protest Pulse Data Model
+
+The protest pulse is driven by `data/participation.ts`.
+
+Each day stores:
+
+- `day`
+- `date`
+- `saturday`
+- `peak`
+- `mean`
+- `median`
+- `source`
+- localized `note`
+- optional `noteLink`
+
+`peak`, `mean`, and `median` are normalized index values, not exact official attendance counts. `100` is the largest indexed day. The current method uses geometry-anchored estimates for key days and camera-visible model output for other days.
+
+Event annotations are stored as `participationEvents` with:
+
+- `day`
+- `tier`
+- `icon`
+- localized `label`
+- localized `sub`
+- `mobile`
+
+The chart geometry is pure TypeScript in `components/participation/geometry.ts` so SVG output stays deterministic across server render and hydration.
+
+## Frontend Components
+
+Key components:
+
+- `components/home-page.tsx`: homepage, route, WhatsApp, pulse teaser, demands, history, shirts teaser.
+- `components/live-tracker-page.tsx`: wrapper and localized copy for `/pulsi`.
+- `components/participation/ParticipationChart.tsx`: interactive SVG chart, animation, hover/tap detail cards, mobile event list.
+- `components/shirts-page.tsx`: suggested clothing page with downloads.
+- `components/analytics-events.tsx`: Vercel custom event helpers.
+- `components/pledge-form.tsx`: hidden legacy pledge form.
+
+The participation chart is a first-class public feature. It must remain mobile-readable, keyboard-accessible, source-linked, and honest about uncertainty.
+
+## Analytics
+
+Vercel Analytics is installed in `app/layout.tsx`.
+
+Tracked events currently include:
+
+- WhatsApp opens.
+- Google Maps opens.
+- Shirt page opens.
+- Shirt downloads.
+- Language switches.
+- Section views.
+- Tracker page opens.
+
+When adding a new major call to action, add a custom event so campaign decisions can be based on actual behavior rather than only page views.
+
+## WhatsApp Coordination Flow
+
+The visible coordination flow is WhatsApp-first:
+
+1. User lands on the homepage.
+2. User scans the QR code or opens WhatsApp.
+3. WhatsApp group entry uses admin approval.
+4. User posts a short intro template with name, origin, joining point, and optional help.
+
+This avoids a heavy public form for users who are unlikely to complete it, while still using admin approval as a first spam filter.
+
+Do not expose sensitive organizer details or private logistics publicly.
+
+## Legacy Pledge Infrastructure
+
+The codebase still contains a secure pledge infrastructure:
+
+- `app/api/pledges/route.ts`
+- `components/pledge-form.tsx`
+- Firebase Admin SDK writes.
+- Firestore collections.
+- Turnstile verification.
+- Honeypot field.
+- IP and email rate limits.
+- Resend email confirmation.
+- `/confirm-email`.
+
+The visible homepage currently hides the form. If re-enabled, it must stay behind:
+
+- Server-side validation.
+- Origin checks.
+- Turnstile.
+- Honeypot.
+- Per-IP and per-email rate limits.
+- Email confirmation.
+- Neutral error messages.
 
 ## Firestore Data Model
 
-Use a small collection set for the MVP:
+The legacy pledge flow uses:
 
 - `pledges`
 - `email_confirmations`
 - `consent_versions`
 - `rate_limit_events`
 
-`pledges` is the core collection. A pledge means the person says they intend to come, join, or participate in the diaspora march for Albania.
-
-Recommended `pledges` fields:
+`pledges` stores:
 
 - `firstName`
 - `email`
@@ -77,97 +175,61 @@ Recommended `pledges` fields:
 - `acceptedDataUse`
 - `consentVersion`
 - `consentedAt`
-- `emailStatus`: `pending` or `confirmed`
-- `emailConfirmedAt` optional
-- `reviewStatus`: `unreviewed`, `reviewed`, `rejected`, or `withdrawn`
-- `coordinationStatus`: `none`, `exported`, `contacted`, or `invited`
-- `sourceLanguage`: `sq` or `en`
-- `sourcePage` optional
+- `emailStatus`
+- `reviewStatus`
+- `coordinationStatus`
+- `sourceLanguage`
+- `sourcePage`
 - `createdAt`
 - `updatedAt`
 
-Do not store a separate peaceful-rules acceptance field. Peaceful conduct is a public premise of the march, not a separate data checkbox.
+`email_confirmations` stores hashed confirmation tokens only. Raw confirmation tokens must never be stored.
 
-`email_confirmations` stores confirmation state:
+Firestore rules deny public client reads and writes. Public submissions go through server routes with Firebase Admin.
 
-- `pledgeId`
-- `emailNormalized`
-- `tokenHash`
-- `expiresAt`
-- `usedAt`
-- `createdAt`
+## Environment Variables
 
-Store only the hash of the email confirmation token, never the raw token.
+Core runtime variables:
 
-`consent_versions` stores the exact data-use consent text and version accepted by participants.
+- `APP_BASE_URL`
+- `ALLOWED_FORM_ORIGINS`
+- `NEXT_PUBLIC_TURNSTILE_SITE_KEY`
+- `TURNSTILE_SECRET_KEY`
+- `RESEND_API_KEY`
+- `EMAIL_FROM`
+- `RATE_LIMIT_SALT`
+- `EMAIL_CONFIRMATION_SECRET`
+- `FIREBASE_PROJECT_ID`
+- `FIREBASE_CLIENT_EMAIL`
+- `FIREBASE_PRIVATE_KEY`
 
-`rate_limit_events` stores short-lived anti-spam records such as IP hash, email hash, timestamp, and reason. Prefer hashed identifiers and automatic deletion/TTL.
+Optional collection override variables:
 
-## Security And Anti-Spam Defaults
+- `FIREBASE_PLEDGES_COLLECTION`
+- `FIREBASE_EMAIL_CONFIRMATIONS_COLLECTION`
+- `FIREBASE_CONSENT_VERSIONS_COLLECTION`
+- `FIREBASE_RATE_LIMIT_COLLECTION`
 
-The pledge flow must include:
+For local development, missing Turnstile and Resend credentials are tolerated by the code path. Production pledge form usage requires them.
 
-- Cloudflare Turnstile token on form submission, verified server-side before any Firestore write.
-- Honeypot field.
-- Per-IP and per-email rate limits.
-- Server-side validation.
-- No direct public client writes to pledge collections.
-- Custom email confirmation before a pledge is treated as verified.
-- No public private-group invite links.
-- Manual review before coordinator handoff.
-- Basic audit trail for organizer review/export actions when actions happen through app code.
-- Abuse-resistant error messages that do not reveal whether an email is already registered.
+## Security And Privacy Defaults
 
-Spam resistance should not be treated as cleanup work after launch. It belongs in the first implementation pass.
-
-## Submission And Email Confirmation Flow
-
-1. User submits the pledge form with the Turnstile token.
-2. Server checks honeypot, rate limits, Turnstile token, and server-side validation.
-3. Server writes `pledges/{pledgeId}` with `emailStatus: "pending"`.
-4. Server generates a long random confirmation token.
-5. Server stores only the token hash in `email_confirmations`, with expiry and `usedAt: null`.
-6. Server sends a confirmation email through Resend or equivalent.
-7. User clicks `/confirm-email?token=...`.
-8. Server hashes the token, finds a matching unused and unexpired confirmation record, then marks the pledge confirmed.
-9. Server marks the confirmation token used.
-10. User sees a neutral confirmation message.
-
-Confirmation links should expire, for example after 24 or 48 hours. Repeated clicks should be harmless and should not expose private coordination links by default.
-
-## Privacy Defaults
-
-- Collect the minimum data needed for coordination.
-- Store consent timestamps and consent text version.
-- Restrict Firebase access to trusted organizers.
-- Require individual Google accounts and MFA for organizer access.
-- Do not share Firebase credentials or service account keys between organizers.
-- Export only the fields needed by each coordinator.
-- Do not expose participant lists publicly.
-- Do not share phone numbers unless the participant opted into that channel.
-- Delete or archive data when it is no longer needed for the campaign.
-
-## Organizer And Coordinator Workflow
-
-Trusted organizers using Firebase should be able to:
-
-- View confirmed pledges.
-- Filter by route, joining point, country, city, and volunteer interest.
-- Mark pledges as reviewed.
-- Export coordinator-ready lists.
-- See basic submission and confirmation status.
-
-Coordinators should receive only scoped lists relevant to their city, route, or role. Coordinator access should be least-privilege by default.
-
-A custom admin dashboard is not required for the MVP. Add one only if Firebase Console access becomes too risky, too slow, or too easy to misuse.
+- Keep public Firestore access denied.
+- Do not publish participant lists.
+- Do not publish phone numbers.
+- Do not collect unnecessary personal data.
+- Keep WhatsApp admin approval enabled.
+- Keep route/logistics information public only when it is safe to publish.
+- Keep exact crowd-size claims framed as estimates or normalized index values unless independently verified.
+- Avoid adding public comments, open uploads, or user-generated content.
 
 ## Later Enhancements
 
-Only after the pledge and review flow is stable, consider:
+Consider only when there is a concrete need:
 
-- Rich city pages.
-- Volunteer role workflows.
-- Press kit management.
-- Route-specific and joining-point-specific email campaigns.
-- More detailed logistics collection.
-- Multilingual expansion beyond Albanian primary copy and English secondary copy.
+- CMS or structured editorial workflow for daily protest updates.
+- Admin dashboard replacing direct Firebase Console usage.
+- Export tooling for coordinators.
+- More languages beyond Albanian and English.
+- Deeper press kit.
+- Automated social-share images for each protest-pulse update.

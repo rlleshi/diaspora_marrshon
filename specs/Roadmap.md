@@ -1,93 +1,109 @@
 # Roadmap
 
-## Implementation Order
+## Working Principle
 
-Build in very small pieces. Each step should leave the project in a usable or easily reviewable state.
+Keep changes small enough to review quickly. The campaign moves fast, so every update should either improve public clarity, increase real coordination, document the protest more credibly, or reduce operational risk.
 
-## Phase 1: Constitution And Content Skeleton
+## Current State
 
-1. Create the `specs/` constitution files.
-2. Draft Albanian-first core messages around "Diaspora marshon ne Tirane" and "marshoj per Shqiperine," then add English secondary translations.
-3. Define the primary pledge call to action.
-4. Define the airport-to-Tirana route and first joining points.
-5. Draft peaceful participation rules from `website_text.txt`.
-6. Draft consent text for data use and private follow-up.
+The app currently has:
 
-## Phase 2: App Foundation
+- Albanian and English public homepage.
+- WhatsApp-first coordination panel.
+- July 4 march hero and route information.
+- Past march history for June 20.
+- Civic demands/context section.
+- Route, principles, and practical advice.
+- Suggested clothing/download pages.
+- Vercel Analytics custom events.
+- A bilingual protest participation tracker through day 38.
+- Hidden legacy pledge form with Firebase, Turnstile, rate limits, and Resend support.
 
-1. Scaffold the full web app.
-2. Add locale structure with Albanian as the default language and English as the secondary language.
-3. Add shared layout and navigation.
-4. Add the homepage with the primary pledge CTA.
-5. Add the airport-to-Prime-Minister's-Office itinerary section.
-6. Add a rules section.
-7. Add campaign context and civic demands section.
+## Phase 1: Keep Public Campaign Copy Current
 
-## Phase 3: Pledge Form MVP
+1. Update homepage date, route, and call-to-action copy as public campaign needs change.
+2. Keep Albanian copy primary and English secondary.
+3. Keep route map, Google Maps link, and itinerary text aligned.
+4. Keep WhatsApp intro template short and operational.
+5. Keep past marches/history accurate as events pass.
+6. Remove or reframe outdated future-tense language after an event date passes.
 
-1. Build the pledge form UI.
-2. Add fields for first name, email, country, city, joining point or participation choice, optional WhatsApp, optional volunteer interest, and required data-use consent.
-3. Add client-side validation for obvious input mistakes.
-4. Add server-side validation as the source of truth.
-5. Create Firestore collections for `pledges`, `email_confirmations`, `consent_versions`, and `rate_limit_events`.
-6. Store submissions in Firestore as unconfirmed by default.
-7. Show a neutral success message that asks the user to confirm by email.
+## Phase 2: Maintain The Protest Pulse
 
-## Phase 4: Anti-Spam And Verification
+1. Add each new protest day to `data/participation.ts`.
+2. Add the News24 or source livestream link for each day.
+3. Add short Albanian and English notes for each day.
+4. Update methodology comments when normalization or source assumptions change.
+5. Add or adjust `participationEvents` only for moments that help explain the movement.
+6. Check mobile chart readability after major event-label changes.
+7. Keep metadata descriptions in `/pulsi` and `/en/pulsi` aligned with the current day count.
 
-1. Add honeypot protection.
-2. Add Cloudflare Turnstile to the pledge form.
-3. Add per-IP submission rate limits.
-4. Add per-email submission limits.
-5. Verify Turnstile tokens server-side before any Firestore write.
-6. Add custom email confirmation tokens.
-7. Store only hashed confirmation tokens with expiry and `usedAt`.
-8. Send confirmation emails through Resend or equivalent transactional email provider.
-9. Mark pledges verified only after email confirmation.
-10. Keep private coordination links hidden from all unconfirmed users.
-11. Use neutral error messages that avoid account or email enumeration.
+## Phase 3: Improve Credibility And Methodology
 
-## Phase 5: Organizer Review
+1. Keep the tracker framed as an index, not exact official attendance.
+2. Document anchor-day assumptions and geometry estimates in a public or internal note.
+3. Add source links for major press mentions when they become part of the story.
+4. Consider adding a concise methodology section/page if the pulse page gets wider circulation.
+5. Avoid overclaiming precision from camera feeds or machine-learning counts.
 
-1. Configure Firebase project access for trusted organizers only.
-2. Require individual Google accounts and MFA for organizer access.
-3. Review confirmed pledges in Firebase.
-4. Use route, joining point, country, city, and volunteer interest fields for filtering.
-5. Add review status fields only if needed for coordination.
-6. Add organizer notes only if needed for coordination.
-7. Keep all participant data out of public pages.
+## Phase 4: Strengthen Conversion And Sharing
 
-## Phase 6: Coordinator Handoff
+1. Track important actions with Vercel custom events.
+2. Keep WhatsApp open, Google Maps open, tracker open, shirt downloads, and language switches tracked.
+3. Add a native mobile share/copy CTA if distribution becomes the bottleneck.
+4. Add UTM-aware links for outreach through admins/pages/groups.
+5. Keep posters and QR assets in `docs/` organized by language and channel.
+6. Optimize the first mobile viewport before adding more content.
 
-1. Add scoped exports for trusted coordinators.
-2. Export only fields needed for the coordinator's role.
-3. Separate email-only participants from participants who opted into WhatsApp.
-4. Send private coordination links only after confirmation and review.
-5. Document coordinator handling rules for participant data.
+## Phase 5: Coordination Safety
 
-## Phase 7: Launch MVP
+1. Keep WhatsApp admin approval enabled.
+2. Reset public invite links if spam increases.
+3. Keep sensitive logistics out of public copy.
+4. Do not publish participant lists or organizer private details.
+5. Use public pages for broad coordination and private channels for sensitive execution.
+6. Keep Firebase rules denying direct public reads/writes.
 
-1. Review Albanian primary copy and English secondary copy.
-2. Test pledge submission.
-3. Test spam controls.
-4. Test email confirmation.
-5. Test organizer review and export workflow.
-6. Confirm no private group links are public.
-7. Launch with the pledge flow as the main conversion path.
+## Phase 6: Legacy Pledge Flow
 
-## Phase 8: Post-MVP Expansion
+The secure pledge form exists but is currently hidden. Re-enable only if there is a clear operational need for structured participant data.
 
-1. Add city pages based on real pledge concentration.
-2. Add route-specific and joining-point-specific follow-up emails.
-3. Add volunteer role workflows.
-4. Add press kit and media resources.
-5. Add richer logistics only when coordinators need it.
-6. Add more languages only after Albanian primary copy and English secondary copy are stable.
+If re-enabled:
+
+1. Test Turnstile locally and in production.
+2. Test email confirmation with Resend.
+3. Test Firebase writes and confirmation status.
+4. Confirm `ALLOWED_FORM_ORIGINS` is correct.
+5. Confirm rate limits behave correctly.
+6. Review consent text and deletion policy.
+7. Keep private coordination links out of the confirmation page.
+
+## Phase 7: Design And Mobile QA
+
+1. Check mobile hero after any date/route copy change.
+2. Check route map legibility on mobile and desktop.
+3. Check `/pulsi` on mobile after chart data or label changes.
+4. Check shirt cards and downloads after asset changes.
+5. Run `npm run typecheck` before committing.
+6. Run `npm run build` before release when page structure or assets change.
+
+## Phase 8: Potential Later Features
+
+Only add these if the campaign needs them:
+
+1. Public methodology page for the participation index.
+2. Press kit with downloadable images, posters, and source links.
+3. Automated daily pulse social image.
+4. Admin dashboard for pledge review/export.
+5. Structured archive of past marches and major protest days.
+6. Additional languages beyond Albanian and English.
 
 ## Build Discipline
 
-- Keep every implementation step small enough to review.
-- Prefer verified pledges over raw signup counts.
-- Do not add public coordination links.
-- Do not collect extra data before there is a clear operational need.
-- Add security controls before public launch, not after.
+- Prefer simple, direct copy updates over new abstractions.
+- Keep the public site fast and mobile-first.
+- Treat claims about crowd size as estimates unless independently verified.
+- Keep data and visible copy synchronized.
+- Add major new features to `specs/Features.md` when they change the product surface.
+- Do not expose private coordination details in public routes.
+- Preserve the codebase's existing component and CSS style unless a focused refactor is justified.
