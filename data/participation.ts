@@ -1,4 +1,4 @@
-// 37-day participation index for the June 2026 "Revolucioni i Flamingove" protests.
+// 38-day participation index for the June 2026 "Revolucioni i Flamingove" protests.
 //
 // Source: News24 live broadcasts of each day's protest in Tirana, analyzed with a
 // crowd-counting model. The headline series is `peak` (top-10 peak frame average).
@@ -8,7 +8,7 @@
 // `mean` and `median` are the same crowd model over the retained broadcast frames.
 //
 // Data: outputs/protesta_summary/crowd_visibility_index_1_30.csv (days 1-30)
-// Story: outputs/protesta_summary/protest_story_notes_1_37.md
+// Story: outputs/protesta_summary/protest_story_notes_1_38.md
 // Day 31 computed from the protesta_31 timeline (top-10 peak avg 697.6, mean 229.9,
 // median 212.5), normalized on the same Day-7 reference as days 1-30.
 // Day 32 computed from the protesta_32 timeline, retained frames only (top-10 peak
@@ -22,6 +22,8 @@
 // ~60k (upper extension of the 30k-50k working range, 2.5 km procession scenario,
 // research/day_35_density_estimate.md) sets peak = 60.0 (index 100 = ~100k); its
 // mean/median are scaled by the same anchor factor (2.736), matching Day 21's method.
+// Day 38 computed from the protesta_38 timeline, retained frames only (top-10 peak
+// avg 245.9, mean 150.7, median 145.8), normalized on the same Day-7 reference.
 
 export type ParticipationDay = {
   day: number;
@@ -121,6 +123,8 @@ export const participation: ParticipationDay[] = [
     note: { sq: "Dita pas kulmit: protestës i bashkohen protestuesit e liruar po atë ditë; në shesh flitet për organizim politik.", en: "The day after the peak: protesters released that same day join the protest; talk in the square turns to political organizing." } },
   { day: 37, date: "2026-07-06", saturday: false, peak: 5.18, mean: 3.03, median: 3.00, source: yt("I8u9NuBICTk"),
     note: { sq: "Pas fundjavës së protestës mbarëkombëtare pjesëmarrja bie ndjeshëm, por marshimi i përditshëm drejt Kryeministrisë vazhdon; revista franceze Paris Match shkruan për lëvizjen, nga Tirana në Paris.", en: "After the nationwide-protest weekend turnout dips noticeably, but the daily march toward the PM's office continues; the French magazine Paris Match covers the movement, from Tirana to Paris." } },
+  { day: 38, date: "2026-07-07", saturday: false, peak: 4.76, mean: 2.92, median: 2.82, source: yt("lC9FOr2p6W4"),
+    note: { sq: "Nata e 38-të: zinxhiri i protestave vazhdon me intensitet më të ulët pas kulmit; mesazhi zgjerohet drejt hallëve të përditshme: shëndetësia, emigrimi, arsimi, kostoja e jetesës.", en: "Night 38: the protest chain continues at lower intensity after the peak; the message widens into everyday grievances: health care, emigration, education, the cost of living." } },
 ];
 
 export type ParticipationEvent = {
