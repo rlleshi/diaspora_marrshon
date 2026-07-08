@@ -64,9 +64,12 @@ function WalkingPersonIcon({
 export function HomePage({ locale }: { locale: Locale }) {
   const t = content[locale];
   const alternateLocale = locale === "sq" ? "en" : "sq";
-  const heroDateLabel = `${t.hero.dateLabel}: ${t.hero.dateText}; ${t.hero.dateRows
+  const heroScheduleLabel = t.hero.dateRows
     .map((row) => `${row.time}, ${row.location}`)
-    .join("; ")}`;
+    .join("; ");
+  const heroDateLabel = heroScheduleLabel
+    ? `${t.hero.dateLabel}: ${t.hero.dateText}; ${heroScheduleLabel}`
+    : `${t.hero.dateLabel}: ${t.hero.dateText}`;
   const turnstileSiteKey =
     process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY ??
     process.env.TURNSTILE_SITE_KEY ??
@@ -134,33 +137,35 @@ export function HomePage({ locale }: { locale: Locale }) {
             <span className="hero-date-copy">
               <span className="hero-date-month">{t.hero.dateMonth}</span>
               <span className="hero-date-meta">{t.hero.dateMeta}</span>
-              <span className="hero-date-schedule">
-                {t.hero.dateRows.map((row, index) => (
-                  <span
-                    className="hero-date-row"
-                    key={`${row.time}-${row.location}`}
-                  >
-                    <span className="hero-date-time-track">
-                      <span className="hero-date-time">{row.time}</span>
-                      {index < t.hero.dateRows.length - 1 ? (
-                        <span className="hero-date-walk-marker">
-                          <span
-                            aria-hidden="true"
-                            className="hero-date-walk-arrow"
-                          />
-                          <WalkingPersonIcon className="hero-date-walker" />
-                        </span>
-                      ) : null}
+              {t.hero.dateRows.length > 0 ? (
+                <span className="hero-date-schedule">
+                  {t.hero.dateRows.map((row, index) => (
+                    <span
+                      className="hero-date-row"
+                      key={`${row.time}-${row.location}`}
+                    >
+                      <span className="hero-date-time-track">
+                        <span className="hero-date-time">{row.time}</span>
+                        {index < t.hero.dateRows.length - 1 ? (
+                          <span className="hero-date-walk-marker">
+                            <span
+                              aria-hidden="true"
+                              className="hero-date-walk-arrow"
+                            />
+                            <WalkingPersonIcon className="hero-date-walker" />
+                          </span>
+                        ) : null}
+                      </span>
+                      <span className="hero-date-location">
+                        {row.location}
+                        {row.note ? (
+                          <span className="hero-date-note">{row.note}</span>
+                        ) : null}
+                      </span>
                     </span>
-                    <span className="hero-date-location">
-                      {row.location}
-                      {row.note ? (
-                        <span className="hero-date-note">{row.note}</span>
-                      ) : null}
-                    </span>
-                  </span>
-                ))}
-              </span>
+                  ))}
+                </span>
+              ) : null}
             </span>
           </div>
           <h1>{t.hero.title}</h1>
@@ -410,7 +415,7 @@ export function HomePage({ locale }: { locale: Locale }) {
               </div>
             </div>
 
-            <div className="marshimi-part">
+            <div className="marshimi-part" hidden>
               <div className="marshimi-part-head">
                 <h3>{t.practicalAdvice.title}</h3>
                 <p>{t.practicalAdvice.body}</p>

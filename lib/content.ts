@@ -200,10 +200,10 @@ export const content: Record<Locale, SiteContent> = {
     hero: {
       eyebrow: "Diaspora marshon në Tiranë",
       dateLabel: "Data e marshimit",
-      dateDay: "4",
-      dateMonth: "KORRIK",
-      dateMeta: "E shtunë · 2026",
-      dateText: "E shtunë, 4 korrik 2026",
+      dateDay: "Do",
+      dateMonth: "NJOFTOHET",
+      dateMeta: "Marshimi i radhës",
+      dateText: "Do njoftohet",
       dateRows: [
         { time: "11:00", location: "Aeroporti \"Nënë Tereza\"", note: "bazuar në kërkesën" },
         { time: "17:00", location: "Bulevardi i Ri" },
@@ -250,7 +250,7 @@ export const content: Record<Locale, SiteContent> = {
     },
     march: {
       kicker: "Marshimi",
-      title: "Marshimi i 4 korrikut",
+      title: "Marshimi i sugjeruar",
       body:
         "Gjithçka për ditën e marshimit: itinerari, parimet dhe këshillat praktike.",
     },
@@ -264,20 +264,21 @@ export const content: Record<Locale, SiteContent> = {
         "Për arsye sigurie, grupi përdor miratim nga administratorët.",
       templateTitle: "Mesazhi që mund të shkruash pas hyrjes",
       templateIntro:
-        "Kopjoje mesazhin, plotëso emrin dhe zgjidh pikën ku do të bashkohesh.",
+        "Kopjoje mesazhin, plotëso emrin dhe lër vetëm opsionin që vlen për ty.",
       template: `Përshëndetje, jam [Emri] nga [Shteti / qyteti].
 
-Do të bashkohem:
-a) te Aeroporti "Nënë Tereza" - 11:00
-b) te Bulevardi i Ri - 17:00
-c) te Sheshi Skënderbej - 19:00
+Zgjedh njërën nga këto:
 
-Mund të ndihmoj me: [opsionale]`,
+A) Bashkohem në marshim te:
+[Aeroporti "Nënë Tereza" - 11:00 / Bulevardi i Ri - 17:00 / Sheshi Skënderbej - 19:00]
+
+B) Nuk marshoj, por mund të ndihmoj me:
+[opsionale]`,
     },
     itinerary: {
       kicker: "Itinerari",
       title: "Nga Rinasi drejt Sheshit Skënderbej",
-      dateLine: "Data: 4 korrik 2026",
+      dateLine: "Data: do njoftohet",
       body:
         "Marshimi nis sapo diaspora zbret në aeroport dhe bashkohet hap pas hapi me qytetarët në Tiranë.",
       mapAlt:
@@ -288,7 +289,7 @@ Mund të ndihmoj me: [opsionale]`,
         {
           time: "11:00",
           title: "Aeroporti \"Nënë Tereza\"",
-          body: "Nisja simbolike nga Rinasi drejt Tiranës.",
+          body: "Nisja simbolike nga Rinasi, jashtë perimetrit të sigurisë, drejt Tiranës.",
         },
         {
           time: "17:00",
@@ -425,11 +426,18 @@ Mund të ndihmoj me: [opsionale]`,
         "Një histori e shkurtër e marshimeve të mëparshme të diasporës.",
       items: [
         {
+          dateLabel: "4 korrik 2026",
+          title: "Marshimi i dytë i diasporës",
+          route: "Bulevardi i Ri → Sheshi Skënderbej",
+          summary:
+            "Marshimi i dytë qytetar dhe paqësor i diasporës, nga Bulevardi i Ri drejt Sheshit Skënderbej, me rreth 1 mijë pjesëmarrës, në mbështetje të protestës kryesore.",
+        },
+        {
           dateLabel: "20 qershor 2026",
           title: "Marshimi i parë i diasporës",
           route: "Bulevardi i Ri → Sheshi Skënderbej",
           summary:
-            "Marshimi i parë qytetar dhe paqësor i diasporës, nga Bulevardi i Ri drejt Sheshit Skënderbej, me mbi 5 mijë pjesëmarrës, në mbështetje të protestës kryesore.",
+            "Marshimi i parë qytetar dhe paqësor i diasporës, nga Bulevardi i Ri drejt Sheshit Skënderbej, me rreth 3 mijë pjesëmarrës, në mbështetje të protestës kryesore.",
         },
       ],
     },
@@ -513,10 +521,10 @@ Mund të ndihmoj me: [opsionale]`,
     hero: {
       eyebrow: "The diaspora marches in Tirana",
       dateLabel: "March date",
-      dateDay: "4",
-      dateMonth: "JULY",
-      dateMeta: "Saturday · 2026",
-      dateText: "Saturday, July 4, 2026",
+      dateDay: "TBA",
+      dateMonth: "NEXT DATE",
+      dateMeta: "Next diaspora march",
+      dateText: "TBA",
       dateRows: [
         { time: "11:00", location: "Tirana International Airport", note: "based on demand" },
         { time: "17:00", location: "Bulevardi i Ri" },
@@ -563,7 +571,7 @@ Mund të ndihmoj me: [opsionale]`,
     },
     march: {
       kicker: "The march",
-      title: "The July 4 march",
+      title: "Suggested march",
       body:
         "Everything for march day: the route, the principles, and practical tips.",
     },
@@ -577,20 +585,21 @@ Mund të ndihmoj me: [opsionale]`,
         "For safety, the group uses admin approval.",
       templateTitle: "Message you can post after joining",
       templateIntro:
-        "Copy the message, add your name, and choose where you will join.",
+        "Copy the message, add your name, and keep only the option that applies to you.",
       template: `Hi, I am [Name] from [Country / city].
 
-I will join:
-a) at Tirana International Airport - 11:00
-b) at Bulevardi i Ri - 17:00
-c) at Skanderbeg Square - 19:00
+Choose one:
 
-I can help with: [optional]`,
+A) I will join the march at:
+[Tirana International Airport - 11:00 / Bulevardi i Ri - 17:00 / Skanderbeg Square - 19:00]
+
+B) I will not march, but I can help with:
+[optional]`,
     },
     itinerary: {
       kicker: "Route",
       title: "From Rinas toward Skanderbeg Square",
-      dateLine: "Date: July 4, 2026",
+      dateLine: "Date: TBA",
       body:
         "The march begins as the diaspora lands at the airport and joins citizens in Tirana step by step.",
       mapAlt:
@@ -601,7 +610,7 @@ I can help with: [optional]`,
         {
           time: "11:00",
           title: "Tirana International Airport \"Nënë Tereza\"",
-          body: "Symbolic departure from Rinas toward Tirana.",
+          body: "Symbolic departure from Rinas, outside the security perimeter, toward Tirana.",
         },
         {
           time: "17:00",
@@ -738,11 +747,18 @@ I can help with: [optional]`,
         "A short history of the diaspora's previous marches.",
       items: [
         {
+          dateLabel: "July 4, 2026",
+          title: "The second diaspora march",
+          route: "Bulevardi i Ri → Skanderbeg Square",
+          summary:
+            "The diaspora's second civic, peaceful march, from Bulevardi i Ri toward Skanderbeg Square, with around 1,000 participants, in support of the main protest.",
+        },
+        {
           dateLabel: "June 20, 2026",
           title: "The first diaspora march",
           route: "Bulevardi i Ri → Skanderbeg Square",
           summary:
-            "The diaspora's first civic, peaceful march, from Bulevardi i Ri toward Skanderbeg Square, with over 5,000 participants, in support of the main protest.",
+            "The diaspora's first civic, peaceful march, from Bulevardi i Ri toward Skanderbeg Square, with around 3,000 participants, in support of the main protest.",
         },
       ],
     },
