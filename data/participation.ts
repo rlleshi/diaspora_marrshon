@@ -1,4 +1,4 @@
-// 40-day participation index for the June 2026 "Revolucioni i Flamingove" protests.
+// 41-day participation index for the June 2026 "Revolucioni i Flamingove" protests.
 //
 // Source: News24 live broadcasts of each day's protest in Tirana, analyzed with a
 // crowd-counting model. The headline series is `peak` (top-10 peak frame average).
@@ -8,7 +8,7 @@
 // `mean` and `median` are the same crowd model over the retained broadcast frames.
 //
 // Data: outputs/protesta_summary/crowd_visibility_index_1_30.csv (days 1-30)
-// Story: outputs/protesta_summary/protest_story_notes_1_40.md
+// Story: outputs/protesta_summary/protest_story_notes_1_41.md
 // Day 31 computed from the protesta_31 timeline (top-10 peak avg 697.6, mean 229.9,
 // median 212.5), normalized on the same Day-7 reference as days 1-30.
 // Day 32 computed from the protesta_32 timeline, retained frames only (top-10 peak
@@ -28,6 +28,8 @@
 // avg 401.9, mean 182.5, median 171.3), normalized on the same Day-7 reference.
 // Day 40 computed from the protesta_40 timeline, retained frames only (top-10 peak
 // avg 475.2, mean 169.3, median 161.8), normalized on the same Day-7 reference.
+// Day 41 computed from the protesta_41 timeline, retained frames only (top-10 peak
+// avg 363.7, mean 168.4, median 151.1), normalized on the same Day-7 reference.
 
 export type ParticipationDay = {
   day: number;
@@ -133,6 +135,8 @@ export const participation: ParticipationDay[] = [
     note: { sq: "Rikthim i dukshëm pas dy netëve më të qeta: fjalimet fokusohen te fondet publike, shëndetësia dhe pensionet; edhe Korça del sërish në shesh.", en: "A visible rebound after two quieter nights: speeches focus on public funds, health care and pensions; Korça takes to the square again as well." } },
   { day: 40, date: "2026-07-09", saturday: false, peak: 9.20, mean: 3.28, median: 3.13, source: yt("vkYnv02T3kc"),
     note: { sq: "40 ditë rezistencë, piku më i fortë pas 4 korrikut: protestuesit shpërndajnë hallvë si përkujtim ironik, “të 40-tat e vdekjes së frikës”; diaspora kudo vazhdon protestat çdo fundjavë.", en: "40 days of resistance and the strongest peak since July 4: protesters hand out halva as an ironic 40-day memorial, “the death of fear”; the diaspora everywhere keeps protesting every weekend." } },
+  { day: 41, date: "2026-07-10", saturday: false, peak: 7.04, mean: 3.26, median: 2.93, source: yt("0FHgFaUsLWk"),
+    note: { sq: "Marshim i qëndrueshëm nëpër Tiranë: piku më i ulët se një natë më parë, por vala e marshimit më e dendur dhe më e gjatë; të rinjtë në krye dhe diaspora zbret vetë në shesh.", en: "A sustained march through Tirana: a lower peak than the night before, but a denser and longer marching wave; young people at the front and the diaspora itself stepping into the square." } },
 ];
 
 export type ParticipationEvent = {
