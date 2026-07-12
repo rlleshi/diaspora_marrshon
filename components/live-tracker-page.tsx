@@ -26,7 +26,7 @@ const COPY: Record<
     homeHref: "/",
     homeLabel: "Kthehu te faqja kryesore",
     eyebrow: "Pulsi i protestës për Shqipërinë e re",
-    title: "41 ditë në shesh për një mjekërrosh bardhërosh",
+    title: "42 ditë në shesh për një mjekërrosh bardhërosh",
     liveLabel: "Live",
     intro: {
       before:
@@ -54,14 +54,14 @@ const COPY: Record<
       replay: "Rishfaq",
       saturday: "e shtunë",
       ariaSummary:
-        "Indeksi i pjesëmarrjes në protesta përgjatë 41 ditëve, me kulmin në ditën e 21-të (20 qershor 2026).",
+        "Indeksi i pjesëmarrjes në protesta përgjatë 42 ditëve, me kulmin në ditën e 21-të (20 qershor 2026).",
     },
   },
   en: {
     homeHref: "/en",
     homeLabel: "Back to the homepage",
     eyebrow: "Protest pulse for a new Albania",
-    title: "41 days in the square for a grey-bearded Rama",
+    title: "42 days in the square for a grey-bearded Rama",
     liveLabel: "Live",
     intro: {
       before:
@@ -89,7 +89,7 @@ const COPY: Record<
       replay: "Replay",
       saturday: "Saturday",
       ariaSummary:
-        "Protest participation index across 41 days, peaking on day 21 (20 June 2026).",
+        "Protest participation index across 42 days, peaking on day 21 (20 June 2026).",
     },
   },
 };

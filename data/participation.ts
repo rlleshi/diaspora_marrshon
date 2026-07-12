@@ -1,4 +1,4 @@
-// 41-day participation index for the June 2026 "Revolucioni i Flamingove" protests.
+// 42-day participation index for the June 2026 "Revolucioni i Flamingove" protests.
 //
 // Source: News24 live broadcasts of each day's protest in Tirana, analyzed with a
 // crowd-counting model. The headline series is `peak` (top-10 peak frame average).
@@ -8,7 +8,7 @@
 // `mean` and `median` are the same crowd model over the retained broadcast frames.
 //
 // Data: outputs/protesta_summary/crowd_visibility_index_1_30.csv (days 1-30)
-// Story: outputs/protesta_summary/protest_story_notes_1_41.md
+// Story: outputs/protesta_summary/protest_story_notes_1_42.md
 // Day 31 computed from the protesta_31 timeline (top-10 peak avg 697.6, mean 229.9,
 // median 212.5), normalized on the same Day-7 reference as days 1-30.
 // Day 32 computed from the protesta_32 timeline, retained frames only (top-10 peak
@@ -30,12 +30,14 @@
 // avg 475.2, mean 169.3, median 161.8), normalized on the same Day-7 reference.
 // Day 41 computed from the protesta_41 timeline, retained frames only (top-10 peak
 // avg 363.7, mean 168.4, median 151.1), normalized on the same Day-7 reference.
+// Day 42 computed from the protesta_42 timeline, retained frames only (top-10 peak
+// avg 548.3, mean 202.9, median 185.7), normalized on the same Day-7 reference.
 
 export type ParticipationDay = {
   day: number;
   /** ISO date of the protest day. Day 1 = 2026-05-31. */
   date: string;
-  /** Saturday flag: Saturdays drove the biggest turnouts (days 7, 14, 21, 28, 35). */
+  /** Saturday flag: Saturdays drove the biggest turnouts (days 7, 14, 21, 28, 35, 42). */
   saturday: boolean;
   /** Headline index, normalized 0–100 (100 = Day 7). */
   peak: number;
@@ -137,6 +139,8 @@ export const participation: ParticipationDay[] = [
     note: { sq: "40 ditë rezistencë, piku më i fortë pas 4 korrikut: protestuesit shpërndajnë hallvë si përkujtim ironik, “të 40-tat e vdekjes së frikës”; diaspora kudo vazhdon protestat çdo fundjavë.", en: "40 days of resistance and the strongest peak since July 4: protesters hand out halva as an ironic 40-day memorial, “the death of fear”; the diaspora everywhere keeps protesting every weekend." } },
   { day: 41, date: "2026-07-10", saturday: false, peak: 7.04, mean: 3.26, median: 2.93, source: yt("0FHgFaUsLWk"),
     note: { sq: "Marshim i qëndrueshëm nëpër Tiranë: piku më i ulët se një natë më parë, por vala e marshimit më e dendur dhe më e gjatë; të rinjtë në krye dhe diaspora zbret vetë në shesh.", en: "A sustained march through Tirana: a lower peak than the night before, but a denser and longer marching wave; young people at the front and the diaspora itself stepping into the square." } },
+  { day: 42, date: "2026-07-11", saturday: true, peak: 10.62, mean: 3.93, median: 3.59, source: yt("6yp-zOIdO-E"),
+    note: { sq: "Protestë kombëtare me diasporën në shesh: rikthimi më i gjerë pas 4 korrikut; marshimi ndalon para Kuvendit me thirrjen për mobilizim më 23 korrik, ndërsa pankartat vënë përballë fondet e koncertit me hallet e njerëzve.", en: "A national protest with the diaspora in the square: the broadest rebound since July 4; the march stops in front of Parliament with a call to mobilize on July 23, while placards set the concert's public funds against people's everyday needs." } },
 ];
 
 export type ParticipationEvent = {
