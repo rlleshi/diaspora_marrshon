@@ -1,4 +1,4 @@
-// 42-day participation index for the June 2026 "Revolucioni i Flamingove" protests.
+// 43-day participation index for the June 2026 "Revolucioni i Flamingove" protests.
 //
 // Source: News24 live broadcasts of each day's protest in Tirana, analyzed with a
 // crowd-counting model. The headline series is `peak` (top-10 peak frame average).
@@ -8,7 +8,7 @@
 // `mean` and `median` are the same crowd model over the retained broadcast frames.
 //
 // Data: outputs/protesta_summary/crowd_visibility_index_1_30.csv (days 1-30)
-// Story: outputs/protesta_summary/protest_story_notes_1_42.md
+// Story: outputs/protesta_summary/protest_story_notes_1_43.md
 // Day 31 computed from the protesta_31 timeline (top-10 peak avg 697.6, mean 229.9,
 // median 212.5), normalized on the same Day-7 reference as days 1-30.
 // Day 32 computed from the protesta_32 timeline, retained frames only (top-10 peak
@@ -32,6 +32,8 @@
 // avg 363.7, mean 168.4, median 151.1), normalized on the same Day-7 reference.
 // Day 42 computed from the protesta_42 timeline, retained frames only (top-10 peak
 // avg 548.3, mean 202.9, median 185.7), normalized on the same Day-7 reference.
+// Day 43 computed from the protesta_43 timeline, retained frames only (top-10 peak
+// avg 302.8, mean 156.9, median 145.7), normalized on the same Day-7 reference.
 
 export type ParticipationDay = {
   day: number;
@@ -141,6 +143,8 @@ export const participation: ParticipationDay[] = [
     note: { sq: "Marshim i qëndrueshëm nëpër Tiranë: piku më i ulët se një natë më parë, por vala e marshimit më e dendur dhe më e gjatë; të rinjtë në krye dhe diaspora zbret vetë në shesh.", en: "A sustained march through Tirana: a lower peak than the night before, but a denser and longer marching wave; young people at the front and the diaspora itself stepping into the square." } },
   { day: 42, date: "2026-07-11", saturday: true, peak: 10.62, mean: 3.93, median: 3.59, source: yt("6yp-zOIdO-E"),
     note: { sq: "Protestë kombëtare me diasporën në shesh: rikthimi më i gjerë pas 4 korrikut; marshimi ndalon para Kuvendit me thirrjen për mobilizim më 23 korrik, ndërsa pankartat vënë përballë fondet e koncertit me hallet e njerëzve.", en: "A national protest with the diaspora in the square: the broadest rebound since July 4; the march stops in front of Parliament with a call to mobilize on July 23, while placards set the concert's public funds against people's everyday needs." } },
+  { day: 43, date: "2026-07-12", saturday: false, peak: 5.86, mean: 3.04, median: 2.82, source: yt("zAEyxwOQXhg"),
+    note: { sq: "E diela ka ulje pas aksionit kombëtar, por marshimi mbetet i dendur: kolona ndalon para Kuvendit dhe selisë së PD-së; në shesh njoftohet kallëzim penal në SPAK për hetimin e vlerësimeve negative online.", en: "Sunday pulls back after the national action, but the march stays dense: the column stops at Parliament and the Democratic Party headquarters; a criminal complaint at SPAK is announced over the investigation of negative online reviews." } },
 ];
 
 export type ParticipationEvent = {
