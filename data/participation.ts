@@ -1,4 +1,4 @@
-// 43-day participation index for the June 2026 "Revolucioni i Flamingove" protests.
+// 44-day participation index for the June 2026 "Revolucioni i Flamingove" protests.
 //
 // Source: News24 live broadcasts of each day's protest in Tirana, analyzed with a
 // crowd-counting model. The headline series is `peak` (top-10 peak frame average).
@@ -8,7 +8,7 @@
 // `mean` and `median` are the same crowd model over the retained broadcast frames.
 //
 // Data: outputs/protesta_summary/crowd_visibility_index_1_30.csv (days 1-30)
-// Story: outputs/protesta_summary/protest_story_notes_1_43.md
+// Story: outputs/protesta_summary/protest_story_notes_1_44.md
 // Day 31 computed from the protesta_31 timeline (top-10 peak avg 697.6, mean 229.9,
 // median 212.5), normalized on the same Day-7 reference as days 1-30.
 // Day 32 computed from the protesta_32 timeline, retained frames only (top-10 peak
@@ -34,6 +34,8 @@
 // avg 548.3, mean 202.9, median 185.7), normalized on the same Day-7 reference.
 // Day 43 computed from the protesta_43 timeline, retained frames only (top-10 peak
 // avg 302.8, mean 156.9, median 145.7), normalized on the same Day-7 reference.
+// Day 44 computed from the protesta_44 timeline, retained frames only (top-10 peak
+// avg 316.2, mean 170.6, median 160.8), normalized on the same Day-7 reference.
 
 export type ParticipationDay = {
   day: number;
@@ -145,6 +147,8 @@ export const participation: ParticipationDay[] = [
     note: { sq: "Protestë kombëtare me diasporën në shesh: rikthimi më i gjerë pas 4 korrikut; marshimi ndalon para Kuvendit me thirrjen për mobilizim më 23 korrik, ndërsa pankartat vënë përballë fondet e koncertit me hallet e njerëzve.", en: "A national protest with the diaspora in the square: the broadest rebound since July 4; the march stops in front of Parliament with a call to mobilize on July 23, while placards set the concert's public funds against people's everyday needs." } },
   { day: 43, date: "2026-07-12", saturday: false, peak: 5.86, mean: 3.04, median: 2.82, source: yt("zAEyxwOQXhg"),
     note: { sq: "E diela ka ulje pas aksionit kombëtar, por marshimi mbetet i dendur: kolona ndalon para Kuvendit dhe selisë së PD-së; në shesh njoftohet kallëzim penal në SPAK për hetimin e vlerësimeve negative online.", en: "Sunday pulls back after the national action, but the march stays dense: the column stops at Parliament and the Democratic Party headquarters; a criminal complaint at SPAK is announced over the investigation of negative online reviews." } },
+  { day: 44, date: "2026-07-13", saturday: false, peak: 6.12, mean: 3.30, median: 3.11, source: yt("oyzrkwHy93U"),
+    note: { sq: "E hëna rikthehet pjesërisht brenda ritmit të zakonshëm të netëve: sheshi konsolidon platformën me pesë kërkesa; kallëzimi në SPAK depozitohet zyrtarisht dhe diaspora njofton protestë në Bruksel gjatë konferencës Shqipëri-BE.", en: "Monday rebounds partially within the usual nightly rhythm: the square consolidates its five-demand platform; the SPAK complaint is formally filed and the diaspora announces a protest in Brussels during the Albania-EU conference." } },
 ];
 
 export type ParticipationEvent = {
