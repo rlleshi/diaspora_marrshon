@@ -1,4 +1,4 @@
-// 45-day participation index for the June 2026 "Revolucioni i Flamingove" protests.
+// 46-day participation index for the June 2026 "Revolucioni i Flamingove" protests.
 //
 // Source: News24 live broadcasts of each day's protest in Tirana, analyzed with a
 // crowd-counting model. The headline series is `peak` (top-10 peak frame average).
@@ -8,7 +8,7 @@
 // `mean` and `median` are the same crowd model over the retained broadcast frames.
 //
 // Data: outputs/protesta_summary/crowd_visibility_index_1_30.csv (days 1-30)
-// Story: outputs/protesta_summary/protest_story_notes_1_45.md
+// Story: outputs/protesta_summary/protest_story_notes_1_46.md
 // Day 31 computed from the protesta_31 timeline (top-10 peak avg 697.6, mean 229.9,
 // median 212.5), normalized on the same Day-7 reference as days 1-30.
 // Day 32 computed from the protesta_32 timeline, retained frames only (top-10 peak
@@ -38,6 +38,8 @@
 // avg 316.2, mean 170.6, median 160.8), normalized on the same Day-7 reference.
 // Day 45 computed from the protesta_45 timeline, retained frames only (top-10 peak
 // avg 322.2, mean 151.3, median 137.6), normalized on the same Day-7 reference.
+// Day 46 computed from the protesta_46 timeline, retained frames only (top-10 peak
+// avg 271.6, mean 141.5, median 126.4), normalized on the same Day-7 reference.
 
 export type ParticipationDay = {
   day: number;
@@ -153,6 +155,8 @@ export const participation: ParticipationDay[] = [
     note: { sq: "E hëna rikthehet pjesërisht brenda ritmit të zakonshëm të netëve: sheshi konsolidon platformën me pesë kërkesa; kallëzimi në SPAK depozitohet zyrtarisht dhe diaspora njofton protestë në Bruksel gjatë konferencës Shqipëri-BE.", en: "Monday rebounds partially within the usual nightly rhythm: the square consolidates its five-demand platform; the SPAK complaint is formally filed and the diaspora announces a protest in Brussels during the Albania-EU conference." } },
   { day: 45, date: "2026-07-14", saturday: false, peak: 6.24, mean: 2.93, median: 2.66, source: yt("B2BGh2Kiz0o"),
     note: { sq: "E marta ka sinjal më të ulët, por vala më e dendur e marshimit mbetet pothuajse e pandryshuar: kolona kalon pranë ambasadës amerikane dhe stadiumit; diaspora proteston në Bruksel para Këshillit Europian dhe qeveria njofton shfuqizimin e ligjit të investimeve strategjike, në përputhje me një nga pesë kërkesat.", en: "Tuesday shows a lower overall signal, but the densest stretch of the march holds almost unchanged: the column passes the US embassy and the stadium; the diaspora protests in Brussels outside the European Council and the government announces the repeal of the strategic investments law, in line with one of the five demands." } },
+  { day: 46, date: "2026-07-15", saturday: false, peak: 5.26, mean: 2.74, median: 2.45, source: yt("S7m2IKaASO0"),
+    note: { sq: "E mërkura e thellon rënien e netëve të javës, por marshimi ruan një valë të dendur nëpër qendër: kolona kalon Kuvendin dhe mbyllet para Kryeministrisë me thirrjen “Nesër më shumë”; nga podiumi përmendet mbështetja publike e Dua Lipës për protestat dhe mbrojtjen e mjedisit.", en: "Wednesday deepens the weekday decline, but the march keeps a dense wave through the center: the column passes Parliament and closes in front of the Prime Minister's office with the call “More tomorrow”; from the podium, Dua Lipa's public support for the protests and environmental protection is invoked." } },
 ];
 
 export type ParticipationEvent = {
