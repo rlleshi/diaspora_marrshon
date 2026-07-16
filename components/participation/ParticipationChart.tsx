@@ -11,6 +11,7 @@ import {
   RotateCcw,
   Sparkles,
   Users,
+  X,
   type LucideIcon,
 } from "lucide-react";
 import {
@@ -73,6 +74,7 @@ export type ChartLabels = {
   tooltipMean: string;
   tooltipMedian: string;
   tooltipSource: string;
+  close: string;
   replay: string;
   ariaSummary: string;
   saturday: string;
@@ -91,17 +93,42 @@ export function ParticipationChart({
   const scrollToPanel = useRef(false);
   const [armed, setArmed] = useState(false);
   const [revealed, setRevealed] = useState(false);
-  const [active, setActive] = useState<number | null>(null);
+  // Hover previews a day; clicking pins it so the tooltip stays put (and its
+  // link stays clickable) while the pointer travels across neighboring days.
+  const [hovered, setHovered] = useState<number | null>(null);
+  const [pinned, setPinned] = useState<number | null>(null);
+  const hoverTimer = useRef<number | null>(null);
+  const active = pinned ?? hovered;
+
+  function cancelHover() {
+    if (hoverTimer.current != null) {
+      window.clearTimeout(hoverTimer.current);
+      hoverTimer.current = null;
+    }
+  }
+
+  function hoverDay(day: number) {
+    cancelHover();
+    hoverTimer.current = window.setTimeout(() => setHovered(day), 120);
+  }
+
+  function closeTip() {
+    cancelHover();
+    setPinned(null);
+    setHovered(null);
+  }
+
+  useEffect(() => cancelHover, []);
 
   // The events list sits below the detail panel, so picking a day from it
   // updates content that may be off-screen; bring the panel into view.
   useEffect(() => {
     if (!scrollToPanel.current) return;
     scrollToPanel.current = false;
-    if (active != null) {
+    if (pinned != null) {
       panelRef.current?.scrollIntoView({ behavior: "smooth", block: "center" });
     }
-  }, [active]);
+  }, [pinned]);
 
   // Arm before paint so SSR/no-JS shows the finished chart, JS animates it.
   useEffect(() => {
@@ -164,7 +191,13 @@ export function ParticipationChart({
           aspectRatio: `${view.width} / ${view.height}`,
         } as CSSProperties
       }
-      onMouseLeave={() => setActive(null)}
+      onMouseLeave={() => {
+        cancelHover();
+        setHovered(null);
+      }}
+      onKeyDown={(e) => {
+        if (e.key === "Escape") closeTip();
+      }}
     >
       <svg
         className="pc-svg"
@@ -266,7 +299,7 @@ export function ParticipationChart({
         ))}
 
         {/* x axis labels */}
-        {[1, 5, 10, 15, 20, 25, 30, 46].map((day) => (
+        {[1, 5, 10, 15, 20, 25, 30, 47].map((day) => (
           <text
             key={`x-${day}`}
             className="pc-xlabel"
@@ -392,10 +425,20 @@ export function ParticipationChart({
               tabIndex={0}
               role="button"
               aria-label={`${labels.axisDay} ${p.day}, ${formatDate(p.d.date, locale)}: ${labels.tooltipPeak} ${p.d.peak.toFixed(0)}`}
-              onMouseEnter={() => setActive(p.day)}
-              onFocus={() => setActive(p.day)}
-              onBlur={() => setActive(null)}
-              onClick={() => setActive(p.day)}
+              aria-pressed={pinned === p.day}
+              onMouseEnter={() => {
+                if (pinned == null) hoverDay(p.day);
+              }}
+              onFocus={() => {
+                cancelHover();
+                setHovered(p.day);
+              }}
+              onBlur={() => setHovered(null)}
+              onClick={() => {
+                cancelHover();
+                setHovered(p.day);
+                setPinned(pinned === p.day ? null : p.day);
+              }}
             />
           );
         })}
@@ -451,7 +494,9 @@ export function ParticipationChart({
 
       {activeDay && activePt && (
         <div
-          className={`pc-tip ${activePt.y < 230 ? "pc-tip--below" : ""} ${
+          className={`pc-tip ${pinned != null ? "pc-tip--pinned" : ""} ${
+            activePt.y < 230 ? "pc-tip--below" : ""
+          } ${
             activePt.x > view.width * 0.7
               ? "pc-tip--end"
               : activePt.x < view.width * 0.3
@@ -464,7 +509,12 @@ export function ParticipationChart({
           }}
           role="status"
         >
-          <TipBody day={activeDay} locale={locale} labels={labels} />
+          <TipBody
+            day={activeDay}
+            locale={locale}
+            labels={labels}
+            onClose={pinned != null ? closeTip : undefined}
+          />
         </div>
       )}
 
@@ -504,7 +554,12 @@ export function ParticipationChart({
     {/* full-width detail card for small screens (the floating tooltip is hidden there) */}
     {activeDay && (
       <div className="pc-tip-panel" role="status" ref={panelRef}>
-        <TipBody day={activeDay} locale={locale} labels={labels} />
+        <TipBody
+          day={activeDay}
+          locale={locale}
+          labels={labels}
+          onClose={pinned != null ? closeTip : undefined}
+        />
       </div>
     )}
 
@@ -516,10 +571,10 @@ export function ParticipationChart({
           <li key={`ev-li-${ev.day}`}>
             <button
               type="button"
-              className={`pc-ev-btn${active === ev.day ? " is-active" : ""}`}
+              className={`pc-ev-btn${pinned === ev.day ? " is-active" : ""}`}
               onClick={() => {
-                scrollToPanel.current = active !== ev.day;
-                setActive(active === ev.day ? null : ev.day);
+                scrollToPanel.current = pinned !== ev.day;
+                setPinned(pinned === ev.day ? null : ev.day);
               }}
             >
               <span className="pc-ev-day">
@@ -566,10 +621,12 @@ function TipBody({
   day,
   locale,
   labels,
+  onClose,
 }: {
   day: ParticipationDay;
   locale: Locale;
   labels: ChartLabels;
+  onClose?: () => void;
 }) {
   return (
     <>
@@ -581,6 +638,16 @@ function TipBody({
           {formatDate(day.date, locale)}
           {day.saturday ? ` · ${labels.saturday}` : ""}
         </span>
+        {onClose && (
+          <button
+            type="button"
+            className="pc-tip-close"
+            aria-label={labels.close}
+            onClick={onClose}
+          >
+            <X size={14} aria-hidden="true" />
+          </button>
+        )}
       </div>
       <div className="pc-tip-stats">
         <span className="pc-tip-peak">

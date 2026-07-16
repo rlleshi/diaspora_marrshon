@@ -26,7 +26,7 @@ const COPY: Record<
     homeHref: "/",
     homeLabel: "Kthehu te faqja kryesore",
     eyebrow: "Pulsi i protestës për Shqipërinë e re",
-    title: "46 ditë në shesh për një mjekërrosh bardhërosh",
+    title: "47 ditë në shesh për një mjekërrosh bardhërosh",
     liveLabel: "Live",
     intro: {
       before:
@@ -37,7 +37,7 @@ const COPY: Record<
     },
     methodology:
       "Indeks i pjesëmarrjes së vlerësuar, i normalizuar: 100 = dita më e madhe (20 qershor). Tubimet më të mëdha (6 qershor, 20 qershor dhe 4 korrik) janë ankoruar me vlerësime gjeometrike në terren; ditët e tjera pasqyrojnë intensitetin e dukshëm në kamerat e News24, të analizuar me një model numërimi turme.",
-    hint: "Prek ose lëviz mbi çdo ditë për detaje.",
+    hint: "Prek ose lëviz mbi çdo ditë për detaje; kliko një ditë për ta fiksuar.",
     disclaimer:
       "Shënim: shifrat nuk mund të jenë plotësisht të sakta, për shkak të kufizimeve të kamerave gjatë transmetimit si dhe saktësisë së modeleve të inteligjencës artificiale.",
     labels: {
@@ -51,17 +51,18 @@ const COPY: Record<
       tooltipMean: "Mesatare:",
       tooltipMedian: "Mediane:",
       tooltipSource: "Shiko transmetimin",
+      close: "Mbyll",
       replay: "Rishfaq",
       saturday: "e shtunë",
       ariaSummary:
-        "Indeksi i pjesëmarrjes në protesta përgjatë 46 ditëve, me kulmin në ditën e 21-të (20 qershor 2026).",
+        "Indeksi i pjesëmarrjes në protesta përgjatë 47 ditëve, me kulmin në ditën e 21-të (20 qershor 2026).",
     },
   },
   en: {
     homeHref: "/en",
     homeLabel: "Back to the homepage",
     eyebrow: "Protest pulse for a new Albania",
-    title: "46 days in the square for a grey-bearded Rama",
+    title: "47 days in the square for a grey-bearded Rama",
     liveLabel: "Live",
     intro: {
       before:
@@ -72,7 +73,7 @@ const COPY: Record<
     },
     methodology:
       "An estimated participation index, normalized so 100 = the largest day (20 June). The largest gatherings (6 June, 20 June and 4 July) are anchored to on-the-ground geometry estimates; other days reflect camera-visible intensity from News24 livestreams, analyzed with a crowd-counting model.",
-    hint: "Tap or hover any day for detail.",
+    hint: "Tap or hover any day for detail; click a day to pin it.",
     disclaimer:
       "Note: the numbers cannot be fully accurate due to camera limitations during the livestream and the accuracy of machine-learning models.",
     labels: {
@@ -86,10 +87,11 @@ const COPY: Record<
       tooltipMean: "Mean:",
       tooltipMedian: "Median:",
       tooltipSource: "Watch the broadcast",
+      close: "Close",
       replay: "Replay",
       saturday: "Saturday",
       ariaSummary:
-        "Protest participation index across 46 days, peaking on day 21 (20 June 2026).",
+        "Protest participation index across 47 days, peaking on day 21 (20 June 2026).",
     },
   },
 };

@@ -1664,9 +1664,13 @@ textarea:focus {
 }
 
 /* ---- tooltip ---- */
+/* While hover-previewing, the tooltip is click-through (except its links) so a
+   click lands on the day column underneath and pins it; once pinned it becomes
+   fully interactive. */
 .pc-tip {
   position: absolute;
   z-index: 4;
+  pointer-events: none;
   width: min(248px, 62vw);
   padding: 12px 13px;
   border: 1px solid var(--line);
@@ -1691,6 +1695,38 @@ textarea:focus {
 }
 .pc-tip.pc-tip--below.pc-tip--end {
   transform: translate(-90%, 16%);
+}
+
+.pc-tip .pc-tip-link,
+.pc-tip .pc-tip-note-link {
+  pointer-events: auto;
+}
+
+.pc-tip--pinned {
+  border-color: rgba(185, 28, 28, 0.45);
+  box-shadow: 0 16px 36px rgba(127, 17, 17, 0.24);
+  pointer-events: auto;
+}
+
+.pc-tip-close {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  margin: -4px -5px -4px auto;
+  padding: 0;
+  border: none;
+  border-radius: 6px;
+  background: transparent;
+  color: var(--muted);
+  cursor: pointer;
+}
+
+.pc-tip-close:hover {
+  background: rgba(21, 21, 21, 0.07);
+  color: var(--ink);
 }
 
 .pc-tip-head {
