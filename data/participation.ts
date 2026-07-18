@@ -1,4 +1,4 @@
-// 47-day participation index for the June 2026 "Revolucioni i Flamingove" protests.
+// 48-day participation index for the June 2026 "Revolucioni i Flamingove" protests.
 //
 // Source: News24 live broadcasts of each day's protest in Tirana, analyzed with a
 // crowd-counting model. The headline series is `peak` (top-10 peak frame average).
@@ -8,7 +8,7 @@
 // `mean` and `median` are the same crowd model over the retained broadcast frames.
 //
 // Data: outputs/protesta_summary/crowd_visibility_index_1_30.csv (days 1-30)
-// Story: outputs/protesta_summary/protest_story_notes_1_47.md
+// Story: outputs/protesta_summary/protest_story_notes_1_48.md
 // Day 31 computed from the protesta_31 timeline (top-10 peak avg 697.6, mean 229.9,
 // median 212.5), normalized on the same Day-7 reference as days 1-30.
 // Day 32 computed from the protesta_32 timeline, retained frames only (top-10 peak
@@ -42,6 +42,8 @@
 // avg 271.6, mean 141.5, median 126.4), normalized on the same Day-7 reference.
 // Day 47 computed from the protesta_47 timeline, retained frames only (top-10 peak
 // avg 322.7, mean 176.1, median 174.0), normalized on the same Day-7 reference.
+// Day 48 computed from the protesta_48 timeline, retained frames only (top-10 peak
+// avg 334.2, mean 151.6, median 146.3), normalized on the same Day-7 reference.
 
 export type ParticipationDay = {
   day: number;
@@ -161,6 +163,8 @@ export const participation: ParticipationDay[] = [
     note: { sq: "E mërkura e thellon rënien e netëve të javës, por marshimi ruan një valë të dendur nëpër qendër: kolona kalon Kuvendin dhe mbyllet para Kryeministrisë me thirrjen “Nesër më shumë”; nga podiumi përmendet mbështetja publike e Dua Lipës për protestat dhe mbrojtjen e mjedisit.", en: "Wednesday deepens the weekday decline, but the march keeps a dense wave through the center: the column passes Parliament and closes in front of the Prime Minister's office with the call “More tomorrow”; from the podium, Dua Lipa's public support for the protests and environmental protection is invoked." } },
   { day: 47, date: "2026-07-16", saturday: false, peak: 6.25, mean: 3.41, median: 3.37, source: yt("zKO6lCXuxCI"),
     note: { sq: "E enjtja e rikthen sinjalin pas dy netëve në rënie: të rinjtë dalin me pelerina diplomimi dhe hedhin kapelet në shesh si simbol i diplomave pa të ardhme; marshimi përshkon Shallvaret dhe ish-Bllokun, ndërsa asfalti para Kryeministrisë mban thirrjen drejtuar SPAK-ut.", en: "Thursday brings the signal back after two declining nights: young people appear in graduation gowns and throw their caps in the square as a symbol of diplomas without a future; the march sweeps through Shallvaret and the former Blloku, while the asphalt in front of the Prime Minister's office carries the call addressed to SPAK." } },
+  { day: 48, date: "2026-07-17", saturday: false, peak: 6.47, mean: 2.94, median: 2.83, source: yt("aq0rEsb69hA"),
+    note: { sq: "E premtja e mban pikun pothuajse të pandryshuar nga një ditë më parë: kolona marshon pas parullës “Shqipëri e re” drejt ambasadës amerikane dhe stadiumit; para nisjes policia ndalon një qytetar që protestoi pranë makinës së kryeministrit, ndërsa nga podiumi thirret mobilizimi para Kuvendit më 23 korrik.", en: "Friday holds the peak almost unchanged from the day before: the column marches behind the “Shqipëri e re” banner toward the US embassy and the stadium; before the start, police detain a citizen who protested near the prime minister's car, while the podium calls for a mobilization outside Parliament on July 23." } },
 ];
 
 export type ParticipationEvent = {
