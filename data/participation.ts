@@ -1,4 +1,4 @@
-// 48-day participation index for the June 2026 "Revolucioni i Flamingove" protests.
+// 49-day participation index for the June 2026 "Revolucioni i Flamingove" protests.
 //
 // Source: News24 live broadcasts of each day's protest in Tirana, analyzed with a
 // crowd-counting model. The headline series is `peak` (top-10 peak frame average).
@@ -8,7 +8,7 @@
 // `mean` and `median` are the same crowd model over the retained broadcast frames.
 //
 // Data: outputs/protesta_summary/crowd_visibility_index_1_30.csv (days 1-30)
-// Story: outputs/protesta_summary/protest_story_notes_1_48.md
+// Story: outputs/protesta_summary/protest_story_notes_1_49.md
 // Day 31 computed from the protesta_31 timeline (top-10 peak avg 697.6, mean 229.9,
 // median 212.5), normalized on the same Day-7 reference as days 1-30.
 // Day 32 computed from the protesta_32 timeline, retained frames only (top-10 peak
@@ -44,6 +44,8 @@
 // avg 322.7, mean 176.1, median 174.0), normalized on the same Day-7 reference.
 // Day 48 computed from the protesta_48 timeline, retained frames only (top-10 peak
 // avg 334.2, mean 151.6, median 146.3), normalized on the same Day-7 reference.
+// Day 49 computed from the protesta_49 timeline, retained frames only (top-10 peak
+// avg 475.4, mean 152.1, median 142.9), normalized on the same Day-7 reference.
 
 export type ParticipationDay = {
   day: number;
@@ -165,6 +167,8 @@ export const participation: ParticipationDay[] = [
     note: { sq: "E enjtja e rikthen sinjalin pas dy netëve në rënie: të rinjtë dalin me pelerina diplomimi dhe hedhin kapelet në shesh si simbol i diplomave pa të ardhme; marshimi përshkon Shallvaret dhe ish-Bllokun, ndërsa asfalti para Kryeministrisë mban thirrjen drejtuar SPAK-ut.", en: "Thursday brings the signal back after two declining nights: young people appear in graduation gowns and throw their caps in the square as a symbol of diplomas without a future; the march sweeps through Shallvaret and the former Blloku, while the asphalt in front of the Prime Minister's office carries the call addressed to SPAK." } },
   { day: 48, date: "2026-07-17", saturday: false, peak: 6.47, mean: 2.94, median: 2.83, source: yt("aq0rEsb69hA"),
     note: { sq: "E premtja e mban pikun pothuajse të pandryshuar nga një ditë më parë: kolona marshon pas parullës “Shqipëri e re” drejt ambasadës amerikane dhe stadiumit; para nisjes policia ndalon një qytetar që protestoi pranë makinës së kryeministrit, ndërsa nga podiumi thirret mobilizimi para Kuvendit më 23 korrik.", en: "Friday holds the peak almost unchanged from the day before: the column marches behind the “Shqipëri e re” banner toward the US embassy and the stadium; before the start, police detain a citizen who protested near the prime minister's car, while the podium calls for a mobilization outside Parliament on July 23." } },
+  { day: 49, date: "2026-07-18", saturday: true, peak: 9.20, mean: 2.94, median: 2.77, source: yt("7fLa42rpud8"),
+    note: { sq: "Rritje e ndjeshme e pjesëmarrjes si çdo të shtunë. Gjatë ditës “kuvenduçit kombëtar” farsë i del boja. Kuvendi i vetëm ngelet një dhe vetëm në shesh.", en: "A marked rise in participation, as every Saturday. During the day, the farcical little “national assembly” shows its true colors. The one and only assembly remains in the square." } },
 ];
 
 export type ParticipationEvent = {

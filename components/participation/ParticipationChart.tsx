@@ -24,6 +24,16 @@ import { buildGeometry } from "@/components/participation/geometry";
 
 type Locale = "sq" | "en";
 
+const LAST_DAY = participation[participation.length - 1].day;
+// Every 5th day plus the latest day; skip a multiple that would crowd the last label.
+const X_TICKS = [
+  1,
+  ...Array.from({ length: Math.floor(LAST_DAY / 5) }, (_, i) => (i + 1) * 5).filter(
+    (day) => day <= LAST_DAY - 3,
+  ),
+  LAST_DAY,
+];
+
 const ICONS: Record<ParticipationEvent["icon"], LucideIcon> = {
   peak: Crown,
   plane: Plane,
@@ -299,7 +309,7 @@ export function ParticipationChart({
         ))}
 
         {/* x axis labels */}
-        {[1, 5, 10, 15, 20, 25, 30, 48].map((day) => (
+        {X_TICKS.map((day) => (
           <text
             key={`x-${day}`}
             className="pc-xlabel"
