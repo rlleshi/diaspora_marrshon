@@ -1,0 +1,209 @@
+<!--
+  Diaspora Zbarkon — "Pulsi" teaser, self-contained embed.
+  Paste this whole block into any HTML page (or a React component via
+  dangerouslySetInnerHTML / JSX conversion). No dependencies, no JS.
+
+  The copy is intentionally evergreen (no day count), so nothing needs a
+  daily bump. Only the sparkline is a snapshot (Day 49, 2026-07-18);
+  regenerate its polyline points if you ever want a fresher curve.
+
+  All class names and the SVG gradient id are prefixed "dz-" so they will not
+  collide with the host site's styles.
+-->
+<style>
+  .dz-pulse-teaser {
+    box-sizing: border-box;
+    padding: clamp(58px, 8vw, 104px) clamp(18px, 4vw, 56px);
+    background: #151515;
+    color: #ffffff;
+    font-family: Inter, ui-sans-serif, system-ui, -apple-system,
+      BlinkMacSystemFont, "Segoe UI", sans-serif;
+  }
+  .dz-pulse-teaser *,
+  .dz-pulse-teaser *::before,
+  .dz-pulse-teaser *::after {
+    box-sizing: inherit;
+  }
+  .dz-pulse-teaser .dz-inner {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(300px, 0.82fr);
+    gap: clamp(28px, 5vw, 70px);
+    align-items: center;
+    width: min(1180px, 100%);
+    margin: 0 auto;
+  }
+  .dz-pulse-teaser .dz-kicker {
+    margin: 0 0 14px;
+    color: #fecaca;
+    font-size: 0.84rem;
+    font-weight: 850;
+    text-transform: uppercase;
+    letter-spacing: 0;
+  }
+  .dz-pulse-teaser h2 {
+    margin: 6px 0 0;
+    font-size: clamp(1.7rem, 3.4vw, 2.4rem);
+    line-height: 1.16;
+    font-weight: 850;
+  }
+  .dz-pulse-teaser .dz-body {
+    margin: 14px 0 0;
+    max-width: 560px;
+    color: rgba(255, 255, 255, 0.78);
+    font-size: 1.05rem;
+    line-height: 1.62;
+  }
+  .dz-pulse-teaser .dz-stats {
+    display: flex;
+    flex-wrap: wrap;
+    gap: clamp(18px, 4vw, 40px);
+    margin: 26px 0 0;
+    padding: 0;
+    list-style: none;
+  }
+  .dz-pulse-teaser .dz-stats li {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .dz-pulse-teaser .dz-stat-value {
+    color: #ef4444;
+    font-size: clamp(1.6rem, 3.4vw, 2.3rem);
+    font-weight: 850;
+    line-height: 1;
+    font-variant-numeric: tabular-nums;
+  }
+  .dz-pulse-teaser .dz-stat-label {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.84rem;
+    font-weight: 600;
+  }
+  .dz-pulse-teaser .dz-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
+    width: fit-content;
+    min-height: 48px;
+    margin-top: 28px;
+    padding: 12px 18px;
+    border-radius: 6px;
+    background: #b91c1c;
+    color: #ffffff;
+    font-weight: 780;
+    line-height: 1.2;
+    text-align: center;
+    text-decoration: none;
+  }
+  .dz-pulse-teaser .dz-button:hover {
+    background: #7f1111;
+  }
+  .dz-pulse-teaser .dz-preview {
+    margin: 0;
+    padding: clamp(18px, 3vw, 28px);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 16px;
+    background: linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.04),
+      rgba(0, 0, 0, 0.2)
+    );
+    box-shadow: 0 26px 54px rgba(0, 0, 0, 0.36);
+  }
+  .dz-pulse-teaser .dz-preview svg {
+    display: block;
+    width: 100%;
+    height: clamp(120px, 20vw, 170px);
+    overflow: visible;
+  }
+  @media (max-width: 900px) {
+    .dz-pulse-teaser .dz-inner {
+      grid-template-columns: 1fr;
+      gap: 32px;
+    }
+  }
+  @media (max-width: 620px) {
+    .dz-pulse-teaser .dz-preview {
+      padding: 16px;
+      border-radius: 14px;
+    }
+    .dz-pulse-teaser .dz-preview svg {
+      height: 130px;
+    }
+    .dz-pulse-teaser .dz-stats {
+      gap: 20px 28px;
+      margin-top: 22px;
+    }
+    .dz-pulse-teaser .dz-button {
+      width: 100%;
+    }
+  }
+</style>
+
+<section class="dz-pulse-teaser">
+  <div class="dz-inner">
+    <div class="dz-copy">
+      <p class="dz-kicker">Indeksi i pjesëmarrjes</p>
+      <h2>Në shesh çdo ditë, ditë pas dite.</h2>
+      <p class="dz-body">
+        Ndiq pulsin e protestës: pjesëmarrje e dokumentuar qartësisht në
+        kamera, përgjatë një muaji, me momentet kyçe: nga vala e parë e 6
+        qershorit te marshimi drejt Rinasit dhe kulmi i diasporës më 20
+        qershor.
+      </p>
+      <ul class="dz-stats">
+        <li>
+          <span class="dz-stat-value">Çdo ditë</span>
+          <span class="dz-stat-label">protestë në shesh</span>
+        </li>
+        <li>
+          <span class="dz-stat-value">20.06</span>
+          <span class="dz-stat-label">dita më e madhe</span>
+        </li>
+        <li>
+          <span class="dz-stat-value">100K+</span>
+          <span class="dz-stat-label">vlerësim në shesh</span>
+        </li>
+      </ul>
+      <a class="dz-button" href="https://www.diaspora-zbarkon.com/pulsi">
+        <svg
+          aria-hidden="true"
+          width="20"
+          height="20"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" />
+        </svg>
+        Shiko pulsin e protestës
+      </a>
+    </div>
+    <figure class="dz-preview" aria-hidden="true">
+      <svg viewBox="0 0 260 96" preserveAspectRatio="none" role="img">
+        <defs>
+          <linearGradient id="dz-pulse-spark" x1="0" x2="0" y1="0" y2="1">
+            <stop offset="0%" stop-color="rgba(185,28,28,0.34)" />
+            <stop offset="100%" stop-color="rgba(185,28,28,0)" />
+          </linearGradient>
+        </defs>
+        <polygon
+          points="0,96 0.0,88.0 5.4,79.5 10.8,75.5 16.3,77.9 21.7,84.0 27.1,82.3 32.5,50.0 37.9,79.1 43.3,59.6 48.8,80.0 54.2,68.0 59.6,69.4 65.0,67.8 70.4,77.4 75.8,73.2 81.3,81.7 86.7,83.7 92.1,82.9 97.5,84.4 102.9,85.2 108.3,8.0 113.8,85.7 119.2,85.5 124.6,86.3 130.0,87.4 135.4,85.8 140.8,86.6 146.3,84.9 151.7,86.2 157.1,84.0 162.5,80.7 167.9,86.7 173.3,85.7 178.8,87.1 184.2,41.6 189.6,86.1 195.0,87.6 200.4,88.0 205.8,85.5 211.3,84.3 216.7,86.1 222.1,83.1 227.5,87.1 232.9,86.9 238.3,86.8 243.8,87.6 249.2,86.8 254.6,86.6 260.0,84.3 260,96"
+          fill="url(#dz-pulse-spark)"
+        />
+        <polyline
+          points="0.0,88.0 5.4,79.5 10.8,75.5 16.3,77.9 21.7,84.0 27.1,82.3 32.5,50.0 37.9,79.1 43.3,59.6 48.8,80.0 54.2,68.0 59.6,69.4 65.0,67.8 70.4,77.4 75.8,73.2 81.3,81.7 86.7,83.7 92.1,82.9 97.5,84.4 102.9,85.2 108.3,8.0 113.8,85.7 119.2,85.5 124.6,86.3 130.0,87.4 135.4,85.8 140.8,86.6 146.3,84.9 151.7,86.2 157.1,84.0 162.5,80.7 167.9,86.7 173.3,85.7 178.8,87.1 184.2,41.6 189.6,86.1 195.0,87.6 200.4,88.0 205.8,85.5 211.3,84.3 216.7,86.1 222.1,83.1 227.5,87.1 232.9,86.9 238.3,86.8 243.8,87.6 249.2,86.8 254.6,86.6 260.0,84.3"
+          fill="none"
+          stroke="#ef4444"
+          stroke-width="2.4"
+          stroke-linejoin="round"
+          stroke-linecap="round"
+          vector-effect="non-scaling-stroke"
+        />
+      </svg>
+    </figure>
+  </div>
+</section>
