@@ -48,6 +48,8 @@
 // avg 475.4, mean 152.1, median 142.9), normalized on the same Day-7 reference.
 // Day 50 computed from the protesta_50 timeline, retained frames only (top-10 peak
 // avg 218.5, mean 139.5, median 137.4), normalized on the same Day-7 reference.
+// Day 51 computed from the protesta_51 timeline, retained frames only (top-10 peak
+// avg 272.0, mean 154.2, median 145.1), normalized on the same Day-7 reference.
 
 export type ParticipationDay = {
   day: number;
@@ -173,6 +175,8 @@ export const participation: ParticipationDay[] = [
     note: { sq: "Rritje e ndjeshme e pjesëmarrjes si çdo të shtunë. Gjatë ditës “kuvenduçit kombëtar” farsë i del boja. Kuvendi i vetëm ngelet një dhe vetëm në shesh.", en: "A marked rise in participation, as every Saturday. During the day, the farcical little “national assembly” shows its true colors. The one and only assembly remains in the square." } },
   { day: 50, date: "2026-07-19", saturday: false, peak: 4.23, mean: 2.70, median: 2.66, source: yt("qKOTTYDWadg"),
     note: { sq: "Të dielën, në ditën e 50-të, sinjali bie nga piku i së shtunës. Nga podiumi thirret protesta simbolike nesër para Kuvendit dhe mobilizimi i madh më 23 korrik, i paralajmëruar si seanca e fundit plenare para pushimeve verore.", en: "On Sunday, day 50, the signal drops from Saturday's peak. From the podium, a symbolic protest is called for tomorrow outside Parliament, and the larger mobilization for July 23, billed as the last plenary sitting before the summer recess." } },
+  { day: 51, date: "2026-07-20", saturday: false, peak: 5.27, mean: 2.99, median: 2.81, source: yt("baivC05O5xs"),
+    note: { sq: "Ditë me dy aksione: në mesditë protestë para Kuvendit me vezë e kthimi i PD nga bojkoti; në mbrëmje marshimi rimerr forcë, me thirrje të fortë për mobilizimin e 23 korrikut.", en: "A day with two actions: a midday egg-throwing protest outside Parliament and the opposition's return from its boycott; in the evening the march rebounds, with a strong call to mobilize on July 23." } },
 ];
 
 export type ParticipationEvent = {
@@ -216,6 +220,9 @@ export const participationEvents: ParticipationEvent[] = [
   { day: 35, tier: "primary", icon: "people", mobile: true,
     label: { sq: "Protesta mbarëkombëtare", en: "The nationwide protest" },
     sub: { sq: "4 korrik · diaspora", en: "4 July · diaspora" } },
+  { day: 50, tier: "secondary", icon: "spark", mobile: false,
+    label: { sq: "Dita më e dobët", en: "The weakest day" },
+    sub: { sq: "Pika më e ulët e korrikut", en: "July's lowest point" } },
 ];
 
 /** Normalization reference shown in the methodology note. */

@@ -4,7 +4,7 @@ import { LiveTrackerPage } from "@/components/live-tracker-page";
 export const metadata: Metadata = {
   title: "Pulsi i protestës | Diaspora marshon",
   description:
-    "Indeksi i pjesëmarrjes në protestat e qershorit 2026: 50 ditë në shesh, ditë pas dite, me momentet kyçe.",
+    "Indeksi i pjesëmarrjes në protestat e qershorit 2026: 51 ditë në shesh, ditë pas dite, me momentet kyçe.",
 };
 
 export default function Page() {
