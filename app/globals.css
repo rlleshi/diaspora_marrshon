@@ -936,6 +936,10 @@ textarea:focus {
   margin-top: 38px;
 }
 
+.route-layout-single {
+  grid-template-columns: minmax(0, 780px);
+}
+
 .route-timeline {
   display: grid;
   grid-template-columns: 92px minmax(0, 1fr);
@@ -970,6 +974,14 @@ textarea:focus {
   border-radius: 999px;
   background: var(--red);
   box-shadow: 0 0 0 1px rgba(21, 21, 21, 0.18);
+}
+
+.route-layout-single .route-visual {
+  min-height: 260px;
+}
+
+.route-layout-single .route-line {
+  min-height: 200px;
 }
 
 .route-map {

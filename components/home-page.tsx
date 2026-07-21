@@ -70,6 +70,9 @@ export function HomePage({ locale }: { locale: Locale }) {
   const heroDateLabel = heroScheduleLabel
     ? `${t.hero.dateLabel}: ${t.hero.dateText}; ${heroScheduleLabel}`
     : `${t.hero.dateLabel}: ${t.hero.dateText}`;
+  const routeLayoutClassName = t.itinerary.showMap
+    ? "route-layout"
+    : "route-layout route-layout-single";
   const turnstileSiteKey =
     process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY ??
     process.env.TURNSTILE_SITE_KEY ??
@@ -349,7 +352,7 @@ export function HomePage({ locale }: { locale: Locale }) {
                 <p className="route-date">{t.itinerary.dateLine}</p>
                 <p>{t.itinerary.body}</p>
               </div>
-              <div className="route-layout">
+              <div className={routeLayoutClassName}>
                 <div className="route-timeline">
                   <div className="route-visual" aria-hidden="true">
                     <MapPinned size={34} />
@@ -371,31 +374,33 @@ export function HomePage({ locale }: { locale: Locale }) {
                     ))}
                   </ol>
                 </div>
-                <figure className="route-map">
-                  <a
-                    href={routeMapImage.src}
-                    target="_blank"
-                    rel="noreferrer"
-                    aria-label={t.itinerary.mapOpenLabel}
-                  >
-                    <Image
-                      src={routeMapImage}
-                      alt={t.itinerary.mapAlt}
-                      sizes="(max-width: 900px) calc(100vw - 28px), 520px"
-                    />
-                  </a>
-                  <TrackedLink
-                    className="route-map-link"
-                    href={googleMapsRouteUrl}
-                    target="_blank"
-                    rel="noreferrer"
-                    eventName="Google Maps Opened"
-                    eventProperties={{ locale, placement: "route_map" }}
-                  >
-                    <MapPinned aria-hidden="true" size={18} />
-                    {t.itinerary.mapExternalLabel}
-                  </TrackedLink>
-                </figure>
+                {t.itinerary.showMap ? (
+                  <figure className="route-map">
+                    <a
+                      href={routeMapImage.src}
+                      target="_blank"
+                      rel="noreferrer"
+                      aria-label={t.itinerary.mapOpenLabel}
+                    >
+                      <Image
+                        src={routeMapImage}
+                        alt={t.itinerary.mapAlt}
+                        sizes="(max-width: 900px) calc(100vw - 28px), 520px"
+                      />
+                    </a>
+                    <TrackedLink
+                      className="route-map-link"
+                      href={googleMapsRouteUrl}
+                      target="_blank"
+                      rel="noreferrer"
+                      eventName="Google Maps Opened"
+                      eventProperties={{ locale, placement: "route_map" }}
+                    >
+                      <MapPinned aria-hidden="true" size={18} />
+                      {t.itinerary.mapExternalLabel}
+                    </TrackedLink>
+                  </figure>
+                ) : null}
               </div>
             </div>
 

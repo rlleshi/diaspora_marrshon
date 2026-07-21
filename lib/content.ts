@@ -87,6 +87,7 @@ export type SiteContent = {
     title: string;
     dateLine: string;
     body: string;
+    showMap: boolean;
     mapAlt: string;
     mapOpenLabel: string;
     mapExternalLabel: string;
@@ -200,13 +201,12 @@ export const content: Record<Locale, SiteContent> = {
     hero: {
       eyebrow: "Diaspora marshon në Tiranë",
       dateLabel: "Data e marshimit",
-      dateDay: "Do",
-      dateMonth: "NJOFTOHET",
-      dateMeta: "Marshimi i radhës",
-      dateText: "Do njoftohet",
+      dateDay: "14-16",
+      dateMonth: "GUSHT",
+      dateMeta: "E premte-e diel · 2026",
+      dateText: "14-16 gusht 2026",
       dateRows: [
-        { time: "11:00", location: "Aeroporti \"Nënë Tereza\"", note: "bazuar në kërkesën" },
-        { time: "17:00", location: "Bulevardi i Ri" },
+        { time: "18:30", location: "Bulevardi i Ri" },
         { time: "19:00", location: "Sheshi Skënderbej" },
       ],
       title: "Kur dheu jep zë, diaspora zbret.",
@@ -239,7 +239,7 @@ export const content: Record<Locale, SiteContent> = {
       kicker: "Indeksi i pjesëmarrjes",
       title: `${protestDays} ditë në shesh, ditë pas dite.`,
       body:
-        "Ndiq pulsin e protestës: pjesëmarrje e dokumentuar qartësisht në kamera, përgjatë një muaji, me momentet kyçe: nga vala e parë e 6 qershorit te marshimi drejt Rinasit dhe kulmi i diasporës më 20 qershor.",
+        "Ndiq pulsin e protestës: pjesëmarrje e dokumentuar qartësisht në kamera, përgjatë një muaji, me momentet kyçe: nga vala e parë e 6 qershorit te kulmi i diasporës më 20 qershor.",
       href: "/pulsi",
       cta: "Shiko pulsin e protestës",
       stats: [
@@ -250,9 +250,9 @@ export const content: Record<Locale, SiteContent> = {
     },
     march: {
       kicker: "Marshimi",
-      title: "Marshimi i sugjeruar",
+      title: "Marshimi i radhës",
       body:
-        "Gjithçka për ditën e marshimit: itinerari, parimet dhe këshillat praktike.",
+        "Gjithçka për ditën e marshimit: itinerari dhe parimet.",
     },
     whatsapp: {
       title: "Skano QR-in",
@@ -270,36 +270,33 @@ export const content: Record<Locale, SiteContent> = {
 Zgjedh njërën nga këto:
 
 A) Bashkohem në marshim te:
-[Aeroporti "Nënë Tereza" - 11:00 / Bulevardi i Ri - 17:00 / Sheshi Skënderbej - 19:00]
+[Data: 14 / 15 / 16 gusht]
+[Bulevardi i Ri - 18:30 / Sheshi Skënderbej - 19:00]
 
 B) Nuk marshoj, por mund të ndihmoj me:
 [opsionale]`,
     },
     itinerary: {
       kicker: "Itinerari",
-      title: "Nga Rinasi drejt Sheshit Skënderbej",
-      dateLine: "Data: do njoftohet",
+      title: "Nga Bulevardi i Ri drejt Sheshit Skënderbej",
+      dateLine: "Data: 14-16 gusht 2026",
       body:
-        "Marshimi nis sapo diaspora zbret në aeroport dhe bashkohet hap pas hapi me qytetarët në Tiranë.",
+        "Marshimi nis te Bulevardi i Ri në 18:30 dhe bashkohet me protestën kryesore në Sheshin Skënderbej në 19:00.",
+      showMap: false,
       mapAlt:
-        "Harta e marshimit nga Aeroporti Nënë Tereza në Bulevardin e Ri dhe Sheshin Skënderbej",
+        "Harta e marshimit nga Bulevardi i Ri drejt Sheshit Skënderbej",
       mapOpenLabel: "Hap hartën e marshimit në madhësi të plotë",
       mapExternalLabel: "Hap itinerarin në Google Maps",
       points: [
         {
-          time: "11:00",
-          title: "Aeroporti \"Nënë Tereza\"",
-          body: "Nisja simbolike nga Rinasi, jashtë perimetrit të sigurisë, drejt Tiranës.",
-        },
-        {
-          time: "17:00",
-          title: "Hyrja te Bulevardi i Ri",
-          body: "Shiko Google Maps për pikën e saktë.",
+          time: "18:30",
+          title: "Bulevardi i Ri",
+          body: "Nisja e marshimit nga Bulevardi i Ri.",
         },
         {
           time: "19:00",
           title: "Sheshi Skënderbej",
-          body: "Diaspora bashkohet me protestën kryesore në Sheshin Skënderbej.",
+          body: "Bashkim me protestën kryesore në Sheshin Skënderbej.",
         },
       ],
     },
@@ -332,7 +329,7 @@ B) Nuk marshoj, por mund të ndihmoj me:
         {
           title: "Lodhja",
           body:
-            "Rruga nga Rinasi deri në shesh zgjat shumë orë dhe bëhet kryesisht në asfalt. Ritmi do të jetë i qetë, rreth 4 km/orë, që grupi të qëndrojë i bashkuar.",
+            "Rruga nga Bulevardi i Ri deri në shesh është më e shkurtër, por ritmi duhet të mbetet i qetë që grupi të qëndrojë i bashkuar.",
         },
         {
           title: "Çanta",
@@ -471,13 +468,11 @@ B) Nuk marshoj, por mund të ndihmoj me:
       required: "Kjo fushë kërkohet.",
       invalidEmail: "Shkruaj një email të vlefshëm.",
       joiningPointOptions: [
-        { value: "airport", label: "Aeroporti \"Nënë Tereza\"" },
         { value: "new-boulevard", label: "Bulevardi i Ri" },
         { value: "skanderbeg-square", label: "Sheshi Skënderbej" },
         { value: "coordinate-later", label: "Do ta koordinoj më vonë" },
       ],
       participationTypeOptions: [
-        { value: "full-airport-march", label: "Marshoj nga aeroporti" },
         { value: "join-in-tirana", label: "Bashkohem në Tiranë" },
         { value: "volunteer-steward", label: "Ndihmoj me rend, përkthim ose logjistikë" },
         { value: "coordination-support", label: "Ndihmoj me koordinim privat" },
@@ -521,13 +516,12 @@ B) Nuk marshoj, por mund të ndihmoj me:
     hero: {
       eyebrow: "The diaspora marches in Tirana",
       dateLabel: "March date",
-      dateDay: "TBA",
-      dateMonth: "NEXT DATE",
-      dateMeta: "Next diaspora march",
-      dateText: "TBA",
+      dateDay: "14-16",
+      dateMonth: "AUGUST",
+      dateMeta: "Friday-Sunday · 2026",
+      dateText: "August 14-16, 2026",
       dateRows: [
-        { time: "11:00", location: "Tirana International Airport", note: "based on demand" },
-        { time: "17:00", location: "Bulevardi i Ri" },
+        { time: "18:30", location: "Bulevardi i Ri" },
         { time: "19:00", location: "Skanderbeg Square" },
       ],
       title: "When the land speaks, the diaspora descends.",
@@ -560,7 +554,7 @@ B) Nuk marshoj, por mund të ndihmoj me:
       kicker: "Participation index",
       title: `${protestDays} days in the square, day by day.`,
       body:
-        "Follow the pulse of the protest: participation clearly documented on camera, across a month, with the key moments: from the 6 June surge to the Rinas march and the 20 June diaspora peak.",
+        "Follow the pulse of the protest: participation clearly documented on camera, across a month, with the key moments: from the 6 June surge to the 20 June diaspora peak.",
       href: "/en/pulsi",
       cta: "See the protest pulse",
       stats: [
@@ -571,9 +565,9 @@ B) Nuk marshoj, por mund të ndihmoj me:
     },
     march: {
       kicker: "The march",
-      title: "Suggested march",
+      title: "The next march",
       body:
-        "Everything for march day: the route, the principles, and practical tips.",
+        "Everything for march day: the route and the principles.",
     },
     whatsapp: {
       title: "Scan the QR",
@@ -591,31 +585,28 @@ B) Nuk marshoj, por mund të ndihmoj me:
 Choose one:
 
 A) I will join the march at:
-[Tirana International Airport - 11:00 / Bulevardi i Ri - 17:00 / Skanderbeg Square - 19:00]
+[Date: August 14 / 15 / 16]
+[Bulevardi i Ri - 18:30 / Skanderbeg Square - 19:00]
 
 B) I will not march, but I can help with:
 [optional]`,
     },
     itinerary: {
       kicker: "Route",
-      title: "From Rinas toward Skanderbeg Square",
-      dateLine: "Date: TBA",
+      title: "From Bulevardi i Ri toward Skanderbeg Square",
+      dateLine: "Date: August 14-16, 2026",
       body:
-        "The march begins as the diaspora lands at the airport and joins citizens in Tirana step by step.",
+        "The march starts at Bulevardi i Ri at 18:30 and joins the main protest at Skanderbeg Square at 19:00.",
+      showMap: false,
       mapAlt:
-        "Map of the march from Tirana International Airport to Bulevardi i Ri and Skanderbeg Square",
+        "Map of the march from Bulevardi i Ri toward Skanderbeg Square",
       mapOpenLabel: "Open the march map full size",
       mapExternalLabel: "Open route in Google Maps",
       points: [
         {
-          time: "11:00",
-          title: "Tirana International Airport \"Nënë Tereza\"",
-          body: "Symbolic departure from Rinas, outside the security perimeter, toward Tirana.",
-        },
-        {
-          time: "17:00",
-          title: "Entrance to Bulevardi i Ri",
-          body: "See Google Maps for the exact point.",
+          time: "18:30",
+          title: "Bulevardi i Ri",
+          body: "The march starts from Bulevardi i Ri.",
         },
         {
           time: "19:00",
@@ -653,7 +644,7 @@ B) I will not march, but I can help with:
         {
           title: "Fatigue",
           body:
-            "The route from Rinas to the square takes many hours and is mostly on asphalt. The pace will stay calm, about 4 km/hour, so the group remains together.",
+            "The route from Bulevardi i Ri to the square is shorter, but the pace should remain calm so the group stays together.",
         },
         {
           title: "Bag",
@@ -792,13 +783,11 @@ B) I will not march, but I can help with:
       required: "This field is required.",
       invalidEmail: "Enter a valid email address.",
       joiningPointOptions: [
-        { value: "airport", label: "Tirana International Airport" },
         { value: "new-boulevard", label: "Bulevardi i Ri" },
         { value: "skanderbeg-square", label: "Skanderbeg Square" },
         { value: "coordinate-later", label: "I will coordinate later" },
       ],
       participationTypeOptions: [
-        { value: "full-airport-march", label: "I march from the airport" },
         { value: "join-in-tirana", label: "I join in Tirana" },
         { value: "volunteer-steward", label: "I help with stewardship, translation, or logistics" },
         { value: "coordination-support", label: "I help with private coordination" },
