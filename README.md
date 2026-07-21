@@ -18,6 +18,8 @@ The app currently combines:
 - `/en/pulsi` - English protest participation tracker.
 - `/veshja` - Albanian suggested clothing/downloads.
 - `/en/veshja` - English suggested clothing/downloads.
+- `/liste_vuajtjesh` - Albanian government scandal dossier (33 case files, 2013–2026).
+- `/en/liste_vuajtjesh` - English page chrome for the scandal dossier; the report text itself is Albanian-only.
 - `/confirm-email` - legacy pledge confirmation route.
 - `/api/pledges` - legacy pledge submission API.
 
@@ -79,11 +81,15 @@ Run `npm run typecheck` before committing. Run `npm run build` before release wh
 
 - `lib/content.ts` - homepage, route, WhatsApp, demands, history, hidden form, and confirmation copy.
 - `lib/shirts-content.ts` - shirt page copy and country/version metadata.
+- `lib/scandals-content.ts` - scandal dossier page chrome (bilingual) and category/status ordering.
 - `data/participation.ts` - protest participation index data, daily notes, sources, and chart events.
+- `data/scandals.ts` - the 33-record scandal dossier (Albanian-only, verbatim from `docs/skandalet-e-qeverisjes-rama.md`; see that doc for methodology).
 - `components/home-page.tsx` - public campaign homepage.
 - `components/live-tracker-page.tsx` - `/pulsi` wrapper and localized tracker page copy.
 - `components/participation/ParticipationChart.tsx` - interactive SVG chart.
 - `components/shirts-page.tsx` - clothing/download resources.
+- `components/scandals-page.tsx` - `/liste_vuajtjesh` wrapper: hero, stats dashboard, status composition bar.
+- `components/scandals-explorer.tsx` - client-side category filters, chronology ruler, and expandable case-file cards.
 - `docs/` - campaign source assets, posters, maps, metrics, and organizer notes.
 - `public/` - deployable public images, QR code, and shirt previews.
 - `specs/Features.md` - feature ledger for major product changes over time.

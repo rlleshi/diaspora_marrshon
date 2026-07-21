@@ -2293,3 +2293,579 @@ textarea:focus {
   max-width: 700px;
   color: var(--muted);
 }
+
+/* ===================================================================
+ * Scandals dossier — homepage teaser band
+ * =================================================================== */
+
+.scandals-teaser-band {
+  background: #151515;
+  color: var(--white);
+}
+
+.scandals-teaser {
+  max-width: 720px;
+}
+
+.scandals-teaser .kicker {
+  color: #fecaca;
+}
+
+.scandals-teaser .section-copy p {
+  color: rgba(255, 255, 255, 0.78);
+}
+
+.scandals-teaser .button {
+  width: fit-content;
+  margin-top: 24px;
+}
+
+/* ===================================================================
+ * Scandals dossier — standalone page (/liste_vuajtjesh)
+ * =================================================================== */
+
+.scandals-shell {
+  background: var(--bg);
+}
+
+.scandals-hero-band {
+  background: var(--paper);
+  padding-bottom: clamp(30px, 5vw, 50px);
+}
+
+.scandals-title {
+  max-width: 20ch;
+  font-size: clamp(2rem, 4.2vw, 3rem);
+  line-height: 1.08;
+  letter-spacing: -0.01em;
+}
+
+.scandals-intro,
+.scandals-methodology {
+  max-width: 72ch;
+  margin-top: 16px;
+  color: var(--muted);
+  font-size: 1.02rem;
+  line-height: 1.62;
+}
+
+.scandals-en-note {
+  max-width: 72ch;
+  margin-top: 16px;
+  padding: 12px 15px;
+  border: 1px dashed var(--line);
+  border-radius: 6px;
+  color: var(--muted);
+  font-size: 0.92rem;
+  font-style: italic;
+  line-height: 1.5;
+}
+
+.dossier-stats {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: end;
+  gap: clamp(28px, 5vw, 56px);
+  margin-top: 34px;
+}
+
+.stat-num {
+  display: block;
+  font-family: "Fraunces", Georgia, "Times New Roman", serif;
+  font-size: clamp(2.4rem, 5.4vw, 3.4rem);
+  font-weight: 600;
+  line-height: 0.86;
+  letter-spacing: -0.01em;
+  background: linear-gradient(120deg, var(--red-dark), var(--red) 55%, var(--gold));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.stat-label {
+  display: block;
+  margin-top: 6px;
+  color: var(--ink);
+  font-size: 0.82rem;
+  font-weight: 750;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+.stat-sub {
+  display: block;
+  margin-top: 2px;
+  color: var(--muted);
+  font-size: 0.76rem;
+}
+
+.status-panel {
+  flex: 1 1 300px;
+  min-width: 260px;
+}
+
+.status-bar {
+  display: flex;
+  gap: 2px;
+  height: 20px;
+  border-radius: 4px;
+  overflow: hidden;
+  background: var(--line);
+}
+
+.status-bar-segment {
+  display: block;
+  height: 100%;
+}
+
+.status-bar-segment--no-process {
+  background: var(--red);
+}
+
+.status-bar-segment--investigation {
+  background: var(--gold);
+}
+
+.status-bar-segment--convicted {
+  background: var(--green);
+}
+
+.status-bar-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 18px;
+  margin: 10px 0 0;
+  padding: 0;
+  list-style: none;
+  font-size: 0.82rem;
+}
+
+.status-bar-legend li {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.status-bar-legend b {
+  font-variant-numeric: tabular-nums;
+}
+
+.status-bar-legend .lbl {
+  color: var(--muted);
+}
+
+.status-bar-dot {
+  display: inline-block;
+  width: 9px;
+  height: 9px;
+  border-radius: 2px;
+  flex: 0 0 auto;
+}
+
+.status-bar-caption {
+  margin: 8px 0 0;
+  color: var(--muted);
+  font-size: 0.72rem;
+}
+
+.scandals-room {
+  background: var(--bg);
+}
+
+/* ---- chronology ruler ---- */
+
+.chrono {
+  margin-bottom: 30px;
+}
+
+.chrono-caption {
+  color: var(--muted);
+  font-size: 0.76rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.chrono-track {
+  position: relative;
+  height: 38px;
+  margin-top: 8px;
+  border-top: 1px solid var(--line);
+}
+
+.chrono-yr {
+  position: absolute;
+  top: 8px;
+  transform: translateX(-50%);
+  color: var(--muted);
+  font-family: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+  font-size: 0.68rem;
+}
+
+.chrono-dot {
+  position: absolute;
+  top: -5px;
+  width: 10px;
+  height: 10px;
+  padding: 0;
+  border: 2px solid var(--bg);
+  border-radius: 50%;
+  cursor: pointer;
+  transform: translateX(-50%);
+  transition: transform 0.15s ease;
+}
+
+.chrono-dot:hover,
+.chrono-dot:focus-visible {
+  transform: translateX(-50%) scale(1.6);
+}
+
+/* ---- category filter tabs ---- */
+
+.filter-tabs {
+  display: flex;
+  gap: 4px;
+  margin-bottom: 20px;
+  overflow-x: auto;
+  padding-bottom: 2px;
+}
+
+.filter-tab {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px 12px;
+  border: 1px solid var(--line);
+  border-bottom: none;
+  border-radius: 0;
+  clip-path: polygon(9px 0, 100% 0, calc(100% - 9px) 100%, 0 100%);
+  margin-right: -7px;
+  background: var(--paper);
+  color: var(--muted);
+  font-size: 0.86rem;
+  font-weight: 700;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.filter-tab svg {
+  flex: 0 0 auto;
+}
+
+.filter-count {
+  font-family: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+  font-size: 0.72rem;
+  opacity: 0.7;
+}
+
+.filter-tab[aria-pressed="true"] {
+  position: relative;
+  z-index: 1;
+  background: var(--white);
+  color: var(--ink);
+  border-color: var(--red);
+}
+
+/* ---- case grid ---- */
+
+.case-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.case-card {
+  grid-column: span 1;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--white);
+}
+
+.case-card[open] {
+  grid-column: 1 / -1;
+  box-shadow: var(--shadow);
+}
+
+.case-card summary {
+  display: block;
+  list-style: none;
+  cursor: pointer;
+  padding: 16px 16px 18px;
+}
+
+.case-card summary::-webkit-details-marker {
+  display: none;
+}
+
+.case-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.case-cat-icon {
+  display: grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  flex: 0 0 auto;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: var(--paper);
+  color: var(--muted);
+}
+
+.case-code {
+  font-family: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+  font-size: 0.68rem;
+  color: var(--muted);
+  text-align: right;
+}
+
+.case-title {
+  margin-top: 12px;
+  font-size: 1.04rem;
+  font-weight: 750;
+  line-height: 1.32;
+}
+
+.case-teaser {
+  margin-top: 8px;
+  color: var(--muted);
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.redacted-phrase {
+  background: var(--ink);
+  color: transparent;
+  border-radius: 2px;
+  padding: 0 2px;
+}
+
+.case-card[open] .redacted-phrase {
+  background: transparent;
+  color: inherit;
+  font-weight: 700;
+}
+
+.stamp {
+  display: inline-block;
+  margin-top: 12px;
+  padding: 3px 9px;
+  border: 1.5px solid currentColor;
+  border-radius: 3px;
+  transform: rotate(-2deg);
+  font-size: 0.66rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.stamp--no-process {
+  color: var(--red);
+}
+
+.stamp--investigation {
+  color: var(--gold);
+}
+
+.stamp--convicted {
+  color: var(--green);
+}
+
+.case-more {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 14px;
+  color: var(--red);
+  font-size: 0.78rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.case-chevron {
+  transition: transform 0.2s ease;
+}
+
+.case-card[open] .case-chevron {
+  transform: rotate(180deg);
+}
+
+/* ---- expanded case detail ---- */
+
+.case-body {
+  padding: 4px clamp(16px, 3vw, 28px) clamp(24px, 3vw, 32px);
+  border-top: 1px solid var(--line);
+  max-width: 78ch;
+}
+
+.case-body h4 {
+  margin: 22px 0 10px;
+  font-size: 0.76rem;
+  font-weight: 850;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--muted);
+}
+
+.case-body h4:first-child {
+  margin-top: 20px;
+}
+
+.case-narrative,
+.case-verification {
+  color: var(--ink);
+  font-size: 0.96rem;
+  line-height: 1.65;
+}
+
+.case-narrative + .case-narrative,
+.case-verification + .case-verification {
+  margin-top: 12px;
+}
+
+.case-status {
+  padding: 12px 14px;
+  border: 1px solid var(--line);
+  border-left: 3px solid var(--muted);
+  border-radius: 3px;
+  background: var(--paper);
+  color: var(--ink);
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.case-status.stamp--no-process {
+  border-left-color: var(--red);
+}
+
+.case-status.stamp--investigation {
+  border-left-color: var(--gold);
+}
+
+.case-status.stamp--convicted {
+  border-left-color: var(--green);
+}
+
+.claim-list {
+  display: grid;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.claim-item {
+  display: grid;
+  grid-template-columns: 20px minmax(0, 1fr);
+  gap: 10px;
+  align-items: start;
+  font-size: 0.88rem;
+  line-height: 1.5;
+  color: var(--muted);
+}
+
+.claim-item strong {
+  color: var(--ink);
+}
+
+.claim-mark {
+  display: grid;
+  place-items: center;
+  width: 20px;
+  height: 20px;
+  margin-top: 1px;
+  border-radius: 50%;
+  color: var(--white);
+  font-family: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+  font-size: 0.66rem;
+  font-weight: 800;
+}
+
+.claim-mark--confirmed {
+  background: var(--green);
+}
+
+.claim-mark--partial {
+  background: var(--gold);
+}
+
+.claim-mark--unverified {
+  background: var(--muted);
+}
+
+.claim-mark--contradicted {
+  background: var(--red);
+}
+
+.no-ledger-note {
+  padding: 12px 14px;
+  border: 1px dashed var(--line);
+  border-radius: 4px;
+  color: var(--muted);
+  font-size: 0.86rem;
+  font-style: italic;
+}
+
+.case-confidence {
+  margin-top: 20px;
+  color: var(--muted);
+  font-size: 0.86rem;
+}
+
+.case-confidence strong {
+  color: var(--ink);
+}
+
+.source-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.source-chip {
+  display: inline-block;
+  padding: 5px 9px;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  background: var(--paper);
+  color: var(--muted);
+  font-size: 0.74rem;
+  word-break: break-all;
+}
+
+a.source-chip-link:hover {
+  color: var(--red);
+  border-color: var(--red);
+}
+
+@media (max-width: 900px) {
+  .case-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 620px) {
+  .case-grid,
+  .case-card[open] {
+    grid-template-columns: 1fr;
+  }
+
+  .filter-tab {
+    clip-path: none;
+    margin-right: 0;
+    border-radius: 999px;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .status-panel {
+    min-width: 0;
+    flex-basis: 100%;
+  }
+}

@@ -4,11 +4,15 @@ import type {
   SourceLanguage,
 } from "@/lib/pledge-options";
 import { participation } from "@/data/participation";
+import { scandals } from "@/data/scandals";
 
 export type Locale = SourceLanguage;
 
 // Derived from the tracker data so the homepage teaser never lags behind /pulsi.
 const protestDays = String(participation.length);
+
+// Derived from the scandal dossier so the homepage teaser never lags behind /liste_vuajtjesh.
+const scandalCount = String(scandals.length);
 
 type Option<T extends string> = {
   value: T;
@@ -23,6 +27,7 @@ export type SiteContent = {
     tracker: string;
     context: string;
     history: string;
+    scandals: string;
     march: string;
     pledge: string;
   };
@@ -60,6 +65,14 @@ export type SiteContent = {
     previewAlt: string;
   };
   trackerTeaser: {
+    kicker: string;
+    title: string;
+    body: string;
+    href: string;
+    cta: string;
+    stats: Array<{ value: string; label: string }>;
+  };
+  scandalsTeaser: {
     kicker: string;
     title: string;
     body: string;
@@ -195,6 +208,7 @@ export const content: Record<Locale, SiteContent> = {
       tracker: "Pulsi i protestës",
       context: "Pse marshojmë",
       history: "Historiku",
+      scandals: "Skandalet",
       march: "Marshimi",
       pledge: "Marshoj për Shqipërinë",
     },
@@ -246,6 +260,18 @@ export const content: Record<Locale, SiteContent> = {
         { value: protestDays, label: "ditë protestë" },
         { value: "20.06", label: "dita më e madhe" },
         { value: "100K+", label: "vlerësim në shesh" },
+      ],
+    },
+    scandalsTeaser: {
+      kicker: "Historiku i qeverisjes",
+      title: `${scandalCount} dosje, 13 vjet: çfarë i ka bërë Shqipërisë kjo qeverisje.`,
+      body:
+        "Çdo skandal i kontrolluar veç e veç kundrejt gazetarisë investigative shqiptare: statusi ligjor real, pretendimet e verifikuara, dhe burimet.",
+      href: "/liste_vuajtjesh",
+      cta: "Shiko dosjen",
+      stats: [
+        { value: scandalCount, label: "dosje" },
+        { value: "13", label: "vjet, i njëjti kryeministër" },
       ],
     },
     march: {
@@ -510,6 +536,7 @@ B) Nuk marshoj, por mund të ndihmoj me:
       tracker: "Protest pulse",
       context: "Why we march",
       history: "History",
+      scandals: "Scandals",
       march: "The march",
       pledge: "I march for Albania",
     },
@@ -561,6 +588,18 @@ B) Nuk marshoj, por mund të ndihmoj me:
         { value: protestDays, label: "days of protest" },
         { value: "20.06", label: "the biggest day" },
         { value: "100K+", label: "estimated in the square" },
+      ],
+    },
+    scandalsTeaser: {
+      kicker: "Government track record",
+      title: `${scandalCount} case files, 13 years: what this government has done.`,
+      body:
+        "Every scandal independently checked against Albanian investigative journalism: real legal status, verified claims, and sources.",
+      href: "/en/liste_vuajtjesh",
+      cta: "See the dossier",
+      stats: [
+        { value: scandalCount, label: "case files" },
+        { value: "13", label: "years, same prime minister" },
       ],
     },
     march: {
