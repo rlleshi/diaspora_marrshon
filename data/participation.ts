@@ -52,6 +52,8 @@
 // avg 272.0, mean 154.2, median 145.1), normalized on the same Day-7 reference.
 // Day 52 computed from the protesta_52 timeline, retained frames only (top-10 peak
 // avg 258.5, mean 144.3, median 137.8), normalized on the same Day-7 reference.
+// Day 53 computed from the protesta_53 timeline, retained frames only (top-10 peak
+// avg 292.4, mean 160.7, median 155.4), normalized on the same Day-7 reference.
 
 export type ParticipationDay = {
   day: number;
@@ -181,6 +183,8 @@ export const participation: ParticipationDay[] = [
     note: { sq: "Ditë me dy aksione: në mesditë protestë para Kuvendit me vezë e kthimi i PD nga bojkoti; në mbrëmje marshimi rimerr forcë, me thirrje të fortë për mobilizimin e 23 korrikut.", en: "A day with two actions: a midday egg-throwing protest outside Parliament and the opposition's return from its boycott; in the evening the march rebounds, with a strong call to mobilize on July 23." } },
   { day: 52, date: "2026-07-21", saturday: false, peak: 5.00, mean: 2.79, median: 2.67, source: yt("8MeBoqs3Yhk"),
     note: { sq: "Nga podiumi kritikohet Paketa e Maleve, në të njëjtën ditë kur mjekrra e mbron atë në Theth; thirrja për mobilizimin te Kuvendi më 23 korrik, në orën 08:00, bëhet eksplicite.", en: "From the podium the Mountain Package is criticized, the same day Rama defends it in Theth; the call to mobilize outside Parliament on July 23, at 08:00, becomes explicit." } },
+  { day: 53, date: "2026-07-22", saturday: false, peak: 5.66, mean: 3.11, median: 3.01, source: yt("29710sUIVdU"),
+    note: { sq: "Marshimi drejt Kuvendit pas një flamuri të gjatë kuq e zi; thirrja përfundimtare zgjidh orët kontradiktore të mëparshme, duke caktuar mbledhjen para Kuvendit nesër në orën 08:30.", en: "The march reaches Parliament behind a long red-and-black banner; the final call resolves the earlier conflicting times, settling on a gathering outside Parliament tomorrow at 08:30." } },
 ];
 
 export type ParticipationEvent = {

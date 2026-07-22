@@ -26,11 +26,11 @@ const COPY: Record<
     homeHref: "/",
     homeLabel: "Kthehu te faqja kryesore",
     eyebrow: "Pulsi i protestës për Shqipërinë e re",
-    title: "52 ditë në shesh për një mjekërrosh bardhërosh",
+    title: "53 ditë në shesh për një mjekërrosh bardhërosh",
     liveLabel: "Live",
     intro: {
       before:
-        "Nga mbrojtja e Zvërnecit tek një lëvizje njëmujore për krijimin e një Shqipërie të re, që i futet rrugës së ",
+        "Nga mbrojtja e Zvërnecit tek një lëvizje dymujore për krijimin e një Shqipërie të re, që i futet rrugës së ",
       link: "zhvillimit të përshpejtuar",
       href: "https://www.youtube.com/watch?v=XF3nEmKziWU",
       after: ".",
@@ -55,18 +55,18 @@ const COPY: Record<
       replay: "Rishfaq",
       saturday: "e shtunë",
       ariaSummary:
-        "Indeksi i pjesëmarrjes në protesta përgjatë 52 ditëve, me kulmin në ditën e 21-të (20 qershor 2026).",
+        "Indeksi i pjesëmarrjes në protesta përgjatë 53 ditëve, me kulmin në ditën e 21-të (20 qershor 2026).",
     },
   },
   en: {
     homeHref: "/en",
     homeLabel: "Back to the homepage",
     eyebrow: "Protest pulse for a new Albania",
-    title: "52 days in the square for a grey-bearded Rama",
+    title: "53 days in the square for a grey-bearded Rama",
     liveLabel: "Live",
     intro: {
       before:
-        "From defending Zvërnec to a month-long movement for the creation of a new Albania that sets out on the path of ",
+        "From defending Zvërnec to a two-month movement for the creation of a new Albania that sets out on the path of ",
       link: "accelerated development",
       href: "https://www.youtube.com/watch?v=XF3nEmKziWU",
       after: ".",
@@ -91,7 +91,7 @@ const COPY: Record<
       replay: "Replay",
       saturday: "Saturday",
       ariaSummary:
-        "Protest participation index across 52 days, peaking on day 21 (20 June 2026).",
+        "Protest participation index across 53 days, peaking on day 21 (20 June 2026).",
     },
   },
 };
