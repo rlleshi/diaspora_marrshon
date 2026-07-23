@@ -31,6 +31,7 @@ Recommended entry shape:
 - Suggested clothing page with downloadable shirt previews.
 - Vercel Analytics page and custom event tracking.
 - Bilingual protest pulse tracker at `/pulsi` and `/en/pulsi`.
+- Government scandal dossier at `/liste_vuajtjesh` (Albanian content, `/en/liste_vuajtjesh` chrome).
 - Hidden legacy pledge form and secure backend infrastructure.
 
 ## Feature Ledger
@@ -132,6 +133,13 @@ Recommended entry shape:
 - Why it matters: Brought project documentation back in line with the actual product.
 - Main files: `README.md`, `specs/Mission.md`, `specs/Tech-stack.md`, `specs/Roadmap.md`.
 - Notes / follow-up: Keep this `Features.md` updated whenever a new feature meaningfully changes the site.
+
+### 2026-07-21 - Government Scandal Dossier (`/liste_vuajtjesh`)
+
+- What changed: Added a case-file style page covering 33 Rama-government scandals (2013–2026), built from the existing research doc `docs/skandalet-e-qeverisjes-rama.md`. Each case shows a short teaser (with one figure visually redacted until expanded), a stats dashboard with a 3-way legal-status composition bar (no criminal process / active investigation / final conviction), a clickable chronology ruler, category filters, and an expandable detail with the doc's verbatim narrative, status, a claim-by-claim verification ledger, and sources. A matching homepage teaser band and nav link were added.
+- Why it matters: Turns the standalone research document into a public, digestible page — short version first, full verified detail on click — without diluting the underlying research doc's accuracy. Narrative/status/claims/sources are extracted verbatim (not paraphrased) from the doc specifically to avoid introducing factual drift.
+- Main files: `data/scandals.ts`, `lib/scandals-content.ts`, `components/scandals-page.tsx`, `components/scandals-explorer.tsx`, `app/liste_vuajtjesh/page.tsx`, `app/en/liste_vuajtjesh/page.tsx`, plus additions to `lib/content.ts`, `components/home-page.tsx`, `app/globals.css`.
+- Notes / follow-up: `data/scandals.ts` content is Albanian-only by design (translation was explicitly deferred); the English route reuses the same Albanian data with English page chrome and a note. It was generated once via a one-time parsing script (not part of the repo) from the research doc — if the doc is updated with new scandals, `data/scandals.ts` needs a matching manual update, not just a re-run.
 
 ## Dormant / Legacy Feature Area
 

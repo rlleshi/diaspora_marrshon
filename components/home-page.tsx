@@ -9,6 +9,7 @@ import {
   Droplets,
   Flag,
   Footprints,
+  Gavel,
   Languages,
   MapPinned,
   MessageCircle,
@@ -100,6 +101,7 @@ export function HomePage({ locale }: { locale: Locale }) {
           <Link href={t.trackerTeaser.href}>{t.nav.tracker}</Link>
           <a href="#context">{t.nav.context}</a>
           <a href="#history">{t.nav.history}</a>
+          <Link href={t.scandalsTeaser.href}>{t.nav.scandals}</Link>
           <a href="#marshimi">{t.nav.march}</a>
           <a className="nav-cta" href="#pledge">
             {t.nav.pledge}
@@ -443,6 +445,38 @@ export function HomePage({ locale }: { locale: Locale }) {
                   );
                 })}
               </div>
+            </div>
+          </div>
+        </section>
+
+        <section className="section scandals-teaser-band">
+          <SectionViewTracker
+            targetId="scandals-teaser"
+            eventName="Scandals Section Viewed"
+            eventProperties={{ locale }}
+          />
+          <div className="section-inner scandals-teaser" id="scandals-teaser">
+            <div className="section-copy">
+              <p className="kicker">{t.scandalsTeaser.kicker}</p>
+              <h2>{t.scandalsTeaser.title}</h2>
+              <p>{t.scandalsTeaser.body}</p>
+              <ul className="pulse-stats">
+                {t.scandalsTeaser.stats.map((stat) => (
+                  <li key={stat.label}>
+                    <span className="pulse-stat-value">{stat.value}</span>
+                    <span className="pulse-stat-label">{stat.label}</span>
+                  </li>
+                ))}
+              </ul>
+              <TrackedLink
+                className="button button-primary"
+                href={t.scandalsTeaser.href}
+                eventName="Scandals Page Opened"
+                eventProperties={{ locale, placement: "home_teaser" }}
+              >
+                <Gavel aria-hidden="true" size={20} />
+                {t.scandalsTeaser.cta}
+              </TrackedLink>
             </div>
           </div>
         </section>
