@@ -213,7 +213,7 @@ export const content: Record<Locale, SiteContent> = {
       pledge: "Marshoj për Shqipërinë",
     },
     hero: {
-      eyebrow: "Diaspora marshon në Tiranë",
+      eyebrow: "Marshimi i tretë i diasporës në Tiranë",
       dateLabel: "Data e marshimit",
       dateDay: "14-16",
       dateMonth: "GUSHT",
@@ -253,7 +253,7 @@ export const content: Record<Locale, SiteContent> = {
       kicker: "Indeksi i pjesëmarrjes",
       title: `${protestDays} ditë në shesh, ditë pas dite.`,
       body:
-        "Ndiq pulsin e protestës: pjesëmarrje e dokumentuar qartësisht në kamera, përgjatë një muaji, me momentet kyçe: nga vala e parë e 6 qershorit te kulmi i diasporës më 20 qershor.",
+        "Ndiq pulsin e protestës: pjesëmarrje e dokumentuar qartësisht në kamera, përgjatë dy muajsh, me momentet kyçe: nga vala e parë e 6 qershorit te kulmi i diasporës më 20 qershor.",
       href: "/pulsi",
       cta: "Shiko pulsin e protestës",
       stats: [
@@ -276,9 +276,9 @@ export const content: Record<Locale, SiteContent> = {
     },
     march: {
       kicker: "Marshimi",
-      title: "Marshimi i radhës",
+      title: "Marshimi i tretë i diasporës",
       body:
-        "Gjithçka për ditën e marshimit: itinerari dhe parimet.",
+        "Pas dy marshimeve të para, diaspora kthehet për herë të tretë. Gjithçka për ditën e marshimit: itinerari dhe parimet.",
     },
     whatsapp: {
       title: "Skano QR-in",
@@ -541,7 +541,7 @@ B) Nuk marshoj, por mund të ndihmoj me:
       pledge: "I march for Albania",
     },
     hero: {
-      eyebrow: "The diaspora marches in Tirana",
+      eyebrow: "The diaspora's third march in Tirana",
       dateLabel: "March date",
       dateDay: "14-16",
       dateMonth: "AUGUST",
@@ -581,7 +581,7 @@ B) Nuk marshoj, por mund të ndihmoj me:
       kicker: "Participation index",
       title: `${protestDays} days in the square, day by day.`,
       body:
-        "Follow the pulse of the protest: participation clearly documented on camera, across a month, with the key moments: from the 6 June surge to the 20 June diaspora peak.",
+        "Follow the pulse of the protest: participation clearly documented on camera, across two months, with the key moments: from the 6 June surge to the 20 June diaspora peak.",
       href: "/en/pulsi",
       cta: "See the protest pulse",
       stats: [
@@ -604,9 +604,9 @@ B) Nuk marshoj, por mund të ndihmoj me:
     },
     march: {
       kicker: "The march",
-      title: "The next march",
+      title: "The diaspora's third march",
       body:
-        "Everything for march day: the route and the principles.",
+        "After two earlier marches, the diaspora returns for a third time. Everything for march day: the route and the principles.",
     },
     whatsapp: {
       title: "Scan the QR",
