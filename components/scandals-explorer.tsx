@@ -56,6 +56,30 @@ function yearPct(year: number) {
   return ((year - MIN_YEAR) / (MAX_YEAR - MIN_YEAR)) * 100;
 }
 
+// Several scandals can share the same yearStart; stacking them on identical
+// x-coordinates makes them collapse into one dot. Assign each a "lane" so
+// same-year cases fan out vertically into a visible column instead.
+const CHRONO_LANE: Record<string, number> = {};
+const chronoYearCounts = new Map<number, number>();
+for (const s of scandals) {
+  const lane = chronoYearCounts.get(s.yearStart) ?? 0;
+  CHRONO_LANE[s.id] = lane;
+  chronoYearCounts.set(s.yearStart, lane + 1);
+}
+const CHRONO_MAX_LANE = Math.max(...chronoYearCounts.values()) - 1;
+const CHRONO_LANE_GAP = 15;
+// Vertical space reserved above the baseline for the tallest stack of dots.
+const CHRONO_ABOVE = 16 + CHRONO_MAX_LANE * CHRONO_LANE_GAP;
+const CHRONO_BELOW = 26;
+const CHRONO_TRACK_HEIGHT = CHRONO_ABOVE + CHRONO_BELOW;
+const CHRONO_STACKS = Array.from(chronoYearCounts.entries()).filter(
+  ([, count]) => count > 1,
+);
+
+function chronoDotTop(id: string) {
+  return CHRONO_ABOVE - 6 - CHRONO_LANE[id] * CHRONO_LANE_GAP;
+}
+
 function renderRich(text: string, keyPrefix: string): ReactNode {
   const parts = text.split(/(\*\*.+?\*\*)/g).filter((p) => p.length > 0);
   return parts.map((part, i) =>
@@ -129,12 +153,31 @@ export function ScandalsExplorer({ locale }: { locale: Locale }) {
     <div className="scandals-explorer">
       <div className="chrono">
         <span className="chrono-caption">{t.chrono.caption}</span>
-        <div className="chrono-track">
+        <div className="chrono-track" style={{ height: `${CHRONO_TRACK_HEIGHT}px` }}>
+          <div className="chrono-line" style={{ top: `${CHRONO_ABOVE}px` }} />
+          {YEAR_TICKS.map((yr) => (
+            <span
+              key={`tick-${yr}`}
+              className="chrono-tick"
+              style={{ left: `${yearPct(yr)}%`, top: `${CHRONO_ABOVE}px` }}
+            />
+          ))}
+          {CHRONO_STACKS.map(([yr, count]) => (
+            <span
+              key={`stem-${yr}`}
+              className="chrono-stem"
+              style={{
+                left: `${yearPct(yr)}%`,
+                top: `${CHRONO_ABOVE - 6 - (count - 1) * CHRONO_LANE_GAP}px`,
+                height: `${(count - 1) * CHRONO_LANE_GAP}px`,
+              }}
+            />
+          ))}
           {YEAR_TICKS.map((yr) => (
             <span
               key={yr}
               className="chrono-yr"
-              style={{ left: `${yearPct(yr)}%` }}
+              style={{ left: `${yearPct(yr)}%`, top: `${CHRONO_ABOVE + 8}px` }}
             >
               {yr}
             </span>
@@ -144,8 +187,8 @@ export function ScandalsExplorer({ locale }: { locale: Locale }) {
               key={s.id}
               type="button"
               className={`chrono-dot ${STAMP_CLASS[s.statusBucket]}`}
-              style={{ left: `${yearPct(s.yearStart)}%` }}
-              title={`${s.title} (${s.yearStart})`}
+              style={{ left: `${yearPct(s.yearStart)}%`, top: `${chronoDotTop(s.id)}px` }}
+              data-tip={`${s.title} · ${s.yearStart}`}
               aria-label={`${s.title} (${s.yearStart})`}
               onClick={() => openFromChrono(s)}
             />
@@ -256,9 +299,7 @@ export function ScandalsExplorer({ locale }: { locale: Locale }) {
                       ))}
                     </ul>
                   </>
-                ) : (
-                  <p className="no-ledger-note">{t.card.noLedgerNote}</p>
-                )}
+                ) : null}
 
                 {s.verificationNotes ? (
                   <>

@@ -2303,6 +2303,12 @@ textarea:focus {
   color: var(--white);
 }
 
+/* Both this band and the shirts band right after it share the same dark
+   background, so without a seam they read as one continuous block. */
+.scandals-teaser-band + .shirts-teaser-band {
+  border-top: 1px solid rgba(255, 255, 255, 0.14);
+}
+
 .scandals-teaser {
   max-width: 720px;
 }
@@ -2374,7 +2380,7 @@ textarea:focus {
   font-family: "Fraunces", Georgia, "Times New Roman", serif;
   font-size: clamp(2.4rem, 5.4vw, 3.4rem);
   font-weight: 600;
-  line-height: 0.86;
+  line-height: 1.15;
   letter-spacing: -0.01em;
   background: linear-gradient(120deg, var(--red-dark), var(--red) 55%, var(--gold));
   -webkit-background-clip: text;
@@ -2384,7 +2390,7 @@ textarea:focus {
 
 .stat-label {
   display: block;
-  margin-top: 6px;
+  margin-top: 10px;
   color: var(--ink);
   font-size: 0.82rem;
   font-weight: 750;
@@ -2488,14 +2494,37 @@ textarea:focus {
 
 .chrono-track {
   position: relative;
-  height: 38px;
   margin-top: 8px;
-  border-top: 1px solid var(--line);
+}
+
+.chrono-line {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--muted);
+  opacity: 0.4;
+  border-radius: 1px;
+}
+
+.chrono-tick {
+  position: absolute;
+  width: 1px;
+  height: 8px;
+  background: var(--muted);
+  opacity: 0.4;
+}
+
+.chrono-stem {
+  position: absolute;
+  width: 1px;
+  background: var(--muted);
+  opacity: 0.35;
+  transform: translateX(-50%);
 }
 
 .chrono-yr {
   position: absolute;
-  top: 8px;
   transform: translateX(-50%);
   color: var(--muted);
   font-family: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
@@ -2504,20 +2533,53 @@ textarea:focus {
 
 .chrono-dot {
   position: absolute;
-  top: -5px;
-  width: 10px;
-  height: 10px;
+  width: 13px;
+  height: 13px;
   padding: 0;
   border: 2px solid var(--bg);
   border-radius: 50%;
+  background: currentColor;
+  box-shadow: 0 0 0 1px rgba(21, 21, 21, 0.15);
   cursor: pointer;
   transform: translateX(-50%);
-  transition: transform 0.15s ease;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
 }
 
 .chrono-dot:hover,
 .chrono-dot:focus-visible {
-  transform: translateX(-50%) scale(1.6);
+  transform: translateX(-50%) scale(1.7);
+  box-shadow: 0 0 0 1px rgba(21, 21, 21, 0.3);
+  z-index: 2;
+}
+
+.chrono-dot::after {
+  content: attr(data-tip);
+  position: absolute;
+  bottom: calc(100% + 9px);
+  left: 50%;
+  width: max-content;
+  max-width: 200px;
+  transform: translateX(-50%) translateY(4px);
+  background: var(--ink);
+  color: var(--paper);
+  font-size: 0.7rem;
+  font-weight: 600;
+  line-height: 1.35;
+  text-align: center;
+  padding: 5px 9px;
+  border-radius: 4px;
+  pointer-events: none;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.12s ease, transform 0.12s ease;
+  z-index: 3;
+}
+
+.chrono-dot:hover::after,
+.chrono-dot:focus-visible::after {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(0);
 }
 
 /* ---- category filter tabs ---- */
@@ -2802,15 +2864,6 @@ textarea:focus {
 
 .claim-mark--contradicted {
   background: var(--red);
-}
-
-.no-ledger-note {
-  padding: 12px 14px;
-  border: 1px dashed var(--line);
-  border-radius: 4px;
-  color: var(--muted);
-  font-size: 0.86rem;
-  font-style: italic;
 }
 
 .case-confidence {
