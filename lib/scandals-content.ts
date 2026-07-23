@@ -63,7 +63,7 @@ export const scandalsPageContent: Record<
     homeLabel: "Kthehu te faqja kryesore",
     hero: {
       kicker: "Historiku i qeverisjes",
-      title: "13 vjet, 33 dosje: çfarë i ka bërë Shqipërisë kjo organizatë.",
+      title: "14 vjet, 33 dosje: çfarë i ka bërë Shqipërisë kjo organizatë.",
       intro:
         "Çdo dosje këtu është hulumtuar dhe kontrolluar veç e veç kundrejt gazetarisë investigative shqiptare (kryesisht Citizens.al dhe Reporter.al), plus BIRN, SPAK, KLSH dhe burime ndërkombëtare. Teksti ndjek hulumtimin origjinal, pa u ripërmbledhur.",
       methodology:
@@ -107,7 +107,7 @@ export const scandalsPageContent: Record<
       sourcesHeading: "Burimet",
     },
     footerNote:
-      "Ky dokumentim është hulumtuar me kërkim të pavarur, shumë prej burimeve me qasje të kufizuar teknike gjatë kërkimit — besueshmëria e shënuar te çdo dosje pasqyron këtë. Dosja e plotë e hulumtimit, me metodologjinë e detajuar, është publike si dokument i brendshëm i projektit.",
+      "Besueshmëria e shënuar te çdo dosje pasqyron sasinë dhe cilësinë e burimeve publike të gjetura për atë rast specifik — disa skandale janë dokumentuar gjerësisht nga media dhe institucione, të tjera më pak.",
   },
   en: {
     langLabel: "English",
@@ -117,7 +117,7 @@ export const scandalsPageContent: Record<
     homeLabel: "Back to homepage",
     hero: {
       kicker: "Government track record",
-      title: "13 years, 33 case files: what this organization has done.",
+      title: "14 years, 33 case files: what this organization has done.",
       intro:
         "Each case file here was researched and independently checked against Albanian investigative journalism (mainly Citizens.al and Reporter.al), plus BIRN, SPAK, KLSH, and international sources. The text follows the original research, not re-summarized.",
       methodology:
@@ -163,6 +163,6 @@ export const scandalsPageContent: Record<
       sourcesHeading: "Sources",
     },
     footerNote:
-      "This record was compiled through independent research; many sources had limited automated access during research, which the confidence rating on each case reflects. The full research document, with detailed methodology, is public as an internal project document.",
+      "The confidence rating on each case reflects the amount and quality of public sourcing found for that specific case — some scandals are extensively covered by media and institutions, others less so.",
   },
 };

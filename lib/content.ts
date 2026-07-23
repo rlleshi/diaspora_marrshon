@@ -264,14 +264,14 @@ export const content: Record<Locale, SiteContent> = {
     },
     scandalsTeaser: {
       kicker: "Historiku i qeverisjes",
-      title: `${scandalCount} dosje, 13 vjet: çfarë i ka bërë Shqipërisë kjo organizatë.`,
+      title: `${scandalCount} dosje, 14 vjet: çfarë i ka bërë Shqipërisë kjo organizatë.`,
       body:
         "Çdo skandal i kontrolluar veç e veç kundrejt gazetarisë investigative shqiptare: statusi ligjor real, pretendimet e verifikuara, dhe burimet.",
       href: "/liste_vuajtjesh",
       cta: "Shiko dosjen",
       stats: [
         { value: scandalCount, label: "dosje" },
-        { value: "13", label: "vjet, e njëjta mjekërr" },
+        { value: "14", label: "vjet, e njëjta mjekërr" },
       ],
     },
     march: {
@@ -592,14 +592,14 @@ B) Nuk marshoj, por mund të ndihmoj me:
     },
     scandalsTeaser: {
       kicker: "Government track record",
-      title: `${scandalCount} case files, 13 years: what this organization has done.`,
+      title: `${scandalCount} case files, 14 years: what this organization has done.`,
       body:
         "Every scandal independently checked against Albanian investigative journalism: real legal status, verified claims, and sources.",
       href: "/en/liste_vuajtjesh",
       cta: "See the dossier",
       stats: [
         { value: scandalCount, label: "case files" },
-        { value: "13", label: "years, same beard" },
+        { value: "14", label: "years, same beard" },
       ],
     },
     march: {

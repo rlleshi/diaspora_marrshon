@@ -54,6 +54,12 @@
 // avg 258.5, mean 144.3, median 137.8), normalized on the same Day-7 reference.
 // Day 53 computed from the protesta_53 timeline, retained frames only (top-10 peak
 // avg 292.4, mean 160.7, median 155.4), normalized on the same Day-7 reference.
+// Day 54 was two separate actions: a morning Parliament clash (protesta_54.1) and the
+// regular evening march (protesta_54.2). Per the source research, they are not summed;
+// the evening run is the headline series (clean peak 311.8 — the audited single-view
+// estimate, replacing a 331.9 raw peak inflated by a split-screen frame — mean 163.7,
+// median 160.7), normalized on the same Day-7 reference. The morning clash (clean peak
+// 316.8) appears only as a participationEvents marker, not in this day's peak/mean/median.
 
 export type ParticipationDay = {
   day: number;
@@ -185,6 +191,9 @@ export const participation: ParticipationDay[] = [
     note: { sq: "Nga podiumi kritikohet Paketa e Maleve, në të njëjtën ditë kur mjekrra e mbron atë në Theth; thirrja për mobilizimin te Kuvendi më 23 korrik, në orën 08:00, bëhet eksplicite.", en: "From the podium the Mountain Package is criticized, the same day Rama defends it in Theth; the call to mobilize outside Parliament on July 23, at 08:00, becomes explicit." } },
   { day: 53, date: "2026-07-22", saturday: false, peak: 5.66, mean: 3.11, median: 3.01, source: yt("29710sUIVdU"),
     note: { sq: "Marshimi drejt Kuvendit pas një flamuri të gjatë kuq e zi; thirrja përfundimtare zgjidh orët kontradiktore të mëparshme, duke caktuar mbledhjen para Kuvendit nesër në orën 08:30.", en: "The march reaches Parliament behind a long red-and-black banner; the final call resolves the earlier conflicting times, settling on a gathering outside Parliament tomorrow at 08:30." } },
+  { day: 54, date: "2026-07-23", saturday: false, peak: 6.04, mean: 3.17, median: 3.11, source: yt("xxG6yJ8Z0JI"),
+    note: { sq: "Ditë me dy aksione: në mëngjes protestuesit përballen me dhunë shtazarake nga policia te Kuvendi — gaz lotsjellës e top uji, mes të ndaluarve edhe aktivisti Edison Lika; në mbrëmje marshimi del po aq i fortë sa i djeshmi, shenjë se dhuna e mëngjesit s'i largoi njerëzit nga shesh, dhe mbyllet pa asnjë incident të ri.", en: "A day with two actions: in the morning protesters face savage police violence outside Parliament — tear gas and water cannon, with activist Edison Lika among those detained; in the evening turnout holds as strong as the day before, a sign the morning's violence didn't keep people away, and the march closes without a repeat incident." },
+    noteLink: { href: "https://www.youtube.com/watch?v=FES5uF0hXhs", word: { sq: "Kuvendi", en: "Parliament" } } },
 ];
 
 export type ParticipationEvent = {
@@ -231,6 +240,9 @@ export const participationEvents: ParticipationEvent[] = [
   { day: 50, tier: "secondary", icon: "spark", mobile: false,
     label: { sq: "Dita më e dobët", en: "The weakest day" },
     sub: { sq: "Pika më e ulët e korrikut", en: "July's lowest point" } },
+  { day: 54, tier: "primary", icon: "people", mobile: true,
+    label: { sq: "Përleshje te Kuvendi", en: "Clash at Parliament" },
+    sub: { sq: "gaz lotsjellës, arrestime", en: "tear gas, arrests" } },
 ];
 
 /** Normalization reference shown in the methodology note. */
