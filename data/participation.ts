@@ -60,6 +60,12 @@
 // estimate, replacing a 331.9 raw peak inflated by a split-screen frame — mean 163.7,
 // median 160.7), normalized on the same Day-7 reference. The morning clash (clean peak
 // 316.8) appears only as a participationEvents marker, not in this day's peak/mean/median.
+// Day 55 computed from the protesta_55 timeline, retained frames only (peak input is the
+// audited clean single-view estimate 330.7, replacing a 354.9 raw peak inflated by a
+// picture-in-picture frame; mean 172.4, median 159.7), normalized on the same Day-7
+// reference.
+// Day 56 computed from the protesta_56 timeline, retained frames only (top-10 peak
+// avg 394.6, mean 173.1, median 164.1), normalized on the same Day-7 reference.
 
 export type ParticipationDay = {
   day: number;
@@ -194,6 +200,10 @@ export const participation: ParticipationDay[] = [
   { day: 54, date: "2026-07-23", saturday: false, peak: 6.04, mean: 3.17, median: 3.11, source: yt("xxG6yJ8Z0JI"),
     note: { sq: "Ditë me dy aksione: në mëngjes protestuesit përballen me dhunë shtazarake nga policia te Kuvendi — gaz lotsjellës e top uji, mes të ndaluarve edhe aktivisti Edison Lika; në mbrëmje marshimi del po aq i fortë sa i djeshmi, shenjë se dhuna e mëngjesit s'i largoi njerëzit nga shesh, dhe mbyllet pa asnjë incident të ri.", en: "A day with two actions: in the morning protesters face savage police violence outside Parliament — tear gas and water cannon, with activist Edison Lika among those detained; in the evening turnout holds as strong as the day before, a sign the morning's violence didn't keep people away, and the march closes without a repeat incident." },
     noteLink: { href: "https://www.youtube.com/watch?v=FES5uF0hXhs", word: { sq: "Kuvendi", en: "Parliament" } } },
+  { day: 55, date: "2026-07-24", saturday: false, peak: 6.40, mean: 3.34, median: 3.09, source: yt("33F1BJsg-BM"),
+    note: { sq: "Mjekrra i prezanton dokumentin “Besa” organizatës me një urrejtje të nxehtë ndaj së bukurës, si përgjigje ndaj protestave; sheshi e refuzon të njëjtën mbrëmje, duke thënë se besa është thyer prej kohësh dhe dorëheqja mbetet e panegociueshme.", en: "Rama presents the “Besa” document to the organization with a burning hatred of beauty, framed as a response to the protests; the square rejects it that same evening, saying trust was broken long ago and resignation remains non-negotiable." } },
+  { day: 56, date: "2026-07-25", saturday: true, peak: 7.64, mean: 3.35, median: 3.18, source: yt("BCfuFy-sXW0"),
+    note: { sq: "E shtuna sjell rikthimin më të fortë të ditëve të fundit, me pikun 36% më të lartë se një ditë më parë; një kopje e “Besës” shqyhet para Kryeministrisë, ndërsa marshimi ndryshon rrugë drejt Komisariatit Nr. 3, duke kërkuar lirimin e të ndaluarve nga dita e 54-t.", en: "Saturday brings the strongest rebound in days, the peak 36% higher than the day before; a copy of “Besa” is torn up outside the PM's office, while the march changes route to Police Station No. 3, demanding the release of Day 54's detainees." } },
 ];
 
 export type ParticipationEvent = {
