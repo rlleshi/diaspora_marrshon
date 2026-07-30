@@ -22,11 +22,11 @@ import { content, type Locale, type SiteContent } from "@/lib/content";
 import { participation } from "@/data/participation";
 import { PledgeForm } from "@/components/pledge-form";
 import { SectionViewTracker, TrackedLink } from "@/components/analytics-events";
-import routeMapImage from "@/docs/marshimi_i_diaspores_3_pika_1100_1700_1900.png";
+import routeMapImage from "@/docs/marshimi_i_diaspores_bulevard_sheshi.png";
 
 const whatsAppInviteUrl =
   "https://chat.whatsapp.com/L6oe4JyUi8k0h13oJSv7DP?mode=gi_t";
-const googleMapsRouteUrl = "https://maps.app.goo.gl/LrAiX8135ZuHPaSp6";
+const googleMapsRouteUrl = "https://maps.app.goo.gl/wz7z2Xt5HBbYKjUR8";
 
 const practicalAdviceIcons = [
   Droplets,

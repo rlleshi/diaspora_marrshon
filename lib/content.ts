@@ -299,7 +299,9 @@ A) Bashkohem në marshim te:
 [Data: 14 / 15 / 16 gusht]
 [Bulevardi i Ri - 18:30 / Sheshi Skënderbej - 19:00]
 
-B) Nuk marshoj, por mund të ndihmoj me:
+B) Dua të mbaj fjalim tek fonia
+
+C) Nuk marshoj, por mund të ndihmoj me:
 [opsionale]`,
     },
     itinerary: {
@@ -308,7 +310,7 @@ B) Nuk marshoj, por mund të ndihmoj me:
       dateLine: "Data: 14-16 gusht 2026",
       body:
         "Marshimi nis te Bulevardi i Ri në 18:30 dhe bashkohet me protestën kryesore në Sheshin Skënderbej në 19:00.",
-      showMap: false,
+      showMap: true,
       mapAlt:
         "Harta e marshimit nga Bulevardi i Ri drejt Sheshit Skënderbej",
       mapOpenLabel: "Hap hartën e marshimit në madhësi të plotë",
@@ -627,7 +629,9 @@ A) I will join the march at:
 [Date: August 14 / 15 / 16]
 [Bulevardi i Ri - 18:30 / Skanderbeg Square - 19:00]
 
-B) I will not march, but I can help with:
+B) I want to speak at the mic
+
+C) I will not march, but I can help with:
 [optional]`,
     },
     itinerary: {
@@ -636,7 +640,7 @@ B) I will not march, but I can help with:
       dateLine: "Date: August 14-16, 2026",
       body:
         "The march starts at Bulevardi i Ri at 18:30 and joins the main protest at Skanderbeg Square at 19:00.",
-      showMap: false,
+      showMap: true,
       mapAlt:
         "Map of the march from Bulevardi i Ri toward Skanderbeg Square",
       mapOpenLabel: "Open the march map full size",
