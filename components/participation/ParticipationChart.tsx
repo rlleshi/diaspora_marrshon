@@ -57,6 +57,7 @@ const LABEL_Y: Record<number, number> = {
   50: 380,
   54: 470,
   58: 260,
+  60: 130,
 };
 
 const MONTHS_SQ = [

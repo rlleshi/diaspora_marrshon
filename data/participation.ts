@@ -74,6 +74,10 @@
 // panels; mean 135.1, median 122.7), normalized on the same Day-7 reference. The morning
 // action (audited clean peak 239.7, replacing a 286.4 raw peak inflated by a split-screen
 // frame) appears only as a participationEvents marker, not in this day's peak/mean/median.
+// Day 59 computed from the protesta_59 timeline, retained frames only (top-10 peak
+// avg 243.7, mean 149.0, median 147.8), normalized on the same Day-7 reference.
+// Day 60 computed from the protesta_60 timeline, retained frames only (top-10 peak
+// avg 318.2, mean 158.0, median 153.5), normalized on the same Day-7 reference.
 
 export type ParticipationDay = {
   day: number;
@@ -217,6 +221,10 @@ export const participation: ParticipationDay[] = [
   { day: 58, date: "2026-07-27", saturday: false, peak: 5.52, mean: 2.62, median: 2.38, source: yt("YRl9PvsjWFY"),
     note: { sq: "Ditë me dy aksione: në mëngjes protestuesit hedhin vezë drejt Kuvendit gjatë seancës së fundit plenare, policia përgjigjet me spërkatëse piperi dhe shoqërime, e protestuesit marshojnë më pas te Ministria e Brendshme e Komisariati Nr. 1 për lirimin e të ndaluarve; në mbrëmje marshimi kthehet te formati i zakonshëm nga Skënderbeu te Kryeministria dhe mbyllet në orën 22:36 me thirrjen “Nesër më shumë”.", en: "A day with two actions: in the morning protesters throw eggs outside Parliament during the final plenary sitting, police respond with pepper spray and escorts, and protesters then march on to the Interior Ministry and Police Station No. 1 demanding the detainees' release; in the evening the march returns to its usual format from Skanderbeg Square to the PM's office and closes at 22:36 with the call “more tomorrow”." },
     noteLink: { href: "https://www.youtube.com/watch?v=b-4gr2v8E9g", word: { sq: "Kuvendit", en: "Parliament" } } },
+  { day: 59, date: "2026-07-28", saturday: false, peak: 4.72, mean: 2.88, median: 2.86, source: yt("vd-ViLr9I_w"),
+    note: { sq: "E marta kthehet te një aksion i vetëm mbrëmjeje pas ditës së dyfishtë të Kuvendit: në bulevard shtrohet mesazhi gjigant “DORËHEQJE” përballë Kryeministrisë, ndërsa marshimi kalon nga Rruga e Elbasanit e Air Albania drejt Kuvendit dhe mbyllet në 22:33 me thirrjen “Nesër më shumë”.", en: "Tuesday returns to a single evening action after Monday's split Parliament day: a giant “RESIGN” message is laid out on the boulevard facing the PM's office, while the march passes Rruga e Elbasanit and Air Albania toward Parliament and closes at 22:33 with the call “more tomorrow”." } },
+  { day: 60, date: "2026-07-29", saturday: false, peak: 6.16, mean: 3.06, median: 2.97, source: yt("YYLb6Kedcxw"),
+    note: { sq: "Dita e 60-të shënon dy muaj proteste të pandërprera: marshimi arrin te Sheshi Willson me këngë patriotike e mesazhe mbështetjeje për diasporën, ndërsa gazetarja e Channel 4 Lindsey Hilsum e pyet mjekrrën për protestuesit që i dalin çdo natë prej pothuajse 60 ditësh.", en: "Day 60 marks two uninterrupted months of protest: the march reaches Sheshi Willson with patriotic songs and messages of support for the diaspora, while Channel 4's Lindsey Hilsum asks Rama about protesters showing up outside his office almost every night for nearly 60 days." } },
 ];
 
 export type ParticipationEvent = {
@@ -269,6 +277,9 @@ export const participationEvents: ParticipationEvent[] = [
   { day: 58, tier: "primary", icon: "people", mobile: true,
     label: { sq: "Kuvendi + Komisariati Nr. 1", en: "Parliament + Police Station 1" },
     sub: { sq: "vezë e spërkatëse piperi", en: "eggs and pepper spray" } },
+  { day: 60, tier: "primary", icon: "flag", mobile: true,
+    label: { sq: "2 muaj protestë", en: "Two months" },
+    sub: { sq: "29 korrik", en: "29 July" } },
 ];
 
 /** Normalization reference shown in the methodology note. */
