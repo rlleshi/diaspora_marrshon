@@ -1930,14 +1930,289 @@ textarea:focus {
   pointer-events: none;
 }
 
-.pc-events-list,
 .pc-tip-panel {
   display: none;
 }
 
+/* ---- range control + week navigator ---- */
+.pc-nav {
+  margin: 18px 0 0;
+  padding: 14px 16px 12px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--paper);
+}
+
+.pc-nav-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.pc-nav-title,
+.pc-nav-subtitle {
+  color: var(--muted);
+  font-size: 0.72rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.pc-nav-subtitle {
+  display: block;
+  margin-top: 16px;
+}
+
+.pc-nav-readout {
+  color: var(--red-dark);
+  font-size: 0.8rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+.pc-ranges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  margin-top: 9px;
+}
+
+.pc-range {
+  padding: 6px 12px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--white);
+  color: var(--muted);
+  font-size: 0.82rem;
+  font-weight: 650;
+  cursor: pointer;
+  -webkit-appearance: none;
+  appearance: none;
+  transition:
+    background 0.15s ease,
+    color 0.15s ease,
+    border-color 0.15s ease;
+}
+
+.pc-range:hover {
+  border-color: var(--red);
+  color: var(--ink);
+}
+
+.pc-range[aria-pressed="true"] {
+  border-color: var(--red);
+  background: var(--red);
+  color: var(--white);
+}
+
+.pc-weeks {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(0, 1fr);
+  gap: 5px;
+  margin-top: 8px;
+}
+
+.pc-wk {
+  display: grid;
+  gap: 5px;
+  justify-items: center;
+  padding: 7px 2px 5px;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  background: transparent;
+  cursor: pointer;
+  -webkit-appearance: none;
+  appearance: none;
+  transition:
+    background 0.15s ease,
+    border-color 0.15s ease;
+}
+
+.pc-wk:hover {
+  background: rgba(185, 28, 28, 0.06);
+}
+
+.pc-wk[aria-pressed="true"] {
+  border-color: var(--red);
+  background: rgba(185, 28, 28, 0.09);
+}
+
+.pc-wk-bar {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 54px;
+  border-bottom: 1px solid var(--line);
+}
+
+/* the bar reaches the week's biggest day; the solid part is its average day */
+.pc-wk-peak,
+.pc-wk-fill {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  border-radius: 2px 2px 0 0;
+}
+
+.pc-wk-peak {
+  background: rgba(185, 28, 28, 0.28);
+}
+
+.pc-wk-fill {
+  background: var(--red);
+}
+
+/* keeps the average readable in weeks where it sits so close to the peak that
+   the band between them is under a pixel */
+.pc-wk-avg {
+  position: absolute;
+  right: 0;
+  left: 0;
+  height: 0;
+  border-top: 2px dashed var(--red-dark);
+}
+
+.pc-wk-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-top: 9px;
+  color: var(--muted);
+  font-size: 0.74rem;
+  font-weight: 650;
+}
+
+.pc-wk-legend span {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.pc-wk-legend span::before {
+  content: "";
+  width: 14px;
+  height: 12px;
+  border-radius: 2px;
+}
+
+.pc-wk-legend-peak::before {
+  background: rgba(185, 28, 28, 0.28);
+}
+
+.pc-wk-legend-avg::before {
+  background: var(--red);
+}
+
+.pc-wk-n {
+  color: var(--muted);
+  font-size: 0.72rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+.pc-wk[aria-pressed="true"] .pc-wk-n {
+  color: var(--red-dark);
+}
+
+.pc-nav-hint {
+  margin: 10px 0 0;
+  color: var(--muted);
+  font-size: 0.76rem;
+  line-height: 1.45;
+}
+
+/* ---- key moments rail (labels live here, not floating over the plot) ---- */
+.pc-rail-title {
+  margin: 26px 0 0;
+  color: var(--muted);
+  font-size: 0.72rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.pc-events-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 8px;
+  margin: 10px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.pc-events-list li {
+  margin: 0;
+}
+
+.pc-ev-btn {
+  display: grid;
+  grid-template-columns: auto 18px minmax(0, 1fr);
+  align-items: center;
+  gap: 11px;
+  width: 100%;
+  height: 100%;
+  padding: 10px 12px;
+  border: 1px solid var(--line);
+  border-left: 3px solid var(--red);
+  border-radius: 8px;
+  background: var(--paper);
+  color: inherit;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.pc-ev-btn:hover {
+  border-color: var(--red);
+}
+
+.pc-ev-btn.is-active {
+  border-color: var(--red);
+  background: rgba(185, 28, 28, 0.07);
+  box-shadow: inset 0 0 0 1px var(--red);
+}
+
+.pc-ev-day {
+  color: var(--red);
+  font-size: 0.74rem;
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.pc-ev-btn svg {
+  color: var(--red);
+}
+
+.pc-ev-text {
+  display: grid;
+  min-width: 0;
+}
+
+.pc-ev-text strong {
+  color: var(--ink);
+  font-size: 0.88rem;
+  line-height: 1.2;
+}
+
+.pc-ev-text span {
+  color: var(--muted);
+  font-size: 0.78rem;
+}
+
 @media (max-width: 720px) {
-  /* keep only the peak number on the chart; everything else goes to the list */
+  /* a phone-width plot has no room for chip text at any zoom level: keep the peak
+     number and let the rail below carry every other moment's wording */
   .pc-chip:not(.pc-chip--peak) {
+    display: none;
+  }
+  .pc-event:not(.pc-event--peak) .pc-lead {
     display: none;
   }
   /* short mobile chart clips the top-centered peak number; top-anchor it so the
@@ -1948,7 +2223,8 @@ textarea:focus {
   .pc-peak-num {
     font-size: 2.2rem;
   }
-  .pc-event:not(.pc-event--peak) .pc-lead {
+  /* thin the moment dots on a narrow plot; every one still has a rail entry */
+  .pc-event--desk {
     display: none;
   }
   .pc-legend {
@@ -1986,60 +2262,19 @@ textarea:focus {
   }
 
   .pc-events-list {
-    display: grid;
-    gap: 8px;
-    margin: 16px 0 0;
-    padding: 0;
-    list-style: none;
+    grid-template-columns: minmax(0, 1fr);
   }
-  .pc-events-list li {
-    margin: 0;
+}
+
+@media (max-width: 620px) {
+  /* nine-plus week bars get thin fast; let the strip scroll instead of crushing */
+  .pc-weeks {
+    grid-auto-columns: minmax(30px, 1fr);
+    overflow-x: auto;
+    padding-bottom: 4px;
   }
-  .pc-ev-btn {
-    display: grid;
-    grid-template-columns: auto 18px minmax(0, 1fr);
-    align-items: center;
-    gap: 11px;
-    width: 100%;
-    padding: 10px 12px;
-    border: 1px solid var(--line);
-    border-left: 3px solid var(--red);
-    border-radius: 8px;
-    background: #fffaf2;
-    color: inherit;
-    font: inherit;
-    text-align: left;
-    cursor: pointer;
-    -webkit-appearance: none;
-    appearance: none;
-  }
-  .pc-ev-btn.is-active {
-    border-color: var(--red);
-    background: rgba(185, 28, 28, 0.07);
-    box-shadow: inset 0 0 0 1px var(--red);
-  }
-  .pc-ev-day {
-    color: var(--red);
-    font-size: 0.74rem;
-    font-weight: 800;
-    font-variant-numeric: tabular-nums;
-    white-space: nowrap;
-  }
-  .pc-ev-btn svg {
-    color: var(--red);
-  }
-  .pc-ev-text {
-    display: grid;
-    min-width: 0;
-  }
-  .pc-ev-text strong {
-    color: var(--ink);
-    font-size: 0.88rem;
-    line-height: 1.2;
-  }
-  .pc-ev-text span {
-    color: var(--muted);
-    font-size: 0.78rem;
+  .pc-nav {
+    padding: 12px 12px 10px;
   }
 }
 

@@ -20,19 +20,15 @@ import {
   type ParticipationDay,
   type ParticipationEvent,
 } from "@/data/participation";
-import { buildGeometry } from "@/components/participation/geometry";
+import { buildGeometry, niceMax, VIEW } from "@/components/participation/geometry";
 
 type Locale = "sq" | "en";
 
+const FIRST_DAY = participation[0].day;
 const LAST_DAY = participation[participation.length - 1].day;
-// Every 5th day plus the latest day; skip a multiple that would crowd the last label.
-const X_TICKS = [
-  1,
-  ...Array.from({ length: Math.floor(LAST_DAY / 5) }, (_, i) => (i + 1) * 5).filter(
-    (day) => day <= LAST_DAY - 3,
-  ),
-  LAST_DAY,
-];
+const PEAK_DAY = 21;
+
+const BY_DAY = new Map(participation.map((d) => [d.day, d]));
 
 const ICONS: Record<ParticipationEvent["icon"], LucideIcon> = {
   peak: Crown,
@@ -43,23 +39,172 @@ const ICONS: Record<ParticipationEvent["icon"], LucideIcon> = {
   flag: Flag,
 };
 
-// Where each event's label sits in viewBox-Y (hand-placed, editorial feel).
-const LABEL_Y: Record<number, number> = {
-  7: 250,
-  9: 320,
-  15: 360,
-  21: 58,
-  25: 430,
-  30: 410,
-  31: 300,
-  33: 200,
-  35: 110,
-  50: 380,
-  54: 470,
-  58: 320,
-  60: 190,
-  63: 60,
+/* ---- windows ---- */
+
+type Range = { key: string; from: number; to: number };
+
+const FULL: Range = { key: "all", from: FIRST_DAY, to: LAST_DAY };
+
+/** Two points is the minimum a line can be drawn through. */
+function clampRange(from: number, to: number, key: string): Range {
+  const hi = Math.min(LAST_DAY, Math.max(FIRST_DAY + 1, to));
+  const lo = Math.max(FIRST_DAY, Math.min(from, hi - 1));
+  return { key, from: lo, to: hi };
+}
+
+const lastN = (n: number): Range => clampRange(LAST_DAY - n + 1, LAST_DAY, String(n));
+
+const WEEK_LENGTH = 7;
+
+type Week = {
+  n: number;
+  from: number;
+  to: number;
+  /** highest daily peak in the week. */
+  peak: number;
+  /** average of the week's daily peaks. */
+  avg: number;
 };
+
+const WEEKS: Week[] = Array.from(
+  { length: Math.ceil(participation.length / WEEK_LENGTH) },
+  (_, i) => {
+    const days = participation.slice(i * WEEK_LENGTH, (i + 1) * WEEK_LENGTH);
+    return {
+      n: i + 1,
+      from: days[0].day,
+      to: days[days.length - 1].day,
+      peak: Math.max(...days.map((d) => d.peak)),
+      avg: days.reduce((sum, d) => sum + d.peak, 0) / days.length,
+    };
+  },
+);
+
+/**
+ * The navigator strip spans a 24× dynamic range (a 100-point Saturday next to
+ * 4-point weeknights), so its bars are square-root scaled — linear heights would
+ * collapse every week after the third into an unreadable stub. It is a navigator,
+ * not a reading surface: the exact figures live in the chart above and in each
+ * bar's accessible label.
+ */
+const barPct = (value: number) =>
+  Math.max(3, Math.sqrt(Math.max(0, value) / VIEW.maxY) * 100);
+
+/* ---- in-plot annotations ---- */
+
+const CHIP_SLOT = 200; // horizontal room one chip needs, in viewBox units
+const CHIP_HALF_H = 17; // half the vertical footprint of a two-line chip
+const PEAK_HALF_H = 58; // the peak chip is a good deal taller
+const CHIP_CLEAR = 14; // vertical breathing room demanded between two chips
+const CHIP_STEP = 50; // how far a colliding chip is nudged upward (> the clearance)
+
+/**
+ * Rough painted width of a chip, derived from its own text. Deliberately an
+ * estimate rather than a measurement: it has to produce identical numbers on the
+ * server and on the client, so it can never touch layout.
+ */
+function chipWidth(ev: ParticipationEvent, locale: Locale): number {
+  const floor = ev.tier === "peak" ? 150 : 70;
+  return Math.max(
+    ev.label[locale].length * 7.6,
+    ev.sub[locale].length * 6.2,
+    floor,
+  );
+}
+
+type PlacedChip = {
+  ev: ParticipationEvent;
+  x: number;
+  y: number;
+  place: "start" | "center" | "end";
+  /** painted extents, used for collision and for the leader line's endpoint. */
+  left: number;
+  right: number;
+  halfH: number;
+};
+
+/**
+ * Lay the surviving chips out left to right, nudging each one up until it clears
+ * everything already placed. Replaces the hand-tuned label table: with only a
+ * handful of chips in any view there is nothing left to tune by hand.
+ */
+function placeChips(
+  list: ParticipationEvent[],
+  locale: Locale,
+  xOf: (day: number) => number,
+  yOf: (value: number) => number,
+  peakChipY: number,
+  viewWidth: number,
+): PlacedChip[] {
+  const placed: PlacedChip[] = [];
+  const ordered = [...list].sort((a, b) =>
+    a.tier === "peak" ? -1 : b.tier === "peak" ? 1 : a.day - b.day,
+  );
+
+  for (const ev of ordered) {
+    const x = xOf(ev.day);
+    const halfW = chipWidth(ev, locale) / 2;
+    const place =
+      x + halfW > viewWidth - 8 ? "end" : x - halfW < 8 ? "start" : "center";
+    // mirror the CSS transforms so overlap is tested against what actually paints
+    const left =
+      place === "end"
+        ? x - halfW * 1.88
+        : place === "start"
+          ? x - halfW * 0.12
+          : x - halfW;
+    const right = left + halfW * 2;
+    const isPeak = ev.tier === "peak";
+    const halfH = isPeak ? PEAK_HALF_H : CHIP_HALF_H;
+
+    let y = isPeak ? peakChipY : yOf(BY_DAY.get(ev.day)?.peak ?? 0) - 46;
+    if (!isPeak) {
+      for (let i = 0; i < 8; i++) {
+        const hit = placed.some(
+          (p) =>
+            right > p.left &&
+            left < p.right &&
+            Math.abs(p.y - y) < p.halfH + halfH + CHIP_CLEAR,
+        );
+        if (!hit) break;
+        y -= CHIP_STEP;
+      }
+      y = Math.max(26, y);
+    }
+    placed.push({ ev, x, y, place, left, right, halfH });
+  }
+  return placed;
+}
+
+/** Sparse enough to stay legible at any window width. */
+function xTicks(from: number, to: number): number[] {
+  const span = to - from;
+  const step = span <= 10 ? 1 : span <= 24 ? 3 : 5;
+  const ticks = [from];
+  for (let d = Math.ceil((from + 1) / step) * step; d < to; d += step) {
+    if (d - from >= step * 0.5 && to - d >= step * 0.5) ticks.push(d);
+  }
+  ticks.push(to);
+  return ticks;
+}
+
+/** A calendar month is only worth offering as a range once it has some days in it. */
+const MIN_MONTH_DAYS = 4;
+
+type Month = { key: string; from: number; to: number; month: number; year: number };
+
+const CALENDAR_MONTHS: Month[] = participation
+  .reduce<Month[]>((out, d) => {
+    const [year, month] = d.date.split("-").map(Number);
+    const last = out[out.length - 1];
+    if (last && last.year === year && last.month === month) {
+      last.to = d.day;
+    } else {
+      out.push({ key: `m${year}-${month}`, from: d.day, to: d.day, month, year });
+    }
+    return out;
+  }, [])
+  .filter((mo) => mo.to - mo.from + 1 >= MIN_MONTH_DAYS);
 
 const MONTHS_SQ = [
   "janar", "shkurt", "mars", "prill", "maj", "qershor",
@@ -74,6 +219,12 @@ function formatDate(iso: string, locale: Locale): string {
   const [, m, d] = iso.split("-").map(Number);
   const months = locale === "sq" ? MONTHS_SQ : MONTHS_EN;
   return `${d} ${months[m - 1]}`;
+}
+
+/** Albanian month names are lowercase in prose but title-case on a button. */
+function monthLabel(mo: Month, locale: Locale): string {
+  const name = (locale === "sq" ? MONTHS_SQ : MONTHS_EN)[mo.month - 1];
+  return locale === "sq" ? name.charAt(0).toUpperCase() + name.slice(1) : name;
 }
 
 const DRAW_MS = 1800;
@@ -93,6 +244,20 @@ export type ChartLabels = {
   replay: string;
   ariaSummary: string;
   saturday: string;
+  /** range control */
+  rangeLabel: string; // "Periudha"
+  rangeAll: string; // "Të gjitha ditët"
+  rangeLast30: string; // "30 ditët e fundit"
+  rangeLast14: string; // "14 ditët e fundit"
+  /** month + week navigators */
+  monthsTitle: string; // "Sipas muajit"
+  weeksTitle: string; // "Sipas javës"
+  weeksHint: string; // one line explaining the strip
+  weekShort: string; // "Java"
+  weekPeakLabel: string; // "Piku i javës"
+  weekAvgLabel: string; // "Mesatarja e javës"
+  /** key-moments rail */
+  momentsTitle: string; // "Momentet kyçe"
 };
 
 export function ParticipationChart({
@@ -102,18 +267,39 @@ export function ParticipationChart({
   locale: Locale;
   labels: ChartLabels;
 }) {
-  const geo = useMemo(() => buildGeometry(participation), []);
   const rootRef = useRef<HTMLDivElement | null>(null);
   const panelRef = useRef<HTMLDivElement | null>(null);
-  const scrollToPanel = useRef(false);
+  const scrollToDetail = useRef(false);
   const [armed, setArmed] = useState(false);
   const [revealed, setRevealed] = useState(false);
+  const [range, setRange] = useState<Range>(FULL);
   // Hover previews a day; clicking pins it so the tooltip stays put (and its
   // link stays clickable) while the pointer travels across neighboring days.
   const [hovered, setHovered] = useState<number | null>(null);
   const [pinned, setPinned] = useState<number | null>(null);
   const hoverTimer = useRef<number | null>(null);
   const active = pinned ?? hovered;
+
+  const days = useMemo(
+    () => participation.filter((d) => d.day >= range.from && d.day <= range.to),
+    [range],
+  );
+
+  // The full range stays pinned to 100 so "100 = the biggest day" never shifts
+  // under the reader; a zoomed window rescales to its own tallest day.
+  const maxY = useMemo(() => {
+    if (range.key === "all") return VIEW.maxY;
+    const windowPeak = Math.max(...days.map((d) => d.peak));
+    return windowPeak >= VIEW.maxY ? VIEW.maxY : niceMax(windowPeak);
+  }, [days, range.key]);
+
+  const geo = useMemo(() => buildGeometry(days, maxY), [days, maxY]);
+  const ticks = useMemo(() => xTicks(range.from, range.to), [range]);
+  const events = useMemo(
+    () => participationEvents.filter((ev) => ev.day >= range.from && ev.day <= range.to),
+    [range],
+  );
+  const peakVisible = range.from <= PEAK_DAY && PEAK_DAY <= range.to;
 
   function cancelHover() {
     if (hoverTimer.current != null) {
@@ -135,14 +321,30 @@ export function ParticipationChart({
 
   useEffect(() => cancelHover, []);
 
-  // The events list sits below the detail panel, so picking a day from it
-  // updates content that may be off-screen; bring the panel into view.
+  function selectRange(next: Range) {
+    setRange(next);
+    cancelHover();
+    setHovered(null);
+    setPinned((day) => (day != null && day >= next.from && day <= next.to ? day : null));
+  }
+
+  /** Open a day from the moments rail, widening the window if it fell outside. */
+  function showDay(day: number) {
+    scrollToDetail.current = pinned !== day;
+    if (day < range.from || day > range.to) setRange(FULL);
+    cancelHover();
+    setHovered(null);
+    setPinned((current) => (current === day ? null : day));
+  }
+
+  // Picking a day from the rail updates content that may be off-screen: the
+  // detail card on small screens, the in-chart tooltip everywhere else.
   useEffect(() => {
-    if (!scrollToPanel.current) return;
-    scrollToPanel.current = false;
-    if (pinned != null) {
-      panelRef.current?.scrollIntoView({ behavior: "smooth", block: "center" });
-    }
+    if (!scrollToDetail.current) return;
+    scrollToDetail.current = false;
+    if (pinned == null) return;
+    const target = panelRef.current?.offsetParent ? panelRef.current : rootRef.current;
+    target?.scrollIntoView({ behavior: "smooth", block: "center" });
   }, [pinned]);
 
   // Arm before paint so SSR/no-JS shows the finished chart, JS animates it.
@@ -188,11 +390,39 @@ export function ParticipationChart({
     .filter(Boolean)
     .join(" ");
 
-  const { view, plot, points, gridLines, xOf, yOf, fracOf } = geo;
-  const peakDelay = fracOf(21) * DRAW_MS + 220;
+  const { view, plot, points, gridLines, xOf, yOf, fracOf, slotWidth } = geo;
+  const peakDelay = (peakVisible ? fracOf(PEAK_DAY) : 0.5) * DRAW_MS + 220;
+  // Vertical centre of the peak chip; its leader line stops just under the text.
+  const peakChipY = yOf(VIEW.maxY) - 74;
 
-  const activeDay = active != null ? participation[active - 1] : null;
-  const activePt = active != null ? points[active - 1] : null;
+  // Which moments earn a label inside the plot. Across the full range that is only
+  // the days standing clear of the baseline crowd — the rest have no vertical room
+  // and live in the rail below. Zoomed in, the whole window qualifies, as long as
+  // there are at least as many 200-unit slots as there are moments to fill them.
+  const chipSlots = Math.max(1, Math.floor(plot.width / CHIP_SLOT));
+  let chipCandidates =
+    range.key === "all"
+      ? events.filter(
+          (ev) =>
+            ev.tier === "peak" ||
+            // secondary moments are footnotes; they never earn plot space here
+            (ev.tier !== "secondary" && (BY_DAY.get(ev.day)?.peak ?? 0) >= maxY * 0.3),
+        )
+      : events;
+  if (chipCandidates.length > chipSlots) {
+    const keep = new Set(
+      [...chipCandidates]
+        .sort((a, b) => (BY_DAY.get(b.day)?.peak ?? 0) - (BY_DAY.get(a.day)?.peak ?? 0))
+        .slice(0, chipSlots)
+        .map((ev) => ev.day),
+    );
+    chipCandidates = chipCandidates.filter((ev) => keep.has(ev.day));
+  }
+  const chips = placeChips(chipCandidates, locale, xOf, yOf, peakChipY, view.width);
+  const chipByDay = new Map(chips.map((c) => [c.ev.day, c]));
+
+  const activeDay = active != null ? BY_DAY.get(active) ?? null : null;
+  const activePt = active != null ? points.find((p) => p.day === active) ?? null : null;
 
   return (
     <>
@@ -272,26 +502,23 @@ export function ParticipationChart({
         />
 
         {/* Saturday bands */}
-        {participation
+        {days
           .filter((d) => d.saturday)
-          .map((d) => {
-            const half = plot.width / (participation.length - 1) / 2;
-            return (
-              <rect
-                key={`sat-${d.day}`}
-                className="pc-band"
-                x={xOf(d.day) - half}
-                y={plot.top}
-                width={half * 2}
-                height={plot.bottom - plot.top}
-                fill="#b7791f"
-                opacity="0.08"
-              />
-            );
-          })}
+          .map((d) => (
+            <rect
+              key={`sat-${d.day}`}
+              className="pc-band"
+              x={xOf(d.day) - slotWidth / 2}
+              y={plot.top}
+              width={slotWidth}
+              height={plot.bottom - plot.top}
+              fill="#b7791f"
+              opacity="0.08"
+            />
+          ))}
 
         {/* reference hairlines + y labels */}
-        {gridLines.map((g) => (
+        {gridLines.map((g, i) => (
           <g key={`grid-${g.value}`}>
             <line
               x1={plot.left}
@@ -303,18 +530,20 @@ export function ParticipationChart({
               opacity={g.value === 0 ? 0.9 : 0.5}
             />
             <text
-              className={g.value === 100 ? "pc-ylabel pc-ylabel--top" : "pc-ylabel"}
+              className={
+                i === gridLines.length - 1 ? "pc-ylabel pc-ylabel--top" : "pc-ylabel"
+              }
               x={plot.left + 4}
               y={g.y - 6}
               fill="#8a8378"
             >
-              {g.value}
+              {g.label}
             </text>
           </g>
         ))}
 
         {/* x axis labels */}
-        {X_TICKS.map((day) => (
+        {ticks.map((day) => (
           <text
             key={`x-${day}`}
             className="pc-xlabel"
@@ -355,48 +584,57 @@ export function ParticipationChart({
         />
 
         {/* peak apex glow + pulse */}
-        <circle
-          className="pc-peak-glow"
-          cx={xOf(21)}
-          cy={yOf(100)}
-          r="46"
-          fill="url(#pc-peak-glow)"
-        />
+        {peakVisible && (
+          <circle
+            className="pc-peak-glow"
+            cx={xOf(PEAK_DAY)}
+            cy={yOf(VIEW.maxY)}
+            r="46"
+            fill="url(#pc-peak-glow)"
+          />
+        )}
 
-        {/* event leaders + markers */}
-        {participationEvents.map((ev) => {
+        {/* moment markers: a dot on the line, plus a leader for whatever earned a
+            chip in this view; unlabelled moments are named in the rail below */}
+        {events.map((ev) => {
           const px = xOf(ev.day);
-          const py = yOf(participation[ev.day - 1].peak);
-          const ly = LABEL_Y[ev.day] ?? py - 60;
+          const py = yOf((BY_DAY.get(ev.day) as ParticipationDay).peak);
           const isPeak = ev.tier === "peak";
-          // center-placed chips sit on top of the leader line, so stop the line
-          // just below the label text instead of running it through the words.
-          const frac = fracOf(ev.day);
-          const centered = !isPeak && frac >= 0.12 && frac <= 0.85;
-          const leadEnd = isPeak ? ly + 58 : centered ? ly + 22 : ly;
+          const chip = chipByDay.get(ev.day);
+          // stop the line just under the chip's text rather than through it
+          const leadEnd = chip ? chip.y + chip.halfH + (isPeak ? 0 : 6) : null;
           return (
             <g
               key={`lead-${ev.day}`}
-              className={`pc-event pc-event--${ev.tier} ${ev.mobile ? "" : "pc-event--desk"}`}
+              className={[
+                "pc-event",
+                `pc-event--${ev.tier}`,
+                ev.mobile ? "" : "pc-event--desk",
+                pinned === ev.day ? "is-active" : "",
+              ]
+                .filter(Boolean)
+                .join(" ")}
               style={{ "--delay": `${fracOf(ev.day) * DRAW_MS}ms` } as CSSProperties}
             >
-              <line
-                className="pc-lead"
-                x1={px}
-                y1={py}
-                x2={px}
-                y2={leadEnd}
-                stroke={isPeak ? "#7f1111" : "#8a8378"}
-                strokeWidth={isPeak ? 1.6 : 1}
-                strokeDasharray={isPeak ? "0" : "3 3"}
-              />
+              {leadEnd != null && leadEnd < py - 4 && (
+                <line
+                  className="pc-lead"
+                  x1={px}
+                  y1={py}
+                  x2={px}
+                  y2={leadEnd}
+                  stroke={isPeak ? "#7f1111" : "#8a8378"}
+                  strokeWidth={isPeak ? 1.6 : 1}
+                  strokeDasharray={isPeak ? "0" : "3 3"}
+                />
+              )}
               <circle
                 cx={px}
                 cy={py}
-                r={isPeak ? 6 : 4.5}
+                r={isPeak ? 6 : 4}
                 fill={ev.icon === "rain" ? "#0f766e" : "#b91c1c"}
                 stroke="#fffaf2"
-                strokeWidth="2.4"
+                strokeWidth="2.2"
               />
             </g>
           );
@@ -426,54 +664,49 @@ export function ParticipationChart({
         )}
 
         {/* invisible per-day hover/focus targets */}
-        {points.map((p) => {
-          const half = plot.width / (participation.length - 1) / 2;
-          return (
-            <rect
-              key={`hit-${p.day}`}
-              className="pc-hit"
-              x={p.x - half}
-              y={plot.top}
-              width={half * 2}
-              height={plot.bottom - plot.top}
-              fill="transparent"
-              tabIndex={0}
-              role="button"
-              aria-label={`${labels.axisDay} ${p.day}, ${formatDate(p.d.date, locale)}: ${labels.tooltipPeak} ${p.d.peak.toFixed(0)}`}
-              aria-pressed={pinned === p.day}
-              onMouseEnter={() => {
-                if (pinned == null) hoverDay(p.day);
-              }}
-              onFocus={() => {
-                cancelHover();
-                setHovered(p.day);
-              }}
-              onBlur={() => setHovered(null)}
-              onClick={() => {
-                cancelHover();
-                setHovered(p.day);
-                setPinned(pinned === p.day ? null : p.day);
-              }}
-            />
-          );
-        })}
+        {points.map((p) => (
+          <rect
+            key={`hit-${p.day}`}
+            className="pc-hit"
+            x={p.x - slotWidth / 2}
+            y={plot.top}
+            width={slotWidth}
+            height={plot.bottom - plot.top}
+            fill="transparent"
+            tabIndex={0}
+            role="button"
+            aria-label={`${labels.axisDay} ${p.day}, ${formatDate(p.d.date, locale)}: ${labels.tooltipPeak} ${p.d.peak.toFixed(0)}`}
+            aria-pressed={pinned === p.day}
+            onMouseEnter={() => {
+              if (pinned == null) hoverDay(p.day);
+            }}
+            onFocus={() => {
+              cancelHover();
+              setHovered(p.day);
+            }}
+            onBlur={() => setHovered(null)}
+            onClick={() => {
+              cancelHover();
+              setHovered(p.day);
+              setPinned(pinned === p.day ? null : p.day);
+            }}
+          />
+        ))}
       </svg>
 
-      {/* ---- HTML overlay: legend, peak number, event chips, tooltip ---- */}
+      {/* ---- HTML overlay: legend, peak number, tooltip ---- */}
       <div className="pc-legend" aria-hidden="true">
         <span className="pc-legend-peak">{labels.legendPeak}</span>
         <span className="pc-legend-mean">{labels.legendMean}</span>
       </div>
 
-      {participationEvents.map((ev) => {
+      {/* auto-placed annotations for the moments that have room in this view */}
+      {chips.map(({ ev, x, y, place }) => {
         const Icon = ICONS[ev.icon];
-        const frac = fracOf(ev.day);
-        const ly = LABEL_Y[ev.day] ?? yOf(participation[ev.day - 1].peak) - 60;
-        const place = frac > 0.85 ? "end" : frac < 0.12 ? "start" : "center";
         const style = {
-          left: `${(xOf(ev.day) / view.width) * 100}%`,
-          top: `${(ly / view.height) * 100}%`,
-          "--delay": `${frac * DRAW_MS}ms`,
+          left: `${(x / view.width) * 100}%`,
+          top: `${(y / view.height) * 100}%`,
+          "--delay": `${fracOf(ev.day) * DRAW_MS}ms`,
         } as CSSProperties;
 
         if (ev.tier === "peak") {
@@ -495,7 +728,7 @@ export function ParticipationChart({
         return (
           <div
             key={`chip-${ev.day}`}
-            className={`pc-chip pc-chip--${ev.tier} pc-place-${place} ${ev.mobile ? "" : "pc-chip--desk"}`}
+            className={`pc-chip pc-chip--${ev.tier} pc-place-${place}`}
             style={style}
           >
             <span className="pc-chip-label">
@@ -542,7 +775,7 @@ export function ParticipationChart({
         {labels.replay}
       </button>
 
-      {/* screen-reader data table */}
+      {/* screen-reader data table — always the full series, never the window */}
       <table className="pc-sr-only">
         <caption>{labels.ariaSummary}</caption>
         <thead>
@@ -578,7 +811,106 @@ export function ParticipationChart({
       </div>
     )}
 
-    {/* compact event list, shown on small screens in place of floating chips; tap to open a day */}
+    {/* ---- range control + week navigator ---- */}
+    <div className="pc-nav">
+      <div className="pc-nav-head">
+        <span className="pc-nav-title">{labels.rangeLabel}</span>
+        <span className="pc-nav-readout">
+          {labels.axisDay} {range.from}–{range.to}
+        </span>
+      </div>
+
+      <div className="pc-ranges" role="group" aria-label={labels.rangeLabel}>
+        <button
+          type="button"
+          className="pc-range"
+          aria-pressed={range.key === "all"}
+          onClick={() => selectRange(FULL)}
+        >
+          {labels.rangeAll} ({participation.length})
+        </button>
+        {participation.length > 30 && (
+          <button
+            type="button"
+            className="pc-range"
+            aria-pressed={range.key === "30"}
+            onClick={() => selectRange(lastN(30))}
+          >
+            {labels.rangeLast30}
+          </button>
+        )}
+        {participation.length > 14 && (
+          <button
+            type="button"
+            className="pc-range"
+            aria-pressed={range.key === "14"}
+            onClick={() => selectRange(lastN(14))}
+          >
+            {labels.rangeLast14}
+          </button>
+        )}
+      </div>
+
+      {CALENDAR_MONTHS.length > 1 && (
+        <>
+          <span className="pc-nav-subtitle">{labels.monthsTitle}</span>
+          <div className="pc-ranges" role="group" aria-label={labels.monthsTitle}>
+            {CALENDAR_MONTHS.map((mo) => (
+              <button
+                key={mo.key}
+                type="button"
+                className="pc-range"
+                aria-pressed={range.key === mo.key}
+                onClick={() =>
+                  selectRange(
+                    range.key === mo.key ? FULL : clampRange(mo.from, mo.to, mo.key),
+                  )
+                }
+              >
+                {monthLabel(mo, locale)}
+              </button>
+            ))}
+          </div>
+        </>
+      )}
+
+      <span className="pc-nav-subtitle">{labels.weeksTitle}</span>
+      <div className="pc-weeks" role="group" aria-label={labels.weeksTitle}>
+        {WEEKS.map((w) => (
+          <button
+            key={`wk-${w.n}`}
+            type="button"
+            className="pc-wk"
+            aria-pressed={range.key === `w${w.n}`}
+            aria-label={`${labels.weekShort} ${w.n}, ${labels.axisDay} ${w.from}–${w.to}, ${labels.weekPeakLabel} ${w.peak.toFixed(0)}, ${labels.weekAvgLabel} ${w.avg.toFixed(0)}`}
+            onClick={() =>
+              selectRange(
+                range.key === `w${w.n}`
+                  ? FULL
+                  : clampRange(w.from, w.to, `w${w.n}`),
+              )
+            }
+          >
+            <span className="pc-wk-bar" aria-hidden="true">
+              <span className="pc-wk-peak" style={{ height: `${barPct(w.peak)}%` }} />
+              <span className="pc-wk-fill" style={{ height: `${barPct(w.avg)}%` }} />
+              <span className="pc-wk-avg" style={{ bottom: `${barPct(w.avg)}%` }} />
+            </span>
+            <span className="pc-wk-n" aria-hidden="true">
+              {w.n}
+            </span>
+          </button>
+        ))}
+      </div>
+      <div className="pc-wk-legend" aria-hidden="true">
+        <span className="pc-wk-legend-peak">{labels.weekPeakLabel}</span>
+        <span className="pc-wk-legend-avg">{labels.weekAvgLabel}</span>
+      </div>
+      <p className="pc-nav-hint">{labels.weeksHint}</p>
+    </div>
+
+    {/* ---- key moments: labels live here instead of floating over the plot ---- */}
+    <h2 className="pc-rail-title">{labels.momentsTitle}</h2>
     <ul className="pc-events-list">
       {participationEvents.map((ev) => {
         const Icon = ICONS[ev.icon];
@@ -587,10 +919,7 @@ export function ParticipationChart({
             <button
               type="button"
               className={`pc-ev-btn${pinned === ev.day ? " is-active" : ""}`}
-              onClick={() => {
-                scrollToPanel.current = pinned !== ev.day;
-                setPinned(pinned === ev.day ? null : ev.day);
-              }}
+              onClick={() => showDay(ev.day)}
             >
               <span className="pc-ev-day">
                 {labels.axisDay} {ev.day}

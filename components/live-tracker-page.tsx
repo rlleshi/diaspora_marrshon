@@ -37,7 +37,7 @@ const COPY: Record<
     },
     methodology:
       "Indeks i pjesëmarrjes së vlerësuar, i normalizuar: 100 = dita më e madhe (20 qershor). Tubimet më të mëdha (6 qershor, 20 qershor dhe 4 korrik) janë ankoruar me vlerësime gjeometrike në terren; ditët e tjera pasqyrojnë intensitetin e dukshëm në kamerat e News24, të analizuar me një model numërimi turme.",
-    hint: "Prek ose lëviz mbi çdo ditë për detaje; kliko një ditë për ta fiksuar.",
+    hint: "Prek ose lëviz mbi çdo ditë për detaje; kliko një ditë për ta fiksuar. Zgjidh një periudhë ose një javë më poshtë për ta parë nga afër.",
     disclaimer:
       "Shënim: shifrat nuk mund të jenë plotësisht të sakta, për shkak të kufizimeve të kamerave gjatë transmetimit si dhe saktësisë së modeleve të inteligjencës artificiale.",
     labels: {
@@ -56,6 +56,18 @@ const COPY: Record<
       saturday: "e shtunë",
       ariaSummary:
         "Indeksi i pjesëmarrjes në protesta përgjatë 63 ditëve, me kulmin në ditën e 21-të (20 qershor 2026).",
+      rangeLabel: "Periudha",
+      rangeAll: "Të gjitha ditët",
+      rangeLast30: "30 ditët e fundit",
+      rangeLast14: "14 ditët e fundit",
+      monthsTitle: "Sipas muajit",
+      weeksTitle: "Sipas javës",
+      weeksHint:
+        "Kliko një javë për ta hapur ditë pas dite; boshti rillogaritet sipas periudhës së zgjedhur.",
+      weekShort: "Java",
+      weekPeakLabel: "Piku i javës",
+      weekAvgLabel: "Mesatarja e javës",
+      momentsTitle: "Momentet kyçe",
     },
   },
   en: {
@@ -73,7 +85,7 @@ const COPY: Record<
     },
     methodology:
       "An estimated participation index, normalized so 100 = the largest day (20 June). The largest gatherings (6 June, 20 June and 4 July) are anchored to on-the-ground geometry estimates; other days reflect camera-visible intensity from News24 livestreams, analyzed with a crowd-counting model.",
-    hint: "Tap or hover any day for detail; click a day to pin it.",
+    hint: "Tap or hover any day for detail; click a day to pin it. Pick a range or a week below to zoom in.",
     disclaimer:
       "Note: the numbers cannot be fully accurate due to camera limitations during the livestream and the accuracy of machine-learning models.",
     labels: {
@@ -92,6 +104,18 @@ const COPY: Record<
       saturday: "Saturday",
       ariaSummary:
         "Protest participation index across 63 days, peaking on day 21 (20 June 2026).",
+      rangeLabel: "Range",
+      rangeAll: "All days",
+      rangeLast30: "Last 30 days",
+      rangeLast14: "Last 14 days",
+      monthsTitle: "By month",
+      weeksTitle: "By week",
+      weeksHint:
+        "Click a week to open it day by day; the axis rescales to the selected range.",
+      weekShort: "Week",
+      weekPeakLabel: "Week peak",
+      weekAvgLabel: "Week average",
+      momentsTitle: "Key moments",
     },
   },
 };

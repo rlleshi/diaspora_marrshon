@@ -10,7 +10,7 @@ export const VIEW = {
   padBottom: 64, // x-axis labels
   padLeft: 40,
   padRight: 40,
-  maxY: 100,
+  maxY: 100, // default ceiling: 100 = the biggest day, the whole-range reading
 };
 
 export type Pt = { day: number; x: number; y: number; d: ParticipationDay };
@@ -18,6 +18,13 @@ export type Pt = { day: number; x: number; y: number; d: ParticipationDay };
 export type ChartGeometry = {
   view: typeof VIEW;
   plot: { left: number; right: number; top: number; bottom: number; width: number; height: number };
+  /** first / last day of the rendered window. */
+  firstDay: number;
+  lastDay: number;
+  /** ceiling of the y-axis for this window. */
+  maxY: number;
+  /** horizontal distance between two adjacent days, for bands and hit targets. */
+  slotWidth: number;
   points: Pt[]; // peak series
   meanPoints: Pt[];
   linePath: string; // smooth peak line
@@ -28,8 +35,24 @@ export type ChartGeometry = {
   yOf: (value: number) => number;
   /** fraction 0–1 of a day along the x-axis, for staggering the reveal. */
   fracOf: (day: number) => number;
-  gridLines: Array<{ value: number; y: number }>;
+  gridLines: Array<{ value: number; y: number; label: string }>;
 };
+
+// Quarter steps that read cleanly as axis labels.
+const NICE_STEPS = [1, 1.5, 2, 2.5, 3, 4, 5, 7.5, 10];
+
+/**
+ * Ceiling for a zoomed y-axis: the smallest value with a round quarter that still
+ * clears the window's tallest day. Zooming into a stretch of low days is the point
+ * of the range control — a fixed 0–100 axis flattens those weeks into a hairline.
+ */
+export function niceMax(value: number): number {
+  if (!(value > 0)) return 1;
+  const quarter = (value * 1.1) / 4;
+  const mag = Math.pow(10, Math.floor(Math.log10(quarter)));
+  const mult = NICE_STEPS.find((m) => quarter <= m * mag) ?? 10;
+  return mult * mag * 4;
+}
 
 function monotonePath(pts: Array<{ x: number; y: number }>): string {
   const n = pts.length;
@@ -69,20 +92,29 @@ function monotonePath(pts: Array<{ x: number; y: number }>): string {
 }
 
 const round = (n: number) => Math.round(n * 100) / 100;
+const tick = (n: number) => String(Number(n.toFixed(2)));
 
-export function buildGeometry(data: ParticipationDay[]): ChartGeometry {
-  const { width, height, padTop, padBottom, padLeft, padRight, maxY } = VIEW;
+export function buildGeometry(
+  data: ParticipationDay[],
+  maxY: number = VIEW.maxY,
+): ChartGeometry {
+  const { width, height, padTop, padBottom, padLeft, padRight } = VIEW;
   const left = padLeft;
   const right = width - padRight;
   const top = padTop;
   const bottom = height - padBottom;
   const plotW = right - left;
   const plotH = bottom - top;
-  const days = data.length;
 
-  const xOf = (day: number) => left + ((day - 1) / (days - 1)) * plotW;
+  // x is mapped off the window's own first/last day, so a slice of the series
+  // fills the plot exactly the way the full range does.
+  const firstDay = data[0]?.day ?? 1;
+  const lastDay = data[data.length - 1]?.day ?? firstDay;
+  const span = Math.max(1, lastDay - firstDay);
+
+  const xOf = (day: number) => left + ((day - firstDay) / span) * plotW;
   const yOf = (value: number) => top + (1 - Math.max(0, value) / maxY) * plotH;
-  const fracOf = (day: number) => (day - 1) / (days - 1);
+  const fracOf = (day: number) => (day - firstDay) / span;
 
   const points: Pt[] = data.map((d) => ({ day: d.day, x: xOf(d.day), y: yOf(d.peak), d }));
   const meanPoints: Pt[] = data.map((d) => ({ day: d.day, x: xOf(d.day), y: yOf(d.mean), d }));
@@ -92,11 +124,18 @@ export function buildGeometry(data: ParticipationDay[]): ChartGeometry {
   const areaPath =
     `${linePath} L ${round(right)} ${round(bottom)} L ${round(left)} ${round(bottom)} Z`;
 
-  const gridLines = [0, 25, 50, 75, 100].map((value) => ({ value, y: yOf(value) }));
+  const gridLines = [0, 0.25, 0.5, 0.75, 1].map((f) => {
+    const value = maxY * f;
+    return { value, y: yOf(value), label: tick(value) };
+  });
 
   return {
     view: VIEW,
     plot: { left, right, top, bottom, width: plotW, height: plotH },
+    firstDay,
+    lastDay,
+    maxY,
+    slotWidth: plotW / span,
     points,
     meanPoints,
     linePath,
