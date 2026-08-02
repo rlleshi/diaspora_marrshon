@@ -766,13 +766,18 @@ export function ParticipationChart({
         </div>
       )}
 
-      <button type="button" className="pc-replay" onClick={replay}>
+      <button
+        type="button"
+        className="pc-replay"
+        onClick={replay}
+        aria-label={labels.replay}
+      >
         {revealed ? (
           <RotateCcw size={16} aria-hidden="true" />
         ) : (
           <Play size={16} aria-hidden="true" />
         )}
-        {labels.replay}
+        <span className="pc-replay-text">{labels.replay}</span>
       </button>
 
       {/* screen-reader data table — always the full series, never the window */}

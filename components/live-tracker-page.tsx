@@ -30,7 +30,7 @@ const COPY: Record<
     liveLabel: "Live",
     intro: {
       before:
-        "Nga mbrojtja e Zvërnecit tek një lëvizje dymujore për krijimin e një Shqipërie të re, që i futet rrugës së ",
+        "Nga mbrojtja e Zvërnecit tek një lëvizje tremujore për krijimin e një Shqipërie të re, që i futet rrugës së ",
       link: "zhvillimit të përshpejtuar",
       href: "https://www.youtube.com/watch?v=XF3nEmKziWU",
       after: ".",
@@ -78,7 +78,7 @@ const COPY: Record<
     liveLabel: "Live",
     intro: {
       before:
-        "From defending Zvërnec to a two-month movement for the creation of a new Albania that sets out on the path of ",
+        "From defending Zvërnec to a three-month movement for the creation of a new Albania that sets out on the path of ",
       link: "accelerated development",
       href: "https://www.youtube.com/watch?v=XF3nEmKziWU",
       after: ".",

@@ -2243,8 +2243,16 @@ textarea:focus {
   .pc-ylabel--top {
     display: none;
   }
+  /* the labelled pill ran straight into the big peak number, hiding its leading
+     digit; go icon-only here — the button keeps its aria-label */
   .pc-replay {
-    font-size: 0.9rem;
+    left: 12px;
+    top: 10px;
+    gap: 0;
+    padding: 8px;
+  }
+  .pc-replay-text {
+    display: none;
   }
 
   /* the floating tooltip gets clipped on a short chart; show a full-width card instead */
