@@ -78,6 +78,13 @@
 // avg 243.7, mean 149.0, median 147.8), normalized on the same Day-7 reference.
 // Day 60 computed from the protesta_60 timeline, retained frames only (top-10 peak
 // avg 318.2, mean 158.0, median 153.5), normalized on the same Day-7 reference.
+// Day 61 computed from the protesta_61 timeline, retained frames only (top-10 peak
+// avg 223.0, mean 126.0, median 119.0), normalized on the same Day-7 reference.
+// Day 62 computed from the protesta_62 timeline, retained frames only (top-10 peak
+// avg 289.5, mean 148.9, median 144.4), normalized on the same Day-7 reference.
+// Day 63 computed from the protesta_63 timeline, retained frames only (audited top-10
+// peak avg 314.9 — replacing a 564.3 raw maximum inflated by a split-screen interval;
+// mean 169.7, median 165.0), normalized on the same Day-7 reference.
 
 export type ParticipationDay = {
   day: number;
@@ -225,6 +232,12 @@ export const participation: ParticipationDay[] = [
     note: { sq: "E marta kthehet te një aksion i vetëm mbrëmjeje pas ditës së dyfishtë të Kuvendit: në bulevard shtrohet mesazhi gjigant “DORËHEQJE” përballë Kryeministrisë, ndërsa marshimi kalon nga Rruga e Elbasanit e Air Albania drejt Kuvendit dhe mbyllet në 22:33 me thirrjen “Nesër më shumë”.", en: "Tuesday returns to a single evening action after Monday's split Parliament day: a giant “RESIGN” message is laid out on the boulevard facing the PM's office, while the march passes Rruga e Elbasanit and Air Albania toward Parliament and closes at 22:33 with the call “more tomorrow”." } },
   { day: 60, date: "2026-07-29", saturday: false, peak: 6.16, mean: 3.06, median: 2.97, source: yt("YYLb6Kedcxw"),
     note: { sq: "Dita e 60-të shënon dy muaj proteste të pandërprera: marshimi arrin te Sheshi Willson me këngë patriotike e mesazhe mbështetjeje për diasporën, ndërsa gazetarja e Channel 4 Lindsey Hilsum e pyet mjekrrën për protestuesit që i dalin çdo natë prej pothuajse 60 ditësh.", en: "Day 60 marks two uninterrupted months of protest: the march reaches Sheshi Willson with patriotic songs and messages of support for the diaspora, while Channel 4's Lindsey Hilsum asks Rama about protesters showing up outside his office almost every night for nearly 60 days." } },
+  { day: 61, date: "2026-07-30", saturday: false, peak: 4.32, mean: 2.44, median: 2.30, source: yt("OmGJWdl7cvM"),
+    note: { sq: "E enjtja bie pas jubileut dymujor, ritëm i pritshëm nate; risia është thirrja e hapur për 1 gusht, kur qytetarë nga mbarë Shqipëria ftohen të bashkohen, ndërsa diaspora po niset drejt Tiranës për protestën kombëtare.", en: "Thursday dips after the two-month milestone, an expected nightly rhythm; the news is the open call for 1 August, when citizens from across Albania are invited to join while the diaspora heads to Tirana for the national protest." } },
+  { day: 62, date: "2026-07-31", saturday: false, peak: 5.61, mean: 2.88, median: 2.80, source: yt("BFI628pGRdk"),
+    note: { sq: "E premtja sjell rimëkëmbje të gjerë në çdo tregues, para aksionit të 1 gushtit: marshimi zgjatet deri te shkolla “1 Maji” në Ali Demi, ndërsa parulla “Rama në burg, Berisha në burg” vazhdon si përherë të refuzojë të dyja polet politike; e shtuna paralajmërohet si aksion për Shqipërinë, jo për një parti.", en: "Friday brings a broad rebound across every measure ahead of the 1 August action: the march extends to the “1 Maji” school in Ali Demi, while the chant “Rama in prison, Berisha in prison” continues, as always, rejecting both political poles; Saturday is billed as an action for Albania, not for a party." } },
+  { day: 63, date: "2026-08-01", saturday: true, peak: 6.10, mean: 3.29, median: 3.19, source: yt("yTWeDcffAx0"),
+    note: { sq: "E shtuna sjell aksionin kombëtar të premtuar për diasporën: banderola gjigante “Shqiptarët e bashkuar, pushteti i tmerruar” dhe flamuri i gjatë shoqërojnë marshimin nga Sheshi Skënderbej te Kryeministria; aktivistë thërrasin qytetarët e 15 bashkive të vogla të bashkohen, ndërsa për të nesërmen njoftohet protestë e veçantë në Shkodër.", en: "Saturday delivers the promised diaspora-focused national action: the giant banner “Albanians united, the regime terrified” and a long flag banner accompany the march from Skanderbeg Square to the PM's office; activists call on citizens from 15 small municipalities to join, while a separate Shkodër protest is announced for the next day." } },
 ];
 
 export type ParticipationEvent = {
@@ -280,6 +293,9 @@ export const participationEvents: ParticipationEvent[] = [
   { day: 60, tier: "primary", icon: "flag", mobile: true,
     label: { sq: "2 muaj protestë", en: "Two months" },
     sub: { sq: "29 korrik", en: "29 July" } },
+  { day: 63, tier: "primary", icon: "people", mobile: true,
+    label: { sq: "Aksioni kombëtar i diasporës", en: "The diaspora's national action" },
+    sub: { sq: "1 gusht", en: "1 August" } },
 ];
 
 /** Normalization reference shown in the methodology note. */
