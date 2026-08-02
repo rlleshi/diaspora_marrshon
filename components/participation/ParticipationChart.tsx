@@ -421,6 +421,20 @@ export function ParticipationChart({
   const chips = placeChips(chipCandidates, locale, xOf, yOf, peakChipY, view.width);
   const chipByDay = new Map(chips.map((c) => [c.ev.day, c]));
 
+  // A phone-width plot fits exactly one label. Mark the window's tallest moment as
+  // the lead so the mobile stylesheet can keep that one and drop the rest — but
+  // only when the peak number is absent, since it alone fills the plot at that size.
+  const leadDay = chips.some((c) => c.ev.tier === "peak")
+    ? null
+    : chips.reduce<number | null>(
+        (best, c) =>
+          best == null ||
+          (BY_DAY.get(c.ev.day)?.peak ?? 0) > (BY_DAY.get(best)?.peak ?? 0)
+            ? c.ev.day
+            : best,
+        null,
+      );
+
   const activeDay = active != null ? BY_DAY.get(active) ?? null : null;
   const activePt = active != null ? points.find((p) => p.day === active) ?? null : null;
 
@@ -609,6 +623,7 @@ export function ParticipationChart({
               className={[
                 "pc-event",
                 `pc-event--${ev.tier}`,
+                ev.day === leadDay ? "pc-event--lead" : "",
                 ev.mobile ? "" : "pc-event--desk",
                 pinned === ev.day ? "is-active" : "",
               ]
@@ -728,7 +743,9 @@ export function ParticipationChart({
         return (
           <div
             key={`chip-${ev.day}`}
-            className={`pc-chip pc-chip--${ev.tier} pc-place-${place}`}
+            className={`pc-chip pc-chip--${ev.tier}${
+              ev.day === leadDay ? " pc-chip--lead" : ""
+            } pc-place-${place}`}
             style={style}
           >
             <span className="pc-chip-label">

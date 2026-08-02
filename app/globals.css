@@ -2207,13 +2207,26 @@ textarea:focus {
 }
 
 @media (max-width: 720px) {
-  /* a phone-width plot has no room for chip text at any zoom level: keep the peak
-     number and let the rail below carry every other moment's wording */
-  .pc-chip:not(.pc-chip--peak) {
+  /* a phone-width plot holds one label: the window's lead moment, or the peak
+     number when that is on screen. The rail below carries all the rest. */
+  .pc-chip:not(.pc-chip--peak):not(.pc-chip--lead) {
     display: none;
   }
-  .pc-event:not(.pc-event--peak) .pc-lead {
+  .pc-event:not(.pc-event--peak):not(.pc-event--lead) .pc-lead {
     display: none;
+  }
+  .pc-chip-label {
+    font-size: 0.74rem;
+  }
+  .pc-chip-sub {
+    font-size: 0.66rem;
+  }
+  /* with only one label left it often lands over a gridline or an axis number;
+     back it with paper so it reads wherever the window puts it */
+  .pc-chip--lead {
+    padding: 3px 8px;
+    border-radius: 7px;
+    background: rgba(255, 250, 242, 0.92);
   }
   /* short mobile chart clips the top-centered peak number; top-anchor it so the
      big "100" grows downward from its point instead of overflowing above .pc. */
