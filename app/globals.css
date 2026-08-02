@@ -2207,12 +2207,13 @@ textarea:focus {
 }
 
 @media (max-width: 720px) {
-  /* a phone-width plot holds one label: the window's lead moment, or the peak
-     number when that is on screen. The rail below carries all the rest. */
-  .pc-chip:not(.pc-chip--peak):not(.pc-chip--lead) {
+  /* Until the plot has been measured, chip placement is still running on the
+     desktop assumption, so show only the window's lead moment. Once `is-sized`
+     lands, the layout knows the real width and picks the count itself. */
+  .pc:not(.is-sized) .pc-chip:not(.pc-chip--peak):not(.pc-chip--lead) {
     display: none;
   }
-  .pc-event:not(.pc-event--peak):not(.pc-event--lead) .pc-lead {
+  .pc:not(.is-sized) .pc-event:not(.pc-event--peak):not(.pc-event--lead) .pc-lead {
     display: none;
   }
   .pc-chip-label {
@@ -2221,9 +2222,9 @@ textarea:focus {
   .pc-chip-sub {
     font-size: 0.66rem;
   }
-  /* with only one label left it often lands over a gridline or an axis number;
-     back it with paper so it reads wherever the window puts it */
-  .pc-chip--lead {
+  /* a label here often lands over a gridline or an axis number; back it with
+     paper so it reads wherever the window puts it */
+  .pc-chip:not(.pc-chip--peak) {
     padding: 3px 8px;
     border-radius: 7px;
     background: rgba(255, 250, 242, 0.92);

@@ -92,30 +92,43 @@ const barPct = (value: number) =>
 
 /* ---- in-plot annotations ---- */
 
-const CHIP_SLOT = 200; // horizontal room one chip needs, in viewBox units
-const CHIP_HALF_H = 17; // half the vertical footprint of a two-line chip
-const PEAK_HALF_H = 58; // the peak chip is a good deal taller
-const CHIP_CLEAR = 14; // vertical breathing room demanded between two chips
-const CHIP_STEP = 50; // how far a colliding chip is nudged upward (> the clearance)
+/* Every measurement below is in CSS pixels, because a chip is HTML text whose size
+   does not follow the SVG viewBox. `unitsPerCss` converts them into viewBox units
+   for the actual placement — at phone width the box compresses ~2.8x while the
+   text does not, so treating the two as interchangeable badly under-counts overlap. */
+const CHIP_MIN_SLOT = { narrow: 150, wide: 200 }; // horizontal room one chip needs
+const CHIP_CLEAR = 8; // vertical breathing room demanded between two chips
+const CHIP_LIFT = { narrow: 8, wide: 29 }; // gap between the point and the chip box
+const CHIP_MIN_Y = 20; // never push a chip above this viewBox y
 
 /**
- * Rough painted width of a chip, derived from its own text. Deliberately an
- * estimate rather than a measurement: it has to produce identical numbers on the
- * server and on the client, so it can never touch layout.
+ * Painted size of a chip, estimated from its own text. Deliberately an estimate
+ * rather than a measurement: it must produce identical numbers on the server and
+ * on the client, so it can never read layout.
  */
-function chipWidth(ev: ParticipationEvent, locale: Locale): number {
-  const floor = ev.tier === "peak" ? 150 : 70;
-  return Math.max(
-    ev.label[locale].length * 7.6,
-    ev.sub[locale].length * 6.2,
-    floor,
-  );
+function chipMetrics(ev: ParticipationEvent, locale: Locale, narrow: boolean) {
+  const labelChar = narrow ? 6.4 : 7.1;
+  const subChar = narrow ? 5.2 : 5.7;
+  // icon + gap, plus the paper backing's padding on narrow screens
+  const chrome = narrow ? 42 : 26;
+  return {
+    width: Math.max(
+      ev.label[locale].length * labelChar + chrome,
+      ev.sub[locale].length * subChar + chrome,
+      ev.tier === "peak" ? 120 : 64,
+    ),
+    height: ev.tier === "peak" ? (narrow ? 92 : 104) : narrow ? 30 : 34,
+  };
 }
 
 type PlacedChip = {
   ev: ParticipationEvent;
   x: number;
+  /** the value handed to CSS `top`. */
   y: number;
+  /** true vertical centre. Differs from `y` for the peak chip on narrow screens,
+   *  where the stylesheet top-anchors it instead of centring it. */
+  cy: number;
   place: "start" | "center" | "end";
   /** painted extents, used for collision and for the leader line's endpoint. */
   left: number;
@@ -130,20 +143,28 @@ type PlacedChip = {
  */
 function placeChips(
   list: ParticipationEvent[],
-  locale: Locale,
-  xOf: (day: number) => number,
-  yOf: (value: number) => number,
-  peakChipY: number,
-  viewWidth: number,
+  opts: {
+    locale: Locale;
+    narrow: boolean;
+    unitsPerCss: number;
+    xOf: (day: number) => number;
+    yOf: (value: number) => number;
+    peakChipY: number;
+    viewWidth: number;
+  },
 ): PlacedChip[] {
+  const { locale, narrow, unitsPerCss, xOf, yOf, peakChipY, viewWidth } = opts;
   const placed: PlacedChip[] = [];
   const ordered = [...list].sort((a, b) =>
     a.tier === "peak" ? -1 : b.tier === "peak" ? 1 : a.day - b.day,
   );
+  const clear = CHIP_CLEAR * unitsPerCss;
 
   for (const ev of ordered) {
+    const size = chipMetrics(ev, locale, narrow);
+    const halfW = (size.width / 2) * unitsPerCss;
+    const halfH = (size.height / 2) * unitsPerCss;
     const x = xOf(ev.day);
-    const halfW = chipWidth(ev, locale) / 2;
     const place =
       x + halfW > viewWidth - 8 ? "end" : x - halfW < 8 ? "start" : "center";
     // mirror the CSS transforms so overlap is tested against what actually paints
@@ -154,24 +175,36 @@ function placeChips(
           ? x - halfW * 0.12
           : x - halfW;
     const right = left + halfW * 2;
-    const isPeak = ev.tier === "peak";
-    const halfH = isPeak ? PEAK_HALF_H : CHIP_HALF_H;
 
-    let y = isPeak ? peakChipY : yOf(BY_DAY.get(ev.day)?.peak ?? 0) - 46;
-    if (!isPeak) {
-      for (let i = 0; i < 8; i++) {
-        const hit = placed.some(
-          (p) =>
-            right > p.left &&
-            left < p.right &&
-            Math.abs(p.y - y) < p.halfH + halfH + CHIP_CLEAR,
-        );
-        if (!hit) break;
-        y -= CHIP_STEP;
-      }
-      y = Math.max(26, y);
+    if (ev.tier === "peak") {
+      // narrow screens top-anchor this chip, so its centre is half a box lower
+      const cy = narrow ? peakChipY + halfH : peakChipY;
+      placed.push({ ev, x, y: peakChipY, cy, place, left, right, halfH });
+      continue;
     }
-    placed.push({ ev, x, y, place, left, right, halfH });
+
+    const lift = (size.height / 2 + CHIP_LIFT[narrow ? "narrow" : "wide"]) * unitsPerCss;
+    const step = (size.height + CHIP_CLEAR + 4) * unitsPerCss;
+    let y = yOf(BY_DAY.get(ev.day)?.peak ?? 0) - lift;
+    let fits = false;
+    for (let i = 0; i < 8; i++) {
+      if (y < CHIP_MIN_Y) break;
+      const hit = placed.some(
+        (p) =>
+          right > p.left &&
+          left < p.right &&
+          Math.abs(p.cy - y) < p.halfH + halfH + clear,
+      );
+      if (!hit) {
+        fits = true;
+        break;
+      }
+      y -= step;
+    }
+    // No clear slot at this width: the moment keeps its dot on the line and the
+    // rail below keeps its wording. Dropping beats stacking into a pile.
+    if (!fits) continue;
+    placed.push({ ev, x, y, cy: y, place, left, right, halfH });
   }
   return placed;
 }
@@ -272,6 +305,11 @@ export function ParticipationChart({
   const scrollToDetail = useRef(false);
   const [armed, setArmed] = useState(false);
   const [revealed, setRevealed] = useState(false);
+  // Rendered width of the plot, in CSS pixels. 0 until measured: the server has no
+  // viewport, so SSR lays chips out on the desktop assumption and CSS suppresses the
+  // extras on small screens until `is-sized` says the real numbers have arrived.
+  const [chartWidth, setChartWidth] = useState(0);
+  const [narrow, setNarrow] = useState(false);
   const [range, setRange] = useState<Range>(FULL);
   // Hover previews a day; clicking pins it so the tooltip stays put (and its
   // link stays clickable) while the pointer travels across neighboring days.
@@ -352,6 +390,27 @@ export function ParticipationChart({
     setArmed(true);
   }, []);
 
+  // Track the plot's real width so chip placement works in the units chips are
+  // actually painted in. The media query mirrors the stylesheet's own breakpoint,
+  // since the smaller mobile chip font changes the metrics too.
+  useEffect(() => {
+    const el = rootRef.current;
+    if (!el) return;
+    const mq = window.matchMedia("(max-width: 720px)");
+    const syncNarrow = () => setNarrow(mq.matches);
+    syncNarrow();
+    mq.addEventListener("change", syncNarrow);
+    const ro = new ResizeObserver(([entry]) => {
+      const w = entry?.contentRect.width ?? 0;
+      setChartWidth((prev) => (Math.abs(prev - w) > 1 ? w : prev));
+    });
+    ro.observe(el);
+    return () => {
+      mq.removeEventListener("change", syncNarrow);
+      ro.disconnect();
+    };
+  }, []);
+
   useEffect(() => {
     const el = rootRef.current;
     if (!el) return;
@@ -382,10 +441,15 @@ export function ParticipationChart({
     );
   }
 
+  const sized = chartWidth > 0;
+  // CSS pixels -> viewBox units. 1 before measurement, i.e. the desktop assumption.
+  const unitsPerCss = sized ? VIEW.width / chartWidth : 1;
+
   const cls = [
     "pc",
     armed ? "is-armed" : "",
     revealed ? "is-revealed" : "",
+    sized ? "is-sized" : "",
   ]
     .filter(Boolean)
     .join(" ");
@@ -399,7 +463,11 @@ export function ParticipationChart({
   // the days standing clear of the baseline crowd — the rest have no vertical room
   // and live in the rail below. Zoomed in, the whole window qualifies, as long as
   // there are at least as many 200-unit slots as there are moments to fill them.
-  const chipSlots = Math.max(1, Math.floor(plot.width / CHIP_SLOT));
+  const plotCssWidth = (sized ? chartWidth : view.width) * (plot.width / view.width);
+  const chipSlots = Math.max(
+    1,
+    Math.floor(plotCssWidth / CHIP_MIN_SLOT[narrow ? "narrow" : "wide"]),
+  );
   let chipCandidates =
     range.key === "all"
       ? events.filter(
@@ -418,7 +486,15 @@ export function ParticipationChart({
     );
     chipCandidates = chipCandidates.filter((ev) => keep.has(ev.day));
   }
-  const chips = placeChips(chipCandidates, locale, xOf, yOf, peakChipY, view.width);
+  const chips = placeChips(chipCandidates, {
+    locale,
+    narrow,
+    unitsPerCss,
+    xOf,
+    yOf,
+    peakChipY,
+    viewWidth: view.width,
+  });
   const chipByDay = new Map(chips.map((c) => [c.ev.day, c]));
 
   // A phone-width plot fits exactly one label. Mark the window's tallest moment as
@@ -616,7 +692,7 @@ export function ParticipationChart({
           const isPeak = ev.tier === "peak";
           const chip = chipByDay.get(ev.day);
           // stop the line just under the chip's text rather than through it
-          const leadEnd = chip ? chip.y + chip.halfH + (isPeak ? 0 : 6) : null;
+          const leadEnd = chip ? chip.cy + chip.halfH + (isPeak ? 0 : 6) : null;
           return (
             <g
               key={`lead-${ev.day}`}
