@@ -92,6 +92,19 @@ Established conventions:
   against the source file (e.g. an explicit mobilization call with a date
   and time is exactly the kind of detail that belongs in the note).
 
+Three standing rules the user has corrected notes for more than once. Apply
+them while drafting rather than waiting to be told:
+
+- **No singular activist names.** The source file names individuals freely;
+  the site refers to participants collectively — "aktivistë", "protestuesit",
+  "qytetarë", "disa aktivistë të ndaluar për pak kohë". Public figures acting
+  publicly in their own right (a foreign journalist's question to Rama, a
+  politician's statement) are fine — the rule is about protesters.
+- **No em-dashes.** Use a comma, a colon, or `;`.
+- **No closing times.** The source almost always records when the march ended
+  ("mbyllet në 22:36") — leave it out. Times that are part of a *call to
+  action* ("mbledhja para Kuvendit nesër në orën 08:30") do belong.
+
 Draft the Albanian note first, pulling the single most newsworthy thread out
 of the Story Note section — usually one of: a notable rebound/dip and why,
 a new mobilization call/date, a government response or policy clash, a
@@ -138,6 +151,16 @@ every instance before editing:
   - `COPY.sq.labels.ariaSummary` (`"...përgjatë N ditëve..."`)
   - `COPY.en.labels.ariaSummary` (`"...across N days..."`)
 
+The homepage tracker teaser needs **no** edit: `lib/content.ts` derives
+`protestDays` from `participation.length`, so its title and stat tile follow
+automatically. Its body copy deliberately states no duration, to keep it from
+drifting out of step with that number — don't reintroduce one.
+
+Separately, `COPY.*.intro` on the tracker page carries a hardcoded *duration*
+("një lëvizje tremujore" / "a three-month movement") rather than a day count,
+so grepping for `N-1` won't surface it. Check it whenever the movement crosses
+a month boundary.
+
 ## 6. Optional: check for a new local extreme
 
 If the new day is a new high or new low relative to recent days (the Story
@@ -149,6 +172,24 @@ e dobët" / "The weakest day" entry as precedent). This is an editorial
 judgment call, not a required step — only add one when the extreme is
 genuinely notable, not for routine day-to-day fluctuation.
 
+**You no longer place the marker by hand.** `ParticipationChart.tsx` used to
+carry a `LABEL_Y` table with a hand-tuned y for every marker, which had to be
+re-tuned every time a day shifted the x-positions. It is gone. `placeChips()`
+lays labels out automatically and drops any that can't find a clear slot. Two
+consequences when writing a marker:
+
+- **Keep `label` and `sub` short.** Chip width is *estimated* from character
+  count (~6.4px/char on narrow screens, ~7.1 wide), never measured — the same
+  numbers have to come out on the server and the client. A long label makes a
+  wide chip, and wide chips get dropped from crowded views. Existing labels run
+  ~15-28 characters.
+- **A marker is not guaranteed a label on the chart.** Only a few fit any given
+  view: across the full range, just the peak plus non-secondary days clearing
+  30% of the axis — so a recent day sitting near the baseline will show its dot
+  but no wording. That's by design. Every marker always appears in the
+  "Momentet kyçe" rail below the chart, which is the reliable surface, and its
+  label does show once the reader zooms into a week or month containing it.
+
 ## 7. Verify
 
 Run `npm run typecheck` and confirm it's clean. Don't run a full build or
@@ -157,3 +198,23 @@ clean typecheck has been sufficient for this recurring task.
 
 Don't commit or push — this repo's standing rule is to only do that when
 the user explicitly asks.
+
+## Background: how the chart absorbs new days
+
+Most of the chart follows `participation` on its own — the week strip
+(`WEEKS`) and the month range chips (`CALENDAR_MONTHS`) are both derived from
+it, so new days extend them with no edit. A new calendar month joins the
+range chips once it has 4 days in it (`MIN_MONTH_DAYS`).
+
+If you ever do need to touch label placement, the one trap that has already
+caused two bugs: **chip geometry is in CSS pixels, not viewBox units.** Chips
+are HTML positioned over the SVG, so their text does not scale with the
+viewBox — at phone width the box compresses ~2.8x while the text does not.
+`placeChips()` converts through `unitsPerCss`, derived from a `ResizeObserver`
+on the chart element; treating the two units as interchangeable silently
+under-counts overlap by that factor. Relatedly, the peak chip is *top*-anchored
+below 720px and centre-anchored above it, which is why `PlacedChip` carries
+both `y` (the value handed to CSS) and `cy` (the true centre used for
+collision). Verify any change at several widths, not just desktop —
+`google-chrome --headless=new --window-size=390,1000 --screenshot=out.png`
+against the dev server is enough.
