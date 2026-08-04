@@ -8,6 +8,7 @@ The current public product is:
 
 - A bilingual public homepage at `/` and `/en`.
 - A bilingual protest participation tracker at `/pulsi` and `/en/pulsi`.
+- A government-scandal dossier at `/liste_vuajtjesh` with bilingual page chrome.
 - A bilingual suggested clothing/download page at `/veshja` and `/en/veshja`.
 - A hidden legacy pledge form and API that can be re-enabled if needed.
 - A WhatsApp-first coordination flow on the homepage.
@@ -16,11 +17,12 @@ The stack should remain simple enough to update quickly during the campaign, whi
 
 ## Runtime And Framework
 
-- Next.js App Router.
+- Next.js 16 App Router and React 19.
 - React server components by default, client components only where interactivity is needed.
 - TypeScript.
 - Global CSS in `app/globals.css`.
 - Vercel Analytics for page and custom-event tracking.
+- Vercel Speed Insights for real-user performance metrics.
 - Static assets under `public/` and campaign source assets under `docs/`.
 
 ## Public Routes
@@ -31,6 +33,8 @@ The stack should remain simple enough to update quickly during the campaign, whi
 - `/en/pulsi`: English protest pulse / participation index.
 - `/veshja`: Albanian suggested clothing/downloads page.
 - `/en/veshja`: English suggested clothing/downloads page.
+- `/liste_vuajtjesh`: Albanian government-scandal dossier.
+- `/en/liste_vuajtjesh`: English page chrome around the Albanian dossier content.
 - `/confirm-email`: legacy pledge email-confirmation route.
 - `/api/pledges`: legacy pledge submission API.
 
@@ -44,15 +48,18 @@ The content model includes:
 - Homepage hero date and route checkpoints.
 - WhatsApp QR panel copy and intro template.
 - Protest pulse teaser copy.
+- Government-scandal teaser copy.
 - Civic demands and context.
 - Past marches/history.
-- March itinerary, rules, and practical advice.
+- March itinerary and rules, plus currently hidden practical advice.
 - Hidden pledge form copy.
 - Email-confirmation messages.
 
 Shirt page copy lives in `lib/shirts-content.ts`.
 
 Participation tracker data lives in `data/participation.ts`.
+
+Scandal dossier records live in `data/scandals.ts`; localized page chrome, category labels, legal-status labels, and verification labels live in `lib/scandals-content.ts`.
 
 ## Protest Pulse Data Model
 
@@ -83,6 +90,21 @@ Event annotations are stored as `participationEvents` with:
 
 The chart geometry is pure TypeScript in `components/participation/geometry.ts` so SVG output stays deterministic across server render and hydration.
 
+The tracker currently supports full-history, recent 30-day, recent 14-day, month, and week views. Hover/focus previews a day, click/tap pins it, and each day links to its source broadcast. Week summaries and a separate mobile event list keep the 63-day series usable on small screens.
+
+## Government Scandal Data Model
+
+The dossier is driven by `data/scandals.ts`. Each record stores researched Albanian content plus editorial browsing metadata:
+
+- title, period, and narrative
+- legal status
+- claim-by-claim verdicts and verification notes
+- research confidence and sources
+- stable ID, category, legal-status bucket, and start year
+- teaser and temporarily redacted teaser phrase
+
+The source document is `docs/skandalet-e-qeverisjes-rama.md`. Verbatim research fields must not be silently paraphrased when synchronized into the application. Legal status must distinguish `convicted`, `investigation`, and `no-process` rather than implying guilt from inclusion in the dossier.
+
 ## Frontend Components
 
 Key components:
@@ -91,6 +113,8 @@ Key components:
 - `components/live-tracker-page.tsx`: wrapper and localized copy for `/pulsi`.
 - `components/participation/ParticipationChart.tsx`: interactive SVG chart, animation, hover/tap detail cards, mobile event list.
 - `components/shirts-page.tsx`: suggested clothing page with downloads.
+- `components/scandals-page.tsx`: dossier page shell, methodology, aggregate stats, and legal-status summary.
+- `components/scandals-explorer.tsx`: chronology, category filters, expandable records, claim verdicts, and source links.
 - `components/analytics-events.tsx`: Vercel custom event helpers.
 - `components/pledge-form.tsx`: hidden legacy pledge form.
 
@@ -98,7 +122,7 @@ The participation chart is a first-class public feature. It must remain mobile-r
 
 ## Analytics
 
-Vercel Analytics is installed in `app/layout.tsx`.
+Vercel Analytics and Speed Insights are installed in `app/layout.tsx`.
 
 Tracked events currently include:
 
@@ -109,6 +133,7 @@ Tracked events currently include:
 - Language switches.
 - Section views.
 - Tracker page opens.
+- Scandal dossier opens and section views.
 
 When adding a new major call to action, add a custom event so campaign decisions can be based on actual behavior rather than only page views.
 
@@ -221,6 +246,7 @@ For local development, missing Turnstile and Resend credentials are tolerated by
 - Keep WhatsApp admin approval enabled.
 - Keep route/logistics information public only when it is safe to publish.
 - Keep exact crowd-size claims framed as estimates or normalized index values unless independently verified.
+- Keep scandal claims source-linked and preserve their actual legal status; inclusion in the dossier must not be presented as a conviction.
 - Avoid adding public comments, open uploads, or user-generated content.
 
 ## Later Enhancements

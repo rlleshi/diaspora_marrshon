@@ -27,7 +27,7 @@ Recommended entry shape:
 - Route section with itinerary, Google Maps link, and route image.
 - Civic demands/context section.
 - Past marches/history section.
-- Peaceful principles and practical march advice.
+- Peaceful principles; practical march advice remains implemented but hidden.
 - Suggested clothing page with downloadable shirt previews.
 - Vercel Analytics page and custom event tracking.
 - Bilingual protest pulse tracker at `/pulsi` and `/en/pulsi`.
@@ -134,12 +134,40 @@ Recommended entry shape:
 - Main files: `README.md`, `specs/Mission.md`, `specs/Tech-stack.md`, `specs/Roadmap.md`.
 - Notes / follow-up: Keep this `Features.md` updated whenever a new feature meaningfully changes the site.
 
+### 2026-07-08 - Vercel Speed Insights
+
+- What changed: Added Vercel Speed Insights to the shared app layout.
+- Why it matters: Added real-user performance monitoring alongside traffic and custom-event analytics.
+- Main files: `app/layout.tsx`, `package.json`.
+- Notes / follow-up: Production data appears only after a deployment is visited without blocking the telemetry script.
+
+### 2026-07-21 - Third Diaspora March Frame
+
+- What changed: Reframed the public homepage for a third diaspora march on 14-16 August 2026, starting at Bulevardi i Ri at 18:30 and joining the main protest at Sheshi Skenderbej at 19:00. The airport/Rinas route was retired from the visible campaign flow.
+- Why it matters: Keeps the homepage useful as an active mobilization page while preserving earlier marches as history.
+- Main files: `lib/content.ts`, `components/home-page.tsx`.
+- Notes / follow-up: Keep the three August dates, two checkpoints, WhatsApp template, map, and Google Maps destination synchronized.
+
 ### 2026-07-21 - Government Scandal Dossier (`/liste_vuajtjesh`)
 
 - What changed: Added a case-file style page covering 33 Rama-government scandals (2013–2026), built from the existing research doc `docs/skandalet-e-qeverisjes-rama.md`. Each case shows a short teaser (with one figure visually redacted until expanded), a stats dashboard with a 3-way legal-status composition bar (no criminal process / active investigation / final conviction), a clickable chronology ruler, category filters, and an expandable detail with the doc's verbatim narrative, status, a claim-by-claim verification ledger, and sources. A matching homepage teaser band and nav link were added.
 - Why it matters: Turns the standalone research document into a public, digestible page — short version first, full verified detail on click — without diluting the underlying research doc's accuracy. Narrative/status/claims/sources are extracted verbatim (not paraphrased) from the doc specifically to avoid introducing factual drift.
 - Main files: `data/scandals.ts`, `lib/scandals-content.ts`, `components/scandals-page.tsx`, `components/scandals-explorer.tsx`, `app/liste_vuajtjesh/page.tsx`, `app/en/liste_vuajtjesh/page.tsx`, plus additions to `lib/content.ts`, `components/home-page.tsx`, `app/globals.css`.
 - Notes / follow-up: `data/scandals.ts` content is Albanian-only by design (translation was explicitly deferred); the English route reuses the same Albanian data with English page chrome and a note. It was generated once via a one-time parsing script (not part of the repo) from the research doc — if the doc is updated with new scandals, `data/scandals.ts` needs a matching manual update, not just a re-run.
+
+### 2026-07-30 - Current Route Map
+
+- What changed: Replaced the older airport-based route graphic with the Bulevardi i Ri to Sheshi Skenderbej map and aligned the visible itinerary with the third-march route.
+- Why it matters: Prevents obsolete route instructions from surviving in a highly visible campaign asset.
+- Main files: `docs/marshimi_i_diaspores_bulevard_sheshi.png`, `components/home-page.tsx`, `lib/content.ts`.
+- Notes / follow-up: The map image, Google Maps URL, schedule, and localized copy form one operational unit and should be reviewed together.
+
+### 2026-08-02 - Protest Pulse Navigation And Mobile Redesign
+
+- What changed: Expanded the 63-day Pulse with full-history, 30-day, 14-day, month, and week views; added week-level peak/average navigation; refined event labeling, hover/tap pinning, animation replay, and the separate mobile moments list.
+- Why it matters: Makes a long-running daily series inspectable without compressing all 63 days into one unreadable mobile chart.
+- Main files: `components/participation/ParticipationChart.tsx`, `components/participation/geometry.ts`, `components/live-tracker-page.tsx`, `app/globals.css`, `data/participation.ts`.
+- Notes / follow-up: New days should not require chart code changes, but every update should be checked in the all-days and latest-week views on desktop and mobile.
 
 ## Dormant / Legacy Feature Area
 

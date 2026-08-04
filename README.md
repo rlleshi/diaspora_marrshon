@@ -7,6 +7,7 @@ The app currently combines:
 - A bilingual public campaign homepage.
 - WhatsApp-first coordination for diaspora marches.
 - A source-linked protest participation tracker.
+- A source-backed government-scandal dossier.
 - Suggested clothing/download resources.
 - A hidden legacy pledge form backed by Firebase, Turnstile, rate limits, and email confirmation.
 
@@ -87,10 +88,11 @@ Run `npm run typecheck` before committing. Run `npm run build` before release wh
 - `components/home-page.tsx` - public campaign homepage.
 - `components/live-tracker-page.tsx` - `/pulsi` wrapper and localized tracker page copy.
 - `components/participation/ParticipationChart.tsx` - interactive SVG chart.
+- `components/participation/geometry.ts` - deterministic chart geometry helpers.
 - `components/shirts-page.tsx` - clothing/download resources.
 - `components/scandals-page.tsx` - `/liste_vuajtjesh` wrapper: hero, stats dashboard, status composition bar.
 - `components/scandals-explorer.tsx` - client-side category filters, chronology ruler, and expandable case-file cards.
-- `docs/` - campaign source assets, posters, maps, metrics, and organizer notes.
+- `docs/` - campaign source assets, posters, maps, and the scandal research dossier.
 - `public/` - deployable public images, QR code, and shirt previews.
 - `specs/Features.md` - feature ledger for major product changes over time.
 
@@ -106,7 +108,7 @@ To add a new protest day:
 6. Run `npm run typecheck`.
 7. Run `npm run build` before deploying.
 
-The tracker is a normalized participation index, not an exact official crowd count. Keep methodology and disclaimer language honest about camera and model limitations.
+The tracker is a normalized participation index, not an exact official crowd count. It currently covers 63 days and supports all-days, recent, monthly, and weekly views. Keep methodology and disclaimer language honest about camera and model limitations.
 
 ## Coordination Model
 

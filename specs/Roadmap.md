@@ -10,20 +10,23 @@ The app currently has:
 
 - Albanian and English public homepage.
 - WhatsApp-first coordination panel.
-- July 4 march hero and route information.
-- Past march history for June 20.
+- 14-16 August third-march hero and route information from Bulevardi i Ri to Sheshi Skenderbej.
+- Past march history for 20 June and 4 July.
 - Civic demands/context section.
-- Route, principles, and practical advice.
+- Route map, Google Maps link, and peaceful-march principles.
 - Suggested clothing/download pages.
-- Vercel Analytics custom events.
-- A bilingual protest participation tracker through day 38.
+- Vercel Analytics custom events and Speed Insights.
+- A bilingual protest participation tracker through day 63, with recent-range, month, and week navigation.
+- A 33-case government-scandal dossier with chronology, category filters, legal-status summaries, verification notes, and sources.
 - Hidden legacy pledge form with Firebase, Turnstile, rate limits, and Resend support.
+
+The older airport/Rinas proposal is retired from the current campaign flow; historic Pulse references remain part of the protest record. The practical-advice section remains implemented but hidden.
 
 ## Phase 1: Keep Public Campaign Copy Current
 
 1. Update homepage date, route, and call-to-action copy as public campaign needs change.
 2. Keep Albanian copy primary and English secondary.
-3. Keep route map, Google Maps link, and itinerary text aligned.
+3. Keep the August date range, hero schedule, route map, Google Maps link, and itinerary text aligned.
 4. Keep WhatsApp intro template short and operational.
 5. Keep past marches/history accurate as events pass.
 6. Remove or reframe outdated future-tense language after an event date passes.
@@ -37,6 +40,7 @@ The app currently has:
 5. Add or adjust `participationEvents` only for moments that help explain the movement.
 6. Check mobile chart readability after major event-label changes.
 7. Keep metadata descriptions in `/pulsi` and `/en/pulsi` aligned with the current day count.
+8. Verify full-history, recent-range, month, and week navigation after data changes.
 
 ## Phase 3: Improve Credibility And Methodology
 
@@ -46,7 +50,16 @@ The app currently has:
 4. Consider adding a concise methodology section/page if the pulse page gets wider circulation.
 5. Avoid overclaiming precision from camera feeds or machine-learning counts.
 
-## Phase 4: Strengthen Conversion And Sharing
+## Phase 4: Maintain The Government-Scandal Dossier
+
+1. Treat `docs/skandalet-e-qeverisjes-rama.md` as the research source and `data/scandals.ts` as its application representation.
+2. Update both files together when a case, claim, status, or source changes.
+3. Preserve claim verdicts and real legal-status distinctions.
+4. Check category counts, chronology placement, and status totals after every data change.
+5. Keep the English route's Albanian-content notice visible until the case files are actually translated.
+6. Add new dossier entries to `specs/Features.md` only when the public feature changes materially, not for every research correction.
+
+## Phase 5: Strengthen Conversion And Sharing
 
 1. Track important actions with Vercel custom events.
 2. Keep WhatsApp open, Google Maps open, tracker open, shirt downloads, and language switches tracked.
@@ -55,7 +68,7 @@ The app currently has:
 5. Keep posters and QR assets in `docs/` organized by language and channel.
 6. Optimize the first mobile viewport before adding more content.
 
-## Phase 5: Coordination Safety
+## Phase 6: Coordination Safety
 
 1. Keep WhatsApp admin approval enabled.
 2. Reset public invite links if spam increases.
@@ -64,7 +77,7 @@ The app currently has:
 5. Use public pages for broad coordination and private channels for sensitive execution.
 6. Keep Firebase rules denying direct public reads/writes.
 
-## Phase 6: Legacy Pledge Flow
+## Phase 7: Legacy Pledge Flow
 
 The secure pledge form exists but is currently hidden. Re-enable only if there is a clear operational need for structured participant data.
 
@@ -78,16 +91,17 @@ If re-enabled:
 6. Review consent text and deletion policy.
 7. Keep private coordination links out of the confirmation page.
 
-## Phase 7: Design And Mobile QA
+## Phase 8: Design And Mobile QA
 
 1. Check mobile hero after any date/route copy change.
 2. Check route map legibility on mobile and desktop.
 3. Check `/pulsi` on mobile after chart data or label changes.
-4. Check shirt cards and downloads after asset changes.
-5. Run `npm run typecheck` before committing.
-6. Run `npm run build` before release when page structure or assets change.
+4. Check `/liste_vuajtjesh` chronology, filters, long titles, and expanded cards on mobile.
+5. Check shirt cards and downloads after asset changes.
+6. Run `npm run typecheck` before committing.
+7. Run `npm run build` before release when page structure or assets change.
 
-## Phase 8: Potential Later Features
+## Phase 9: Potential Later Features
 
 Only add these if the campaign needs them:
 
