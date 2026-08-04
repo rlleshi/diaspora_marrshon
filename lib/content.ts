@@ -274,7 +274,7 @@ export const content: Record<Locale, SiteContent> = {
         title: "Nga idetë te puna konkrete",
         body:
           "Dëshiron të kontribuosh edhe në projekte të tjera për Shqipërinë? Vizito Flamingo Revolution për të njohur nismat e tjera dhe për t'i kthyer idetë në punë konkrete.",
-        sisterLabel: "Shiko Flamingo Revolution",
+        sisterLabel: "FlamingoRevolution.eu",
         sisterHref: "https://www.flamingorevolution.eu/",
       },
     },
@@ -607,7 +607,7 @@ C) Nuk marshoj, por mund të ndihmoj me:
         title: "From ideas to concrete work",
         body:
           "Want to contribute to other projects for Albania? Visit Flamingo Revolution to discover the other initiatives and help turn ideas into concrete work.",
-        sisterLabel: "Visit Flamingo Revolution",
+        sisterLabel: "FlamingoRevolution.eu",
         sisterHref: "https://www.flamingorevolution.eu/",
       },
     },
