@@ -30,6 +30,7 @@ Recommended entry shape:
 - Peaceful principles; practical march advice remains implemented but hidden.
 - Suggested clothing page with downloadable shirt previews.
 - Vercel Analytics page and custom event tracking.
+- Revitalized flag favicon and mobile bookmark icon.
 - Bilingual protest pulse tracker at `/pulsi` and `/en/pulsi`.
 - Government scandal dossier at `/liste_vuajtjesh` (Albanian content, `/en/liste_vuajtjesh` chrome).
 - Hidden legacy pledge form and secure backend infrastructure.
@@ -189,6 +190,13 @@ Recommended entry shape:
 - Why it matters: Gives highly engaged visitors a path from following the protest to contributing to concrete projects for Albania.
 - Main files: `lib/content.ts`, `components/home-page.tsx`, `app/globals.css`.
 - Notes / follow-up: Track sister-site clicks through Vercel Analytics.
+
+### 2026-08-04 - Revitalized Flag Favicon
+
+- What changed: Added a centered square crop of the revitalized flag as a multi-size browser favicon, Next.js icon, and Apple touch icon.
+- Why it matters: Gives the site a recognizable campaign identity in browser tabs, bookmarks, and mobile shortcuts.
+- Main files: `docs/revitalized_flag.jpeg`, `app/favicon.ico`, `app/icon.png`, `app/apple-icon.png`.
+- Notes / follow-up: Keep the eagle large and centered if the source artwork is replaced later.
 
 ## Dormant / Legacy Feature Area
 
