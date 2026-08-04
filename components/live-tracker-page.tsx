@@ -191,10 +191,6 @@ export function LiveTrackerPage({ locale }: { locale: Locale }) {
         </section>
       </main>
 
-      <footer className="site-footer">
-        <p>{c.footer.privacy}</p>
-        <p>{c.footer.noLinks}</p>
-      </footer>
     </div>
   );
 }

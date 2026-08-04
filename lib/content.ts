@@ -191,10 +191,6 @@ export type SiteContent = {
     participationTypeOptions: Option<ParticipationType>[];
     volunteerPlaceholder: string;
   };
-  footer: {
-    privacy: string;
-    noLinks: string;
-  };
   confirm: {
     confirmedTitle: string;
     confirmedBody: string;
@@ -525,12 +521,6 @@ C) Nuk marshoj, por mund të ndihmoj me:
       ],
       volunteerPlaceholder:
         "P.sh. përkthim, logjistikë, media, ligjore, aksesueshmëri...",
-    },
-    footer: {
-      privacy:
-        "Të dhënat ruhen vetëm për koordinim të marshimit dhe nuk publikohen.",
-      noLinks:
-        "Lidhjet private të grupeve jepen vetëm pas konfirmimit dhe shqyrtimit nga organizatorët.",
     },
     confirm: {
       confirmedTitle: "Emaili u konfirmua",
@@ -864,12 +854,6 @@ C) I will not march, but I can help with:
       ],
       volunteerPlaceholder:
         "For example translation, logistics, media, legal, accessibility...",
-    },
-    footer: {
-      privacy:
-        "Participant data is kept only for march coordination and is not published.",
-      noLinks:
-        "Private group links are sent only after confirmation and organizer review.",
     },
     confirm: {
       confirmedTitle: "Email confirmed",

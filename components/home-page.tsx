@@ -544,10 +544,6 @@ export function HomePage({ locale }: { locale: Locale }) {
         </section>
       </main>
 
-      <footer className="site-footer">
-        <p>{t.footer.privacy}</p>
-        <p>{t.footer.noLinks}</p>
-      </footer>
     </div>
   );
 }

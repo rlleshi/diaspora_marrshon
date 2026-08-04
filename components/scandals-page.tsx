@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { ArrowLeft, Flag, Languages } from "lucide-react";
-import { content, type Locale } from "@/lib/content";
+import type { Locale } from "@/lib/content";
 import { scandals } from "@/data/scandals";
 import { scandalsPageContent, statusBucketOrder } from "@/lib/scandals-content";
 import { TrackedLink } from "@/components/analytics-events";
@@ -19,7 +19,6 @@ const STATUS_COUNTS = statusBucketOrder.map((bucket) => ({
 
 export function ScandalsPage({ locale }: { locale: Locale }) {
   const t = scandalsPageContent[locale];
-  const c = content[locale];
   const alternateLocale = locale === "sq" ? "en" : "sq";
 
   return (
@@ -121,7 +120,6 @@ export function ScandalsPage({ locale }: { locale: Locale }) {
 
       <footer className="site-footer">
         <p>{t.footerNote}</p>
-        <p>{c.footer.privacy}</p>
       </footer>
     </div>
   );
