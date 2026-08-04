@@ -115,9 +115,10 @@ The tracker is a normalized participation index, not an exact official crowd cou
 The visible site is WhatsApp-first:
 
 1. Users scan the QR or open WhatsApp.
-2. Group entry is protected by admin approval.
+2. Users join the group directly without admin approval.
 3. New members post the short intro template.
-4. Sensitive logistics stay in private organizer channels.
+4. Organizers moderate spam and reset the public invite link if abuse increases.
+5. Sensitive logistics stay in private organizer channels.
 
 The older form is still present in the codebase but hidden on the homepage. Re-enable it only if structured participant data becomes operationally useful again.
 
@@ -135,7 +136,7 @@ Trusted organizers should use individual Google/Firebase IAM access if Firebase 
 
 ## Security Notes
 
-- Keep WhatsApp admin approval enabled.
+- Moderate the open WhatsApp group actively and reset the invite link if spam increases.
 - Do not publish participant lists, private phone numbers, or sensitive organizer data.
 - Keep private logistics out of public copy unless safe.
 - Keep Turnstile, rate limits, origin checks, and email confirmation active if the pledge form is re-enabled.

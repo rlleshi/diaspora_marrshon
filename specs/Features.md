@@ -22,7 +22,7 @@ Recommended entry shape:
 ## Current Feature Areas
 
 - Albanian-first campaign homepage with English secondary version.
-- WhatsApp-first coordination with QR code, admin approval, and intro template.
+- WhatsApp-first coordination with QR code, direct entry, and intro template.
 - Date and route hero for the current march.
 - Route section with itinerary, Google Maps link, and route image.
 - Civic demands/context section.
@@ -62,7 +62,7 @@ Recommended entry shape:
 - What changed: Replaced the visible pledge-form emphasis with a WhatsApp QR and short intro template.
 - Why it matters: Reduced friction for diaspora participants and moved coordination into a channel people actually use.
 - Main files: `components/home-page.tsx`, `lib/content.ts`, `public/whatsapp-intake-qr.svg`.
-- Notes / follow-up: Keep admin approval enabled and reset invite links if spam increases.
+- Notes / follow-up: The original group used admin approval; the current group allows direct entry and therefore needs active moderation and invite-link rotation if spam increases.
 
 ### 2026-06-14 - Shared Clothing / Shirts Page
 
@@ -168,6 +168,13 @@ Recommended entry shape:
 - Why it matters: Makes a long-running daily series inspectable without compressing all 63 days into one unreadable mobile chart.
 - Main files: `components/participation/ParticipationChart.tsx`, `components/participation/geometry.ts`, `components/live-tracker-page.tsx`, `app/globals.css`, `data/participation.ts`.
 - Notes / follow-up: New days should not require chart code changes, but every update should be checked in the all-days and latest-week views on desktop and mobile.
+
+### 2026-08-04 - Open-Entry WhatsApp Group
+
+- What changed: Replaced the WhatsApp invite and updated the coordination flow so visitors enter the group directly without admin approval.
+- Why it matters: Removes waiting from the primary campaign conversion path.
+- Main files: `components/home-page.tsx`, `lib/content.ts`, `public/whatsapp-intake-qr.svg`.
+- Notes / follow-up: Because the invite is public, moderate actively and rotate it promptly if spam or abuse increases.
 
 ## Dormant / Legacy Feature Area
 

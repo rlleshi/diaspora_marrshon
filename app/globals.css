@@ -680,7 +680,7 @@ textarea:focus {
 }
 
 .whatsapp-panel-heading p,
-.approval-note,
+.access-note,
 .template-panel p {
   margin: 8px 0 0;
   color: var(--muted);
@@ -711,7 +711,7 @@ textarea:focus {
   background: var(--white);
 }
 
-.approval-note {
+.access-note {
   padding-left: 12px;
   border-left: 4px solid var(--green);
   font-weight: 650;

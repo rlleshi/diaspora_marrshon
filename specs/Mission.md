@@ -69,7 +69,7 @@ The march is not against ordinary citizens or against different political belief
 ## Current Site Sections
 
 - Homepage hero with the current march date and route checkpoints.
-- WhatsApp coordination panel with QR code and admin approval.
+- WhatsApp coordination panel with QR code and direct group entry.
 - Protest pulse teaser linked to `/pulsi`.
 - Government-scandal teaser linked to `/liste_vuajtjesh`.
 - Civic demands and campaign context.
@@ -129,8 +129,9 @@ It should:
 The live public coordination layer is WhatsApp-first:
 
 - Users scan the QR code or open WhatsApp.
-- Entry is protected by admin approval.
+- Users enter directly without admin approval.
 - People introduce themselves with a short template after joining.
+- Organizers moderate the group and can rotate the public invite link if spam increases.
 - Sensitive logistics can be handled privately by trusted organizers.
 
 The older pledge form, Firebase storage, email confirmation, rate limiting, and Turnstile flow remain in the codebase as infrastructure, but the visible homepage currently hides the form and prioritizes WhatsApp coordination.

@@ -70,8 +70,8 @@ The older airport/Rinas proposal is retired from the current campaign flow; hist
 
 ## Phase 6: Coordination Safety
 
-1. Keep WhatsApp admin approval enabled.
-2. Reset public invite links if spam increases.
+1. Moderate the open WhatsApp group actively.
+2. Reset the public invite link if spam increases.
 3. Keep sensitive logistics out of public copy.
 4. Do not publish participant lists or organizer private details.
 5. Use public pages for broad coordination and private channels for sensitive execution.

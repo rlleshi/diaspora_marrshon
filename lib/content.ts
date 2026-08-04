@@ -90,7 +90,7 @@ export type SiteContent = {
     body: string;
     qrAlt: string;
     openLabel: string;
-    approvalNote: string;
+    accessNote: string;
     templateTitle: string;
     templateIntro: string;
     template: string;
@@ -237,7 +237,7 @@ export const content: Record<Locale, SiteContent> = {
     pledgeIntro: {
       title: "Bashkohu në WhatsApp për koordinim.",
       body:
-        "Skano QR-in, kërko të hysh në grup dhe pas miratimit nga administratorët shkruaj mesazhin e shkurtër më poshtë.",
+        "Skano QR-in, hyr në grup dhe shkruaj mesazhin e shkurtër më poshtë.",
     },
     shirtsTeaser: {
       kicker: "Veshja e përbashkët",
@@ -283,11 +283,10 @@ export const content: Record<Locale, SiteContent> = {
     whatsapp: {
       title: "Skano QR-in",
       body:
-        "Ky është grupi i hyrjes për diasporën. Anëtarët miratohen nga administratorët para se të hyjnë.",
+        "Ky është grupi i hyrjes për diasporën. Mund të hysh drejtpërdrejt, pa pritur miratim nga administratorët.",
       qrAlt: "QR për grupin WhatsApp të diasporës",
       openLabel: "Hap WhatsApp",
-      approvalNote:
-        "Për arsye sigurie, grupi përdor miratim nga administratorët.",
+      accessNote: "Hyrja në grup është e hapur dhe e drejtpërdrejtë.",
       templateTitle: "Mesazhi që mund të shkruash pas hyrjes",
       templateIntro:
         "Kopjoje mesazhin, plotëso emrin dhe lër vetëm opsionin që vlen për ty.",
@@ -567,7 +566,7 @@ C) Nuk marshoj, por mund të ndihmoj me:
     pledgeIntro: {
       title: "Join WhatsApp for coordination.",
       body:
-        "Scan the QR, request to join the group, and after admin approval post the short template below.",
+        "Scan the QR, join the group, and post the short template below.",
     },
     shirtsTeaser: {
       kicker: "Shared clothing",
@@ -613,11 +612,10 @@ C) Nuk marshoj, por mund të ndihmoj me:
     whatsapp: {
       title: "Scan the QR",
       body:
-        "This is the diaspora intake group. Members are approved by admins before joining.",
+        "This is the diaspora intake group. You can join directly without waiting for admin approval.",
       qrAlt: "QR for the diaspora WhatsApp group",
       openLabel: "Open WhatsApp",
-      approvalNote:
-        "For safety, the group uses admin approval.",
+      accessNote: "Entry to the group is open and direct.",
       templateTitle: "Message you can post after joining",
       templateIntro:
         "Copy the message, add your name, and keep only the option that applies to you.",

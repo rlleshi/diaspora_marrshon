@@ -559,7 +559,7 @@ function WhatsAppIntakePanel({
         </TrackedLink>
       </div>
 
-      <p className="approval-note">{content.approvalNote}</p>
+      <p className="access-note">{content.accessNote}</p>
 
       <div className="template-panel">
         <h3>{content.templateTitle}</h3>

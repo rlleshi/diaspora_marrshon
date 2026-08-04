@@ -143,10 +143,10 @@ The visible coordination flow is WhatsApp-first:
 
 1. User lands on the homepage.
 2. User scans the QR code or opens WhatsApp.
-3. WhatsApp group entry uses admin approval.
+3. User enters the WhatsApp group directly without admin approval.
 4. User posts a short intro template with name, origin, joining point, and optional help.
 
-This avoids a heavy public form for users who are unlikely to complete it, while still using admin approval as a first spam filter.
+This avoids a heavy public form for users who are unlikely to complete it. Because the invite is public and entry is open, active moderation and invite-link rotation are the primary spam controls.
 
 Do not expose sensitive organizer details or private logistics publicly.
 
@@ -243,7 +243,7 @@ For local development, missing Turnstile and Resend credentials are tolerated by
 - Do not publish participant lists.
 - Do not publish phone numbers.
 - Do not collect unnecessary personal data.
-- Keep WhatsApp admin approval enabled.
+- Moderate the open WhatsApp group and rotate the invite link if spam increases.
 - Keep route/logistics information public only when it is safe to publish.
 - Keep exact crowd-size claims framed as estimates or normalized index values unless independently verified.
 - Keep scandal claims source-linked and preserve their actual legal status; inclusion in the dossier must not be presented as a conviction.
