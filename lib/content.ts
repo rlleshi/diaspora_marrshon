@@ -299,12 +299,12 @@ export const content: Record<Locale, SiteContent> = {
     whatsapp: {
       title: "Skano QR-in",
       body:
-        "Ky është grupi i hyrjes për diasporën. Mund të hysh drejtpërdrejt.",
+        "Ky është grupi i hyrjes për diasporën. Mund të hysh me një klikim.",
       qrAlt: "QR për grupin WhatsApp të diasporës",
       openLabel: "Hap WhatsApp",
       templateTitle: "Mesazhi që mund të shkruash pas hyrjes",
       templateIntro:
-        "Kopjoje mesazhin, plotëso emrin dhe lër vetëm opsionin që vlen për ty.",
+        "Nëse dëshiron, kopjoje mesazhin, shkruaj emrin dhe zgjidh një ose më shumë nga mundësitë më poshtë.",
       template: `Përshëndetje, jam [Emri] nga [Shteti / qyteti].
 
 Zgjedh njërën nga këto:
@@ -632,12 +632,12 @@ C) Nuk marshoj, por mund të ndihmoj me:
     whatsapp: {
       title: "Scan the QR",
       body:
-        "This is the diaspora intake group. You can join directly.",
+        "This is the diaspora intake group. You can join with one click.",
       qrAlt: "QR for the diaspora WhatsApp group",
       openLabel: "Open WhatsApp",
       templateTitle: "Message you can post after joining",
       templateIntro:
-        "Copy the message, add your name, and keep only the option that applies to you.",
+        "If you wish, copy the message, add your name, and choose one or more of the options below.",
       template: `Hi, I am [Name] from [Country / city].
 
 Choose one:
