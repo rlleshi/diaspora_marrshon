@@ -176,6 +176,13 @@ Recommended entry shape:
 - Main files: `components/home-page.tsx`, `lib/content.ts`, `public/whatsapp-intake-qr.svg`.
 - Notes / follow-up: Because the invite is public, moderate actively and rotate it promptly if spam or abuse increases.
 
+### 2026-08-04 - Flamingo Revolution Diaspora Masthead
+
+- What changed: Added a large `Flamingo Revolution Diaspora` masthead over the hero photograph in both language versions.
+- Why it matters: Gives the diaspora campaign a clear movement identity before visitors reach the date, route, and calls to action.
+- Main files: `lib/content.ts`, `components/home-page.tsx`, `app/globals.css`.
+- Notes / follow-up: Keep the wording in English across both locales and check the masthead after future hero-photo or schedule changes.
+
 ## Dormant / Legacy Feature Area
 
 ### Secure Pledge Form Infrastructure

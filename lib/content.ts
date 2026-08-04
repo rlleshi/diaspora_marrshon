@@ -32,6 +32,10 @@ export type SiteContent = {
     pledge: string;
   };
   hero: {
+    campaignTitle: {
+      lead: string;
+      accent: string;
+    };
     eyebrow: string;
     dateLabel: string;
     dateDay: string;
@@ -213,6 +217,10 @@ export const content: Record<Locale, SiteContent> = {
       pledge: "Marshoj për Shqipërinë",
     },
     hero: {
+      campaignTitle: {
+        lead: "Flamingo Revolution",
+        accent: "Diaspora",
+      },
       eyebrow: "Marshimi i tretë i diasporës në Tiranë",
       dateLabel: "Data e marshimit",
       dateDay: "14-16",
@@ -542,6 +550,10 @@ C) Nuk marshoj, por mund të ndihmoj me:
       pledge: "I march for Albania",
     },
     hero: {
+      campaignTitle: {
+        lead: "Flamingo Revolution",
+        accent: "Diaspora",
+      },
       eyebrow: "The diaspora's third march in Tirana",
       dateLabel: "March date",
       dateDay: "14-16",

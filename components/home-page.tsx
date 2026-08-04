@@ -133,6 +133,13 @@ export function HomePage({ locale }: { locale: Locale }) {
         />
         <div className="hero-tint" />
         <div className="hero-content">
+          <div
+            className="hero-campaign-title"
+            aria-label={`${t.hero.campaignTitle.lead} ${t.hero.campaignTitle.accent}`}
+          >
+            <span>{t.hero.campaignTitle.lead}</span>
+            <strong>{t.hero.campaignTitle.accent}</strong>
+          </div>
           <p className="eyebrow">
             <Flag aria-hidden="true" size={18} />
             {t.hero.eyebrow}
