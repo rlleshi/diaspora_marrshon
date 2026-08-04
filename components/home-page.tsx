@@ -25,7 +25,7 @@ import { SectionViewTracker, TrackedLink } from "@/components/analytics-events";
 import routeMapImage from "@/docs/marshimi_i_diaspores_bulevard_sheshi.png";
 
 const whatsAppInviteUrl =
-  "https://chat.whatsapp.com/L6oe4JyUi8k0h13oJSv7DP?mode=gi_t";
+  "https://chat.whatsapp.com/BZttEC2v1tvIrZqcVXTKSb?s=sh&p=i&mlu=0&ilr=0&amv=2";
 const googleMapsRouteUrl = "https://maps.app.goo.gl/wz7z2Xt5HBbYKjUR8";
 
 const practicalAdviceIcons = [
