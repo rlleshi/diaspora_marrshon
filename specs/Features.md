@@ -183,6 +183,13 @@ Recommended entry shape:
 - Main files: `lib/content.ts`, `components/home-page.tsx`, `app/globals.css`.
 - Notes / follow-up: Keep the wording in English across both locales and check the masthead after future hero-photo or schedule changes.
 
+### 2026-08-04 - Pulse Sister Initiative Link
+
+- What changed: Added a bilingual community invitation beneath the homepage Pulse feature, linking to the independent sister initiative Flamingo Revolution.
+- Why it matters: Gives highly engaged visitors a path from following the protest to contributing to concrete projects for Albania.
+- Main files: `lib/content.ts`, `components/home-page.tsx`, `app/globals.css`.
+- Notes / follow-up: Track sister-site clicks through Vercel Analytics.
+
 ## Dormant / Legacy Feature Area
 
 ### Secure Pledge Form Infrastructure

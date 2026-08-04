@@ -7,6 +7,7 @@ import {
   Backpack,
   CheckCircle2,
   Droplets,
+  ExternalLink,
   Flag,
   Footprints,
   Gavel,
@@ -274,6 +275,25 @@ export function HomePage({ locale }: { locale: Locale }) {
                 />
               </svg>
             </figure>
+            <div className="pulse-community">
+              <div className="pulse-community-copy">
+                <h3>{t.trackerTeaser.community.title}</h3>
+                <p>{t.trackerTeaser.community.body}</p>
+              </div>
+              <div className="pulse-community-actions">
+                <TrackedLink
+                  className="pulse-community-link"
+                  href={t.trackerTeaser.community.sisterHref}
+                  target="_blank"
+                  rel="noreferrer"
+                  eventName="Sister Site Opened"
+                  eventProperties={{ locale, placement: "pulse_community" }}
+                >
+                  <ExternalLink aria-hidden="true" size={18} />
+                  {t.trackerTeaser.community.sisterLabel}
+                </TrackedLink>
+              </div>
+            </div>
           </div>
         </section>
 
@@ -565,8 +585,6 @@ function WhatsAppIntakePanel({
           {content.openLabel}
         </TrackedLink>
       </div>
-
-      <p className="access-note">{content.accessNote}</p>
 
       <div className="template-panel">
         <h3>{content.templateTitle}</h3>

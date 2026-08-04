@@ -75,6 +75,12 @@ export type SiteContent = {
     href: string;
     cta: string;
     stats: Array<{ value: string; label: string }>;
+    community: {
+      title: string;
+      body: string;
+      sisterLabel: string;
+      sisterHref: string;
+    };
   };
   scandalsTeaser: {
     kicker: string;
@@ -94,7 +100,6 @@ export type SiteContent = {
     body: string;
     qrAlt: string;
     openLabel: string;
-    accessNote: string;
     templateTitle: string;
     templateIntro: string;
     template: string;
@@ -269,6 +274,13 @@ export const content: Record<Locale, SiteContent> = {
         { value: "20.06", label: "dita më e madhe" },
         { value: "100K+", label: "vlerësim në shesh" },
       ],
+      community: {
+        title: "Nga idetë te puna konkrete",
+        body:
+          "Dëshiron të kontribuosh edhe në projekte të tjera për Shqipërinë? Vizito Flamingo Revolution për të njohur nismat e tjera dhe për t'i kthyer idetë në punë konkrete.",
+        sisterLabel: "Shiko Flamingo Revolution",
+        sisterHref: "https://www.flamingorevolution.eu/",
+      },
     },
     scandalsTeaser: {
       kicker: "Historiku i qeverisjes",
@@ -291,10 +303,9 @@ export const content: Record<Locale, SiteContent> = {
     whatsapp: {
       title: "Skano QR-in",
       body:
-        "Ky është grupi i hyrjes për diasporën. Mund të hysh drejtpërdrejt, pa pritur miratim nga administratorët.",
+        "Ky është grupi i hyrjes për diasporën. Mund të hysh drejtpërdrejt.",
       qrAlt: "QR për grupin WhatsApp të diasporës",
       openLabel: "Hap WhatsApp",
-      accessNote: "Hyrja në grup është e hapur dhe e drejtpërdrejtë.",
       templateTitle: "Mesazhi që mund të shkruash pas hyrjes",
       templateIntro:
         "Kopjoje mesazhin, plotëso emrin dhe lër vetëm opsionin që vlen për ty.",
@@ -602,6 +613,13 @@ C) Nuk marshoj, por mund të ndihmoj me:
         { value: "20.06", label: "the biggest day" },
         { value: "100K+", label: "estimated in the square" },
       ],
+      community: {
+        title: "From ideas to concrete work",
+        body:
+          "Want to contribute to other projects for Albania? Visit Flamingo Revolution to discover the other initiatives and help turn ideas into concrete work.",
+        sisterLabel: "Visit Flamingo Revolution",
+        sisterHref: "https://www.flamingorevolution.eu/",
+      },
     },
     scandalsTeaser: {
       kicker: "Government track record",
@@ -624,10 +642,9 @@ C) Nuk marshoj, por mund të ndihmoj me:
     whatsapp: {
       title: "Scan the QR",
       body:
-        "This is the diaspora intake group. You can join directly without waiting for admin approval.",
+        "This is the diaspora intake group. You can join directly.",
       qrAlt: "QR for the diaspora WhatsApp group",
       openLabel: "Open WhatsApp",
-      accessNote: "Entry to the group is open and direct.",
       templateTitle: "Message you can post after joining",
       templateIntro:
         "Copy the message, add your name, and keep only the option that applies to you.",
