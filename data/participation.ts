@@ -85,6 +85,12 @@
 // Day 63 computed from the protesta_63 timeline, retained frames only (audited top-10
 // peak avg 314.9 — replacing a 564.3 raw maximum inflated by a split-screen interval;
 // mean 169.7, median 165.0), normalized on the same Day-7 reference.
+// Day 64 computed from the protesta_64 timeline, retained frames only (top-10 peak
+// avg 352.1, mean 147.6, median 133.9), normalized on the same Day-7 reference.
+// Day 65 computed from the protesta_65 timeline, retained frames only (top-10 peak
+// avg 363.6, mean 158.7, median 151.6), normalized on the same Day-7 reference.
+// Day 66 computed from the protesta_66 timeline, retained frames only (top-10 peak
+// avg 267.0, mean 126.4, median 113.2), normalized on the same Day-7 reference.
 
 export type ParticipationDay = {
   day: number;
@@ -238,6 +244,12 @@ export const participation: ParticipationDay[] = [
     note: { sq: "E premtja sjell rimëkëmbje të gjerë në çdo tregues, para aksionit të 1 gushtit: marshimi zgjatet deri te shkolla “1 Maji” në Ali Demi, ndërsa parulla “Rama në burg, Berisha në burg” vazhdon si përherë të refuzojë të dyja polet politike; e shtuna paralajmërohet si aksion për Shqipërinë, jo për një parti.", en: "Friday brings a broad rebound across every measure ahead of the 1 August action: the march extends to the “1 Maji” school in Ali Demi, while the chant “Rama in prison, Berisha in prison” continues, as always, rejecting both political poles; Saturday is billed as an action for Albania, not for a party." } },
   { day: 63, date: "2026-08-01", saturday: true, peak: 6.10, mean: 3.29, median: 3.19, source: yt("yTWeDcffAx0"),
     note: { sq: "E shtuna sjell aksionin kombëtar të premtuar për diasporën: banderola gjigante “Shqiptarët e bashkuar, pushteti i tmerruar” dhe flamuri i gjatë shoqërojnë marshimin nga Sheshi Skënderbej te Kryeministria; aktivistë thërrasin qytetarët e 15 bashkive të vogla të bashkohen, ndërsa për të nesërmen njoftohet protestë e veçantë në Shkodër.", en: "Saturday delivers the promised diaspora-focused national action: the giant banner “Albanians united, the regime terrified” and a long flag banner accompany the march from Skanderbeg Square to the PM's office; activists call on citizens from 15 small municipalities to join, while a separate Shkodër protest is announced for the next day." } },
+  { day: 64, date: "2026-08-02", saturday: false, peak: 6.82, mean: 2.86, median: 2.59, source: yt("nh4LON9uHcs"),
+    note: { sq: "E diela rikthen qarkun e zakonshëm pas fundjavës së diasporës, me bazë më të ulët se e shtuna por kulm më të dendur në rrugët e ngushta të ish-Bllokut; nga Firencja, një e re e diasporës thotë para Kryeministrisë: “Sot është dita ime e parë e pushimeve dhe ku ka vend më të bukur për t'i kaluar se këtu”. Marshimi mban pankartën “Ne thamë arresto Ballukun, jo liro Beqajn”.", en: "Sunday returns to the usual central circuit after the diaspora weekend, on a lower baseline than Saturday but with a denser crest in the narrow streets of the former Blloku; outside the PM's office a young woman from the Florence diaspora says: “Today is my first day of holiday, and where is there a better place to spend it than here?” The march carries the placard “We said arrest Balluku, not release Beqaj”." } },
+  { day: 65, date: "2026-08-03", saturday: false, peak: 7.04, mean: 3.07, median: 2.94, source: yt("ruo4KgfUFBY"),
+    note: { sq: "E hëna ngre bazën e dukshme edhe pak mbi të dielën, me valë më pak të qëndrueshme: nga sheshi kërkohen qeveri kalimtare, zgjedhje të lira dhe ndryshim sistemi, ndërsa mbyllja njofton mobilizimin e madh me diasporën më 14-16 gusht; rikthimi i tretë i madh i diasporës pas 20 qershorit dhe 4 korrikut.", en: "Monday lifts the visible baseline slightly above Sunday, with a less sustained wave: the square demands a transitional government, free elections and system change, while the closing call announces the large mobilization with the diaspora on August 14-16, the third major diaspora return after 20 June and 4 July." } },
+  { day: 66, date: "2026-08-04", saturday: false, peak: 5.17, mean: 2.45, median: 2.19, source: yt("afwu1c4_Zns"),
+    note: { sq: "Marshimi nëpër qendër mbyllet te Sheshi Nënë Tereza, ku jehon “Shqipëria kërkon Revolucion”; thirrjet godasin edhe patronazhistët, ndërsa SPAK-ut i kërkohet të arrestojë politikanët e korruptuar.", en: "The march through the center closes at Sheshi Nënë Tereza, where “Albania demands Revolution” echoes; the chants also target the patronage networks, while SPAK is called on to arrest the corrupt politicians." } },
 ];
 
 export type ParticipationEvent = {
