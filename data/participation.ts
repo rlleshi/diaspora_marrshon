@@ -91,6 +91,8 @@
 // avg 363.6, mean 158.7, median 151.6), normalized on the same Day-7 reference.
 // Day 66 computed from the protesta_66 timeline, retained frames only (top-10 peak
 // avg 267.0, mean 126.4, median 113.2), normalized on the same Day-7 reference.
+// Day 67 computed from the protesta_67 timeline, retained frames only (top-10 peak
+// avg 267.0, mean 129.9, median 118.2), normalized on the same Day-7 reference.
 
 export type ParticipationDay = {
   day: number;
@@ -250,6 +252,8 @@ export const participation: ParticipationDay[] = [
     note: { sq: "E hëna ngre bazën e dukshme edhe pak mbi të dielën, me valë më pak të qëndrueshme: nga sheshi kërkohen qeveri kalimtare, zgjedhje të lira dhe ndryshim sistemi, ndërsa mbyllja njofton mobilizimin e madh me diasporën më 14-16 gusht; rikthimi i tretë i madh i diasporës pas 20 qershorit dhe 4 korrikut.", en: "Monday lifts the visible baseline slightly above Sunday, with a less sustained wave: the square demands a transitional government, free elections and system change, while the closing call announces the large mobilization with the diaspora on August 14-16, the third major diaspora return after 20 June and 4 July." } },
   { day: 66, date: "2026-08-04", saturday: false, peak: 5.17, mean: 2.45, median: 2.19, source: yt("afwu1c4_Zns"),
     note: { sq: "Marshimi nëpër qendër mbyllet te Sheshi Nënë Tereza, ku jehon “Shqipëria kërkon Revolucion”; thirrjet godasin edhe patronazhistët, ndërsa SPAK-ut i kërkohet të arrestojë politikanët e korruptuar.", en: "The march through the center closes at Sheshi Nënë Tereza, where “Albania demands Revolution” echoes; the chants also target the patronage networks, while SPAK is called on to arrest the corrupt politicians." } },
+  { day: 67, date: "2026-08-05", saturday: false, peak: 5.17, mean: 2.52, median: 2.29, source: yt("vfN1F1jkFQQ"),
+    note: { sq: "E mërkura çon marshimin drejt Liqenit Artificial dhe Sheshit Wilson, ndërsa nga kolona jehojnë “Poshtë diktatura” dhe “Qeveri e krimit”; banderolat mbajnë thirrjen “Edi Rama dorëhiqu”.", en: "Wednesday takes the march out toward the Artificial Lake and Sheshi Wilson, while the column echoes with “Down with the dictatorship” and “Government of crime”; the banners carry the call “Edi Rama, resign”." } },
 ];
 
 export type ParticipationEvent = {
