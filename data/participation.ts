@@ -93,6 +93,12 @@
 // avg 267.0, mean 126.4, median 113.2), normalized on the same Day-7 reference.
 // Day 67 computed from the protesta_67 timeline, retained frames only (top-10 peak
 // avg 267.0, mean 129.9, median 118.2), normalized on the same Day-7 reference.
+// Day 68 arrived as two separated livestreams covering one evening block; the segments are
+// never summed. Stored values come from segment 68.2 (top-10 peak avg 184.3, mean 144.7,
+// median 142.6, one split-screen frame at 00:25:54 excluded), normalized on the same Day-7
+// reference. Segment 68.1 was lower on every measure (top-10 peak avg 128.7, mean 108.6,
+// median 105.8). Retention was poor in both segments (68.2 kept 28 of 353 frames), so the
+// mean and median sit on a far smaller sample than neighbouring days.
 
 export type ParticipationDay = {
   day: number;
@@ -254,6 +260,8 @@ export const participation: ParticipationDay[] = [
     note: { sq: "Marshimi nëpër qendër mbyllet te Sheshi Nënë Tereza, ku jehon “Shqipëria kërkon Revolucion”; thirrjet godasin edhe patronazhistët, ndërsa SPAK-ut i kërkohet të arrestojë politikanët e korruptuar.", en: "The march through the center closes at Sheshi Nënë Tereza, where “Albania demands Revolution” echoes; the chants also target the patronage networks, while SPAK is called on to arrest the corrupt politicians." } },
   { day: 67, date: "2026-08-05", saturday: false, peak: 5.17, mean: 2.52, median: 2.29, source: yt("vfN1F1jkFQQ"),
     note: { sq: "E mërkura çon marshimin drejt Liqenit Artificial dhe Sheshit Wilson, ndërsa nga kolona jehojnë “Poshtë diktatura” dhe “Qeveri e krimit”; banderolat mbajnë thirrjen “Edi Rama dorëhiqu”.", en: "Wednesday takes the march out toward the Artificial Lake and Sheshi Wilson, while the column echoes with “Down with the dictatorship” and “Government of crime”; the banners carry the call “Edi Rama, resign”." } },
+  { day: 68, date: "2026-08-06", saturday: false, peak: 3.57, mean: 2.80, median: 2.76, source: yt("GEQaHIOJSps"),
+    note: { sq: "E enjtja sjell paralajmërimin për përshkallëzim dhe bllokim rrugësh nëse mjekrra nuk largohet; marshimi i gjatë drejt ish-Bllokut ecën nën parullat “Atdheu nuk shitet” dhe “Bashkimi bën fuqinë”.", en: "Thursday brings a warning of escalation and road blockades if Rama does not go; the long march toward the former Blloku moves behind the chants “The homeland is not for sale” and “Unity makes strength”." } },
 ];
 
 export type ParticipationEvent = {
