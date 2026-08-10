@@ -99,6 +99,14 @@
 // reference. Segment 68.1 was lower on every measure (top-10 peak avg 128.7, mean 108.6,
 // median 105.8). Retention was poor in both segments (68.2 kept 28 of 353 frames), so the
 // mean and median sit on a far smaller sample than neighbouring days.
+// Day 69 computed from the protesta_69 timeline, retained frames only (top-10 peak
+// avg 161.7, mean 114.1, median 110.1), normalized on the same Day-7 reference.
+// Day 70 computed from the protesta_70 timeline, retained frames only (top-10 peak
+// avg 190.9, mean 122.6, median 119.0), normalized on the same Day-7 reference.
+// Day 71 computed from the protesta_71 timeline, retained frames only (clean top-10 peak
+// avg 148.5, mean 120.2, median 113.1), normalized on the same Day-7 reference; 325 of the
+// 373 retained frames were dropped as split-screen broadcast layout, so all three values
+// rest on scene 26 onward and the raw 164.3 maximum is audit-only.
 
 export type ParticipationDay = {
   day: number;
@@ -262,6 +270,12 @@ export const participation: ParticipationDay[] = [
     note: { sq: "E mërkura çon marshimin drejt Liqenit Artificial dhe Sheshit Wilson, ndërsa nga kolona jehojnë “Poshtë diktatura” dhe “Qeveri e krimit”; banderolat mbajnë thirrjen “Edi Rama dorëhiqu”.", en: "Wednesday takes the march out toward the Artificial Lake and Sheshi Wilson, while the column echoes with “Down with the dictatorship” and “Government of crime”; the banners carry the call “Edi Rama, resign”." } },
   { day: 68, date: "2026-08-06", saturday: false, peak: 3.57, mean: 2.80, median: 2.76, source: yt("GEQaHIOJSps"),
     note: { sq: "E enjtja sjell paralajmërimin për përshkallëzim dhe bllokim rrugësh nëse mjekrra nuk largohet; marshimi i gjatë drejt ish-Bllokut ecën nën parullat “Atdheu nuk shitet” dhe “Bashkimi bën fuqinë”.", en: "Thursday brings a warning of escalation and road blockades if Rama does not go; the long march toward the former Blloku moves behind the chants “The homeland is not for sale” and “Unity makes strength”." } },
+  { day: 69, date: "2026-08-07", saturday: false, peak: 3.13, mean: 2.21, median: 2.13, source: yt("lxvRDQEWpX4"),
+    note: { sq: "E premtja mban të njëjtën kërkesë: kolona mbush Bulevardin Dëshmorët e Kombit me flamuj e banderola dorëheqjeje, ndërsa kulmi i mbrëmjes bie nën ditët e fundit dhe baza e dukshme mbetet pothuajse e pandryshuar.", en: "Friday holds the same demand: the column fills Bulevardi Dëshmorët e Kombit with flags and resignation banners, while the evening's crest falls below recent days and the visible baseline holds almost unchanged." } },
+  { day: 70, date: "2026-08-08", saturday: true, peak: 3.70, mean: 2.37, median: 2.30, source: yt("YptXeh_mNLI"),
+    note: { sq: "E shtuna rikthen rritjen në çdo tregues, në javën e dhjetë të protestës: kulmi zë kolonën e dendur në bulevard nën banderolën “Shqiptarët e bashkuar”, ndërsa vala më e fortë nis me marshimin nëpër rrugët e qendrës.", en: "Saturday brings a rebound across every measure, in the tenth week of protest: the crest catches the dense column on the boulevard beneath the “Shqiptarët e bashkuar” banner, while the strongest stretch begins with the march through the central streets." } },
+  { day: 71, date: "2026-08-09", saturday: false, peak: 2.88, mean: 2.33, median: 2.19, source: yt("OzlnNgK-_CY"),
+    note: { sq: "E diela nis me fjalime para Kryeministrisë dhe çon marshimin pranë Drejtorisë së Policisë dhe ambasadave të Serbisë e Ukrainës, ku shpaloset mesazhi “Rruga Dardania e Lirë” dhe jehojnë thirrjet “UÇK”.", en: "Sunday opens with speeches outside the PM's office and takes the march past the police directorate and the Serbian and Ukrainian embassies, where the message “Rruga Dardania e Lirë” is unfurled and “UÇK” chants echo." } },
 ];
 
 export type ParticipationEvent = {
