@@ -107,6 +107,15 @@
 // avg 148.5, mean 120.2, median 113.1), normalized on the same Day-7 reference; 325 of the
 // 373 retained frames were dropped as split-screen broadcast layout, so all three values
 // rest on scene 26 onward and the raw 164.3 maximum is audit-only.
+// Day 72 computed from the protesta_72 timeline, retained frames only (top-10 peak
+// avg 299.7, mean 143.7, median 137.9), normalized on the same Day-7 reference.
+// Day 73 computed from the protesta_73 timeline, retained frames only (top-10 peak
+// avg 220.1, mean 142.1, median 141.3), normalized on the same Day-7 reference.
+// Day 74 again arrived as two livestreams covering one continuous evening; the parts are
+// never summed. Stored values come from part 74.2 (top-10 peak avg 177.5, mean 123.6,
+// median 118.1), normalized on the same Day-7 reference. Part 74.1 switches repeatedly to a
+// two-panel broadcast layout, so its 130.2 raw maximum is audit-only and supplies no
+// published figure; the two parts are not synchronized, so no combined mean or median exists.
 
 export type ParticipationDay = {
   day: number;
@@ -276,6 +285,12 @@ export const participation: ParticipationDay[] = [
     note: { sq: "E shtuna rikthen rritjen në çdo tregues, në javën e dhjetë të protestës: kulmi zë kolonën e dendur në bulevard nën banderolën “Shqiptarët e bashkuar”, ndërsa vala më e fortë nis me marshimin nëpër rrugët e qendrës.", en: "Saturday brings a rebound across every measure, in the tenth week of protest: the crest catches the dense column on the boulevard beneath the “Shqiptarët e bashkuar” banner, while the strongest stretch begins with the march through the central streets." } },
   { day: 71, date: "2026-08-09", saturday: false, peak: 2.88, mean: 2.33, median: 2.19, source: yt("OzlnNgK-_CY"),
     note: { sq: "E diela nis me fjalime para Kryeministrisë dhe çon marshimin pranë Drejtorisë së Policisë dhe ambasadave të Serbisë e Ukrainës, ku shpaloset mesazhi “Rruga Dardania e Lirë” dhe jehojnë thirrjet “UÇK”.", en: "Sunday opens with speeches outside the PM's office and takes the march past the police directorate and the Serbian and Ukrainian embassies, where the message “Rruga Dardania e Lirë” is unfurled and “UÇK” chants echo." } },
+  { day: 72, date: "2026-08-10", saturday: false, peak: 5.80, mean: 2.78, median: 2.67, source: yt("l5hpFvB8lCU"),
+    note: { sq: "E hëna kthen kulmin ndjeshëm mbi ditët e fundit: pas fjalimeve te Kryeministria, marshimi nëpër akset kryesore bllokon përkohësisht qarkullimin, ndërsa nga kolona jehon “Nuk tërhiqemi deri në rrëzimin e Ramës”.", en: "Monday brings the crest back well above recent days: after the speeches outside the PM's office, the march through the main arteries temporarily blocks traffic, while the column echoes with “We will not withdraw until Rama falls”." } },
+  { day: 73, date: "2026-08-11", saturday: false, peak: 4.26, mean: 2.75, median: 2.74, source: yt("BPaRrfbGvlI"),
+    note: { sq: "E marta zgjeron platformën përtej dorëheqjes: nga podiumi kërkohet kushtetutë e re, ndërsa fjalimet lidhin 73 ditët e protestës me korrupsionin, zbrazjen e vendit dhe shëndetësinë; kulmi bie, por baza qëndron pranë së hënës.", en: "Tuesday widens the platform beyond resignation: the podium calls for a new constitution, while the speeches tie the 73 days of protest to corruption, the emptying of the country and healthcare; the crest falls but the baseline holds close to Monday." } },
+  { day: 74, date: "2026-08-12", saturday: false, peak: 3.44, mean: 2.39, median: 2.29, source: yt("M9UOefJX8po"),
+    note: { sq: "E mërkura flet me banderola: “74 ditë, bulevardi flet” dhe “Ju përfaqësoni xhepat tuaj, jo Shqipërinë” shoqërojnë marshimin nga Sheshi Skënderbej, që pas një qarku të gjatë rikthehet në bulevard dhe mbyllet te Kryeministria.", en: "Wednesday speaks through banners: “74 days, the boulevard speaks” and “You represent your own pockets, not Albania” accompany the march from Skanderbeg Square, which after a long circuit returns to the boulevard and closes at the PM's office." } },
 ];
 
 export type ParticipationEvent = {
