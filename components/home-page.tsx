@@ -22,11 +22,12 @@ import {
 import { content, type Locale, type SiteContent } from "@/lib/content";
 import { participation } from "@/data/participation";
 import { PledgeForm } from "@/components/pledge-form";
+import { HistoryCarousel } from "@/components/history-carousel";
 import { SectionViewTracker, TrackedLink } from "@/components/analytics-events";
 import routeMapImage from "@/docs/marshimi_i_diaspores_bulevard_sheshi.png";
 
 const whatsAppInviteUrl =
-  "https://chat.whatsapp.com/BZttEC2v1tvIrZqcVXTKSb?s=sh&p=i&mlu=0&ilr=0&amv=2";
+  "https://chat.whatsapp.com/L6oe4JyUi8k0h13oJSv7DP?s=cl&p=i&mlu=0&ilr=0&amv=2";
 const googleMapsRouteUrl = "https://maps.app.goo.gl/wz7z2Xt5HBbYKjUR8";
 
 const practicalAdviceIcons = [
@@ -343,22 +344,10 @@ export function HomePage({ locale }: { locale: Locale }) {
               <h2>{t.pastMarches.title}</h2>
               <p>{t.pastMarches.body}</p>
             </div>
-            <div className="history-grid">
-              {t.pastMarches.items.map((item) => (
-                <article className="history-item" key={item.dateLabel}>
-                  <span className="history-date">
-                    <Flag aria-hidden="true" size={18} />
-                    {item.dateLabel}
-                  </span>
-                  <h3>{item.title}</h3>
-                  <p className="history-route">
-                    <MapPinned aria-hidden="true" size={16} />
-                    {item.route}
-                  </p>
-                  <p>{item.summary}</p>
-                </article>
-              ))}
-            </div>
+            <HistoryCarousel
+              items={t.pastMarches.items}
+              carousel={t.pastMarches.carousel}
+            />
           </div>
         </section>
 

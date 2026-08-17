@@ -156,6 +156,12 @@ export type SiteContent = {
     kicker: string;
     title: string;
     body: string;
+    carousel: {
+      regionLabel: string;
+      prevLabel: string;
+      nextLabel: string;
+      goToLabel: string;
+    };
     items: Array<{
       dateLabel: string;
       title: string;
@@ -222,12 +228,12 @@ export const content: Record<Locale, SiteContent> = {
         lead: "Flamingo Revolution",
         accent: "Diaspora",
       },
-      eyebrow: "Marshimi i tretë i diasporës në Tiranë",
+      eyebrow: "Diaspora marshon në Tiranë",
       dateLabel: "Data e marshimit",
-      dateDay: "14-16",
-      dateMonth: "GUSHT",
-      dateMeta: "E premte-e diel · 2026",
-      dateText: "14-16 gusht 2026",
+      dateDay: "Do",
+      dateMonth: "NJOFTOHET",
+      dateMeta: "Marshimi i radhës",
+      dateText: "Do njoftohet",
       dateRows: [
         { time: "18:30", location: "Bulevardi i Ri" },
         { time: "19:00", location: "Sheshi Skënderbej" },
@@ -292,9 +298,9 @@ export const content: Record<Locale, SiteContent> = {
     },
     march: {
       kicker: "Marshimi",
-      title: "Marshimi i tretë i diasporës",
+      title: "Marshimi i radhës",
       body:
-        "Pas dy marshimeve të para, diaspora kthehet për herë të tretë. Gjithçka për ditën e marshimit: itinerari dhe parimet.",
+        "Data e marshimit të radhës do të njoftohet. Gjithçka për ditën e marshimit: itinerari dhe parimet.",
     },
     whatsapp: {
       title: "Skano QR-in",
@@ -309,8 +315,7 @@ export const content: Record<Locale, SiteContent> = {
 
 Zgjedh njërën nga këto:
 
-A) Bashkohem në marshim te:
-[Data: 14 / 15 / 16 gusht]
+A) Bashkohem në marshimin e radhës te:
 [Bulevardi i Ri - 18:30 / Sheshi Skënderbej - 19:00]
 
 B) Dua të mbaj fjalim tek fonia
@@ -321,7 +326,7 @@ C) Nuk marshoj, por mund të ndihmoj me:
     itinerary: {
       kicker: "Itinerari",
       title: "Nga Bulevardi i Ri drejt Sheshit Skënderbej",
-      dateLine: "Data: 14-16 gusht 2026",
+      dateLine: "Data: do njoftohet",
       body:
         "Marshimi nis te Bulevardi i Ri në 18:30 dhe bashkohet me protestën kryesore në Sheshin Skënderbej në 19:00.",
       showMap: true,
@@ -463,7 +468,20 @@ C) Nuk marshoj, por mund të ndihmoj me:
       title: "Çfarë kemi bërë deri tani",
       body:
         "Një histori e shkurtër e marshimeve të mëparshme të diasporës.",
+      carousel: {
+        regionLabel: "Marshimet e kaluara të diasporës",
+        prevLabel: "Rrëshqit majtas",
+        nextLabel: "Rrëshqit djathtas",
+        goToLabel: "Shko te marshimi",
+      },
       items: [
+        {
+          dateLabel: "14-16 gusht 2026",
+          title: "Marshimi i tretë i diasporës",
+          route: "Bulevardi i Ri → Sheshi Skënderbej",
+          summary:
+            "Marshimi i tretë qytetar dhe paqësor i diasporës, tri mbrëmje radhazi nga Bulevardi i Ri drejt Sheshit Skënderbej, me rreth 500 pjesëmarrës gjithsej, në mbështetje të protestës kryesore.",
+        },
         {
           dateLabel: "4 korrik 2026",
           title: "Marshimi i dytë i diasporës",
@@ -555,12 +573,12 @@ C) Nuk marshoj, por mund të ndihmoj me:
         lead: "Flamingo Revolution",
         accent: "Diaspora",
       },
-      eyebrow: "The diaspora's third march in Tirana",
+      eyebrow: "The diaspora marches in Tirana",
       dateLabel: "March date",
-      dateDay: "14-16",
-      dateMonth: "AUGUST",
-      dateMeta: "Friday-Sunday · 2026",
-      dateText: "August 14-16, 2026",
+      dateDay: "TBA",
+      dateMonth: "NEXT DATE",
+      dateMeta: "Next diaspora march",
+      dateText: "TBA",
       dateRows: [
         { time: "18:30", location: "Bulevardi i Ri" },
         { time: "19:00", location: "Skanderbeg Square" },
@@ -625,9 +643,9 @@ C) Nuk marshoj, por mund të ndihmoj me:
     },
     march: {
       kicker: "The march",
-      title: "The diaspora's third march",
+      title: "The next march",
       body:
-        "After two earlier marches, the diaspora returns for a third time. Everything for march day: the route and the principles.",
+        "The date of the next march will be announced. Everything for march day: the route and the principles.",
     },
     whatsapp: {
       title: "Scan the QR",
@@ -642,8 +660,7 @@ C) Nuk marshoj, por mund të ndihmoj me:
 
 Choose one:
 
-A) I will join the march at:
-[Date: August 14 / 15 / 16]
+A) I will join the next march at:
 [Bulevardi i Ri - 18:30 / Skanderbeg Square - 19:00]
 
 B) I want to speak at the mic
@@ -654,7 +671,7 @@ C) I will not march, but I can help with:
     itinerary: {
       kicker: "Route",
       title: "From Bulevardi i Ri toward Skanderbeg Square",
-      dateLine: "Date: August 14-16, 2026",
+      dateLine: "Date: TBA",
       body:
         "The march starts at Bulevardi i Ri at 18:30 and joins the main protest at Skanderbeg Square at 19:00.",
       showMap: true,
@@ -796,7 +813,20 @@ C) I will not march, but I can help with:
       title: "What we have done so far",
       body:
         "A short history of the diaspora's previous marches.",
+      carousel: {
+        regionLabel: "Past diaspora marches",
+        prevLabel: "Scroll left",
+        nextLabel: "Scroll right",
+        goToLabel: "Go to march",
+      },
       items: [
+        {
+          dateLabel: "August 14-16, 2026",
+          title: "The third diaspora march",
+          route: "Bulevardi i Ri → Skanderbeg Square",
+          summary:
+            "The diaspora's third civic, peaceful march, three evenings in a row from Bulevardi i Ri toward Skanderbeg Square, with around 500 participants in total, in support of the main protest.",
+        },
         {
           dateLabel: "July 4, 2026",
           title: "The second diaspora march",
