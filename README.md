@@ -141,3 +141,5 @@ Trusted organizers should use individual Google/Firebase IAM access if Firebase 
 - Keep private logistics out of public copy unless safe.
 - Keep Turnstile, rate limits, origin checks, and email confirmation active if the pledge form is re-enabled.
 - Treat participation numbers as estimates/index values unless independently verified.
+
+<!-- Deployment integration verification marker. -->
