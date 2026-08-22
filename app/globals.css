@@ -1923,6 +1923,14 @@ textarea:focus {
   color: var(--red);
 }
 
+/* Stands in for the figures on a day whose livestream was never analyzed: it reads
+   as a caveat, not as a reading, so it stays lighter than the numbers it replaces. */
+.pc-tip-nodata {
+  font-weight: 600;
+  font-style: italic;
+  color: var(--muted);
+}
+
 .pc-tip-note {
   margin: 9px 0 0;
   color: #2b2b2b;

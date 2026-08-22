@@ -15,6 +15,7 @@ import {
   type LucideIcon,
 } from "lucide-react";
 import {
+  isMeasured,
   participation,
   participationEvents,
   type ParticipationDay,
@@ -70,12 +71,17 @@ const WEEKS: Week[] = Array.from(
   { length: Math.ceil(participation.length / WEEK_LENGTH) },
   (_, i) => {
     const days = participation.slice(i * WEEK_LENGTH, (i + 1) * WEEK_LENGTH);
+    // An unanalyzed day is absent from the week's figures rather than counted as a
+    // zero, which would drag the average down for a day nobody measured.
+    const measured = days.filter(isMeasured);
     return {
       n: i + 1,
       from: days[0].day,
       to: days[days.length - 1].day,
-      peak: Math.max(...days.map((d) => d.peak)),
-      avg: days.reduce((sum, d) => sum + d.peak, 0) / days.length,
+      peak: measured.length ? Math.max(...measured.map((d) => d.peak)) : 0,
+      avg: measured.length
+        ? measured.reduce((sum, d) => sum + d.peak, 0) / measured.length
+        : 0,
     };
   },
 );
@@ -273,6 +279,10 @@ export type ChartLabels = {
   tooltipMean: string;
   tooltipMedian: string;
   tooltipSource: string;
+  /** link label for a day carried by press coverage instead of a livestream */
+  tooltipSourceReport: string;
+  /** stands in for the figures on a day whose livestream was never analyzed */
+  noData: string;
   close: string;
   replay: string;
   ariaSummary: string;
@@ -327,7 +337,9 @@ export function ParticipationChart({
   // under the reader; a zoomed window rescales to its own tallest day.
   const maxY = useMemo(() => {
     if (range.key === "all") return VIEW.maxY;
-    const windowPeak = Math.max(...days.map((d) => d.peak));
+    const measured = days.filter(isMeasured);
+    if (measured.length === 0) return VIEW.maxY;
+    const windowPeak = Math.max(...measured.map((d) => d.peak));
     return windowPeak >= VIEW.maxY ? VIEW.maxY : niceMax(windowPeak);
   }, [days, range.key]);
 
@@ -513,6 +525,11 @@ export function ParticipationChart({
 
   const activeDay = active != null ? BY_DAY.get(active) ?? null : null;
   const activePt = active != null ? points.find((p) => p.day === active) ?? null : null;
+  // An unanalyzed day sits on no line, so it has no point to anchor to. It still gets a
+  // guide line and its card, hung from the baseline; the marker dot stays suppressed
+  // rather than being drawn at a zero that was never measured.
+  const activeAnchor =
+    activePt ?? (activeDay ? { x: xOf(activeDay.day), y: plot.bottom } : null);
 
   return (
     <>
@@ -688,7 +705,7 @@ export function ParticipationChart({
             chip in this view; unlabelled moments are named in the rail below */}
         {events.map((ev) => {
           const px = xOf(ev.day);
-          const py = yOf((BY_DAY.get(ev.day) as ParticipationDay).peak);
+          const py = yOf(BY_DAY.get(ev.day)?.peak ?? 0);
           const isPeak = ev.tier === "peak";
           const chip = chipByDay.get(ev.day);
           // stop the line just under the chip's text rather than through it
@@ -732,54 +749,58 @@ export function ParticipationChart({
         })}
 
         {/* active-day scrubber + marker */}
-        {activePt && (
+        {activeAnchor && (
           <g className="pc-scrub" aria-hidden="true">
             <line
-              x1={activePt.x}
-              x2={activePt.x}
+              x1={activeAnchor.x}
+              x2={activeAnchor.x}
               y1={plot.top}
               y2={plot.bottom}
               stroke="#151515"
               strokeWidth="1"
               strokeOpacity="0.18"
             />
-            <circle
-              cx={activePt.x}
-              cy={activePt.y}
-              r="6.5"
-              fill="#b91c1c"
-              stroke="#fffaf2"
-              strokeWidth="2.5"
-            />
+            {activePt && (
+              <circle
+                cx={activePt.x}
+                cy={activePt.y}
+                r="6.5"
+                fill="#b91c1c"
+                stroke="#fffaf2"
+                strokeWidth="2.5"
+              />
+            )}
           </g>
         )}
 
         {/* invisible per-day hover/focus targets */}
-        {points.map((p) => (
+        {days.map((d) => (
           <rect
-            key={`hit-${p.day}`}
+            key={`hit-${d.day}`}
             className="pc-hit"
-            x={p.x - slotWidth / 2}
+            x={xOf(d.day) - slotWidth / 2}
             y={plot.top}
             width={slotWidth}
             height={plot.bottom - plot.top}
             fill="transparent"
             tabIndex={0}
             role="button"
-            aria-label={`${labels.axisDay} ${p.day}, ${formatDate(p.d.date, locale)}: ${labels.tooltipPeak} ${p.d.peak.toFixed(0)}`}
-            aria-pressed={pinned === p.day}
+            aria-label={`${labels.axisDay} ${d.day}, ${formatDate(d.date, locale)}: ${
+              d.peak == null ? labels.noData : `${labels.tooltipPeak} ${d.peak.toFixed(0)}`
+            }`}
+            aria-pressed={pinned === d.day}
             onMouseEnter={() => {
-              if (pinned == null) hoverDay(p.day);
+              if (pinned == null) hoverDay(d.day);
             }}
             onFocus={() => {
               cancelHover();
-              setHovered(p.day);
+              setHovered(d.day);
             }}
             onBlur={() => setHovered(null)}
             onClick={() => {
               cancelHover();
-              setHovered(p.day);
-              setPinned(pinned === p.day ? null : p.day);
+              setHovered(d.day);
+              setPinned(pinned === d.day ? null : d.day);
             }}
           />
         ))}
@@ -833,20 +854,20 @@ export function ParticipationChart({
         );
       })}
 
-      {activeDay && activePt && (
+      {activeDay && activeAnchor && (
         <div
           className={`pc-tip ${pinned != null ? "pc-tip--pinned" : ""} ${
-            activePt.y < 230 ? "pc-tip--below" : ""
+            activeAnchor.y < 230 ? "pc-tip--below" : ""
           } ${
-            activePt.x > view.width * 0.7
+            activeAnchor.x > view.width * 0.7
               ? "pc-tip--end"
-              : activePt.x < view.width * 0.3
+              : activeAnchor.x < view.width * 0.3
                 ? "pc-tip--start"
                 : ""
           }`}
           style={{
-            left: `${(activePt.x / view.width) * 100}%`,
-            top: `${(activePt.y / view.height) * 100}%`,
+            left: `${(activeAnchor.x / view.width) * 100}%`,
+            top: `${(activeAnchor.y / view.height) * 100}%`,
           }}
           role="status"
         >
@@ -889,8 +910,8 @@ export function ParticipationChart({
               <td>
                 {d.day} ({formatDate(d.date, locale)})
               </td>
-              <td>{d.peak.toFixed(0)}</td>
-              <td>{d.mean.toFixed(1)}</td>
+              <td>{d.peak == null ? labels.noData : d.peak.toFixed(0)}</td>
+              <td>{d.mean == null ? labels.noData : d.mean.toFixed(1)}</td>
             </tr>
           ))}
         </tbody>
@@ -1092,16 +1113,22 @@ function TipBody({
         )}
       </div>
       <div className="pc-tip-stats">
-        <span className="pc-tip-peak">
-          <em>{day.peak.toFixed(0)}</em>
-          {labels.tooltipPeakUnit}
-        </span>
-        <span>
-          {labels.tooltipMean} {day.mean.toFixed(1)}
-        </span>
-        <span>
-          {labels.tooltipMedian} {day.median.toFixed(1)}
-        </span>
+        {isMeasured(day) ? (
+          <>
+            <span className="pc-tip-peak">
+              <em>{day.peak.toFixed(0)}</em>
+              {labels.tooltipPeakUnit}
+            </span>
+            <span>
+              {labels.tooltipMean} {day.mean.toFixed(1)}
+            </span>
+            <span>
+              {labels.tooltipMedian} {day.median.toFixed(1)}
+            </span>
+          </>
+        ) : (
+          <span className="pc-tip-nodata">{labels.noData}</span>
+        )}
       </div>
       <p className="pc-tip-note">{renderNote(day, locale)}</p>
       <a
@@ -1111,7 +1138,9 @@ function TipBody({
         rel="noreferrer"
       >
         <ExternalLink size={13} aria-hidden="true" />
-        {labels.tooltipSource}
+        {day.source.includes("youtube.com")
+          ? labels.tooltipSource
+          : labels.tooltipSourceReport}
       </a>
     </>
   );

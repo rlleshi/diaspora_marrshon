@@ -116,6 +116,32 @@
 // median 118.1), normalized on the same Day-7 reference. Part 74.1 switches repeatedly to a
 // two-panel broadcast layout, so its 130.2 raw maximum is audit-only and supplies no
 // published figure; the two parts are not synchronized, so no combined mean or median exists.
+// Day 75 computed from the protesta_75 timeline, retained frames only (top-10 peak
+// avg 288.5, mean 138.8, median 133.4), normalized on the same Day-7 reference.
+// Day 76 computed from the protesta_76 timeline, retained frames only (top-10 peak
+// avg 318.6, mean 153.5, median 130.0), normalized on the same Day-7 reference.
+// Day 77 computed from its own rerun livestream (gf-m36CU1_o, 1113 frames, 799 retained),
+// which replaced the Day-76 duplicate that previously sat in protesta_77. Unlike its
+// neighbours, all ten of its highest frames are two-panel broadcast layout, so the raw
+// top-10 avg of 375.8 is audit-only. The stored peak is the top-10 average over the 369
+// retained frames that are full-bleed single view (286.4), which is the same treatment
+// days 71 and 74 got. Mean 165.7 and median 138.2 are whole-broadcast over all retained
+// frames, as on every other day. Re-checking the batch this way moves no other day's peak
+// except Day 76 (6.17 published, 5.83 on clean frames only), left as the research layer
+// published it. Normalized on the same Day-7 reference.
+// Day 78 computed from the protesta_78 timeline, retained frames only (top-10 peak
+// avg 408.7, mean 166.9, median 148.1), normalized on the same Day-7 reference.
+// Day 79 computed from the protesta_79 timeline, retained frames only (top-10 peak
+// avg 232.2, mean 127.8, median 121.1), normalized on the same Day-7 reference.
+// Day 80 computed from the protesta_80 timeline, retained frames only (top-10 peak
+// avg 333.9, mean 147.0, median 137.3), normalized on the same Day-7 reference.
+// Day 81 computed from the protesta_81 timeline, retained frames only (top-10 peak
+// avg 286.9, mean 136.0, median 121.8), normalized on the same Day-7 reference.
+// Day 82 computed from the protesta_82 timeline, retained frames only (top-10 peak
+// avg 214.7, mean 131.2, median 121.4), normalized on the same Day-7 reference.
+// Day 83 computed from the protesta_83 timeline, retained frames only (top-10 peak
+// avg 209.6, mean 126.7, median 121.6), normalized on the same Day-7 reference; the top
+// window sits in scenes 93 and 94, both clean single-view boulevard footage.
 
 export type ParticipationDay = {
   day: number;
@@ -123,13 +149,19 @@ export type ParticipationDay = {
   date: string;
   /** Saturday flag: Saturdays drove the biggest turnouts (days 7, 14, 21, 28, 35, 42). */
   saturday: boolean;
-  /** Headline index, normalized 0–100 (100 = Day 7). */
-  peak: number;
-  /** Whole-broadcast mean index. */
-  mean: number;
-  /** Whole-broadcast median index. */
-  median: number;
-  /** News24 livestream for this day. */
+  /**
+   * Headline index, normalized 0–100 (100 = Day 7), or `null` on a day with no
+   * publishable figure, whether the stream was never analyzed or its analysis
+   * failed the visual audit. A null day still exists in the series: it keeps the
+   * day count honest and carries its note, but it is absent from every plotted
+   * line and every average.
+   */
+  peak: number | null;
+  /** Whole-broadcast mean index; null when the day has no publishable figure. */
+  mean: number | null;
+  /** Whole-broadcast median index; null when the day has no publishable figure. */
+  median: number | null;
+  /** News24 livestream for this day, or the day's press coverage when no stream was captured. */
   source: string;
   /** Short story note. */
   note: { sq: string; en: string };
@@ -138,6 +170,16 @@ export type ParticipationDay = {
 };
 
 const yt = (id: string) => `https://www.youtube.com/watch?v=${id}`;
+
+/** A day that carries crowd statistics. */
+export type MeasuredDay = ParticipationDay & {
+  peak: number;
+  mean: number;
+  median: number;
+};
+
+/** Narrows out the days with no livestream analysis, which own no point on any line. */
+export const isMeasured = (d: ParticipationDay): d is MeasuredDay => d.peak !== null;
 
 export const participation: ParticipationDay[] = [
   { day: 1, date: "2026-05-31", saturday: false, peak: 4.78, mean: 3.89, median: 4.22, source: yt("7iWYPS0VnmM"),
@@ -291,6 +333,24 @@ export const participation: ParticipationDay[] = [
     note: { sq: "E marta zgjeron platformën përtej dorëheqjes: nga podiumi kërkohet kushtetutë e re, ndërsa fjalimet lidhin 73 ditët e protestës me korrupsionin, zbrazjen e vendit dhe shëndetësinë; kulmi bie, por baza qëndron pranë së hënës.", en: "Tuesday widens the platform beyond resignation: the podium calls for a new constitution, while the speeches tie the 73 days of protest to corruption, the emptying of the country and healthcare; the crest falls but the baseline holds close to Monday." } },
   { day: 74, date: "2026-08-12", saturday: false, peak: 3.44, mean: 2.39, median: 2.29, source: yt("M9UOefJX8po"),
     note: { sq: "E mërkura flet me banderola: “74 ditë, bulevardi flet” dhe “Ju përfaqësoni xhepat tuaj, jo Shqipërinë” shoqërojnë marshimin nga Sheshi Skënderbej, që pas një qarku të gjatë rikthehet në bulevard dhe mbyllet te Kryeministria.", en: "Wednesday speaks through banners: “74 days, the boulevard speaks” and “You represent your own pockets, not Albania” accompany the march from Skanderbeg Square, which after a long circuit returns to the boulevard and closes at the PM's office." } },
+  { day: 75, date: "2026-08-13", saturday: false, peak: 5.59, mean: 2.69, median: 2.58, source: yt("b8w-zuVD6SU"),
+    note: { sq: "E enjtja i reziston të nxehtit: nga sheshi kërkohet ultimatum për mjekrrën dhe bashkim nga veriu në jug, ndërsa fjalimet lidhin 75 ditët me korrupsionin, institucionet e dobëta dhe kërkesën për kushtetutë të re.", en: "Thursday holds out against the heat: the square calls for an ultimatum to Rama and for unity from north to south, while the speeches tie the 75 days to corruption, weak institutions and the demand for a new constitution." } },
+  { day: 76, date: "2026-08-14", saturday: false, peak: 6.17, mean: 2.97, median: 2.52, source: yt("o38QqiZ9b18"),
+    note: { sq: "Nis mobilizimi i diasporës i 14-16 gushtit: as i nxehti as pushimet nuk e ndalin kolonën që mbush bulevardin drejt Kryeministrisë, nën pankartën “76 ditë, koha nuk na hesht” dhe thirrjet për një shtator më të fortë.", en: "The 14-16 August diaspora mobilization opens: neither the heat nor the holidays stop the column filling the boulevard toward the PM's office, beneath the placard “76 ditë, koha nuk na hesht” and calls for a stronger September." } },
+  { day: 77, date: "2026-08-15", saturday: true, peak: 5.54, mean: 3.21, median: 2.68, source: yt("gf-m36CU1_o"),
+    note: { sq: "E shtuna e mesme e mobilizimit shpalos flamurin gjigant në Bulevardin Dëshmorët e Kombit, ku diaspora nga Nju Jorku te Divjaka marshon nën thirrjet “Dorëheqje”, “Revolucion” dhe “Shqipëri e re”, ndërsa nga sheshi thuhet se shqiptarët “e vranë frikën”.", en: "The middle Saturday of the mobilization unrolls the giant flag down Bulevardi Dëshmorët e Kombit, where the diaspora from New York to Divjaka marches beneath the chants “Dorëheqje”, “Revolucion” and “Shqipëri e re”, while the square says Albanians have “killed fear”." } },
+  { day: 78, date: "2026-08-16", saturday: false, peak: 7.91, mean: 3.23, median: 2.87, source: yt("l7Nphe_e2uI"),
+    note: { sq: "E diela mbyll tri ditët e diasporës me kulmin më të lartë që nga 18 korriku: bulevardi mbushet me flamuj, banderola dhe flamingot rozë të “Revolucionit të Flamingove”, ndërsa nga sheshi thuhet se askush nuk largohet pa u ndërruar e gjithë klasa politike.", en: "Sunday closes the diaspora's three days with the highest crest since 18 July: the boulevard fills with flags, banners and the pink flamingos of the “Flamingo Revolution”, while the square says no one leaves until the whole political class changes." } },
+  { day: 79, date: "2026-08-17", saturday: false, peak: 4.50, mean: 2.47, median: 2.34, source: yt("LUSm9CYZj7c"),
+    note: { sq: "E hëna bie nën fundjavën e diasporës, por mesazhi ashpërsohet ndaj gjithë klasës politike: para Kryeministrisë shkruhet “Rama në burg, Berisha në burg”.", en: "Monday falls below the diaspora weekend, but the message hardens against the whole political class: “Rama në burg, Berisha në burg” is written out in front of the PM's office." } },
+  { day: 80, date: "2026-08-18", saturday: false, peak: 6.46, mean: 2.85, median: 2.66, source: yt("R9F_PD9ex0Q"),
+    note: { sq: "80 ditë: pas fjalimeve te Kryeministria, marshimi ndalon edhe para selisë së PD-së, ku opozita cilësohet e shitur; kërkohet qeveri teknike dhe SPAK-ut i kërkohet të prekë “peshqit e mëdhenj”.", en: "80 days: after the speeches at the PM's office, the march also stops outside the Democratic Party headquarters, where the opposition is called sold out; the demands are a technical government and for SPAK to touch the “big fish”." } },
+  { day: 81, date: "2026-08-19", saturday: false, peak: 5.55, mean: 2.63, median: 2.36, source: yt("uO_AZJKr8Eg"),
+    note: { sq: "E mërkura shton në platformë pensionet, emigrimin dhe ekonominë, ndërsa marshimi mbyllet me “Shqiptarët e bashkuar, pushteti i tmerruar” dhe “Arrestoni Ramën, arrestoni Ballukun”.", en: "Wednesday adds pensions, emigration and the economy to the platform, while the march closes with “Shqiptarët e bashkuar, pushteti i tmerruar” and “Arrestoni Ramën, arrestoni Ballukun”." } },
+  { day: 82, date: "2026-08-20", saturday: false, peak: 4.16, mean: 2.54, median: 2.35, source: yt("8mqIQ5OuYNA"),
+    note: { sq: "E enjtja kërkon dorëheqje, kushtetutë të re dhe qeveri tranzitore pas saj; nga podiumi flasin një mësues për shkollën e shëndetësinë dhe një ish-sportist i kthyer nga Franca, që thotë se shqiptarët po dëbohen çdo ditë.", en: "Thursday demands resignation, a new constitution and a transitional government after it; from the podium a teacher speaks on schools and healthcare and an ex-athlete back from France says Albanians are being driven out every day." } },
+  { day: 83, date: "2026-08-21", saturday: false, peak: 4.06, mean: 2.45, median: 2.35, source: yt("RARyOz5BHSw"),
+    note: { sq: "E premtja njofton shtatorin: një pankartë te bulevardi thërret për prezencë masive para Parlamentit më 10, 17 dhe 24 shtator, në orën 08:00, ndërsa marshimi nis nën banderolat “Edi Rama dorëhiqu” dhe “Shqipëri e re”.", en: "Friday announces September: a placard on the boulevard calls for a mass presence outside Parliament on 10, 17 and 24 September at 08:00, while the march sets off beneath the banners “Edi Rama dorëhiqu” and “Shqipëri e re”." } },
 ];
 
 export type ParticipationEvent = {
@@ -349,6 +409,9 @@ export const participationEvents: ParticipationEvent[] = [
   { day: 63, tier: "primary", icon: "people", mobile: true,
     label: { sq: "Aksioni kombëtar i diasporës", en: "The diaspora's national action" },
     sub: { sq: "1 gusht", en: "1 August" } },
+  { day: 78, tier: "primary", icon: "people", mobile: true,
+    label: { sq: "Marshimi i tretë i diasporës", en: "The third diaspora march" },
+    sub: { sq: "14-16 gusht", en: "14-16 August" } },
 ];
 
 /** Normalization reference shown in the methodology note. */

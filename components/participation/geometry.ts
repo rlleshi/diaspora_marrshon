@@ -1,7 +1,7 @@
 // Pure geometry for the participation chart. Runs identically on server and client
 // so the SVG markup hydrates without mismatch. No external dependencies.
 
-import type { ParticipationDay } from "@/data/participation";
+import { isMeasured, type MeasuredDay, type ParticipationDay } from "@/data/participation";
 
 export const VIEW = {
   width: 1000,
@@ -13,7 +13,7 @@ export const VIEW = {
   maxY: 100, // default ceiling: 100 = the biggest day, the whole-range reading
 };
 
-export type Pt = { day: number; x: number; y: number; d: ParticipationDay };
+export type Pt = { day: number; x: number; y: number; d: MeasuredDay };
 
 export type ChartGeometry = {
   view: typeof VIEW;
@@ -116,8 +116,11 @@ export function buildGeometry(
   const yOf = (value: number) => top + (1 - Math.max(0, value) / maxY) * plotH;
   const fracOf = (day: number) => (day - firstDay) / span;
 
-  const points: Pt[] = data.map((d) => ({ day: d.day, x: xOf(d.day), y: yOf(d.peak), d }));
-  const meanPoints: Pt[] = data.map((d) => ({ day: d.day, x: xOf(d.day), y: yOf(d.mean), d }));
+  // Days without a livestream analysis own no point, so the lines simply bridge
+  // them rather than dropping to a zero that was never measured.
+  const measured = data.filter(isMeasured);
+  const points: Pt[] = measured.map((d) => ({ day: d.day, x: xOf(d.day), y: yOf(d.peak), d }));
+  const meanPoints: Pt[] = measured.map((d) => ({ day: d.day, x: xOf(d.day), y: yOf(d.mean), d }));
 
   const linePath = monotonePath(points);
   const meanPath = monotonePath(meanPoints);

@@ -83,10 +83,16 @@ export function HomePage({ locale }: { locale: Locale }) {
 
   const sparkWidth = 260;
   const sparkHeight = 96;
+  // Days with no livestream analysis carry no value, so the teaser line bridges them
+  // rather than dipping to a zero nobody measured. x stays keyed to the day number so
+  // the skipped day still occupies its slot along the axis.
+  const sparkSpan = participation.length - 1;
   const sparkPoints = participation
-    .map((entry, index) => {
-      const x = (index / (participation.length - 1)) * sparkWidth;
-      const y = sparkHeight - 4 - (entry.peak / 100) * (sparkHeight - 12);
+    .map((entry, index) => ({ entry, index }))
+    .filter(({ entry }) => entry.peak != null)
+    .map(({ entry, index }) => {
+      const x = (index / sparkSpan) * sparkWidth;
+      const y = sparkHeight - 4 - ((entry.peak as number) / 100) * (sparkHeight - 12);
       return `${x.toFixed(1)},${y.toFixed(1)}`;
     })
     .join(" ");
