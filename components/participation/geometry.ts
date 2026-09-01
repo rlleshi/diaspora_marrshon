@@ -124,8 +124,15 @@ export function buildGeometry(
 
   const linePath = monotonePath(points);
   const meanPath = monotonePath(meanPoints);
-  const areaPath =
-    `${linePath} L ${round(right)} ${round(bottom)} L ${round(left)} ${round(bottom)} Z`;
+  // The fill closes on the first and last *measured* x, not on the plot edges. When a
+  // window ends on an unanalyzed day the line simply stops, and closing to the edge
+  // instead would rake the fill down to a baseline nobody measured, drawing exactly the
+  // collapse the bridged line is there to avoid. With every day measured these are the
+  // plot edges, so the path is unchanged.
+  const areaPath = points.length
+    ? `${linePath} L ${round(points[points.length - 1].x)} ${round(bottom)}` +
+      ` L ${round(points[0].x)} ${round(bottom)} Z`
+    : "";
 
   const gridLines = [0, 0.25, 0.5, 0.75, 1].map((f) => {
     const value = maxY * f;

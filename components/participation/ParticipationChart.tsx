@@ -65,6 +65,8 @@ type Week = {
   peak: number;
   /** average of the week's daily peaks. */
   avg: number;
+  /** false when no day in the week was analyzed, so its figures are absent, not zero. */
+  hasData: boolean;
 };
 
 const WEEKS: Week[] = Array.from(
@@ -82,6 +84,7 @@ const WEEKS: Week[] = Array.from(
       avg: measured.length
         ? measured.reduce((sum, d) => sum + d.peak, 0) / measured.length
         : 0,
+      hasData: measured.length > 0,
     };
   },
 );
@@ -1001,7 +1004,11 @@ export function ParticipationChart({
             type="button"
             className="pc-wk"
             aria-pressed={range.key === `w${w.n}`}
-            aria-label={`${labels.weekShort} ${w.n}, ${labels.axisDay} ${w.from}–${w.to}, ${labels.weekPeakLabel} ${w.peak.toFixed(0)}, ${labels.weekAvgLabel} ${w.avg.toFixed(0)}`}
+            aria-label={
+              w.hasData
+                ? `${labels.weekShort} ${w.n}, ${labels.axisDay} ${w.from}–${w.to}, ${labels.weekPeakLabel} ${w.peak.toFixed(0)}, ${labels.weekAvgLabel} ${w.avg.toFixed(0)}`
+                : `${labels.weekShort} ${w.n}, ${labels.axisDay} ${w.from}–${w.to}, ${labels.noData}`
+            }
             onClick={() =>
               selectRange(
                 range.key === `w${w.n}`

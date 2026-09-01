@@ -142,6 +142,19 @@
 // Day 83 computed from the protesta_83 timeline, retained frames only (top-10 peak
 // avg 209.6, mean 126.7, median 121.6), normalized on the same Day-7 reference; the top
 // window sits in scenes 93 and 94, both clean single-view boulevard footage.
+// Days 84 and 85 were rerun after the batch that first failed on them, and both now have
+// complete timelines, so their earlier null entries carry figures on the same Day-7
+// reference (day 84 top-10 peak avg 208.3, mean 119.8, median 113.3; day 85 top-10 peak
+// avg 188.2, mean 133.9, median 130.5). The stale protesta_85 directory left behind by the
+// failed attempt holds a raw source file but no report or timeline; the research layer
+// excludes it and the canonical rerun is what is used here.
+// Days 86 to 93 computed from their protesta_N timelines, retained frames only, on the same
+// Day-7 reference (top-10 peak avg / mean / median): 86 268.6 / 153.0 / 153.5; 87 217.1 /
+// 133.2 / 132.4; 88 244.9 / 139.7 / 137.2; 89 206.9 / 124.8 / 119.6; 90 182.3 / 127.3 /
+// 125.9; 91 217.6 / 128.1 / 117.3; 92 230.3 / 144.0 / 117.3; 93 177.2 / 125.1 / 113.6.
+// Days 91, 92 and 93 cleared unusually few frames against the fixed 100-person retention
+// threshold (201/952, 74/828 and 129/1001). Their peaks stay comparable, but their means and
+// medians summarize a much thinner slice of the broadcast than the days around them.
 
 export type ParticipationDay = {
   day: number;
@@ -351,6 +364,26 @@ export const participation: ParticipationDay[] = [
     note: { sq: "E enjtja kërkon dorëheqje, kushtetutë të re dhe qeveri tranzitore pas saj; nga podiumi flasin një mësues për shkollën e shëndetësinë dhe një ish-sportist i kthyer nga Franca, që thotë se shqiptarët po dëbohen çdo ditë.", en: "Thursday demands resignation, a new constitution and a transitional government after it; from the podium a teacher speaks on schools and healthcare and an ex-athlete back from France says Albanians are being driven out every day." } },
   { day: 83, date: "2026-08-21", saturday: false, peak: 4.06, mean: 2.45, median: 2.35, source: yt("RARyOz5BHSw"),
     note: { sq: "E premtja njofton shtatorin: një pankartë te bulevardi thërret për prezencë masive para Parlamentit më 10, 17 dhe 24 shtator, në orën 08:00, ndërsa marshimi nis nën banderolat “Edi Rama dorëhiqu” dhe “Shqipëri e re”.", en: "Friday announces September: a placard on the boulevard calls for a mass presence outside Parliament on 10, 17 and 24 September at 08:00, while the march sets off beneath the banners “Edi Rama dorëhiqu” and “Shqipëri e re”." } },
+  { day: 84, date: "2026-08-22", saturday: true, peak: 4.03, mean: 2.32, median: 2.19, source: yt("cLeqRvMn15U"),
+    note: { sq: "E shtuna rendit gjithë paketën e kërkesave: dorëheqje, qeveri tranzitore 12-mujore jopartiake dhe shfuqizim i ndryshimeve zgjedhore të 2008-ës, i ligjit për zonat e mbrojtura, i investitorit strategjik dhe i Paketës së Maleve, nën thirrjen “Shqipëria kërkon revolucion”.", en: "Saturday lays out the full demand package: resignation, a 12-month non-partisan transitional government and repeal of the 2008 electoral changes, the protected-areas law, the strategic-investor law and the Mountain Package, beneath the chant “Shqipëria kërkon revolucion”." } },
+  { day: 85, date: "2026-08-23", saturday: false, peak: 3.64, mean: 2.59, median: 2.53, source: yt("O9NG7tW3b4s"),
+    note: { sq: "E diela çon fjalimet nga Kryeministria në marshim nëpër rrugët kryesore, me dorëheqjen si kërkesë të panegociueshme dhe thirrjet “Arrestoni Ramën” e “Rama në burg, Berisha në burg”; nga sheshi premtohet një shtator më i fortë.", en: "Sunday carries the speeches from the PM's office into a march through the main streets, with resignation as the non-negotiable demand and the chants “Arrestoni Ramën” and “Rama në burg, Berisha në burg”; the square promises a stronger September." } },
+  { day: 86, date: "2026-08-24", saturday: false, peak: 5.20, mean: 2.96, median: 2.97, source: yt("YmaLOqDqekA"),
+    note: { sq: "E hëna e sjell platformën me pesë kërkesa te Kryeministria dhe i vë mjekrrës një afat treditor për t'u përgjigjur ose për të dhënë dorëheqjen, ndërsa bulevardi mban një nga sinjalet më të qëndrueshme të fundgushtit.", en: "Monday brings the five-demand platform to the PM's office and gives Rama a three-day deadline to respond or resign, while the boulevard holds one of the steadiest signals of late August." } },
+  { day: 87, date: "2026-08-25", saturday: false, peak: 4.20, mean: 2.58, median: 2.56, source: yt("XSvEwzaT_WY"),
+    note: { sq: "E marta hap mbledhjen e firmave për referendumin që shfuqizon ligjin e zonave të mbrojtura, ndërsa nga podiumi studentët, pedagogët dhe mësuesit ftohen të mobilizohen në shtator dhe Pakti për Universitetin quhet i dështuar.", en: "Tuesday opens the signature drive for a referendum to repeal the protected-areas law, while from the podium students, lecturers and teachers are called to mobilize in September and the Pact for the University is called a failure." } },
+  { day: 88, date: "2026-08-26", saturday: false, peak: 4.74, mean: 2.70, median: 2.66, source: yt("nhqOBCvhR4c"),
+    note: { sq: "E mërkura ndalon marshimin edhe para Drejtorisë së Policisë së Tiranës, ku arrestimi i një biznesmeni kthehet në temë dhe kërkohet që hetimet të prekin zyrtarët e lartë, ndërsa pankartat ironizojnë komunikimin qeveritar dhe “Pasqyra Albania”.", en: "Wednesday halts the march outside the Tirana police directorate too, where a businessman's arrest becomes a theme and the demand is for investigations to reach senior officials, while the placards mock government communication and “Pasqyra Albania”." } },
+  { day: 89, date: "2026-08-27", saturday: false, peak: 4.01, mean: 2.42, median: 2.32, source: yt("jWKGGGYvqUg"),
+    note: { sq: "E enjtja zhvendos fjalën te kostoja e jetesës, banesat e shtrenjta dhe perspektiva e ngushtë e të rinjve, ndërsa pankartat godasin SPAK-un dhe korrupsionin krahas kërkesës për arrestimin e Ramës e të Ballukut.", en: "Thursday shifts the speeches to the cost of living, expensive housing and the narrow prospects facing young people, while the placards hit SPAK and corruption alongside the demand to arrest Rama and Balluku." } },
+  { day: 90, date: "2026-08-28", saturday: false, peak: 3.53, mean: 2.46, median: 2.44, source: yt("XnTVa50eNC0"),
+    note: { sq: "Dita e 90-të kërkon ndryshim sistemi, jo vetëm dorëheqje: nga sheshi kërkohet një Shqipëri e udhëhequr nga të rinjtë e jo nga partitë, ndërsa satira godet “Besën” dhe gjithë klasën politike.", en: "Day 90 demands a change of system, not just a resignation: the square calls for an Albania led by its young people rather than by the parties, while the satire targets “Besa” and the whole political class." } },
+  { day: 91, date: "2026-08-29", saturday: true, peak: 4.21, mean: 2.48, median: 2.27, source: yt("sBedodX4r1o"),
+    note: { sq: "E shtuna flet për qëndresë, “Koha nuk na lodh, na forcon”, me pjesëmarrjen e diasporës dhe të rinjve në qendër të fjalimeve; nga sheshi caktohet 12 shtatori si mobilizimi i ardhshëm kombëtar.", en: "Saturday speaks of endurance, “Koha nuk na lodh, na forcon”, with diaspora and youth participation running through the speeches; from the square 12 September is set as the next national mobilization." } },
+  { day: 92, date: "2026-08-30", saturday: false, peak: 4.46, mean: 2.79, median: 2.27, source: yt("c_4LpG6Q5rE"),
+    note: { sq: "E diela e fundit e gushtit i lë shtatorit përshkallëzimin e radhës: te Kryeministria përsëriten kërkesat për dorëheqje dhe thirrjet drejt studentëve e pedagogëve për t'u bashkuar.", en: "The last Sunday of August leaves the next escalation to September: at the PM's office the resignation demands are repeated, along with the calls for students and lecturers to join." } },
+  { day: 93, date: "2026-08-31", saturday: false, peak: 3.43, mean: 2.42, median: 2.20, source: yt("gh4YWCWaUfI"),
+    note: { sq: "E hëna marshon nën “Rama ciao” dhe flet për mosbindje civile: nga sheshi caktohen dita e 100-të më 7 shtator dhe një mobilizim më i gjerë më 12 shtator.", en: "Monday marches beneath “Rama ciao” and talks of civil disobedience: the square sets day 100 on 7 September and a wider mobilization on 12 September." } },
 ];
 
 export type ParticipationEvent = {
@@ -412,6 +445,9 @@ export const participationEvents: ParticipationEvent[] = [
   { day: 78, tier: "primary", icon: "people", mobile: true,
     label: { sq: "Marshimi i tretë i diasporës", en: "The third diaspora march" },
     sub: { sq: "14-16 gusht", en: "14-16 August" } },
+  { day: 90, tier: "primary", icon: "flag", mobile: true,
+    label: { sq: "3 muaj protestë", en: "Three months" },
+    sub: { sq: "28 gusht", en: "28 August" } },
 ];
 
 /** Normalization reference shown in the methodology note. */
