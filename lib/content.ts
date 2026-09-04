@@ -230,13 +230,13 @@ export const content: Record<Locale, SiteContent> = {
       },
       eyebrow: "Diaspora marshon në Tiranë",
       dateLabel: "Data e marshimit",
-      dateDay: "Do",
-      dateMonth: "NJOFTOHET",
-      dateMeta: "Marshimi i radhës",
-      dateText: "Do njoftohet",
+      dateDay: "12",
+      dateMonth: "SHTATOR",
+      dateMeta: "E shtunë · 2026",
+      dateText: "12 shtator 2026",
       dateRows: [
-        { time: "18:30", location: "Bulevardi i Ri" },
-        { time: "19:00", location: "Sheshi Skënderbej" },
+        { time: "19:00", location: "Sheshi Nënë Tereza" },
+        { time: "19:15", location: "Sheshi Skënderbej" },
       ],
       title: "Kur dheu jep zë, diaspora zbret.",
       subtitle:
@@ -300,7 +300,7 @@ export const content: Record<Locale, SiteContent> = {
       kicker: "Marshimi",
       title: "Marshimi i radhës",
       body:
-        "Data e marshimit të radhës do të njoftohet. Gjithçka për ditën e marshimit: itinerari dhe parimet.",
+        "Marshimi i radhës zhvillohet të shtunën, më 12 shtator 2026. Gjithçka për ditën e marshimit: itinerari dhe parimet.",
     },
     whatsapp: {
       title: "Skano QR-in",
@@ -316,7 +316,7 @@ export const content: Record<Locale, SiteContent> = {
 Zgjedh njërën nga këto:
 
 A) Bashkohem në marshimin e radhës te:
-[Bulevardi i Ri - 18:30 / Sheshi Skënderbej - 19:00]
+[Sheshi Nënë Tereza - 19:00 / Sheshi Skënderbej - 19:15]
 
 B) Dua të mbaj fjalim tek fonia
 
@@ -325,23 +325,24 @@ C) Nuk marshoj, por mund të ndihmoj me:
     },
     itinerary: {
       kicker: "Itinerari",
-      title: "Nga Bulevardi i Ri drejt Sheshit Skënderbej",
-      dateLine: "Data: do njoftohet",
+      title: "Nga Sheshi Nënë Tereza drejt Sheshit Skënderbej",
+      dateLine: "Data: e shtunë, 12 shtator 2026",
       body:
-        "Marshimi nis te Bulevardi i Ri në 18:30 dhe bashkohet me protestën kryesore në Sheshin Skënderbej në 19:00.",
-      showMap: true,
+        "Marshimi nis te Sheshi Nënë Tereza, para Universitetit Politeknik të Tiranës, në 19:00 dhe bashkohet me protestën kryesore në Sheshin Skënderbej në 19:15.",
+      showMap: false,
       mapAlt:
-        "Harta e marshimit nga Bulevardi i Ri drejt Sheshit Skënderbej",
+        "Harta e marshimit nga Sheshi Nënë Tereza drejt Sheshit Skënderbej",
       mapOpenLabel: "Hap hartën e marshimit në madhësi të plotë",
       mapExternalLabel: "Hap itinerarin në Google Maps",
       points: [
         {
-          time: "18:30",
-          title: "Bulevardi i Ri",
-          body: "Nisja e marshimit nga Bulevardi i Ri.",
+          time: "19:00",
+          title: "Sheshi Nënë Tereza",
+          body:
+            "Nisja e marshimit nga Sheshi Nënë Tereza, para Universitetit Politeknik të Tiranës.",
         },
         {
-          time: "19:00",
+          time: "19:15",
           title: "Sheshi Skënderbej",
           body: "Bashkim me protestën kryesore në Sheshin Skënderbej.",
         },
@@ -376,7 +377,7 @@ C) Nuk marshoj, por mund të ndihmoj me:
         {
           title: "Lodhja",
           body:
-            "Rruga nga Bulevardi i Ri deri në shesh është më e shkurtër, por ritmi duhet të mbetet i qetë që grupi të qëndrojë i bashkuar.",
+            "Rruga nga Sheshi Nënë Tereza deri te Sheshi Skënderbej është e shkurtër, rreth 15 minuta ecje, por ritmi duhet të mbetet i qetë që grupi të qëndrojë i bashkuar.",
         },
         {
           title: "Çanta",
@@ -528,7 +529,7 @@ C) Nuk marshoj, por mund të ndihmoj me:
       required: "Kjo fushë kërkohet.",
       invalidEmail: "Shkruaj një email të vlefshëm.",
       joiningPointOptions: [
-        { value: "new-boulevard", label: "Bulevardi i Ri" },
+        { value: "mother-teresa-square", label: "Sheshi Nënë Tereza" },
         { value: "skanderbeg-square", label: "Sheshi Skënderbej" },
         { value: "coordinate-later", label: "Do ta koordinoj më vonë" },
       ],
@@ -575,13 +576,13 @@ C) Nuk marshoj, por mund të ndihmoj me:
       },
       eyebrow: "The diaspora marches in Tirana",
       dateLabel: "March date",
-      dateDay: "TBA",
-      dateMonth: "NEXT DATE",
-      dateMeta: "Next diaspora march",
-      dateText: "TBA",
+      dateDay: "12",
+      dateMonth: "SEPTEMBER",
+      dateMeta: "Saturday · 2026",
+      dateText: "12 September 2026",
       dateRows: [
-        { time: "18:30", location: "Bulevardi i Ri" },
-        { time: "19:00", location: "Skanderbeg Square" },
+        { time: "19:00", location: "Mother Teresa Square" },
+        { time: "19:15", location: "Skanderbeg Square" },
       ],
       title: "When the land speaks, the diaspora descends.",
       subtitle:
@@ -645,7 +646,7 @@ C) Nuk marshoj, por mund të ndihmoj me:
       kicker: "The march",
       title: "The next march",
       body:
-        "The date of the next march will be announced. Everything for march day: the route and the principles.",
+        "The next march takes place on Saturday 12 September 2026. Everything for march day: the route and the principles.",
     },
     whatsapp: {
       title: "Scan the QR",
@@ -661,7 +662,7 @@ C) Nuk marshoj, por mund të ndihmoj me:
 Choose one:
 
 A) I will join the next march at:
-[Bulevardi i Ri - 18:30 / Skanderbeg Square - 19:00]
+[Mother Teresa Square - 19:00 / Skanderbeg Square - 19:15]
 
 B) I want to speak at the mic
 
@@ -670,23 +671,24 @@ C) I will not march, but I can help with:
     },
     itinerary: {
       kicker: "Route",
-      title: "From Bulevardi i Ri toward Skanderbeg Square",
-      dateLine: "Date: TBA",
+      title: "From Mother Teresa Square toward Skanderbeg Square",
+      dateLine: "Date: Saturday, 12 September 2026",
       body:
-        "The march starts at Bulevardi i Ri at 18:30 and joins the main protest at Skanderbeg Square at 19:00.",
-      showMap: true,
+        "The march starts at Mother Teresa Square, in front of the Polytechnic University of Tirana, at 19:00 and joins the main protest at Skanderbeg Square at 19:15.",
+      showMap: false,
       mapAlt:
-        "Map of the march from Bulevardi i Ri toward Skanderbeg Square",
+        "Map of the march from Mother Teresa Square toward Skanderbeg Square",
       mapOpenLabel: "Open the march map full size",
       mapExternalLabel: "Open route in Google Maps",
       points: [
         {
-          time: "18:30",
-          title: "Bulevardi i Ri",
-          body: "The march starts from Bulevardi i Ri.",
+          time: "19:00",
+          title: "Mother Teresa Square",
+          body:
+            "The march starts from Mother Teresa Square, in front of the Polytechnic University of Tirana.",
         },
         {
-          time: "19:00",
+          time: "19:15",
           title: "Skanderbeg Square",
           body: "The diaspora joins the main protest at Skanderbeg Square.",
         },
@@ -721,7 +723,7 @@ C) I will not march, but I can help with:
         {
           title: "Fatigue",
           body:
-            "The route from Bulevardi i Ri to the square is shorter, but the pace should remain calm so the group stays together.",
+            "The route from Mother Teresa Square to Skanderbeg Square is short, about a 15 minute walk, but the pace should remain calm so the group stays together.",
         },
         {
           title: "Bag",
@@ -873,7 +875,7 @@ C) I will not march, but I can help with:
       required: "This field is required.",
       invalidEmail: "Enter a valid email address.",
       joiningPointOptions: [
-        { value: "new-boulevard", label: "Bulevardi i Ri" },
+        { value: "mother-teresa-square", label: "Mother Teresa Square" },
         { value: "skanderbeg-square", label: "Skanderbeg Square" },
         { value: "coordinate-later", label: "I will coordinate later" },
       ],

@@ -28,7 +28,8 @@ import routeMapImage from "@/docs/marshimi_i_diaspores_bulevard_sheshi.png";
 
 const whatsAppInviteUrl =
   "https://chat.whatsapp.com/L6oe4JyUi8k0h13oJSv7DP?s=cl&p=i&mlu=0&ilr=0&amv=2";
-const googleMapsRouteUrl = "https://maps.app.goo.gl/wz7z2Xt5HBbYKjUR8";
+const googleMapsRouteUrl =
+  "https://www.google.com/maps/dir/?api=1&origin=Sheshi+N%C3%ABn%C3%AB+Tereza%2C+Tiran%C3%AB&destination=Sheshi+Sk%C3%ABnderbej%2C+Tiran%C3%AB&travelmode=walking";
 
 const practicalAdviceIcons = [
   Droplets,
@@ -398,8 +399,8 @@ export function HomePage({ locale }: { locale: Locale }) {
                     ))}
                   </ol>
                 </div>
-                {t.itinerary.showMap ? (
-                  <figure className="route-map">
+                <figure className="route-map">
+                  {t.itinerary.showMap ? (
                     <a
                       href={routeMapImage.src}
                       target="_blank"
@@ -412,19 +413,19 @@ export function HomePage({ locale }: { locale: Locale }) {
                         sizes="(max-width: 900px) calc(100vw - 28px), 520px"
                       />
                     </a>
-                    <TrackedLink
-                      className="route-map-link"
-                      href={googleMapsRouteUrl}
-                      target="_blank"
-                      rel="noreferrer"
-                      eventName="Google Maps Opened"
-                      eventProperties={{ locale, placement: "route_map" }}
-                    >
-                      <MapPinned aria-hidden="true" size={18} />
-                      {t.itinerary.mapExternalLabel}
-                    </TrackedLink>
-                  </figure>
-                ) : null}
+                  ) : null}
+                  <TrackedLink
+                    className="route-map-link"
+                    href={googleMapsRouteUrl}
+                    target="_blank"
+                    rel="noreferrer"
+                    eventName="Google Maps Opened"
+                    eventProperties={{ locale, placement: "route_map" }}
+                  >
+                    <MapPinned aria-hidden="true" size={18} />
+                    {t.itinerary.mapExternalLabel}
+                  </TrackedLink>
+                </figure>
               </div>
             </div>
 
