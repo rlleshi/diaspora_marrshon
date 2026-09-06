@@ -155,6 +155,13 @@
 // Days 91, 92 and 93 cleared unusually few frames against the fixed 100-person retention
 // threshold (201/952, 74/828 and 129/1001). Their peaks stay comparable, but their means and
 // medians summarize a much thinner slice of the broadcast than the days around them.
+// Days 94 to 97 computed from their protesta_N timelines, retained frames only, on the same
+// Day-7 reference (top-10 peak avg / mean / median): 94 236.6 / 152.7 / 137.4; 95 253.3 /
+// 139.1 / 136.2; 96 242.2 / 139.3 / 129.5; 97 227.9 / 130.5 / 119.8. The research layer has
+// not written story notes for these four days yet (protest_story_notes_1_93.md is still the
+// last one, and research/ holds no day_94..97 sources), so unlike every day before them their
+// notes rest on the News24 stream headline plus this index rather than on a per-day writeup,
+// and are worth revisiting once those files land.
 
 export type ParticipationDay = {
   day: number;
@@ -384,6 +391,14 @@ export const participation: ParticipationDay[] = [
     note: { sq: "E diela e fundit e gushtit i lë shtatorit përshkallëzimin e radhës: te Kryeministria përsëriten kërkesat për dorëheqje dhe thirrjet drejt studentëve e pedagogëve për t'u bashkuar.", en: "The last Sunday of August leaves the next escalation to September: at the PM's office the resignation demands are repeated, along with the calls for students and lecturers to join." } },
   { day: 93, date: "2026-08-31", saturday: false, peak: 3.43, mean: 2.42, median: 2.20, source: yt("gh4YWCWaUfI"),
     note: { sq: "E hëna marshon nën “Rama ciao” dhe flet për mosbindje civile: nga sheshi caktohen dita e 100-të më 7 shtator dhe një mobilizim më i gjerë më 12 shtator.", en: "Monday marches beneath “Rama ciao” and talks of civil disobedience: the square sets day 100 on 7 September and a wider mobilization on 12 September." } },
+  { day: 94, date: "2026-09-01", saturday: false, peak: 4.58, mean: 2.96, median: 2.66, source: yt("_RbgKeaFTts"),
+    note: { sq: "E marta i mban të bllokuara dyert e Kryeministrisë për dy orë me Ramën brenda, ndërsa revolta shtrihet edhe te komisariatet.", en: "Tuesday holds the doors of the PM's office blocked for two hours with Rama inside, while the revolt spreads to the police stations too." } },
+  { day: 95, date: "2026-09-02", saturday: false, peak: 4.90, mean: 2.69, median: 2.64, source: yt("HbGqBIEstcs"),
+    note: { sq: "E mërkura ngre pjesëmarrjen më të fortë që nga dita e 86-të, një ditë pas bllokimit dyorësh të Kryeministrisë.", en: "Wednesday lifts turnout to its strongest since day 86, a day after the two-hour blockade of the PM's office." } },
+  { day: 96, date: "2026-09-03", saturday: false, peak: 4.69, mean: 2.70, median: 2.51, source: yt("JqYOG7M5OS4"),
+    note: { sq: "E enjtja mban sheshin dhe paralajmëron përshkallëzim, ndërsa dita e 100-të afrohet.", en: "Thursday holds the square and warns of escalation, as day 100 draws closer." } },
+  { day: 97, date: "2026-09-04", saturday: false, peak: 4.41, mean: 2.53, median: 2.32, source: yt("2w3Hg9AqIg4"),
+    note: { sq: "E premtja përsërit paralajmërimin për përshkallëzim, me pjesëmarrje pak më të ulët se dy ditët para saj.", en: "Friday repeats the warning of escalation, with turnout slightly below the two days before it." } },
 ];
 
 export type ParticipationEvent = {
@@ -448,6 +463,9 @@ export const participationEvents: ParticipationEvent[] = [
   { day: 90, tier: "primary", icon: "flag", mobile: true,
     label: { sq: "3 muaj protestë", en: "Three months" },
     sub: { sq: "28 gusht", en: "28 August" } },
+  { day: 94, tier: "primary", icon: "people", mobile: true,
+    label: { sq: "Kryeministria e bllokuar", en: "PM's office blocked" },
+    sub: { sq: "dy orë · 1 shtator", en: "two hours · 1 September" } },
 ];
 
 /** Normalization reference shown in the methodology note. */
