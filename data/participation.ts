@@ -155,13 +155,25 @@
 // Days 91, 92 and 93 cleared unusually few frames against the fixed 100-person retention
 // threshold (201/952, 74/828 and 129/1001). Their peaks stay comparable, but their means and
 // medians summarize a much thinner slice of the broadcast than the days around them.
-// Days 94 to 97 computed from their protesta_N timelines, retained frames only, on the same
-// Day-7 reference (top-10 peak avg / mean / median): 94 236.6 / 152.7 / 137.4; 95 253.3 /
-// 139.1 / 136.2; 96 242.2 / 139.3 / 129.5; 97 227.9 / 130.5 / 119.8. The research layer has
-// not written story notes for these four days yet (protest_story_notes_1_93.md is still the
-// last one, and research/ holds no day_94..97 sources), so unlike every day before them their
-// notes rest on the News24 stream headline plus this index rather than on a per-day writeup,
-// and are worth revisiting once those files land.
+// Days 94 to 107 computed from their protesta_N timelines, retained frames only, on the same
+// Day-7 reference (top-10 peak avg / mean / median): 94 226.8 / 152.7 / 137.4; 95 253.3 /
+// 139.1 / 136.2; 96 242.2 / 139.3 / 129.5; 97 227.9 / 130.5 / 119.8; 98 222.1 / 137.3 / 123.0;
+// 99 198.7 / 128.4 / 113.5; 100 245.2 / 143.4 / 135.1; 101 320.4 / 178.4 / 153.3; 102 184.2 /
+// 124.0 / 119.0; 103 280.8 / 129.7 / 119.0; 104 237.1 / 136.3 / 123.1; 105 557.7 / 216.8 /
+// 204.5; 106 210.5 / 143.0 / 139.8; 107 240.4 / 140.0 / 135.0.
+// The top frames of every day in the batch were checked by eye for broadcast composites. Four
+// days carried them, so their peaks are the top-10 average over single-view frames only, the
+// treatment days 71, 74 and 77 got (mean and median stay whole-broadcast, as on day 77). Day 94's
+// confrontation outside the PM's office ran as a four-panel grid, 25 of the frames above its
+// tenth clean one (raw top-10 236.6, audit-only); its first published peak of 4.58 used them
+// and is corrected here to 4.39. Day 100's highest frames mostly pair the crowd with a speaker
+// panel (raw 277.8), day 101's two highest are two-panel (raw 341.7), and day 105 has five
+// speaker splits in its top fifteen (raw 559.9).
+// Days 94 to 97 come from 640x360 sources; days 89 to 93 and 98 to 107 are 1920x1080. Day 105's
+// peak is an elevated wide view down the boulevard that takes in far more of the crowd than
+// street-level shots, so it marks a camera-visible high point, not a like-for-like ranking.
+// Day 99 kept only 94 of 795 frames above the retention threshold. The notes for days 94 to 97,
+// first written from stream headlines alone, are rewritten from their research files.
 
 export type ParticipationDay = {
   day: number;
@@ -391,14 +403,34 @@ export const participation: ParticipationDay[] = [
     note: { sq: "E diela e fundit e gushtit i lë shtatorit përshkallëzimin e radhës: te Kryeministria përsëriten kërkesat për dorëheqje dhe thirrjet drejt studentëve e pedagogëve për t'u bashkuar.", en: "The last Sunday of August leaves the next escalation to September: at the PM's office the resignation demands are repeated, along with the calls for students and lecturers to join." } },
   { day: 93, date: "2026-08-31", saturday: false, peak: 3.43, mean: 2.42, median: 2.20, source: yt("gh4YWCWaUfI"),
     note: { sq: "E hëna marshon nën “Rama ciao” dhe flet për mosbindje civile: nga sheshi caktohen dita e 100-të më 7 shtator dhe një mobilizim më i gjerë më 12 shtator.", en: "Monday marches beneath “Rama ciao” and talks of civil disobedience: the square sets day 100 on 7 September and a wider mobilization on 12 September." } },
-  { day: 94, date: "2026-09-01", saturday: false, peak: 4.58, mean: 2.96, median: 2.66, source: yt("_RbgKeaFTts"),
-    note: { sq: "E marta i mban të bllokuara dyert e Kryeministrisë për dy orë me Ramën brenda, ndërsa revolta shtrihet edhe te komisariatet.", en: "Tuesday holds the doors of the PM's office blocked for two hours with Rama inside, while the revolt spreads to the police stations too." } },
+  { day: 94, date: "2026-09-01", saturday: false, peak: 4.39, mean: 2.96, median: 2.66, source: yt("_RbgKeaFTts"),
+    note: { sq: "E marta përqendrohet te hyrjet e Kryeministrisë ndërsa Rama është brenda; pas ndërhyrjes së policisë disa protestues shoqërohen dhe marshimi vijon te Komisariati Nr. 1 në solidaritet me ta.", en: "Tuesday concentrates at the entrances of the PM's office while Rama is inside; after police intervene, several protesters are taken in and the march moves on to Police Station No. 1 in solidarity with them." } },
   { day: 95, date: "2026-09-02", saturday: false, peak: 4.90, mean: 2.69, median: 2.64, source: yt("HbGqBIEstcs"),
-    note: { sq: "E mërkura ngre pjesëmarrjen më të fortë që nga dita e 86-të, një ditë pas bllokimit dyorësh të Kryeministrisë.", en: "Wednesday lifts turnout to its strongest since day 86, a day after the two-hour blockade of the PM's office." } },
+    note: { sq: "E mërkura kërkon lirimin e të ndaluarve: pas rrethimit simbolik të Kryeministrisë, studentët prijnë marshimin deri te Blloku i Sigurisë në rrugën Mine Peza.", en: "Wednesday demands the detainees' release: after a symbolic encirclement of the PM's office, students lead the march to the detention block on Mine Peza street." } },
   { day: 96, date: "2026-09-03", saturday: false, peak: 4.69, mean: 2.70, median: 2.51, source: yt("JqYOG7M5OS4"),
-    note: { sq: "E enjtja mban sheshin dhe paralajmëron përshkallëzim, ndërsa dita e 100-të afrohet.", en: "Thursday holds the square and warns of escalation, as day 100 draws closer." } },
+    note: { sq: "E enjtja vijon me kërkesën për lirimin e protestuesve të ndaluar, ndërsa thirret tubim para Gjykatës së Tiranës nesër në orën 10:00, për seancën e 14 të arrestuarve.", en: "Thursday keeps up the demand to free the detained protesters, while a gathering is called outside the Tirana court tomorrow at 10:00 for the hearing of the 14 arrested." } },
   { day: 97, date: "2026-09-04", saturday: false, peak: 4.41, mean: 2.53, median: 2.32, source: yt("2w3Hg9AqIg4"),
-    note: { sq: "E premtja përsërit paralajmërimin për përshkallëzim, me pjesëmarrje pak më të ulët se dy ditët para saj.", en: "Friday repeats the warning of escalation, with turnout slightly below the two days before it." } },
+    note: { sq: "Gjykata e shpall të paligjshëm arrestimin e 14 protestuesve dhe i liron pa masë sigurie; në mbrëmje sheshi thërret për tubim më të madh më 7 shtator dhe për qeveri teknike.", en: "The court rules the arrest of the 14 protesters unlawful and releases them without security measures; in the evening the square calls for a bigger gathering on 7 September and a technical government." } },
+  { day: 98, date: "2026-09-05", saturday: true, peak: 4.30, mean: 2.66, median: 2.38, source: yt("JmBsr_-seiM"),
+    note: { sq: "E shtuna lidh kërkesën për dorëheqje me pronat publike dhe zonat e mbrojtura: nga sheshi njoftohet rikthimi në Rrjoll më 12 shtator dhe i kërkohet SPAK-ut të hetojë ndërtimet e kontestuara, para marshimit nëpër Tiranë.", en: "Saturday ties the resignation demand to public land and protected areas: the square announces a return to Rrjoll on 12 September and calls on SPAK to investigate the disputed construction, before a march through Tirana." } },
+  { day: 99, date: "2026-09-06", saturday: false, peak: 3.85, mean: 2.49, median: 2.20, source: yt("6WSQsxDW7Kc"),
+    note: { sq: "E diela kritikon njëkohësisht qeverinë dhe opozitën; nga sheshi thirret tubim kombëtar për ditën e 100-të më 7 shtator dhe protestë para Kuvendit më 8 shtator, për seancën e orës 17:00.", en: "Sunday criticizes the government and the opposition alike; the square calls a national gathering for day 100 on 7 September and a protest at Parliament on 8 September, for its 17:00 session." } },
+  { day: 100, date: "2026-09-07", saturday: false, peak: 4.75, mean: 2.78, median: 2.62, source: yt("ACKyhkokb3U"),
+    note: { sq: "Dita e 100-të shënohet me rrethimin simbolik të Kryeministrisë: gratë lidhin duart në zinxhir njerëzor dhe protestuesit parakalojnë me flakadanë.", en: "Day 100 is marked with a symbolic encirclement of the PM's office: women link hands in a human chain and protesters parade with flares." } },
+  { day: 101, date: "2026-09-08", saturday: false, peak: 6.20, mean: 3.45, median: 2.97, source: yt("ew08NLe6Mdc"),
+    note: { sq: "E marta protestohet te Kuvendi në ditën e hapjes së sesionit, ku makinat goditen me vezë; në mbrëmje marshimi kalon te Kryeministria dhe mbërrin te Drejtoria e Policisë për lirimin e rreth 20 të shoqëruarve, sipas organizatorëve.", en: "Tuesday protests at Parliament as the session opens, where cars are pelted with eggs; in the evening the march passes the PM's office and reaches the police directorate to demand the release of around 20 people taken in, according to the organizers." } },
+  { day: 102, date: "2026-09-09", saturday: false, peak: 3.57, mean: 2.40, median: 2.30, source: yt("B1ByO6-xz2g"),
+    note: { sq: "E mërkura ndahet mes bllokimit të Unazës së Vogël dhe marshimit drejt Kryeministrisë, me thirrje për tubimin e diasporës më 12 shtator; policia njofton 16 të shoqëruar, një të arrestuar dhe 15 të proceduar në gjendje të lirë.", en: "Wednesday splits between a Small Ring roadblock and a march on the PM's office, with calls to join the diaspora gathering on 12 September; police report 16 people taken in, one arrested and 15 investigated without detention." } },
+  { day: 103, date: "2026-09-10", saturday: false, peak: 5.44, mean: 2.51, median: 2.30, source: yt("mH7lBRp9Kxk"),
+    note: { sq: "E enjtja marshon nga Kryeministria drejt Sheshit Nënë Tereza, me pankarta kundër ndërrimit të ministrave dhe për hetimin e kontratave në shëndetësi, ndërsa pritet tubimi i diasporës të shtunën.", en: "Thursday marches from the PM's office toward Mother Teresa Square, with placards against the reshuffling of ministers and for an investigation into healthcare contracts, as Saturday's diaspora gathering approaches." } },
+  { day: 104, date: "2026-09-11", saturday: false, peak: 4.59, mean: 2.64, median: 2.38, source: yt("CIlnLPdqEj8"),
+    note: { sq: "E premtja mbyllet me thirrje për pjesëmarrje më të madhe në protestën kombëtare të nesërme, ndërsa emigrantë rrugës për në Shqipëri raportojnë se u ndaluan në Mal të Zi.", en: "Friday ends with calls for a bigger turnout at the next day's national protest, while emigrants on their way to Albania report being stopped in Montenegro." } },
+  { day: 105, date: "2026-09-12", saturday: true, peak: 10.80, mean: 4.20, median: 3.96, source: yt("n23uXiSxtQE"),
+    note: { sq: "Protesta kombëtare sjell diasporën në marshimin nga Sheshi Skënderbej te Kryeministria; në vend të marshimit të zakonshëm, protestuesit qëndrojnë para ndërtesës, e rrethojnë dhe thërrasin për mosbindje civile, ndërsa një pjesë bllokon Unazën e Vogël.", en: "The national protest brings the diaspora into the march from Skanderbeg Square to the PM's office; instead of the usual onward march, protesters stay outside the building, surround it and call for civil disobedience, while some block the Small Ring road." } },
+  { day: 106, date: "2026-09-13", saturday: false, peak: 4.08, mean: 2.77, median: 2.71, source: yt("iomHIIf5yrE"),
+    note: { sq: "E diela sjell sërish diasporën në shesh dhe në marshim; nga sheshi thirret një javë mosbindjeje civile dhe tubim nesër në orën 18:30.", en: "Sunday brings the diaspora back to the square and the march; the square calls for a week of civil disobedience and a gathering tomorrow at 18:30." } },
+  { day: 107, date: "2026-09-14", saturday: false, peak: 4.65, mean: 2.71, median: 2.61, source: yt("Uopuo1Iddao"),
+    note: { sq: "E hëna nis që në mëngjes me bllokimin e rrugës te Zogu i Zi, ku policia ndërhyn pranë gjimnazit “Qemal Stafa” dhe shoqëron protestues; në mbrëmje marshimi shkon nga Kryeministria te Blloku i Sigurisë në Mine Peza, në solidaritet me të ndaluarit.", en: "Monday starts in the morning with a road blockade at Zogu i Zi, where police intervene near the Qemal Stafa high school and take protesters in; in the evening the march goes from the PM's office to the Mine Peza detention block in solidarity with those detained." } },
 ];
 
 export type ParticipationEvent = {
@@ -466,6 +498,15 @@ export const participationEvents: ParticipationEvent[] = [
   { day: 94, tier: "primary", icon: "people", mobile: true,
     label: { sq: "Kryeministria e bllokuar", en: "PM's office blocked" },
     sub: { sq: "dy orë · 1 shtator", en: "two hours · 1 September" } },
+  { day: 100, tier: "primary", icon: "flag", mobile: true,
+    label: { sq: "100 ditë protestë", en: "One hundred days" },
+    sub: { sq: "7 shtator", en: "7 September" } },
+  { day: 101, tier: "primary", icon: "people", mobile: true,
+    label: { sq: "Protesta te Kuvendi", en: "Protest at Parliament" },
+    sub: { sq: "vezë, shoqërime", en: "eggs, people taken in" } },
+  { day: 105, tier: "primary", icon: "people", mobile: true,
+    label: { sq: "Marshimi i katërt i diasporës", en: "The fourth diaspora march" },
+    sub: { sq: "12 shtator", en: "12 September" } },
 ];
 
 /** Normalization reference shown in the methodology note. */
