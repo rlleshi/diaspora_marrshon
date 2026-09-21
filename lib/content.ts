@@ -230,10 +230,10 @@ export const content: Record<Locale, SiteContent> = {
       },
       eyebrow: "Diaspora marshon në Tiranë",
       dateLabel: "Data e marshimit",
-      dateDay: "12",
-      dateMonth: "SHTATOR",
-      dateMeta: "E shtunë · 2026",
-      dateText: "12 shtator 2026",
+      dateDay: "Do",
+      dateMonth: "NJOFTOHET",
+      dateMeta: "Marshimi i radhës",
+      dateText: "Do njoftohet",
       dateRows: [
         { time: "19:00", location: "Sheshi Nënë Tereza" },
         { time: "19:15", location: "Sheshi Skënderbej" },
@@ -300,7 +300,7 @@ export const content: Record<Locale, SiteContent> = {
       kicker: "Marshimi",
       title: "Marshimi i radhës",
       body:
-        "Marshimi i radhës zhvillohet të shtunën, më 12 shtator 2026. Gjithçka për ditën e marshimit: itinerari dhe parimet.",
+        "Data e marshimit të radhës do të njoftohet. Gjithçka për ditën e marshimit: itinerari dhe parimet.",
     },
     whatsapp: {
       title: "Skano QR-in",
@@ -326,7 +326,7 @@ C) Nuk marshoj, por mund të ndihmoj me:
     itinerary: {
       kicker: "Itinerari",
       title: "Nga Sheshi Nënë Tereza drejt Sheshit Skënderbej",
-      dateLine: "Data: e shtunë, 12 shtator 2026",
+      dateLine: "Data: do njoftohet",
       body:
         "Marshimi nis te Sheshi Nënë Tereza, para Universitetit Politeknik të Tiranës, në 19:00 dhe bashkohet me protestën kryesore në Sheshin Skënderbej në 19:15.",
       showMap: false,
@@ -477,6 +477,13 @@ C) Nuk marshoj, por mund të ndihmoj me:
       },
       items: [
         {
+          dateLabel: "12 shtator 2026",
+          title: "Marshimi i katërt i diasporës",
+          route: "Sheshi Nënë Tereza → Sheshi Skënderbej",
+          summary:
+            "Marshimi i katërt qytetar dhe paqësor i diasporës, nga Sheshi Nënë Tereza drejt Sheshit Skënderbej, me rreth 250 pjesëmarrës, në mbështetje të protestës kombëtare.",
+        },
+        {
           dateLabel: "14-16 gusht 2026",
           title: "Marshimi i tretë i diasporës",
           route: "Bulevardi i Ri → Sheshi Skënderbej",
@@ -576,10 +583,10 @@ C) Nuk marshoj, por mund të ndihmoj me:
       },
       eyebrow: "The diaspora marches in Tirana",
       dateLabel: "March date",
-      dateDay: "12",
-      dateMonth: "SEPTEMBER",
-      dateMeta: "Saturday · 2026",
-      dateText: "12 September 2026",
+      dateDay: "TBA",
+      dateMonth: "NEXT DATE",
+      dateMeta: "Next diaspora march",
+      dateText: "TBA",
       dateRows: [
         { time: "19:00", location: "Mother Teresa Square" },
         { time: "19:15", location: "Skanderbeg Square" },
@@ -646,7 +653,7 @@ C) Nuk marshoj, por mund të ndihmoj me:
       kicker: "The march",
       title: "The next march",
       body:
-        "The next march takes place on Saturday 12 September 2026. Everything for march day: the route and the principles.",
+        "The date of the next march will be announced. Everything for march day: the route and the principles.",
     },
     whatsapp: {
       title: "Scan the QR",
@@ -672,7 +679,7 @@ C) I will not march, but I can help with:
     itinerary: {
       kicker: "Route",
       title: "From Mother Teresa Square toward Skanderbeg Square",
-      dateLine: "Date: Saturday, 12 September 2026",
+      dateLine: "Date: TBA",
       body:
         "The march starts at Mother Teresa Square, in front of the Polytechnic University of Tirana, at 19:00 and joins the main protest at Skanderbeg Square at 19:15.",
       showMap: false,
@@ -822,6 +829,13 @@ C) I will not march, but I can help with:
         goToLabel: "Go to march",
       },
       items: [
+        {
+          dateLabel: "September 12, 2026",
+          title: "The fourth diaspora march",
+          route: "Mother Teresa Square → Skanderbeg Square",
+          summary:
+            "The diaspora's fourth civic, peaceful march, from Mother Teresa Square toward Skanderbeg Square, with around 250 participants, in support of the national protest.",
+        },
         {
           dateLabel: "August 14-16, 2026",
           title: "The third diaspora march",
