@@ -174,6 +174,20 @@
 // street-level shots, so it marks a camera-visible high point, not a like-for-like ranking.
 // Day 99 kept only 94 of 795 frames above the retention threshold. The notes for days 94 to 97,
 // first written from stream headlines alone, are rewritten from their research files.
+// Days 108 to 113 computed from their protesta_N timelines, retained frames only, on the same
+// Day-7 reference (top-10 peak avg / mean / median): 108 252.8 / 139.1 / 127.1; 109 224.3 /
+// 139.2 / 130.6; 110 254.9 / 151.2 / 150.1; 111 188.4 / 124.0 / 117.7; 112 237.2 / 133.0 /
+// 122.1; 113 216.7 / 143.5 / 136.7. All six are 1920x1080 and none has a broadcast composite
+// among its top frames: days 110, 112 and 113 kept every frame and their twenty highest were
+// screened, while days 108, 109 and 111 kept only the peak frame and the frames behind each peak
+// sit in one clean single-view scene. Days 111 and 113 retained 347 of 939 and 362 of 907 frames,
+// a thinner slice of the broadcast than the days around them.
+// Day 110 is the evening march (73xeOPE5V6c). The morning action at Parliament was captured as a
+// separate stream (ktXurd84g70; raw top-10 147.6, mean 116.4, median 113.6, 74 of 1252 frames
+// retained) that ran mostly as a two or three panel grid, so it stays out of the series, the way
+// day 54's morning Parliament clash does. Day 113's run is stored as protesta_114; its stream
+// title and release date make it day 113. The notes for days 108 to 113 follow their research
+// files (protest_story_notes_1_108 to _113).
 
 export type ParticipationDay = {
   day: number;
@@ -431,6 +445,18 @@ export const participation: ParticipationDay[] = [
     note: { sq: "E diela sjell sërish diasporën në shesh dhe në marshim; nga sheshi thirret një javë mosbindjeje civile dhe tubim nesër në orën 18:30.", en: "Sunday brings the diaspora back to the square and the march; the square calls for a week of civil disobedience and a gathering tomorrow at 18:30." } },
   { day: 107, date: "2026-09-14", saturday: false, peak: 4.65, mean: 2.71, median: 2.61, source: yt("Uopuo1Iddao"),
     note: { sq: "E hëna nis që në mëngjes me bllokimin e rrugës te Zogu i Zi, ku policia ndërhyn pranë gjimnazit “Qemal Stafa” dhe shoqëron protestues; në mbrëmje marshimi shkon nga Kryeministria te Blloku i Sigurisë në Mine Peza, në solidaritet me të ndaluarit.", en: "Monday starts in the morning with a road blockade at Zogu i Zi, where police intervene near the Qemal Stafa high school and take protesters in; in the evening the march goes from the PM's office to the Mine Peza detention block in solidarity with those detained." } },
+  { day: 108, date: "2026-09-15", saturday: false, peak: 4.89, mean: 2.69, median: 2.46, source: yt("KXWNH_tQPAs"),
+    note: { sq: "E marta i mban në shesh edhe pjesëtarët e diasporës, që sipas organizatorëve qëndrojnë në Tiranë deri më 17 shtator, ndërsa para Kryeministrisë kërkohet qeveri teknike me mandat njëvjeçar dhe shfuqizimi i ligjeve të kontestuara.", en: "Tuesday keeps the diaspora participants in the square too, in Tirana until 17 September according to the organizers, while outside the PM's office the demand is a technical government with a one-year mandate and the repeal of the disputed laws." } },
+  { day: 109, date: "2026-09-16", saturday: false, peak: 4.34, mean: 2.70, median: 2.53, source: yt("xAE7lGjs8tQ"),
+    note: { sq: "E mërkura e mbyll marshimin te Blloku i Sigurisë në Mine Peza me kërkesën për lirimin e të ndaluarve, ndërsa nga sheshi thirret tubim para Kuvendit të enjten në orën 10:00, në ditën e seancës plenare.", en: "Wednesday ends the march at the Mine Peza detention block with the demand to free those detained, while the square calls a gathering outside Parliament on Thursday at 10:00, on the day of the plenary session." } },
+  { day: 110, date: "2026-09-17", saturday: false, peak: 4.94, mean: 2.93, median: 2.91, source: yt("73xeOPE5V6c"),
+    note: { sq: "E enjtja nis në mëngjes para Kuvendit gjatë seancës plenare, ndërsa gjykata i shpall të paligjshme arrestimet e 14 shtatorit dhe liron 12 protestuesit; në mbrëmje marshimi kalon në Rrugën e Elbasanit dhe mbërrin te Komisariati Nr. 1.", en: "Thursday starts in the morning outside Parliament during the plenary session, while the court rules the 14 September arrests unlawful and frees the 12 protesters; in the evening the march goes along Rruga e Elbasanit to Police Station No. 1." } },
+  { day: 111, date: "2026-09-18", saturday: false, peak: 3.65, mean: 2.40, median: 2.28, source: yt("j2azmin8WaM"),
+    note: { sq: "E premtja godet nismën e Ramës “Prania Besnike”: pankartat kërkojnë ministrat në SPAK, ndërsa marshimi nëpër Tiranë përsërit kërkesën për dorëheqje.", en: "Friday hits Rama's “Prania Besnike” initiative: the placards demand the ministers go to SPAK, while the march through Tirana repeats the resignation demand." } },
+  { day: 112, date: "2026-09-19", saturday: true, peak: 4.59, mean: 2.58, median: 2.36, source: yt("OPGmt5cfxow"),
+    note: { sq: "E shtuna marshon nga Kryeministria deri te Sheshi Nënë Tereza; nga sheshi thirren banorët e bashkive që do të shkrihen në protestë para Kuvendit më 8 tetor, ditën kur pritet të votohet harta e re territoriale.", en: "Saturday marches from the PM's office to Mother Teresa Square; the square calls residents of the municipalities set to be merged to a protest outside Parliament on 8 October, the day the new territorial map is expected to be voted." } },
+  { day: 113, date: "2026-09-20", saturday: false, peak: 4.20, mean: 2.78, median: 2.65, source: yt("Os618Aq6Tmo"),
+    note: { sq: "E diela marshon me studentët, gratë dhe vajzat në krye dhe me kërkesën “Anuloni ligjet!” për zonat e mbrojtura, investimet strategjike dhe Paketën e Maleve; nga sheshi thirret tubim para Kuvendit më 24 shtator.", en: "Sunday marches with students, women and girls at the front and the demand “Anuloni ligjet!” over the protected areas, strategic investments and the Mountain Package; the square calls a gathering outside Parliament on 24 September." } },
 ];
 
 export type ParticipationEvent = {
