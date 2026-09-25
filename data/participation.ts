@@ -188,6 +188,21 @@
 // day 54's morning Parliament clash does. Day 113's run is stored as protesta_114; its stream
 // title and release date make it day 113. The notes for days 108 to 113 follow their research
 // files (protest_story_notes_1_108 to _113).
+// Days 115 to 117 computed the same way (top-10 peak avg / mean / median): 115 168.3 / 118.6 /
+// 114.5; 116 146.7 / 119.1 / 116.9; 117 169.4 / 121.7 / 116.6. All three kept only their peak
+// frame, which is a clean single view, and the frames behind each peak sit in one scene; the
+// broadcast composites screened out of their probes fall in later scenes that hold no retained
+// top frame. Retention is thin on all three, 269 of 909 frames on day 115, 83 of 748 on day 116
+// and 218 of 898 on day 117, so they carry the same caveat as days 111 and 113.
+// Day 117 is the evening rally (qXPKhAjCJv8). The morning action at Parliament and the Interior
+// Ministry was a separate stream (cMZ9FWF_2Kg; raw top-10 216.6, mean 133.2, median 125.0, 322 of
+// 1263 frames retained) and stays out of the series, like the day 54 and day 110 mornings.
+// Day 114 was analyzed after the rest, from its own stream (HTOcZWpqD84): top-10 peak avg 243.7,
+// mean 142.3, median 125.8, 307 of 875 frames retained. Every frame was saved and its twelve
+// highest sit in one clean single-view scene. Its folder also holds the mislabeled copy of day
+// 113's broadcast (Os618Aq6Tmo), which is the run this file first recorded as day 114.
+// The notes for days 115 to 117 follow their research files (protest_story_notes_1_115 to _117);
+// day 114 has no research file yet, so its note follows the day's press coverage.
 
 export type ParticipationDay = {
   day: number;
@@ -457,6 +472,14 @@ export const participation: ParticipationDay[] = [
     note: { sq: "E shtuna marshon nga Kryeministria deri te Sheshi Nënë Tereza; nga sheshi thirren banorët e bashkive që do të shkrihen në protestë para Kuvendit më 8 tetor, ditën kur pritet të votohet harta e re territoriale.", en: "Saturday marches from the PM's office to Mother Teresa Square; the square calls residents of the municipalities set to be merged to a protest outside Parliament on 8 October, the day the new territorial map is expected to be voted." } },
   { day: 113, date: "2026-09-20", saturday: false, peak: 4.20, mean: 2.78, median: 2.65, source: yt("Os618Aq6Tmo"),
     note: { sq: "E diela marshon me studentët, gratë dhe vajzat në krye dhe me kërkesën “Anuloni ligjet!” për zonat e mbrojtura, investimet strategjike dhe Paketën e Maleve; nga sheshi thirret tubim para Kuvendit më 24 shtator.", en: "Sunday marches with students, women and girls at the front and the demand “Anuloni ligjet!” over the protected areas, strategic investments and the Mountain Package; the square calls a gathering outside Parliament on 24 September." } },
+  { day: 114, date: "2026-09-21", saturday: false, peak: 4.72, mean: 2.76, median: 2.44, source: yt("HTOcZWpqD84"),
+    note: { sq: "E hëna marshon nga Sheshi Skënderbej te Kryeministria dhe më pas në Bulevardin “Zogu i Parë”, para se të kthehet në shesh; thirrjet kërkojnë dorëheqjen e Ramës dhe mbështetjen e diasporës.", en: "Monday marches from Skanderbeg Square to the PM's office and then onto Zogu i Parë Boulevard, before returning to the square; the chants demand Rama's resignation and the diaspora's support." } },
+  { day: 115, date: "2026-09-22", saturday: false, peak: 3.26, mean: 2.30, median: 2.22, source: yt("R7pfbmQWTaY"),
+    note: { sq: "E marta marshon nga Sheshi Skënderbej te Kryeministria dhe në ish-Bllok me thirrjen “Arrestoni Ramën”, në ditën kur raportohen arrestime të krerëve të institucioneve në çështjen AKSHI.", en: "Tuesday marches from Skanderbeg Square to the PM's office and on into the former Block with the chant “Arrestoni Ramën”, on a day when arrests of institution heads in the AKSHI case are reported." } },
+  { day: 116, date: "2026-09-23", saturday: false, peak: 2.84, mean: 2.31, median: 2.26, source: yt("DVtvZ1USbD8"),
+    note: { sq: "E mërkura e çon marshimin deri para Kuvendit me thirrjen “Parlament i krimit”, ndërsa kërkohet qeveri kalimtare njëvjeçare; nga sheshi thirret aksion para Kuvendit nesër në mëngjes.", en: "Wednesday takes the march to Parliament with the chant “Parlament i krimit”, while the demand is a one-year transitional government; the square calls an action outside Parliament tomorrow morning." } },
+  { day: 117, date: "2026-09-24", saturday: false, peak: 3.28, mean: 2.36, median: 2.26, source: yt("qXPKhAjCJv8"),
+    note: { sq: "E enjtja nis në mëngjes para Kuvendit gjatë seancës plenare dhe vijon te Ministria e Brendshme, me përplasje me policinë dhe protestues të shoqëruar; në mbrëmje marshimi kthehet nga sheshi te Kryeministria.", en: "Thursday starts in the morning outside Parliament during the plenary session and continues to the Interior Ministry, with clashes with police and protesters taken in; in the evening the march goes from the square back to the PM's office." } },
 ];
 
 export type ParticipationEvent = {
