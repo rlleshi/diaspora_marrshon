@@ -32,6 +32,7 @@ Recommended entry shape:
 - Vercel Analytics page and custom event tracking.
 - Revitalized flag favicon and mobile bookmark icon.
 - Bilingual protest pulse tracker at `/pulsi` and `/en/pulsi`.
+- Reproducible crowd-analysis package with pinned CLIP-EBC, source manifest, model setup scripts, and per-day review notes.
 - Government scandal dossier at `/liste_vuajtjesh` (Albanian content, `/en/liste_vuajtjesh` chrome).
 - Hidden legacy pledge form and secure backend infrastructure.
 
@@ -197,6 +198,13 @@ Recommended entry shape:
 - Why it matters: Gives the site a recognizable campaign identity in browser tabs, bookmarks, and mobile shortcuts.
 - Main files: `docs/revitalized_flag.jpeg`, `app/favicon.ico`, `app/icon.png`, `app/apple-icon.png`.
 - Notes / follow-up: Keep the eagle large and centered if the source artwork is replaced later.
+
+### 2026-09-27 - Reproducible Protest Crowd Analysis
+
+- What changed: Added a dedicated analysis package with the YouTube/CLIP-EBC pipeline, pinned upstream model submodule, checksum-verified checkpoint setup, a 119-day source/index manifest, and published-series review notes.
+- Why it matters: Makes future crowd analyses repeatable and gives the published participation index a versioned source and audit trail.
+- Main files: `crowd-analysis/`, `.gitmodules`, `data/participation.ts`.
+- Notes / follow-up: Videos, cookies, checkpoints, and generated outputs stay outside Git; new index adjustments should be recorded in `crowd-analysis/data/review_notes.md`.
 
 ## Dormant / Legacy Feature Area
 

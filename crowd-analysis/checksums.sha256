@@ -1,0 +1,2 @@
+10b0993f2ae659a47266875999de23465e1102bda2bc198247a8eaef05ae4df3  CLIP-EBC/checkpoints/nwpu/clip_vit_b_16_word_224_8_4_fine_1.0_dmcount/best_mae.pth
+23768f0deb5e4eafb48fcb55a202640f02cb550448450b3f083fa5ca2b159747  CLIP-EBC/checkpoints/nwpu/clip_vit_b_16_word_224_8_4_fine_1.0_dmcount/best_rmse.pth

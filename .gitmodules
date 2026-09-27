@@ -1,0 +1,3 @@
+[submodule "clip-ebc"]
+	path = crowd-analysis/CLIP-EBC
+	url = https://github.com/Yiming-M/CLIP-EBC.git

@@ -1,4 +1,4 @@
-// 50-day participation index for the June 2026 "Revolucioni i Flamingove" protests.
+// Participation index for the 2026 "Revolucioni i Flamingove" protests (119 days through 2026-09-26).
 //
 // Source: News24 live broadcasts of each day's protest in Tirana, analyzed with a
 // crowd-counting model. The headline series is `peak` (top-10 peak frame average).
@@ -7,8 +7,8 @@
 // scales the model output on the same Day-7 reference (top-10 avg 2582.5 -> index 50).
 // `mean` and `median` are the same crowd model over the retained broadcast frames.
 //
-// Data: outputs/protesta_summary/crowd_visibility_index_1_30.csv (days 1-30)
-// Story: outputs/protesta_summary/protest_story_notes_1_50.md
+// Data: crowd-analysis/data/crowd_visibility_index_1_30.csv (days 1-30, preliminary scale)
+// Story research: outputs/protesta_summary/protest_story_notes_1_50.md in the demo workspace
 // Day 31 computed from the protesta_31 timeline (top-10 peak avg 697.6, mean 229.9,
 // median 212.5), normalized on the same Day-7 reference as days 1-30.
 // Day 32 computed from the protesta_32 timeline, retained frames only (top-10 peak
@@ -20,7 +20,8 @@
 // medians 174.4 / 199.2 / 186.5 / 154.8), normalized on the same Day-7 reference.
 // Day 35 (4 July) is geometry-anchored like days 7 and 21: the ground estimate of
 // ~60k (upper extension of the 30k-50k working range, 2.5 km procession scenario,
-// research/day_35_density_estimate.md) sets peak = 60.0 (index 100 = ~100k); its
+// crowd-analysis/research/day_35_density_estimate.md) sets peak = 60.0 (originally
+// treating index 100 as roughly 100k; the later geometry tracker gives a wider range); its
 // mean/median are scaled by the same anchor factor (2.736), matching Day 21's method.
 // Day 38 computed from the protesta_38 timeline, retained frames only (top-10 peak
 // avg 245.9, mean 150.7, median 145.8), normalized on the same Day-7 reference.

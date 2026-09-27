@@ -108,7 +108,7 @@ To add a new protest day:
 6. Run `npm run typecheck`.
 7. Run `npm run build` before deploying.
 
-The tracker is a normalized participation index, not an exact official crowd count. It currently covers 63 days and supports all-days, recent, monthly, and weekly views. Keep methodology and disclaimer language honest about camera and model limitations.
+The tracker is a normalized participation index, not an exact official crowd count. It covers 119 days through 26 September 2026 and supports all-days, recent, monthly, and weekly views. Keep methodology and disclaimer language honest about camera and model limitations.
 
 ## Coordination Model
 
@@ -141,5 +141,9 @@ Trusted organizers should use individual Google/Firebase IAM access if Firebase 
 - Keep private logistics out of public copy unless safe.
 - Keep Turnstile, rate limits, origin checks, and email confirmation active if the pledge form is re-enabled.
 - Treat participation numbers as estimates/index values unless independently verified.
+
+## Reproducing the Participation Analysis
+
+The analysis code, pinned CLIP-EBC submodule, source manifest, model setup, and reproducibility notes live in [crowd-analysis/README.md](crowd-analysis/README.md).
 
 <!-- Deployment integration verification marker. -->
