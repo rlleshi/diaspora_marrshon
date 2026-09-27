@@ -1,6 +1,8 @@
 import type { Metadata, Viewport } from "next";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import { FlamingoBot } from "@/components/flamingo-bot";
+import { flamingoBotOrigin } from "@/lib/flamingo-bot-config";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -25,6 +27,7 @@ export default function RootLayout({
     <html lang="sq">
       <body>
         {children}
+        <FlamingoBot botOrigin={flamingoBotOrigin()} />
         <Analytics />
         <SpeedInsights />
       </body>

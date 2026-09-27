@@ -9,6 +9,7 @@ The app currently combines:
 - A source-linked protest participation tracker.
 - A source-backed government-scandal dossier.
 - Suggested clothing/download resources.
+- A site-wide Flamingo Bot assistant, served by the independent bot project.
 - A hidden legacy pledge form backed by Firebase, Turnstile, rate limits, and email confirmation.
 
 ## Routes
@@ -35,6 +36,8 @@ The app currently combines:
 2. Create `.env.local` if you need the pledge API locally.
 
 3. For the visible public pages and tracker, no Firebase credentials are needed.
+   The Flamingo Bot uses its separately deployed service. To point local
+   development at another bot service, set `FLAMINGO_BOT_URL` in `.env.local`.
 
 4. For the legacy pledge flow, configure:
 
@@ -121,6 +124,22 @@ The visible site is WhatsApp-first:
 5. Sensitive logistics stay in private organizer channels.
 
 The older form is still present in the codebase but hidden on the homepage. Re-enable it only if structured participant data becomes operationally useful again.
+
+## Flamingo Bot
+
+The site embeds the independently deployed `flamingo-bot` web component on
+public pages. Its bundle, media, and chat API are owned by the bot project;
+this repository only hosts the widget and applies the current page language and
+site color tokens. The default service is
+`https://flamingo-bot-949711463853.europe-west3.run.app`.
+
+Production browsers contact that service directly. Its
+`FLAMINGO_ALLOWED_ORIGINS` must include both
+`https://diaspora-zbarkon.com` and `https://www.diaspora-zbarkon.com`.
+Local development uses a narrow `/api/flamingo-bot/` relay for the widget
+bundle, known avatar assets, and chat requests; it returns 404 in production.
+The bot service enforces its own per-visitor and daily quotas. Content updates
+on this site do not appear in answers until the bot's separate ingestion runs.
 
 ## Firebase Access Model
 

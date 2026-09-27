@@ -35,6 +35,7 @@ Recommended entry shape:
 - Reproducible crowd-analysis package with pinned CLIP-EBC, source manifest, model setup scripts, and per-day review notes.
 - Government scandal dossier at `/liste_vuajtjesh` (Albanian content, `/en/liste_vuajtjesh` chrome).
 - Hidden legacy pledge form and secure backend infrastructure.
+- Site-wide Flamingo Bot assistant with bilingual suggested questions.
 
 ## Feature Ledger
 
@@ -205,6 +206,13 @@ Recommended entry shape:
 - Why it matters: Makes future crowd analyses repeatable and gives the published participation index a versioned source and audit trail.
 - Main files: `crowd-analysis/`, `.gitmodules`, `data/participation.ts`.
 - Notes / follow-up: Videos, cookies, checkpoints, and generated outputs stay outside Git; new index adjustments should be recorded in `crowd-analysis/data/review_notes.md`.
+
+### 2026-09-28 - Flamingo Bot Integration
+
+- What changed: Embedded the independent Flamingo Bot web component across public pages, with route-aware Albanian/English suggestions and a development-only relay.
+- Why it matters: Visitors can ask source-backed questions without leaving the campaign site or duplicating the bot implementation.
+- Main files: `components/flamingo-bot.tsx`, `app/layout.tsx`, `app/api/flamingo-bot/[...path]/route.ts`.
+- Notes / follow-up: Launcher opens are tracked in Vercel Analytics. The bot service owns answers, quotas, and ingestion; its production origin allowlist must include both diaspora domain variants.
 
 ## Dormant / Legacy Feature Area
 

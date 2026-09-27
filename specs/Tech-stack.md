@@ -12,6 +12,7 @@ The current public product is:
 - A bilingual suggested clothing/download page at `/veshja` and `/en/veshja`.
 - A hidden legacy pledge form and API that can be re-enabled if needed.
 - A WhatsApp-first coordination flow on the homepage.
+- A site-wide Flamingo Bot widget backed by an independently deployed service.
 
 The stack should remain simple enough to update quickly during the campaign, while treating participant safety, privacy, spam resistance, and source-linked public claims as first-class requirements.
 
@@ -116,9 +117,25 @@ Key components:
 - `components/scandals-page.tsx`: dossier page shell, methodology, aggregate stats, and legal-status summary.
 - `components/scandals-explorer.tsx`: chronology, category filters, expandable records, claim verdicts, and source links.
 - `components/analytics-events.tsx`: Vercel custom event helpers.
+- `components/flamingo-bot.tsx`: site-wide assistant widget host and language bridge.
 - `components/pledge-form.tsx`: hidden legacy pledge form.
 
 The participation chart is a first-class public feature. It must remain mobile-readable, keyboard-accessible, source-linked, and honest about uncertainty.
+
+## Flamingo Bot
+
+The independent `flamingo-bot` service owns the chat UI, API, source ingestion,
+quotas, and disclosure. The Next.js app loads its web component in
+`app/layout.tsx` on public pages. The widget uses the document language for
+suggested questions; the host updates it for `/en` routes before mounting the
+widget. Production uses the service origin directly. A development-only relay
+at `/api/flamingo-bot/` allows local preview without expanding the production
+origin allowlist; it exposes only the bundle, known media, and chat endpoint.
+
+`FLAMINGO_BOT_URL` optionally overrides the default deployed bot service.
+The service's `FLAMINGO_ALLOWED_ORIGINS` must allow both production domain
+variants. Updating site content alone does not refresh the bot's knowledge;
+the separate ingestion process must run.
 
 ## Analytics
 
@@ -134,6 +151,7 @@ Tracked events currently include:
 - Section views.
 - Tracker page opens.
 - Scandal dossier opens and section views.
+- Flamingo Bot launcher opens (without tracking chat content).
 
 When adding a new major call to action, add a custom event so campaign decisions can be based on actual behavior rather than only page views.
 
