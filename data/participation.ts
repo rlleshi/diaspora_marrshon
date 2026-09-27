@@ -203,6 +203,15 @@
 // 113's broadcast (Os618Aq6Tmo), which is the run this file first recorded as day 114.
 // The notes for days 115 to 117 follow their research files (protest_story_notes_1_115 to _117);
 // day 114 has no research file yet, so its note follows the day's press coverage.
+// Days 118 and 119 computed the same way (top-10 peak avg / mean / median): 118 183.9 / 124.5 /
+// 116.5; 119 182.5 / 119.6 / 112.2. Day 118 retained 209 of 971 frames and day 119 203 of 1108.
+// Day 118's nine highest frames are a studio interview in front of a video wall carrying crowd
+// footage, the raw peak among them reading 843.7, so they stay out of the top ten the way the
+// day 94, 100, 101 and 105 splits do. They also stay out of this day's mean and median, which
+// the earlier composite days kept whole-broadcast: a video wall is not the crowd in the street,
+// and those nine frames alone carry the whole-broadcast mean from 124.5 to 149.7, while the
+// median barely moves (116.5 to 116.9). Day 119's twenty-five highest frames are all single-view
+// street shots. The notes for both days follow their research files.
 
 export type ParticipationDay = {
   day: number;
@@ -480,6 +489,10 @@ export const participation: ParticipationDay[] = [
     note: { sq: "E mërkura e çon marshimin deri para Kuvendit me thirrjen “Parlament i krimit”, ndërsa kërkohet qeveri kalimtare njëvjeçare; nga sheshi thirret aksion para Kuvendit nesër në mëngjes.", en: "Wednesday takes the march to Parliament with the chant “Parlament i krimit”, while the demand is a one-year transitional government; the square calls an action outside Parliament tomorrow morning." } },
   { day: 117, date: "2026-09-24", saturday: false, peak: 3.28, mean: 2.36, median: 2.26, source: yt("qXPKhAjCJv8"),
     note: { sq: "E enjtja nis në mëngjes para Kuvendit gjatë seancës plenare dhe vijon te Ministria e Brendshme, me përplasje me policinë dhe protestues të shoqëruar; në mbrëmje marshimi kthehet nga sheshi te Kryeministria.", en: "Thursday starts in the morning outside Parliament during the plenary session and continues to the Interior Ministry, with clashes with police and protesters taken in; in the evening the march goes from the square back to the PM's office." } },
+  { day: 118, date: "2026-09-25", saturday: false, peak: 3.56, mean: 2.41, median: 2.26, source: yt("fjeTh-9vS5M"),
+    note: { sq: "E premtja marshon me pankartën “Me SHISH e polici nuk e mbani dot këtë tirani” dhe me kërkesën që SPAK të hetojë shëndetësinë.", en: "Friday marches with the placard “Me SHISH e polici nuk e mbani dot këtë tirani” and the demand that SPAK investigate the health system." } },
+  { day: 119, date: "2026-09-26", saturday: true, peak: 3.53, mean: 2.32, median: 2.17, source: yt("diZnf2oQeqQ"),
+    note: { sq: "E shtuna e gjen rrugën të mbyllur nga kordoni i policisë pranë Liqenit Artificial gjatë ndeshjes Shqipëri-Bjellorusi; marshimi ndërron drejtim dhe në bulevard shkruhet “Arrestoni Ramën”.", en: "Saturday finds the road closed by a police cordon near the Artificial Lake during the Albania-Belarus match; the march changes direction and “Arrestoni Ramën” is written on the boulevard." } },
 ];
 
 export type ParticipationEvent = {
