@@ -213,6 +213,13 @@
 // and those nine frames alone carry the whole-broadcast mean from 124.5 to 149.7, while the
 // median barely moves (116.5 to 116.9). Day 119's twenty-five highest frames are all single-view
 // street shots. The notes for both days follow their research files.
+// Day 120 computed from 237 single-view frames of the 307 retained (1086 counted), top-10 peak
+// avg 270.1, mean 154.7, median 139.3. It is the most composite-heavy broadcast in the series:
+// 64 retained frames are blue-framed splits pairing the march with studio panels and six more
+// are the studio interview in front of a video wall, the highest of them reading 600.4. All
+// three figures leave those 70 frames out, the treatment day 118 got; keeping them would read
+// 458.1 / 175.9 / 145.9. The ten highest single-view frames are wide shots down Blv. Dëshmorët
+// e Kombit. The note follows the research file (protest_story_notes_1_120).
 
 export type ParticipationDay = {
   day: number;
@@ -494,6 +501,8 @@ export const participation: ParticipationDay[] = [
     note: { sq: "E premtja marshon me pankartën “Me SHISH e polici nuk e mbani dot këtë tirani” dhe me kërkesën që SPAK të hetojë shëndetësinë.", en: "Friday marches with the placard “Me SHISH e polici nuk e mbani dot këtë tirani” and the demand that SPAK investigate the health system." } },
   { day: 119, date: "2026-09-26", saturday: true, peak: 3.53, mean: 2.32, median: 2.17, source: yt("diZnf2oQeqQ"),
     note: { sq: "E shtuna e gjen rrugën të mbyllur nga kordoni i policisë pranë Liqenit Artificial gjatë ndeshjes Shqipëri-Bjellorusi; marshimi ndërron drejtim dhe në bulevard shkruhet “Arrestoni Ramën”.", en: "Saturday finds the road closed by a police cordon near the Artificial Lake during the Albania-Belarus match; the march changes direction and “Arrestoni Ramën” is written on the boulevard." } },
+  { day: 120, date: "2026-09-27", saturday: false, peak: 5.23, mean: 3.00, median: 2.70, source: yt("tDFUD_zGoc8"),
+    note: { sq: "Dita e 120-të shënon katër muaj protestë: marshimi ndalet para Kuvendit me tymuese, ndërsa nga sheshi thirret tubim i diasporës në Bruksel më 3 tetor.", en: "Day 120 marks four months of protest: the march stops outside Parliament with smoke flares, while the square calls a diaspora gathering in Brussels on 3 October." } },
 ];
 
 export type ParticipationEvent = {
@@ -570,6 +579,9 @@ export const participationEvents: ParticipationEvent[] = [
   { day: 105, tier: "primary", icon: "people", mobile: true,
     label: { sq: "Marshimi i katërt i diasporës", en: "The fourth diaspora march" },
     sub: { sq: "12 shtator", en: "12 September" } },
+  { day: 120, tier: "primary", icon: "flag", mobile: true,
+    label: { sq: "4 muaj protestë", en: "Four months" },
+    sub: { sq: "27 shtator", en: "27 September" } },
 ];
 
 /** Normalization reference shown in the methodology note. */
