@@ -1,7 +1,18 @@
 "use client";
 
-import { useEffect, useMemo, useRef, useState, type CSSProperties } from "react";
 import {
+  useEffect,
+  useLayoutEffect,
+  useMemo,
+  useRef,
+  useState,
+  type CSSProperties,
+  type KeyboardEvent,
+} from "react";
+import {
+  CalendarDays,
+  ChartLine,
+  ChartSpline,
   CloudRain,
   Crown,
   ExternalLink,
@@ -21,7 +32,8 @@ import {
   type ParticipationDay,
   type ParticipationEvent,
 } from "@/data/participation";
-import { buildGeometry, niceMax, VIEW } from "@/components/participation/geometry";
+import { axisFor, buildGeometry, VIEW, type Scale } from "@/components/participation/geometry";
+import { CalendarView } from "@/components/participation/CalendarView";
 
 type Locale = "sq" | "en";
 
@@ -39,6 +51,50 @@ const ICONS: Record<ParticipationEvent["icon"], LucideIcon> = {
   spark: Sparkles,
   flag: Flag,
 };
+
+/* ---- views ---- */
+
+type View = "log" | "linear" | "calendar";
+
+const VIEWS: Array<{ key: View; icon: LucideIcon }> = [
+  { key: "log", icon: ChartSpline },
+  { key: "linear", icon: ChartLine },
+  { key: "calendar", icon: CalendarDays },
+];
+
+// The page opens on the log axis: it is the one view where a 100-point Saturday
+// and a 4-point weeknight are both legible at once.
+const DEFAULT_VIEW: View = "log";
+
+/**
+ * How far a day stands above its own fortnight: its peak over the median peak of
+ * the seven days either side. On a log axis vertical distance *is* this ratio, so
+ * it ranks which moments visibly stand out, where the raw value would only ever
+ * pick the June giants.
+ */
+const PROMINENCE = new Map(
+  participation.map((d, i) => {
+    if (d.peak == null) return [d.day, 0];
+    const around = participation
+      .slice(Math.max(0, i - 7), i + 8)
+      .filter((n) => n.day !== d.day && n.peak != null)
+      .map((n) => n.peak as number)
+      .sort((a, b) => a - b);
+    if (around.length === 0) return [d.day, 1];
+    const mid = around.length / 2;
+    const median =
+      around.length % 2 ? around[Math.floor(mid)] : (around[mid - 1] + around[mid]) / 2;
+    return [d.day, d.peak / median];
+  }),
+);
+
+/**
+ * A moment needs twice its fortnight's level to earn a label on the full log view.
+ * Chip placement avoids other chips but not the line, so the bar is set where a
+ * label reliably has clear air: day 31 (1.97x) sits in the shadow of the 20 June
+ * spike and its label lands across it. It still shows once the reader zooms in.
+ */
+const LOG_CHIP_PROMINENCE = 2;
 
 /* ---- windows ---- */
 
@@ -270,6 +326,10 @@ function monthLabel(mo: Month, locale: Locale): string {
 }
 
 const DRAW_MS = 1800;
+/** log <-> linear: the line reshapes in place while its annotations step aside. */
+const MORPH_MS = 750;
+
+const morphD = (d: string) => ({ d: `path("${d}")` }) as CSSProperties;
 
 export type ChartLabels = {
   peakValue: string; // "100"
@@ -304,6 +364,19 @@ export type ChartLabels = {
   weekAvgLabel: string; // "Mesatarja e javës"
   /** key-moments rail */
   momentsTitle: string; // "Momentet kyçe"
+  /** view switcher */
+  viewLabel: string; // "Pamja"
+  viewLog: string;
+  viewLinear: string;
+  viewCalendar: string;
+  viewLogHint: string;
+  viewLinearHint: string;
+  /** the calendar reads differently once it turns on its side at phone width */
+  viewCalendarHintWide: string;
+  viewCalendarHintNarrow: string;
+  /** calendar legend; `{below}` and `{total}` are filled in from the data */
+  calendarLegend: string;
+  calendarLegendNote: string;
 };
 
 export function ParticipationChart({
@@ -324,6 +397,20 @@ export function ParticipationChart({
   const [chartWidth, setChartWidth] = useState(0);
   const [narrow, setNarrow] = useState(false);
   const [range, setRange] = useState<Range>(FULL);
+  const [mode, setMode] = useState<View>(DEFAULT_VIEW);
+  const [morphing, setMorphing] = useState(false);
+  const morphTimer = useRef<number | null>(null);
+  const scale: Scale = mode === "linear" ? "linear" : "log";
+  const calDetailRef = useRef<HTMLDivElement | null>(null);
+  const switchRef = useRef<HTMLDivElement | null>(null);
+  // Where the floating card hangs in calendar view, in CSS pixels from the chart's
+  // top-left. Measured off the square itself, since the grid reflows with width.
+  const [calAnchor, setCalAnchor] = useState<{
+    x: number;
+    y: number;
+    below: boolean;
+    place: "start" | "center" | "end";
+  } | null>(null);
   // Hover previews a day; clicking pins it so the tooltip stays put (and its
   // link stays clickable) while the pointer travels across neighboring days.
   const [hovered, setHovered] = useState<number | null>(null);
@@ -336,17 +423,16 @@ export function ParticipationChart({
     [range],
   );
 
-  // The full range stays pinned to 100 so "100 = the biggest day" never shifts
-  // under the reader; a zoomed window rescales to its own tallest day.
-  const maxY = useMemo(() => {
-    if (range.key === "all") return VIEW.maxY;
-    const measured = days.filter(isMeasured);
-    if (measured.length === 0) return VIEW.maxY;
-    const windowPeak = Math.max(...measured.map((d) => d.peak));
-    return windowPeak >= VIEW.maxY ? VIEW.maxY : niceMax(windowPeak);
-  }, [days, range.key]);
+  const axis = useMemo(
+    () => axisFor(days, scale, range.key === "all"),
+    [days, scale, range.key],
+  );
+  const { maxY } = axis;
 
-  const geo = useMemo(() => buildGeometry(days, maxY), [days, maxY]);
+  const geo = useMemo(
+    () => buildGeometry(days, axis.maxY, scale, axis.minY),
+    [days, axis, scale],
+  );
   const ticks = useMemo(() => xTicks(range.from, range.to), [range]);
   const events = useMemo(
     () => participationEvents.filter((ev) => ev.day >= range.from && ev.day <= range.to),
@@ -372,13 +458,60 @@ export function ParticipationChart({
     setHovered(null);
   }
 
-  useEffect(() => cancelHover, []);
+  useEffect(
+    () => () => {
+      cancelHover();
+      if (morphTimer.current != null) window.clearTimeout(morphTimer.current);
+    },
+    [],
+  );
 
   function selectRange(next: Range) {
     setRange(next);
     cancelHover();
     setHovered(null);
     setPinned((day) => (day != null && day >= next.from && day <= next.to ? day : null));
+  }
+
+  function selectView(next: View) {
+    if (next === mode) return;
+    setMode(next);
+    cancelHover();
+    setHovered(null);
+    // A day pinned in the calendar stays pinned in the line views, so widen the
+    // window if it falls outside the zoom the line view was left on.
+    if (pinned != null && (pinned < range.from || pinned > range.to)) setRange(FULL);
+    // Log and linear share one set of points, so they morph into each other. The
+    // calendar has nothing to morph from, so crossing into or out of it re-runs the
+    // reveal instead.
+    if (mode === "calendar" || next === "calendar") {
+      replay();
+      return;
+    }
+    setMorphing(true);
+    if (morphTimer.current != null) window.clearTimeout(morphTimer.current);
+    morphTimer.current = window.setTimeout(() => setMorphing(false), MORPH_MS);
+  }
+
+  function onSwitchKey(e: KeyboardEvent<HTMLDivElement>) {
+    const step = e.key === "ArrowRight" || e.key === "ArrowDown" ? 1 : e.key === "ArrowLeft" || e.key === "ArrowUp" ? -1 : 0;
+    if (!step) return;
+    e.preventDefault();
+    const i = VIEWS.findIndex((v) => v.key === mode);
+    const next = VIEWS[(i + step + VIEWS.length) % VIEWS.length].key;
+    selectView(next);
+    switchRef.current?.querySelector<HTMLButtonElement>(`[data-view="${next}"]`)?.focus();
+  }
+
+  /** Clicking a square pins it; clicking the pinned square again closes it. */
+  function toggleCalendarDay(day: number) {
+    cancelHover();
+    if (pinned === day) {
+      closeTip();
+      return;
+    }
+    setHovered(day);
+    setPinned(day);
   }
 
   /** Open a day from the moments rail, widening the window if it fell outside. */
@@ -396,7 +529,9 @@ export function ParticipationChart({
     if (!scrollToDetail.current) return;
     scrollToDetail.current = false;
     if (pinned == null) return;
-    const target = panelRef.current?.offsetParent ? panelRef.current : rootRef.current;
+    const target =
+      [panelRef.current, calDetailRef.current].find((el) => el?.offsetParent) ??
+      rootRef.current;
     target?.scrollIntoView({ behavior: "smooth", block: "center" });
   }, [pinned]);
 
@@ -449,6 +584,29 @@ export function ParticipationChart({
     return () => obs.disconnect();
   }, []);
 
+  useLayoutEffect(() => {
+    const root = rootRef.current;
+    const cell =
+      mode === "calendar" && active != null
+        ? root?.querySelector<HTMLElement>(`[data-cal-day="${active}"]`)
+        : null;
+    if (!root || !cell) {
+      setCalAnchor(null);
+      return;
+    }
+    const box = root.getBoundingClientRect();
+    const sq = cell.getBoundingClientRect();
+    const x = sq.left - box.left + sq.width / 2;
+    // The card is ~220px tall; hang it under the square when there is no room above.
+    const below = sq.top - box.top < 250;
+    setCalAnchor({
+      x,
+      y: below ? sq.bottom - box.top : sq.top - box.top,
+      below,
+      place: x > box.width * 0.7 ? "end" : x < box.width * 0.3 ? "start" : "center",
+    });
+  }, [mode, active, chartWidth]);
+
   function replay() {
     setRevealed(false);
     requestAnimationFrame(() =>
@@ -465,6 +623,8 @@ export function ParticipationChart({
     armed ? "is-armed" : "",
     revealed ? "is-revealed" : "",
     sized ? "is-sized" : "",
+    morphing ? "is-morphing" : "",
+    mode === "calendar" ? "pc--calendar" : scale === "log" ? "pc--log" : "",
   ]
     .filter(Boolean)
     .join(" ");
@@ -483,19 +643,27 @@ export function ParticipationChart({
     1,
     Math.floor(plotCssWidth / CHIP_MIN_SLOT[narrow ? "narrow" : "wide"]),
   );
+  // On a linear axis a moment has room for a label once it clears 30% of the
+  // height. On a log axis height is a ratio, so what earns a label is how far a day
+  // rises over its own neighbours: the September diaspora march stands out there
+  // as clearly as the June Saturdays do.
+  const rank = (ev: ParticipationEvent) =>
+    scale === "log" ? PROMINENCE.get(ev.day) ?? 0 : BY_DAY.get(ev.day)?.peak ?? 0;
+  const standsOut = (ev: ParticipationEvent) =>
+    scale === "log" ? rank(ev) >= LOG_CHIP_PROMINENCE : rank(ev) >= maxY * 0.3;
   let chipCandidates =
     range.key === "all"
       ? events.filter(
           (ev) =>
             ev.tier === "peak" ||
             // secondary moments are footnotes; they never earn plot space here
-            (ev.tier !== "secondary" && (BY_DAY.get(ev.day)?.peak ?? 0) >= maxY * 0.3),
+            (ev.tier !== "secondary" && standsOut(ev)),
         )
       : events;
   if (chipCandidates.length > chipSlots) {
     const keep = new Set(
       [...chipCandidates]
-        .sort((a, b) => (BY_DAY.get(b.day)?.peak ?? 0) - (BY_DAY.get(a.day)?.peak ?? 0))
+        .sort((a, b) => rank(b) - rank(a))
         .slice(0, chipSlots)
         .map((ev) => ev.day),
     );
@@ -526,6 +694,16 @@ export function ParticipationChart({
         null,
       );
 
+  const dayLabel = (d: ParticipationDay) =>
+    `${labels.axisDay} ${d.day}, ${formatDate(d.date, locale)}: ${
+      d.peak == null ? labels.noData : `${labels.tooltipPeak} ${d.peak.toFixed(0)}`
+    }`;
+  const viewName: Record<View, string> = {
+    log: labels.viewLog,
+    linear: labels.viewLinear,
+    calendar: labels.viewCalendar,
+  };
+
   const activeDay = active != null ? BY_DAY.get(active) ?? null : null;
   const activePt = active != null ? points.find((p) => p.day === active) ?? null : null;
   // An unanalyzed day sits on no line, so it has no point to anchor to. It still gets a
@@ -536,6 +714,51 @@ export function ParticipationChart({
 
   return (
     <>
+    <div className="pc-views">
+      <div
+        className="pc-switch"
+        role="radiogroup"
+        aria-label={labels.viewLabel}
+        ref={switchRef}
+        onKeyDown={onSwitchKey}
+        style={
+          {
+            "--i": VIEWS.findIndex((v) => v.key === mode),
+            "--n": VIEWS.length,
+          } as CSSProperties
+        }
+      >
+        <span className="pc-switch-thumb" aria-hidden="true" />
+        {VIEWS.map(({ key, icon: Icon }) => (
+          <button
+            key={key}
+            type="button"
+            role="radio"
+            data-view={key}
+            className="pc-switch-opt"
+            aria-checked={mode === key}
+            tabIndex={mode === key ? 0 : -1}
+            onClick={() => selectView(key)}
+          >
+            <Icon size={15} aria-hidden="true" />
+            <span>{viewName[key]}</span>
+          </button>
+        ))}
+      </div>
+      <p className="pc-views-hint">
+        {mode === "calendar" ? (
+          <>
+            <span className="pc-only-wide">{labels.viewCalendarHintWide}</span>
+            <span className="pc-only-narrow">{labels.viewCalendarHintNarrow}</span>
+          </>
+        ) : mode === "log" ? (
+          labels.viewLogHint
+        ) : (
+          labels.viewLinearHint
+        )}
+      </p>
+    </div>
+
     <div
       className={cls}
       ref={rootRef}
@@ -543,7 +766,7 @@ export function ParticipationChart({
         {
           "--draw-ms": `${DRAW_MS}ms`,
           "--peak-delay": `${peakDelay}ms`,
-          aspectRatio: `${view.width} / ${view.height}`,
+          aspectRatio: mode === "calendar" ? undefined : `${geo.view.width} / ${geo.view.height}`,
         } as CSSProperties
       }
       onMouseLeave={() => {
@@ -554,6 +777,8 @@ export function ParticipationChart({
         if (e.key === "Escape") closeTip();
       }}
     >
+      {mode !== "calendar" && (
+      <>
       <svg
         className="pc-svg"
         viewBox={`0 0 ${view.width} ${view.height}`}
@@ -629,7 +854,7 @@ export function ParticipationChart({
 
         {/* reference hairlines + y labels */}
         {gridLines.map((g, i) => (
-          <g key={`grid-${g.value}`}>
+          <g key={`grid-${scale}-${g.value}`} className="pc-grid">
             <line
               x1={plot.left}
               x2={plot.right}
@@ -637,7 +862,7 @@ export function ParticipationChart({
               y2={g.y}
               stroke="#ded7cc"
               strokeWidth="1"
-              opacity={g.value === 0 ? 0.9 : 0.5}
+              opacity={i === 0 ? 0.9 : 0.5}
             />
             <text
               className={
@@ -668,10 +893,16 @@ export function ParticipationChart({
 
         {/* area + mean, revealed by the left→right wipe */}
         <g clipPath="url(#pc-wipe)">
-          <path className="pc-area" d={geo.areaPath} fill="url(#pc-area-grad)" />
+          <path
+            className="pc-area"
+            d={geo.areaPath}
+            style={morphD(geo.areaPath)}
+            fill="url(#pc-area-grad)"
+          />
           <path
             className="pc-mean"
             d={geo.meanPath}
+            style={morphD(geo.meanPath)}
             fill="none"
             stroke="#5f625f"
             strokeWidth="1.6"
@@ -685,6 +916,7 @@ export function ParticipationChart({
         <path
           className="pc-line"
           d={geo.linePath}
+          style={morphD(geo.linePath)}
           fill="none"
           stroke="url(#pc-line-grad)"
           strokeWidth="3"
@@ -788,9 +1020,7 @@ export function ParticipationChart({
             fill="transparent"
             tabIndex={0}
             role="button"
-            aria-label={`${labels.axisDay} ${d.day}, ${formatDate(d.date, locale)}: ${
-              d.peak == null ? labels.noData : `${labels.tooltipPeak} ${d.peak.toFixed(0)}`
-            }`}
+            aria-label={dayLabel(d)}
             aria-pressed={pinned === d.day}
             onMouseEnter={() => {
               if (pinned == null) hoverDay(d.day);
@@ -882,6 +1112,64 @@ export function ParticipationChart({
           />
         </div>
       )}
+      </>
+      )}
+
+      {mode === "calendar" && (
+        <CalendarView
+          locale={locale}
+          labels={{ legendTitle: labels.calendarLegend, legendNote: labels.calendarLegendNote }}
+          dayLabel={dayLabel}
+          active={active}
+          pinned={pinned}
+          onHover={(day) => {
+            if (pinned == null) hoverDay(day);
+          }}
+          onFocusDay={(day) => {
+            cancelHover();
+            setHovered(day);
+          }}
+          onBlurDay={() => setHovered(null)}
+          onToggle={toggleCalendarDay}
+          detailRef={calDetailRef}
+          detail={
+            activeDay ? (
+              <TipBody
+                day={activeDay}
+                locale={locale}
+                labels={labels}
+                onClose={pinned != null ? closeTip : undefined}
+              />
+            ) : null
+          }
+        />
+      )}
+
+      {mode === "calendar" && activeDay && calAnchor && (
+        <div
+          className={[
+            "pc-tip",
+            pinned != null ? "pc-tip--pinned" : "",
+            calAnchor.below ? "pc-tip--below" : "",
+            calAnchor.place === "end"
+              ? "pc-tip--end"
+              : calAnchor.place === "start"
+                ? "pc-tip--start"
+                : "",
+          ]
+            .filter(Boolean)
+            .join(" ")}
+          style={{ left: `${calAnchor.x}px`, top: `${calAnchor.y}px` }}
+          role="status"
+        >
+          <TipBody
+            day={activeDay}
+            locale={locale}
+            labels={labels}
+            onClose={pinned != null ? closeTip : undefined}
+          />
+        </div>
+      )}
 
       <button
         type="button"
@@ -897,8 +1185,12 @@ export function ParticipationChart({
         <span className="pc-replay-text">{labels.replay}</span>
       </button>
 
-      {/* screen-reader data table — always the full series, never the window */}
-      <table className="pc-sr-only">
+      {/* screen-reader data table — always the full series, never the window. The
+          clipping lives on a wrapper: a table ignores width and overflow, so the class
+          on the table itself let it lay out full width and push the page sideways
+          wherever the card stops clipping (the calendar view). */}
+      <div className="pc-sr-only">
+      <table>
         <caption>{labels.ariaSummary}</caption>
         <thead>
           <tr>
@@ -919,10 +1211,12 @@ export function ParticipationChart({
           ))}
         </tbody>
       </table>
+      </div>
     </div>
 
-    {/* full-width detail card for small screens (the floating tooltip is hidden there) */}
-    {activeDay && (
+    {/* full-width detail card for small screens (the floating tooltip is hidden there);
+        the calendar opens its own card inline, under the tapped week */}
+    {activeDay && mode !== "calendar" && (
       <div className="pc-tip-panel" role="status" ref={panelRef}>
         <TipBody
           day={activeDay}
@@ -933,7 +1227,8 @@ export function ParticipationChart({
       </div>
     )}
 
-    {/* ---- range control + week navigator ---- */}
+    {/* ---- range control + week navigator (line views; the calendar is already the whole run) ---- */}
+    {mode !== "calendar" && (
     <div className="pc-nav">
       <div className="pc-nav-head">
         <span className="pc-nav-title">{labels.rangeLabel}</span>
@@ -1034,6 +1329,7 @@ export function ParticipationChart({
       </div>
       <p className="pc-nav-hint">{labels.weeksHint}</p>
     </div>
+    )}
 
     {/* ---- key moments: labels live here instead of floating over the plot ---- */}
     <h2 className="pc-rail-title">{labels.momentsTitle}</h2>

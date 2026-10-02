@@ -15,6 +15,9 @@ export const VIEW = {
 
 export type Pt = { day: number; x: number; y: number; d: MeasuredDay };
 
+/** How the y-axis maps an index value to height. */
+export type Scale = "linear" | "log";
+
 export type ChartGeometry = {
   view: typeof VIEW;
   plot: { left: number; right: number; top: number; bottom: number; width: number; height: number };
@@ -23,6 +26,9 @@ export type ChartGeometry = {
   lastDay: number;
   /** ceiling of the y-axis for this window. */
   maxY: number;
+  /** floor of the y-axis: 0 on a linear axis, a round value under the window's lowest day on a log one. */
+  minY: number;
+  scale: Scale;
   /** horizontal distance between two adjacent days, for bands and hit targets. */
   slotWidth: number;
   points: Pt[]; // peak series
@@ -35,6 +41,7 @@ export type ChartGeometry = {
   yOf: (value: number) => number;
   /** fraction 0–1 of a day along the x-axis, for staggering the reveal. */
   fracOf: (day: number) => number;
+  /** ascending, so the last entry is the top line; the first is the baseline. */
   gridLines: Array<{ value: number; y: number; label: string }>;
 };
 
@@ -52,6 +59,89 @@ export function niceMax(value: number): number {
   const mag = Math.pow(10, Math.floor(Math.log10(quarter)));
   const mult = NICE_STEPS.find((m) => quarter <= m * mag) ?? 10;
   return mult * mag * 4;
+}
+
+/* ---- log axis ---- */
+
+// Candidate round values per decade, coarsest first. A wide window gets the 1-2-5
+// ladder; a narrow one (a week of weeknights) needs the finer rungs to show any
+// gridline at all between its floor and ceiling.
+const LOG_LADDERS = [
+  [1, 2, 5],
+  [1, 2, 3, 5],
+  [1, 1.5, 2, 3, 4, 5, 6, 8],
+];
+const FINEST = LOG_LADDERS[LOG_LADDERS.length - 1];
+
+function ladder(steps: number[], lo: number, hi: number): number[] {
+  const out: number[] = [];
+  for (let k = Math.floor(Math.log10(lo)) - 1; k <= Math.ceil(Math.log10(hi)); k++) {
+    for (const s of steps) {
+      const v = Number((s * 10 ** k).toPrecision(6));
+      if (v >= lo * 0.999 && v <= hi * 1.001) out.push(v);
+    }
+  }
+  return out;
+}
+
+/** Smallest round value at or above `value`. */
+function logCeil(value: number): number {
+  return ladder(FINEST, value, value * 10)[0] ?? value;
+}
+
+// Floors stay on a coarse ladder so the baseline reads cleanly, with one half-step
+// so a window bottoming out just above 2 does not drop a whole extra rung to 1.
+const FLOOR_RUNGS = [1, 1.5, 2, 3, 5];
+
+/** Largest round value at or below `value`. */
+function logFloor(value: number): number {
+  const rungs = ladder(FLOOR_RUNGS, value / 10, value);
+  return rungs[rungs.length - 1] ?? value;
+}
+
+/**
+ * The y-range a window is drawn on. On a linear axis the full range stays pinned
+ * to 0-100 so "100 = the biggest day" never shifts under the reader, and a zoomed
+ * window rescales to its own tallest day. A log axis cannot reach 0, so it also
+ * needs a floor: a round value just under the window's lowest reading (peak or
+ * mean, since both lines are drawn).
+ */
+export function axisFor(
+  days: ParticipationDay[],
+  scale: Scale,
+  full: boolean,
+): { minY: number; maxY: number } {
+  const measured = days.filter(isMeasured);
+  if (measured.length === 0) return { minY: scale === "log" ? 1 : 0, maxY: VIEW.maxY };
+  const windowPeak = Math.max(...measured.map((d) => d.peak));
+  if (scale === "linear") {
+    const maxY = full || windowPeak >= VIEW.maxY ? VIEW.maxY : niceMax(windowPeak);
+    return { minY: 0, maxY };
+  }
+  const low = Math.min(...measured.map((d) => Math.min(d.peak, d.mean)));
+  const maxY = full || windowPeak >= VIEW.maxY ? VIEW.maxY : logCeil(windowPeak * 1.1);
+  return { minY: logFloor(low * 0.9), maxY };
+}
+
+/**
+ * Gridlines for a log axis: the floor and ceiling always, plus the coarsest ladder
+ * that puts at least two rungs between them. A rung crowding a bound is dropped so
+ * two labels never stack.
+ */
+function logGridValues(minY: number, maxY: number): number[] {
+  const span = Math.log10(maxY) - Math.log10(minY);
+  const inner = (steps: number[]) =>
+    ladder(steps, minY, maxY).filter((v) => v > minY * 1.001 && v < maxY * 0.999);
+  const rungs = LOG_LADDERS.map(inner).find((r) => r.length >= 2) ?? inner(FINEST);
+  const minGap = span * 0.06;
+  const kept = [minY];
+  for (const v of rungs) {
+    if (Math.log10(v) - Math.log10(kept[kept.length - 1]) < minGap) continue;
+    if (Math.log10(maxY) - Math.log10(v) < minGap) continue;
+    kept.push(v);
+  }
+  kept.push(maxY);
+  return kept;
 }
 
 function monotonePath(pts: Array<{ x: number; y: number }>): string {
@@ -97,6 +187,8 @@ const tick = (n: number) => String(Number(n.toFixed(2)));
 export function buildGeometry(
   data: ParticipationDay[],
   maxY: number = VIEW.maxY,
+  scale: Scale = "linear",
+  minY: number = 0,
 ): ChartGeometry {
   const { width, height, padTop, padBottom, padLeft, padRight } = VIEW;
   const left = padLeft;
@@ -113,7 +205,16 @@ export function buildGeometry(
   const span = Math.max(1, lastDay - firstDay);
 
   const xOf = (day: number) => left + ((day - firstDay) / span) * plotW;
-  const yOf = (value: number) => top + (1 - Math.max(0, value) / maxY) * plotH;
+  const logLo = Math.log10(Math.max(minY, 1e-6));
+  const logSpan = Math.log10(maxY) - logLo;
+  // Both mappings clamp at the floor, so nothing is ever drawn below the plot. The
+  // log one is rounded: Math.log10 can differ in its last bit between the server's
+  // V8 and the browser's, and an unrounded coordinate then fails hydration.
+  const yOf =
+    scale === "log"
+      ? (value: number) =>
+          round(top + (1 - (Math.log10(Math.max(value, minY)) - logLo) / logSpan) * plotH)
+      : (value: number) => top + (1 - Math.max(0, value) / maxY) * plotH;
   const fracOf = (day: number) => (day - firstDay) / span;
 
   // Days without a livestream analysis own no point, so the lines simply bridge
@@ -134,10 +235,9 @@ export function buildGeometry(
       ` L ${round(points[0].x)} ${round(bottom)} Z`
     : "";
 
-  const gridLines = [0, 0.25, 0.5, 0.75, 1].map((f) => {
-    const value = maxY * f;
-    return { value, y: yOf(value), label: tick(value) };
-  });
+  const gridValues =
+    scale === "log" ? logGridValues(minY, maxY) : [0, 0.25, 0.5, 0.75, 1].map((f) => maxY * f);
+  const gridLines = gridValues.map((value) => ({ value, y: yOf(value), label: tick(value) }));
 
   return {
     view: VIEW,
@@ -145,6 +245,8 @@ export function buildGeometry(
     firstDay,
     lastDay,
     maxY,
+    minY,
+    scale,
     slotWidth: plotW / span,
     points,
     meanPoints,

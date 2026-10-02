@@ -70,6 +70,21 @@ const COPY: Record<
       weekPeakLabel: "Piku i javës",
       weekAvgLabel: "Mesatarja e javës",
       momentsTitle: "Momentet kyçe",
+      viewLabel: "Pamja e grafikut",
+      viewLog: "Logaritmike",
+      viewLinear: "Lineare",
+      viewCalendar: "Kalendar",
+      viewLogHint:
+        "Tregon si krahasohet çdo natë me netët përreth: çdo hap lart në bosht është një shumëfish, ndaj netët e qeta lexohen po aq qartë sa dita më e madhe.",
+      viewLinearHint:
+        "Tregon sa e madhe ishte çdo natë krahasuar me 20 qershorin: lartësitë janë në përpjesëtim të drejtë, ndaj 100 qëndron dhjetë herë më lart se 10.",
+      viewCalendarHintWide:
+        "Një katror për çdo natë, një kolonë për çdo javë proteste, të shtunat në rreshtin e fundit.",
+      viewCalendarHintNarrow:
+        "Një katror për çdo natë, një rresht për çdo javë proteste, të shtunat në kolonën e fundit.",
+      calendarLegend: "Indeksi i turmës",
+      calendarLegendNote:
+        "Hapat janë të pabarabartë me qëllim: {below} nga {total} netë janë nën 10.",
     },
   },
   en: {
@@ -120,6 +135,20 @@ const COPY: Record<
       weekPeakLabel: "Week peak",
       weekAvgLabel: "Week average",
       momentsTitle: "Key moments",
+      viewLabel: "Chart view",
+      viewLog: "Log scale",
+      viewLinear: "Linear",
+      viewCalendar: "Calendar",
+      viewLogHint:
+        "Shows how each night compares with the nights around it: each step up the axis is a multiple, so quiet nights stay as readable as the biggest day.",
+      viewLinearHint:
+        "Shows how big each night was next to 20 June: heights are proportional, so 100 sits ten times higher than 10.",
+      viewCalendarHintWide:
+        "One square per night, one column per protest week, Saturdays along the bottom row.",
+      viewCalendarHintNarrow:
+        "One square per night, one row per protest week, Saturdays in the last column.",
+      calendarLegend: "Crowd index",
+      calendarLegendNote: "Uneven steps on purpose: {below} of {total} nights sit below 10.",
     },
   },
 };

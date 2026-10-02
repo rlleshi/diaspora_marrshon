@@ -1,4 +1,4 @@
-// Participation index for the 2026 "Revolucioni i Flamingove" protests (119 days through 2026-09-26).
+// Participation index for the 2026 "Revolucioni i Flamingove" protests (120 days through 2026-09-27).
 //
 // Source: News24 live broadcasts of each day's protest in Tirana, analyzed with a
 // crowd-counting model. The headline series is `peak` (top-10 peak frame average).

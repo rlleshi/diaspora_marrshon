@@ -184,9 +184,11 @@ consequences when writing a marker:
   wide chip, and wide chips get dropped from crowded views. Existing labels run
   ~15-28 characters.
 - **A marker is not guaranteed a label on the chart.** Only a few fit any given
-  view: across the full range, just the peak plus non-secondary days clearing
-  30% of the axis — so a recent day sitting near the baseline will show its dot
-  but no wording. That's by design. Every marker always appears in the
+  view. Across the full range that is the peak plus the non-secondary days that
+  stand out: on the default log view, days at least twice the median of the
+  seven days either side (`LOG_CHIP_PROMINENCE` in `ParticipationChart.tsx`); on
+  the linear view, days clearing 30% of the axis. A recent day sitting at the
+  level of its neighbours will show its dot but no wording. That's by design. Every marker always appears in the
   "Momentet kyçe" rail below the chart, which is the reliable surface, and its
   label does show once the reader zooms into a week or month containing it.
 
@@ -205,6 +207,15 @@ Most of the chart follows `participation` on its own — the week strip
 (`WEEKS`) and the month range chips (`CALENDAR_MONTHS`) are both derived from
 it, so new days extend them with no edit. A new calendar month joins the
 range chips once it has 4 days in it (`MIN_MONTH_DAYS`).
+
+The chart has three views behind the switcher above it: **log** (the default),
+**linear**, and **calendar** (`CalendarView.tsx`). All three are derived from
+`participation` too, so a new day needs no edit to any of them: the calendar
+grows a square (and a new week column every seven days), its legend counts
+("{below} of {total} nights sit below 10") fill themselves in, and the log axis
+picks its own floor from the lowest peak or mean. The calendar's colour steps
+(`BREAKS` = 4 / 5 / 6.5 / 11 / 30) are fixed by hand for today's distribution;
+revisit them only if most new nights start landing in a single step.
 
 If you ever do need to touch label placement, the one trap that has already
 caused two bugs: **chip geometry is in CSS pixels, not viewBox units.** Chips
