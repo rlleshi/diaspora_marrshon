@@ -1,4 +1,4 @@
-// Participation index for the 2026 "Revolucioni i Flamingove" protests (120 days through 2026-09-27).
+// Participation index for the 2026 "Revolucioni i Flamingove" protests (125 days through 2026-10-02).
 //
 // Source: News24 live broadcasts of each day's protest in Tirana, analyzed with a
 // crowd-counting model. The headline series is `peak` (top-10 peak frame average).
@@ -220,6 +220,30 @@
 // three figures leave those 70 frames out, the treatment day 118 got; keeping them would read
 // 458.1 / 175.9 / 145.9. The ten highest single-view frames are wide shots down Blv. Dëshmorët
 // e Kombit. The note follows the research file (protest_story_notes_1_120).
+// Days 121 to 125 computed the same way, on single-view frames only (top-10 peak avg / mean /
+// median): 121 192.9 / 128.1 / 117.3; 122 235.6 / 153.2 / 144.4; 123 248.4 / 142.9 / 133.6;
+// 124 157.2 / 134.0 / 134.7; 125 188.2 / 129.4 / 124.0. Every retained scene was screened on a
+// contact sheet and the split and studio frames leave all three figures, the day 118 and 120
+// treatment.
+// Day 121 kept 77 of 318 retained frames (1104 counted): 223 are blue-framed splits pairing the
+// crowd with a speaker panel and 18 are the studio interview in front of a video wall. Keeping
+// them would read 202.8 / 116.6 / 111.2. Its research file was written before the run finished
+// and calls the run incomplete; the run completed twelve minutes later and is the one used here.
+// Day 122 kept 238 of 359 (1178 counted). Its broadcast closes on a long studio interview in
+// front of a crowd video wall (114 retained frames) plus seven split frames, and those carry
+// the raw peak of 690.8: keeping them would read 564.6 / 206.6 / 182.5. The ten highest
+// single-view frames are wide shots down Blv. Dëshmorët e Kombit.
+// Day 123 kept 465 of 703 (1355 counted). The stream opened in the afternoon, during the
+// Rama-von der Leyen visit, and 238 retained frames are splits pairing the crowd with the press
+// conference or a speaker; keeping them would read 250.0 / 137.4 / 130.0. Its top ten come from
+// two full-screen daylight views of the crowd and the police line on the boulevard.
+// Day 124 has only 19 retained frames of 1562 counted (1.2%), all single views, far thinner than
+// day 116's 83 of 748. The protest fills the first two hours of the stream, mostly as splits and
+// close-ups that count under 100, and the rest is a studio talk show. With so few frames the top
+// ten reach down to 134.7, so its peak likely reads low against better-sampled days; its
+// research file advises against ranking it.
+// Day 125 kept all 145 retained frames of 924, all from one single-view scene of the march.
+// The notes for days 121 to 125 follow their research files (protest_story_notes_1_121 to _125).
 
 export type ParticipationDay = {
   day: number;
@@ -503,6 +527,16 @@ export const participation: ParticipationDay[] = [
     note: { sq: "E shtuna e gjen rrugën të mbyllur nga kordoni i policisë pranë Liqenit Artificial gjatë ndeshjes Shqipëri-Bjellorusi; marshimi ndërron drejtim dhe në bulevard shkruhet “Arrestoni Ramën”.", en: "Saturday finds the road closed by a police cordon near the Artificial Lake during the Albania-Belarus match; the march changes direction and “Arrestoni Ramën” is written on the boulevard." } },
   { day: 120, date: "2026-09-27", saturday: false, peak: 5.23, mean: 3.00, median: 2.70, source: yt("tDFUD_zGoc8"),
     note: { sq: "Dita e 120-të shënon katër muaj protestë: marshimi ndalet para Kuvendit me tymuese, ndërsa nga sheshi thirret tubim i diasporës në Bruksel më 3 tetor.", en: "Day 120 marks four months of protest: the march stops outside Parliament with smoke flares, while the square calls a diaspora gathering in Brussels on 3 October." } },
+  { day: 121, date: "2026-09-28", saturday: false, peak: 3.73, mean: 2.48, median: 2.27, source: yt("F7ik6-jUgPA"),
+    note: { sq: "E hëna hap muajin e pestë të protestës: marshimi vijon deri në Qytetin Studenti me thirrjen “Pa rini nuk ka Shqipëri”, ndërsa studentët thirren në protestë më 5 tetor.", en: "Monday opens the fifth month of protest: the march carries on to Student City with the chant “Pa rini nuk ka Shqipëri”, while students are called to protest on 5 October." } },
+  { day: 122, date: "2026-09-29", saturday: false, peak: 4.56, mean: 2.97, median: 2.80, source: yt("W7rq1IIwsyg"),
+    note: { sq: "E marta marshon nga Kryeministria nëpër Tiranë me thirrjet “Poshtë patronazhistët” dhe “Arrestoni Ramën”, ndërsa pankartat përmendin edhe Belinda Ballukun dhe Këshillin e Sigurisë Kombëtare.", en: "Tuesday marches from the PM's office through Tirana chanting “Poshtë patronazhistët” and “Arrestoni Ramën”, while placards also name Belinda Balluku and the National Security Council." } },
+  { day: 123, date: "2026-09-30", saturday: false, peak: 4.81, mean: 2.77, median: 2.59, source: yt("qZR03lmiNWY"),
+    note: { sq: "E mërkura del në rrugë që pasdite, gjatë vizitës së Ursula von der Leyen: protestuesit qëndrojnë përballë kordonit të policisë pranë takimit të saj me Ramën, me mesazhe drejtuar asaj dhe thirrjen “Rama në burg”.", en: "Wednesday takes to the street in the afternoon, during Ursula von der Leyen's visit: protesters stand facing the police cordon near her meeting with Rama, with messages addressed to her and the chant “Rama në burg”." } },
+  { day: 124, date: "2026-10-01", saturday: false, peak: 3.04, mean: 2.59, median: 2.61, source: yt("5xey3Ch0uKs"),
+    note: { sq: "E enjtja mban ende pankarta kundër takimit të Ramës me von der Leyen; gjatë marshimit ka përplasje me policinë pranë Drejtorisë së Policisë.", en: "Thursday still carries placards against Rama's meeting with von der Leyen; during the march there is a clash with police near the Police Directorate." } },
+  { day: 125, date: "2026-10-02", saturday: false, peak: 3.64, mean: 2.51, median: 2.40, source: yt("O9ESIRVOT08"),
+    note: { sq: "E premtja marshon pas pankartës “Bashkohuni studentë, kombi na thërret”; nga sheshi thirret protestë masive në Tiranë më 8 tetor, lidhur me votimin e pritshëm për reformën territoriale.", en: "Friday marches behind the placard “Bashkohuni studentë, kombi na thërret”; the square calls a mass protest in Tirana on 8 October, tied to the expected vote on territorial reform." } },
 ];
 
 export type ParticipationEvent = {

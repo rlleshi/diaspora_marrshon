@@ -44,6 +44,28 @@ Read the whole file. It has four sections that matter here:
   "Peak visible estimate" in the Snapshot — always use the top-10 average,
   not the single-frame max) and a suggested short annotation line.
 
+**Recent research files no longer carry the top-10 average**: it stops
+appearing around day 94, and from day 115 the Graph Relevance section is gone
+altogether (days 108 to 120 were already computed from the run, as their
+header comments say). Their Snapshot gives a single-frame raw peak, a "strongest 10-sample window"
+(contiguous, not the top-10 average) and whole-run retained mean/median. None
+of those is the published input. Compute all three from the run itself,
+`/home/rejnald/projects/miscellaneous/albanian/demos/outputs/protesta_N/*_scenes/timeline.json`:
+keep frames with `ensemble_count >= 100`, then build a contact sheet of each
+scene's highest kept frame and look at it. Drop every blue-framed split
+(crowd beside a speaker, studio or press conference) and every studio shot in
+front of a crowd video wall, from the peak *and* the mean/median (the day
+118/120 treatment). A mean of the frame's outer ring, blue minus red, flags
+blue-framed splits well (they score about +75 to +100, single street views
+under +30), but blue street lighting can push a clean view to +50 and a
+studio video wall scores about +10, so the sheet decides. Then `peak` = mean
+of the 10 highest clean frames, `mean`/`median` = over all clean frames,
+rounded to 0.1 before normalizing. Also check the run finished after the
+research file was written: day 121's note called its run incomplete, but the
+run completed twelve minutes later. Record the retained count, what was
+dropped and what keeping it would have read in the header comment, and say so
+when retention is unusually thin (day 124 kept 19 of 1562).
+
 ## 2. Normalize the three numbers
 
 The tracker stores everything as an index where Day 7's top-10 peak average
@@ -56,9 +78,10 @@ stored = round(raw * 50 / 2582.5, 2)
 ```
 
 Apply it to all three raw inputs independently:
-- `peak` ← top-10 highest-frame average (from Graph Relevance)
-- `mean` ← Mean visible estimate (from Snapshot)
-- `median` ← Median visible estimate (from Snapshot)
+- `peak` ← top-10 highest-frame average (from Graph Relevance, or computed
+  from the run when the research file lacks it, see step 1)
+- `mean` ← Mean visible estimate (from Snapshot, or the clean-frame mean)
+- `median` ← Median visible estimate (from Snapshot, or the clean-frame median)
 
 **Verify before trusting it**: recompute the formula against the most
 recent existing day already in `data/participation.ts` (its raw inputs are
