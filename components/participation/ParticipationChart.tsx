@@ -337,6 +337,7 @@ export type ChartLabels = {
   legendPeak: string;
   legendMean: string;
   axisDay: string; // "Dita"
+  axisIndex: string; // y-axis title, e.g. "Indeksi i turmës"
   tooltipPeak: string;
   tooltipPeakUnit: string; // shown after the number, e.g. "pikë indeksi"
   tooltipMean: string;
@@ -876,6 +877,17 @@ export function ParticipationChart({
             </text>
           </g>
         ))}
+
+        {/* y axis title, read bottom to top in the left margin */}
+        <text
+          className="pc-ylabel pc-ytitle"
+          transform={`translate(${plot.left / 2}, ${(plot.top + plot.bottom) / 2}) rotate(-90)`}
+          fill="#8a8378"
+          textAnchor="middle"
+          dominantBaseline="central"
+        >
+          {labels.axisIndex}
+        </text>
 
         {/* x axis labels */}
         {ticks.map((day) => (
