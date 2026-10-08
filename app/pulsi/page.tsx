@@ -1,11 +1,14 @@
-import type { Metadata } from "next";
 import { LiveTrackerPage } from "@/components/live-tracker-page";
+import { pageMetadata } from "@/lib/metadata";
 
-export const metadata: Metadata = {
+export const metadata = pageMetadata({
+  locale: "sq",
+  path: "/pulsi",
+  ownImage: true,
   title: "Pulsi i protestës | Diaspora marshon",
   description:
-    "Indeksi i pjesëmarrjes në protestat e qershorit 2026: 125 ditë në shesh, ditë pas dite, me momentet kyçe.",
-};
+    "Indeksi i pjesëmarrjes në protestat e qershorit 2026: 131 ditë në shesh, ditë pas dite, me momentet kyçe.",
+});
 
 export default function Page() {
   return <LiveTrackerPage locale="sq" />;

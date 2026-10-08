@@ -3,6 +3,7 @@ node_modules/
 out/
 dist/
 *.tsbuildinfo
+docs/reddit-outreach.csv
 
 .env
 .env.local

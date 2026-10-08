@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Activity, ArrowLeft, Flag, Languages } from "lucide-react";
+import { Activity, ArrowDown, ArrowLeft, Flag, Languages } from "lucide-react";
 import { content, type Locale } from "@/lib/content";
 import {
   ParticipationChart,
@@ -17,7 +17,8 @@ const COPY: Record<
     liveLabel: string;
     intro: { before: string; link: string; href: string; after: string };
     methodology: string;
-    hint: string;
+    /** one line under the intro: since when, how it is measured, a jump to the method */
+    facts: { since: string; method: string; how: string };
     disclaimer: string;
     labels: ChartLabels;
   }
@@ -26,7 +27,7 @@ const COPY: Record<
     homeHref: "/",
     homeLabel: "Kthehu te faqja kryesore",
     eyebrow: "Pulsi i protestës për Shqipërinë e re",
-    title: "125 ditë në shesh për një mjekërrosh bardhërosh",
+    title: "131 ditë në shesh për një mjekërrosh bardhërosh",
     liveLabel: "Live",
     intro: {
       before:
@@ -37,7 +38,11 @@ const COPY: Record<
     },
     methodology:
       "Indeks i pjesëmarrjes së vlerësuar, i normalizuar: 100 = dita më e madhe (20 qershor). Tubimet më të mëdha (6 qershor, 20 qershor dhe 4 korrik) janë ankoruar me vlerësime gjeometrike në terren; ditët e tjera pasqyrojnë intensitetin e dukshëm në kamerat e News24, të analizuar me një model numërimi turme.",
-    hint: "Prek ose lëviz mbi çdo ditë për detaje; kliko një ditë për ta fiksuar. Zgjidh një periudhë ose një javë më poshtë për ta parë nga afër.",
+    facts: {
+      since: "Çdo natë që nga 31 maji",
+      method: "vlerësim me AI nga transmetimet live",
+      how: "Si llogaritet",
+    },
     disclaimer:
       "Shënim: shifrat nuk mund të jenë plotësisht të sakta, për shkak të kufizimeve të kamerave gjatë transmetimit si dhe saktësisë së modeleve të inteligjencës artificiale.",
     labels: {
@@ -45,6 +50,7 @@ const COPY: Record<
       peakUnit: "indeks",
       legendPeak: "Piku ditor",
       legendMean: "Mesatarja e ditës",
+      legendNoData: "Pa pamje të përdorshme",
       axisDay: "Dita",
       axisIndex: "Indeksi i turmës",
       tooltipPeak: "Pik",
@@ -58,7 +64,7 @@ const COPY: Record<
       replay: "Rishfaq",
       saturday: "e shtunë",
       ariaSummary:
-        "Indeksi i pjesëmarrjes në protesta përgjatë 125 ditëve, me kulmin në ditën e 21-të (20 qershor 2026).",
+        "Indeksi i pjesëmarrjes në protesta përgjatë 131 ditëve, me kulmin në ditën e 21-të (20 qershor 2026).",
       rangeLabel: "Periudha",
       rangeAll: "Të gjitha ditët",
       rangeLast30: "30 ditët e fundit",
@@ -71,6 +77,8 @@ const COPY: Record<
       weekPeakLabel: "Piku i javës",
       weekAvgLabel: "Mesatarja e javës",
       momentsTitle: "Momentet kyçe",
+      momentsAll: "Shfaq të {n} momentet",
+      momentsFewer: "Shfaq më pak",
       viewLabel: "Pamja e grafikut",
       viewLog: "Logaritmike",
       viewLinear: "Lineare",
@@ -86,13 +94,28 @@ const COPY: Record<
       calendarLegend: "Indeksi i turmës",
       calendarLegendNote:
         "Hapat janë të pabarabartë me qëllim: {below} nga {total} netë janë nën 10.",
+      viewDots: "Pika",
+      viewDotsHintWide:
+        "Një pikë për çdo natë, një kolonë për çdo javë proteste. Sa më e madhe pika, aq më e madhe turma.",
+      viewDotsHintNarrow:
+        "Një pikë për çdo natë, një rresht për çdo javë proteste. Sa më e madhe pika, aq më e madhe turma.",
+      dotsLegendNote:
+        "Sipërfaqja e pikës është në përpjesëtim të drejtë me indeksin: 100 zë dhjetë herë më shumë vend se 10.",
+      dotsTitleLead: "{n} netë pa asnjë pushim.",
+      dotsTitleRest: "Turmat e mëdha erdhën në qershor; protesta nuk u ndal kurrë.",
+      howLineWide:
+        "Lëviz mbi një ditë për detaje dhe kliko për ta fiksuar; zgjidh një periudhë ose një javë më poshtë për ta parë nga afër.",
+      howLineNarrow:
+        "Prek një ditë për detaje; zgjidh një periudhë ose një javë më poshtë për ta parë nga afër.",
+      howCalWide: "Lëviz mbi një natë për historinë e saj dhe kliko për ta fiksuar.",
+      howCalNarrow: "Prek një natë për historinë e saj.",
     },
   },
   en: {
     homeHref: "/en",
     homeLabel: "Back to the homepage",
     eyebrow: "Protest pulse for a new Albania",
-    title: "125 days in the square for a grey-bearded Rama",
+    title: "131 days in the square for a grey-bearded Rama",
     liveLabel: "Live",
     intro: {
       before:
@@ -103,7 +126,11 @@ const COPY: Record<
     },
     methodology:
       "An estimated participation index, normalized so 100 = the largest day (20 June). The largest gatherings (6 June, 20 June and 4 July) are anchored to on-the-ground geometry estimates; other days reflect camera-visible intensity from News24 livestreams, analyzed with a crowd-counting model.",
-    hint: "Tap or hover any day for detail; click a day to pin it. Pick a range or a week below to zoom in.",
+    facts: {
+      since: "Every night since 31 May",
+      method: "AI estimate from livestreams",
+      how: "How it's counted",
+    },
     disclaimer:
       "Note: the numbers cannot be fully accurate due to camera limitations during the livestream and the accuracy of machine-learning models.",
     labels: {
@@ -111,6 +138,7 @@ const COPY: Record<
       peakUnit: "index",
       legendPeak: "Daily peak",
       legendMean: "Daily average",
+      legendNoData: "No usable footage",
       axisDay: "Day",
       axisIndex: "Crowd index",
       tooltipPeak: "Peak",
@@ -124,7 +152,7 @@ const COPY: Record<
       replay: "Replay",
       saturday: "Saturday",
       ariaSummary:
-        "Protest participation index across 125 days, peaking on day 21 (20 June 2026).",
+        "Protest participation index across 131 days, peaking on day 21 (20 June 2026).",
       rangeLabel: "Range",
       rangeAll: "All days",
       rangeLast30: "Last 30 days",
@@ -137,6 +165,8 @@ const COPY: Record<
       weekPeakLabel: "Week peak",
       weekAvgLabel: "Week average",
       momentsTitle: "Key moments",
+      momentsAll: "Show all {n} moments",
+      momentsFewer: "Show fewer",
       viewLabel: "Chart view",
       viewLog: "Log scale",
       viewLinear: "Linear",
@@ -151,6 +181,19 @@ const COPY: Record<
         "One square per night, one row per protest week, Saturdays in the last column.",
       calendarLegend: "Crowd index",
       calendarLegendNote: "Uneven steps on purpose: {below} of {total} nights sit below 10.",
+      viewDots: "Dots",
+      viewDotsHintWide:
+        "One dot per night, one column per protest week. The bigger the dot, the bigger the crowd.",
+      viewDotsHintNarrow:
+        "One dot per night, one row per protest week. The bigger the dot, the bigger the crowd.",
+      dotsLegendNote: "Dot area is proportional to the index: 100 takes up ten times the space of 10.",
+      dotsTitleLead: "{n} nights, none missed.",
+      dotsTitleRest: "The big crowds came in June; the protest never stopped.",
+      howLineWide:
+        "Hover a day for detail and click to pin it; pick a range or a week below to zoom in.",
+      howLineNarrow: "Tap a day for detail; pick a range or a week below to zoom in.",
+      howCalWide: "Hover a night for its story and click to pin it.",
+      howCalNarrow: "Tap a night for its story.",
     },
   },
 };
@@ -212,11 +255,20 @@ export function LiveTrackerPage({ locale }: { locale: Locale }) {
                 </a>
                 {t.intro.after}
               </p>
-              <p className="participation-hint">{t.hint}</p>
+              <p className="tracker-facts">
+                {t.facts.since}
+                <span aria-hidden="true"> · </span>
+                {t.facts.method}
+                <span aria-hidden="true"> · </span>
+                <a className="context-link tracker-facts-how" href="#method">
+                  {t.facts.how}
+                  <ArrowDown aria-hidden="true" size={14} />
+                </a>
+              </p>
             </div>
             <figure className="participation-figure">
               <ParticipationChart locale={locale} labels={t.labels} />
-              <figcaption className="participation-method">
+              <figcaption className="participation-method" id="method">
                 <Activity aria-hidden="true" size={15} />
                 <span>{t.methodology}</span>
                 <span className="participation-disclaimer">{t.disclaimer}</span>

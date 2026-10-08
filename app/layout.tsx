@@ -3,13 +3,17 @@ import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { FlamingoBot } from "@/components/flamingo-bot";
 import { flamingoBotOrigin } from "@/lib/flamingo-bot-config";
+import { DEFAULT_IMAGE, SITE_NAME, SITE_URL } from "@/lib/metadata";
 import "./globals.css";
 
+// Fallbacks only: each page sets its own title, description and preview tags
+// through pageMetadata() in lib/metadata.ts.
 export const metadata: Metadata = {
-  title: "Diaspora marshon ne Tirane",
-  description:
-    "Pledge site for a peaceful Albanian diaspora march for Albania.",
-  metadataBase: new URL("https://diaspora-zbarkon.org"),
+  metadataBase: new URL(SITE_URL),
+  title: "Diaspora marshon në Tiranë",
+  description: "Diaspora shqiptare marshon në Tiranë për një Shqipëri të re.",
+  openGraph: { type: "website", siteName: SITE_NAME, locale: "sq_AL", images: [DEFAULT_IMAGE] },
+  twitter: { card: "summary_large_image" },
 };
 
 export const viewport: Viewport = {

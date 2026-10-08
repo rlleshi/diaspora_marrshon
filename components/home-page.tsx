@@ -21,6 +21,8 @@ import {
 } from "lucide-react";
 import { content, type Locale, type SiteContent } from "@/lib/content";
 import { participation } from "@/data/participation";
+import { CopyButton } from "@/components/copy-button";
+import { SiteMenu } from "@/components/site-menu";
 import { PledgeForm } from "@/components/pledge-form";
 import { HistoryCarousel } from "@/components/history-carousel";
 import { SectionViewTracker, TrackedLink } from "@/components/analytics-events";
@@ -107,14 +109,16 @@ export function HomePage({ locale }: { locale: Locale }) {
           <span>Diaspora marshon</span>
         </Link>
         <nav aria-label="Primary navigation">
-          <Link href={t.trackerTeaser.href}>{t.nav.tracker}</Link>
-          <a href="#context">{t.nav.context}</a>
-          <a href="#history">{t.nav.history}</a>
-          <Link href={t.scandalsTeaser.href}>{t.nav.scandals}</Link>
-          <a href="#marshimi">{t.nav.march}</a>
-          <a className="nav-cta" href="#pledge">
-            {t.nav.pledge}
-          </a>
+          <SiteMenu openLabel={t.nav.menuOpen} closeLabel={t.nav.menuClose}>
+            <Link href={t.trackerTeaser.href}>{t.nav.tracker}</Link>
+            <a href="#context">{t.nav.context}</a>
+            <a href="#history">{t.nav.history}</a>
+            <Link href={t.scandalsTeaser.href}>{t.nav.scandals}</Link>
+            <a href="#marshimi">{t.nav.march}</a>
+            <a className="nav-cta" href="#pledge">
+              {t.nav.pledge}
+            </a>
+          </SiteMenu>
           <TrackedLink
             className="lang-switch"
             href={t.altLangHref}
@@ -142,6 +146,11 @@ export function HomePage({ locale }: { locale: Locale }) {
         />
         <div className="hero-tint" />
         <div className="hero-content">
+          <Link className="hero-pulse-chip" href={t.trackerTeaser.href}>
+            <span className="tracker-live-dot" aria-hidden="true" />
+            {t.trackerTeaser.heroChip}
+            <ArrowRight aria-hidden="true" size={16} />
+          </Link>
           <div
             className="hero-campaign-title"
             aria-label={`${t.hero.campaignTitle.lead} ${t.hero.campaignTitle.accent}`}
@@ -581,6 +590,11 @@ function WhatsAppIntakePanel({
       <div className="template-panel">
         <h3>{content.templateTitle}</h3>
         <p>{content.templateIntro}</p>
+        <CopyButton
+          text={content.template}
+          label={content.copyLabel}
+          doneLabel={content.copiedLabel}
+        />
         <pre>{content.template}</pre>
       </div>
     </aside>

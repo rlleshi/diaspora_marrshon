@@ -244,6 +244,30 @@
 // research file advises against ranking it.
 // Day 125 kept all 145 retained frames of 924, all from one single-view scene of the march.
 // The notes for days 121 to 125 follow their research files (protest_story_notes_1_121 to _125).
+// Days 126, 127, 129 and 130 computed the same way, on single-view frames only (top-10 peak avg /
+// mean / median): 126 163.6 / 124.8 / 119.7; 127 207.3 / 129.4 / 114.0; 129 155.4 / 120.8 /
+// 115.0; 130 141.1 / 118.7 / 114.6. Day 126 kept 103 of 289 retained (839 counted) and day 127
+// 60 of 240 (894 counted); the rest are blue-framed splits pairing the crowd with a speaker
+// panel, and keeping them would read 163.6 / 114.5 / 110.3 and 207.3 / 113.2 / 107.4. Day 130
+// kept 50 of 57 (583 counted), dropping seven such splits (keeping them, 141.1 / 116.5 / 110.9).
+// Day 129 kept all 75 of 669, every one a single view. Days 129 and 130 retained few frames
+// (11.2% and 9.8%), so their means and medians summarize a thin slice of the broadcast.
+// Days 128 and 131 have no figure: none of their four runs has a frame reaching 100. Day 128's
+// two streams (protesta_128.1, h6Sfr8ITC74; protesta_128.2, 2MYHit77TCg) cover only the daytime
+// Parliament protest, as splits with the committee room or the chamber (raw highs 88.5 and
+// 56.1); the evening rally was not captured. Day 131's two evening streams never hold a wide
+// shot of the crowd: protesta_131.1 (a2r3pWKCFFU) is a close camera among umbrellas in the rain
+// (raw high 58.9) and splits of the police barriers, and protesta_131.2 (ce2sbEaQbgk, first 90
+// minutes only) is a studio talk show with the street as a small middle panel, its raw high
+// (96.9) the Parliament chamber. The blank is missing footage, not a measured small crowd.
+// Without the threshold, their full-screen street frames alone (the demo pipeline's own summary
+// at min-count 0, both streams pooled) would read top-10 / mean / median 49.5 / 19.6 / 16.1 for
+// day 128 (164 frames) and 39.5 / 19.3 / 18.4 for day 131 (525), against 141.1 to 207.3 / 61.6
+// to 74.1 / 59.7 to 71.0 for days 126 to 130 computed the same way. Day 128's footage is the
+// daytime Parliament action, which stays out of the series as the day 54, 110 and 117 mornings
+// do, and on day 131 umbrellas and close cameras make any count a floor, so both stay null and
+// their notes say why (no usable footage, below the 100-person threshold).
+// The notes for days 126 to 131 follow their research files (protest_story_notes_1_126 to _131).
 
 export type ParticipationDay = {
   day: number;
@@ -537,6 +561,18 @@ export const participation: ParticipationDay[] = [
     note: { sq: "E enjtja mban ende pankarta kundër takimit të Ramës me von der Leyen; gjatë marshimit ka përplasje me policinë pranë Drejtorisë së Policisë.", en: "Thursday still carries placards against Rama's meeting with von der Leyen; during the march there is a clash with police near the Police Directorate." } },
   { day: 125, date: "2026-10-02", saturday: false, peak: 3.64, mean: 2.51, median: 2.40, source: yt("O9ESIRVOT08"),
     note: { sq: "E premtja marshon pas pankartës “Bashkohuni studentë, kombi na thërret”; nga sheshi thirret protestë masive në Tiranë më 8 tetor, lidhur me votimin e pritshëm për reformën territoriale.", en: "Friday marches behind the placard “Bashkohuni studentë, kombi na thërret”; the square calls a mass protest in Tirana on 8 October, tied to the expected vote on territorial reform." } },
+  { day: 126, date: "2026-10-03", saturday: true, peak: 3.17, mean: 2.42, median: 2.32, source: yt("GOwrLNF6ZJw"),
+    note: { sq: "E shtuna marshon nga Sheshi Skënderbej te Kryeministria dhe ndalet para Ministrisë së Arsimit dhe asaj të Shëndetësisë; studentët thirren të bojkotojnë mësimin dhe të protestojnë para Ministrisë së Arsimit më 13 tetor në orën 14:00.", en: "Saturday marches from Skanderbeg Square to the PM's office and stops outside the Education and Health ministries; students are called to boycott classes and to protest outside the Education Ministry on 13 October at 14:00." } },
+  { day: 127, date: "2026-10-04", saturday: false, peak: 4.01, mean: 2.51, median: 2.21, source: yt("odPJ1dydnhw"),
+    note: { sq: "E diela marshon me studentët në krye drejt Qytetit Studenti, në fillim të vitit akademik; nga sheshi thirret protestë te Kryesia e Kuvendit të hënën.", en: "Sunday marches with students at the front toward Student City as the academic year begins; the square calls a protest at Parliament on Monday." } },
+  { day: 128, date: "2026-10-05", saturday: false, peak: null, mean: null, median: null, source: yt("h6Sfr8ITC74"),
+    note: { sq: "E hëna nis në mëngjes para Kuvendit me banorët e bashkive që rrezikojnë shkrirjen, ndërsa Komisioni i Ligjeve miraton në parim reformën territoriale; në mbrëmje protestuesit kërkojnë para Komisariatit Nr. 1 lirimin e tre protestuesve të shoqëruar në mëngjes. Pa pamje të përdorshme: transmetohet vetëm protesta para Kuvendit gjatë ditës, kryesisht në ekran të ndarë me sallën e Komisionit, dhe asnjë pamje nuk arrin pragun prej 100 vetësh që përdor indeksi.", en: "Monday starts in the morning outside Parliament with residents of the municipalities facing merger, while the Legal Affairs Committee approves the territorial reform in principle; in the evening protesters outside Police Station No. 1 demand the release of three protesters taken in that morning. No usable footage: only the daytime protest at Parliament is streamed, mostly split-screen beside the committee room, and no shot reaches the 100-person threshold the index uses." } },
+  { day: 129, date: "2026-10-06", saturday: false, peak: 3.01, mean: 2.34, median: 2.23, source: yt("-0P3hL7aX_Q"),
+    note: { sq: "E marta marshon nga Kryeministria nëpër Tiranën e Re dhe kthehet sërish aty, me kërkesat për dorëheqjen e Ramës, shfuqizimin e ligjit për zonat e mbrojtura dhe hetime nga SPAK.", en: "Tuesday marches from the PM's office through New Tirana and back again, demanding Rama's resignation, the repeal of the protected-areas law and SPAK investigations." } },
+  { day: 130, date: "2026-10-07", saturday: false, peak: 2.73, mean: 2.30, median: 2.22, source: yt("ccfVL5saOIE"),
+    note: { sq: "E mërkura marshon pranë Kuvendit, në prag të votimit për reformën territoriale, dhe kthehet te Kryeministria, ku një protestues arrestohet pasi godet makinën që raportohet se mbante Ramën.", en: "Wednesday marches past Parliament on the eve of the territorial reform vote and returns to the PM's office, where a protester is arrested after striking the car reported to be carrying Rama." } },
+  { day: 131, date: "2026-10-08", saturday: false, peak: null, mean: null, median: null, source: yt("a2r3pWKCFFU"),
+    note: { sq: "E enjtja qëndron gjithë ditën para Kuvendit, në shi, në ditën e votimit për hartën territoriale që shkrin 15 bashki; pas përplasjeve me policinë, tetë persona shoqërohen në Komisariatin Nr. 1. Pa pamje të përdorshme: shiu i mban kamerat afër, mes çadrave, transmetimi i dytë është kryesisht në studio dhe asnjë pamje nuk arrin pragun prej 100 vetësh që përdor indeksi.", en: "Thursday holds outside Parliament all day, in the rain, on the day of the vote on the territorial map that merges 15 municipalities; after clashes with police, eight people are taken to Police Station No. 1. No usable footage: the rain keeps the cameras close, among umbrellas, the second broadcast is mostly studio, and no shot reaches the 100-person threshold the index uses." } },
 ];
 
 export type ParticipationEvent = {

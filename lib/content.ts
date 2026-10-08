@@ -30,6 +30,8 @@ export type SiteContent = {
     scandals: string;
     march: string;
     pledge: string;
+    menuOpen: string;
+    menuClose: string;
   };
   hero: {
     campaignTitle: {
@@ -74,6 +76,8 @@ export type SiteContent = {
     body: string;
     href: string;
     cta: string;
+    /** chip in the home hero that leads into /pulsi */
+    heroChip: string;
     stats: Array<{ value: string; label: string }>;
     community: {
       title: string;
@@ -103,6 +107,8 @@ export type SiteContent = {
     templateTitle: string;
     templateIntro: string;
     template: string;
+    copyLabel: string;
+    copiedLabel: string;
   };
   itinerary: {
     kicker: string;
@@ -222,6 +228,8 @@ export const content: Record<Locale, SiteContent> = {
       scandals: "Skandalet",
       march: "Marshimi",
       pledge: "Marshoj për Shqipërinë",
+      menuOpen: "Hap menynë",
+      menuClose: "Mbyll menynë",
     },
     hero: {
       campaignTitle: {
@@ -252,7 +260,7 @@ export const content: Record<Locale, SiteContent> = {
     pledgeIntro: {
       title: "Bashkohu në WhatsApp për koordinim.",
       body:
-        "Skano QR-in, hyr në grup dhe shkruaj mesazhin e shkurtër më poshtë.",
+        "Hyr në grup me butonin ose me QR-in dhe shkruaj mesazhin e shkurtër më poshtë.",
     },
     shirtsTeaser: {
       kicker: "Veshja e përbashkët",
@@ -271,6 +279,7 @@ export const content: Record<Locale, SiteContent> = {
         "Ndiq pulsin e protestës: pjesëmarrje e dokumentuar qartësisht në kamera, nga vala e parë e 6 qershorit, te dy marshimet e mëdha të diasporës më 20 qershor dhe 4 korrik, deri te aksioni kombëtar i 1 gushtit.",
       href: "/pulsi",
       cta: "Shiko pulsin e protestës",
+      heroChip: `Nata ${protestDays} · shiko pulsin e protestës`,
       stats: [
         { value: protestDays, label: "ditë protestë" },
         { value: "20.06", label: "dita më e madhe" },
@@ -303,7 +312,7 @@ export const content: Record<Locale, SiteContent> = {
         "Data e marshimit të radhës do të njoftohet. Gjithçka për ditën e marshimit: itinerari dhe parimet.",
     },
     whatsapp: {
-      title: "Skano QR-in",
+      title: "Hyr në grupin e diasporës",
       body:
         "Ky është grupi i hyrjes për diasporën. Mund të hysh me një klikim.",
       qrAlt: "QR për grupin WhatsApp të diasporës",
@@ -322,6 +331,8 @@ B) Dua të mbaj fjalim tek fonia
 
 C) Nuk marshoj, por mund të ndihmoj me:
 [opsionale]`,
+      copyLabel: "Kopjo mesazhin",
+      copiedLabel: "U kopjua",
     },
     itinerary: {
       kicker: "Itinerari",
@@ -575,6 +586,8 @@ C) Nuk marshoj, por mund të ndihmoj me:
       scandals: "Scandals",
       march: "The march",
       pledge: "I march for Albania",
+      menuOpen: "Open menu",
+      menuClose: "Close menu",
     },
     hero: {
       campaignTitle: {
@@ -605,7 +618,7 @@ C) Nuk marshoj, por mund të ndihmoj me:
     pledgeIntro: {
       title: "Join WhatsApp for coordination.",
       body:
-        "Scan the QR, join the group, and post the short template below.",
+        "Join the group with the button or the QR, then post the short template below.",
     },
     shirtsTeaser: {
       kicker: "Shared clothing",
@@ -624,6 +637,7 @@ C) Nuk marshoj, por mund të ndihmoj me:
         "Follow the pulse of the protest: participation clearly documented on camera, from the 6 June surge, through the two major diaspora marches on 20 June and 4 July, to the 1 August national action.",
       href: "/en/pulsi",
       cta: "See the protest pulse",
+      heroChip: `Night ${protestDays} · see the protest pulse`,
       stats: [
         { value: protestDays, label: "days of protest" },
         { value: "20.06", label: "the biggest day" },
@@ -656,7 +670,7 @@ C) Nuk marshoj, por mund të ndihmoj me:
         "The date of the next march will be announced. Everything for march day: the route and the principles.",
     },
     whatsapp: {
-      title: "Scan the QR",
+      title: "Join the diaspora group",
       body:
         "This is the diaspora intake group. You can join with one click.",
       qrAlt: "QR for the diaspora WhatsApp group",
@@ -675,6 +689,8 @@ B) I want to speak at the mic
 
 C) I will not march, but I can help with:
 [optional]`,
+      copyLabel: "Copy message",
+      copiedLabel: "Copied",
     },
     itinerary: {
       kicker: "Route",

@@ -17,6 +17,7 @@ import {
   Crown,
   ExternalLink,
   Flag,
+  Grip,
   Play,
   Plane,
   RotateCcw,
@@ -33,7 +34,7 @@ import {
   type ParticipationEvent,
 } from "@/data/participation";
 import { axisFor, buildGeometry, VIEW, type Scale } from "@/components/participation/geometry";
-import { CalendarView } from "@/components/participation/CalendarView";
+import { CalendarView, type CalendarMark } from "@/components/participation/CalendarView";
 
 type Locale = "sq" | "en";
 
@@ -52,19 +53,40 @@ const ICONS: Record<ParticipationEvent["icon"], LucideIcon> = {
   flag: Flag,
 };
 
+/**
+ * On phones the key-moments list opens short: the four biggest nights tell how it
+ * started, the newest moment shows it is still going. The rest wait behind
+ * "show all" so the list doesn't run a screen and a half.
+ */
+const RAIL_FEATURED = new Set([
+  ...[...participationEvents]
+    .sort((a, b) => (BY_DAY.get(b.day)?.peak ?? 0) - (BY_DAY.get(a.day)?.peak ?? 0))
+    .slice(0, 4)
+    .map((ev) => ev.day),
+  participationEvents[participationEvents.length - 1].day,
+]);
+
 /* ---- views ---- */
 
-type View = "log" | "linear" | "calendar";
+type View = "log" | "linear" | "calendar" | "dots";
 
 const VIEWS: Array<{ key: View; icon: LucideIcon }> = [
   { key: "log", icon: ChartSpline },
   { key: "linear", icon: ChartLine },
   { key: "calendar", icon: CalendarDays },
+  { key: "dots", icon: Grip },
 ];
+
+/** The two calendar views share one grid, card and layout; only the marks differ. */
+const isCalendar = (v: View) => v === "calendar" || v === "dots";
 
 // The page opens on the log axis: it is the one view where a 100-point Saturday
 // and a 4-point weeknight are both legible at once.
 const DEFAULT_VIEW: View = "log";
+
+// Phones open on the dot calendar instead: it fits a tall screen, its squares are
+// thumb-sized, and it reads without knowing what a log axis is.
+const NARROW_DEFAULT_VIEW: View = "dots";
 
 /**
  * How far a day stands above its own fortnight: its peak over the median peak of
@@ -336,6 +358,8 @@ export type ChartLabels = {
   peakUnit: string; // e.g. "indeks"
   legendPeak: string;
   legendMean: string;
+  /** the hollow ring on the axis: a day with no figure */
+  legendNoData: string;
   axisDay: string; // "Dita"
   axisIndex: string; // y-axis title, e.g. "Indeksi i turmës"
   tooltipPeak: string;
@@ -365,6 +389,9 @@ export type ChartLabels = {
   weekAvgLabel: string; // "Mesatarja e javës"
   /** key-moments rail */
   momentsTitle: string; // "Momentet kyçe"
+  /** phone-only toggle for the shortened rail; `{n}` is the number of moments */
+  momentsAll: string;
+  momentsFewer: string;
   /** view switcher */
   viewLabel: string; // "Pamja"
   viewLog: string;
@@ -378,6 +405,19 @@ export type ChartLabels = {
   /** calendar legend; `{below}` and `{total}` are filled in from the data */
   calendarLegend: string;
   calendarLegendNote: string;
+  /** dot calendar: same grid, one dot per night sized by the index */
+  viewDots: string;
+  viewDotsHintWide: string;
+  viewDotsHintNarrow: string;
+  dotsLegendNote: string;
+  /** takeaway over the dot grid; `{n}` is the number of nights so far */
+  dotsTitleLead: string;
+  dotsTitleRest: string;
+  /** how to use the current view, worded for a mouse (wide) or a finger (narrow) */
+  howLineWide: string;
+  howLineNarrow: string;
+  howCalWide: string;
+  howCalNarrow: string;
 };
 
 export function ParticipationChart({
@@ -402,6 +442,7 @@ export function ParticipationChart({
   const [morphing, setMorphing] = useState(false);
   const morphTimer = useRef<number | null>(null);
   const scale: Scale = mode === "linear" ? "linear" : "log";
+  const cal = isCalendar(mode);
   const calDetailRef = useRef<HTMLDivElement | null>(null);
   const switchRef = useRef<HTMLDivElement | null>(null);
   // Where the floating card hangs in calendar view, in CSS pixels from the chart's
@@ -416,6 +457,8 @@ export function ParticipationChart({
   // link stays clickable) while the pointer travels across neighboring days.
   const [hovered, setHovered] = useState<number | null>(null);
   const [pinned, setPinned] = useState<number | null>(null);
+  const [railOpen, setRailOpen] = useState(false);
+  const weeksRef = useRef<HTMLDivElement | null>(null);
   const hoverTimer = useRef<number | null>(null);
   const active = pinned ?? hovered;
 
@@ -483,9 +526,9 @@ export function ParticipationChart({
     // window if it falls outside the zoom the line view was left on.
     if (pinned != null && (pinned < range.from || pinned > range.to)) setRange(FULL);
     // Log and linear share one set of points, so they morph into each other. The
-    // calendar has nothing to morph from, so crossing into or out of it re-runs the
-    // reveal instead.
-    if (mode === "calendar" || next === "calendar") {
+    // calendars have nothing to morph from, so crossing into or out of one re-runs
+    // the reveal instead.
+    if (isCalendar(mode) || isCalendar(next)) {
       replay();
       return;
     }
@@ -537,7 +580,10 @@ export function ParticipationChart({
   }, [pinned]);
 
   // Arm before paint so SSR/no-JS shows the finished chart, JS animates it.
+  // The server cannot see the screen, so phones swap to their own opening view
+  // here, in the same render that arms the reveal.
   useEffect(() => {
+    if (window.matchMedia("(max-width: 720px)").matches) setMode(NARROW_DEFAULT_VIEW);
     setArmed(true);
   }, []);
 
@@ -588,7 +634,7 @@ export function ParticipationChart({
   useLayoutEffect(() => {
     const root = rootRef.current;
     const cell =
-      mode === "calendar" && active != null
+      cal && active != null
         ? root?.querySelector<HTMLElement>(`[data-cal-day="${active}"]`)
         : null;
     if (!root || !cell) {
@@ -608,6 +654,13 @@ export function ParticipationChart({
     });
   }, [mode, active, chartWidth]);
 
+  // On phones the week strip scrolls sideways: open it on the newest weeks. It runs
+  // again once the chart has measured itself, since the strip only settles then.
+  useEffect(() => {
+    const strip = weeksRef.current;
+    if (strip) strip.scrollLeft = strip.scrollWidth;
+  }, [mode, narrow, chartWidth]);
+
   function replay() {
     setRevealed(false);
     requestAnimationFrame(() =>
@@ -625,7 +678,7 @@ export function ParticipationChart({
     revealed ? "is-revealed" : "",
     sized ? "is-sized" : "",
     morphing ? "is-morphing" : "",
-    mode === "calendar" ? "pc--calendar" : scale === "log" ? "pc--log" : "",
+    cal ? "pc--calendar" : scale === "log" ? "pc--log" : "",
   ]
     .filter(Boolean)
     .join(" ");
@@ -703,7 +756,16 @@ export function ParticipationChart({
     log: labels.viewLog,
     linear: labels.viewLinear,
     calendar: labels.viewCalendar,
+    dots: labels.viewDots,
   };
+
+  const calMarks = useMemo(
+    () =>
+      new Map<number, CalendarMark>(
+        participationEvents.map((ev) => [ev.day, { icon: ICONS[ev.icon], label: ev.label[locale] }]),
+      ),
+    [locale],
+  );
 
   const activeDay = active != null ? BY_DAY.get(active) ?? null : null;
   const activePt = active != null ? points.find((p) => p.day === active) ?? null : null;
@@ -747,7 +809,12 @@ export function ParticipationChart({
         ))}
       </div>
       <p className="pc-views-hint">
-        {mode === "calendar" ? (
+        {mode === "dots" ? (
+          <>
+            <span className="pc-only-wide">{labels.viewDotsHintWide}</span>
+            <span className="pc-only-narrow">{labels.viewDotsHintNarrow}</span>
+          </>
+        ) : mode === "calendar" ? (
           <>
             <span className="pc-only-wide">{labels.viewCalendarHintWide}</span>
             <span className="pc-only-narrow">{labels.viewCalendarHintNarrow}</span>
@@ -756,7 +823,9 @@ export function ParticipationChart({
           labels.viewLogHint
         ) : (
           labels.viewLinearHint
-        )}
+        )}{" "}
+        <span className="pc-only-wide">{cal ? labels.howCalWide : labels.howLineWide}</span>
+        <span className="pc-only-narrow">{cal ? labels.howCalNarrow : labels.howLineNarrow}</span>
       </p>
     </div>
 
@@ -767,7 +836,7 @@ export function ParticipationChart({
         {
           "--draw-ms": `${DRAW_MS}ms`,
           "--peak-delay": `${peakDelay}ms`,
-          aspectRatio: mode === "calendar" ? undefined : `${geo.view.width} / ${geo.view.height}`,
+          aspectRatio: cal ? undefined : `${geo.view.width} / ${geo.view.height}`,
         } as CSSProperties
       }
       onMouseLeave={() => {
@@ -778,7 +847,7 @@ export function ParticipationChart({
         if (e.key === "Escape") closeTip();
       }}
     >
-      {mode !== "calendar" && (
+      {!cal && (
       <>
       <svg
         className="pc-svg"
@@ -816,11 +885,13 @@ export function ParticipationChart({
             <feComposite operator="over" in2="SourceGraphic" />
           </filter>
           <clipPath id="pc-wipe">
+            {/* a little past the plot on both sides, so the line's round end caps and
+                the axis rings at the edges are not shaved off */}
             <rect
               className="pc-wipe-rect"
-              x={plot.left}
+              x={plot.left - 12}
               y="0"
-              width={plot.width}
+              width={plot.width + 24}
               height={view.height}
             />
           </clipPath>
@@ -924,18 +995,34 @@ export function ParticipationChart({
           />
         </g>
 
-        {/* hero line, drawn with a pen-tip dashoffset */}
-        <path
-          className="pc-line"
-          d={geo.linePath}
-          style={morphD(geo.linePath)}
-          fill="none"
-          stroke="url(#pc-line-grad)"
-          strokeWidth="3"
-          strokeLinejoin="round"
-          strokeLinecap="round"
-          pathLength={1}
-        />
+        {/* hero line, drawn with a pen-tip dashoffset. It sits under the wipe too: past a
+            gap the line is a separate stretch, and the dash would draw it straight away
+            rather than when the pen gets there */}
+        <g clipPath="url(#pc-wipe)">
+          <path
+            className="pc-line"
+            d={geo.linePath}
+            style={morphD(geo.linePath)}
+            fill="none"
+            stroke="url(#pc-line-grad)"
+            strokeWidth="3"
+            strokeLinejoin="round"
+            strokeLinecap="round"
+            pathLength={1}
+          />
+          {/* a day with no figure: the lines break there and a hollow ring sits on the
+              axis, as in the dot view */}
+          {geo.noData.map(({ day, x }) => (
+            <circle
+              key={`nd-${day}`}
+              className="pc-nodata"
+              cx={x}
+              cy={plot.bottom}
+              r={(narrow ? 3.5 : 4.5) * unitsPerCss}
+              strokeWidth={(narrow ? 1.4 : 1.6) * unitsPerCss}
+            />
+          ))}
+        </g>
 
         {/* peak apex glow + pulse */}
         {peakVisible && (
@@ -1055,6 +1142,7 @@ export function ParticipationChart({
       <div className="pc-legend" aria-hidden="true">
         <span className="pc-legend-peak">{labels.legendPeak}</span>
         <span className="pc-legend-mean">{labels.legendMean}</span>
+        {geo.noData.length > 0 && <span className="pc-legend-nodata">{labels.legendNoData}</span>}
       </div>
 
       {/* auto-placed annotations for the moments that have room in this view */}
@@ -1127,10 +1215,19 @@ export function ParticipationChart({
       </>
       )}
 
-      {mode === "calendar" && (
+      {cal && (
         <CalendarView
+          variant={mode === "dots" ? "dots" : "heat"}
           locale={locale}
-          labels={{ legendTitle: labels.calendarLegend, legendNote: labels.calendarLegendNote }}
+          labels={{
+            legendTitle: labels.calendarLegend,
+            legendNote: mode === "dots" ? labels.dotsLegendNote : labels.calendarLegendNote,
+            title: {
+              lead: labels.dotsTitleLead.replace("{n}", String(participation.length)),
+              rest: labels.dotsTitleRest,
+            },
+          }}
+          marks={calMarks}
           dayLabel={dayLabel}
           active={active}
           pinned={pinned}
@@ -1157,7 +1254,7 @@ export function ParticipationChart({
         />
       )}
 
-      {mode === "calendar" && activeDay && calAnchor && (
+      {cal && activeDay && calAnchor && (
         <div
           className={[
             "pc-tip",
@@ -1226,9 +1323,17 @@ export function ParticipationChart({
       </div>
     </div>
 
+    {/* phones: the legend's no-figure entry, under the chart. The top of the plot has
+        no room left for it there beside the replay button and the peak label */}
+    {!cal && geo.noData.length > 0 && (
+      <p className="pc-legend-under" aria-hidden="true">
+        <span className="pc-legend-nodata">{labels.legendNoData}</span>
+      </p>
+    )}
+
     {/* full-width detail card for small screens (the floating tooltip is hidden there);
         the calendar opens its own card inline, under the tapped week */}
-    {activeDay && mode !== "calendar" && (
+    {activeDay && !cal && (
       <div className="pc-tip-panel" role="status" ref={panelRef}>
         <TipBody
           day={activeDay}
@@ -1240,7 +1345,7 @@ export function ParticipationChart({
     )}
 
     {/* ---- range control + week navigator (line views; the calendar is already the whole run) ---- */}
-    {mode !== "calendar" && (
+    {!cal && (
     <div className="pc-nav">
       <div className="pc-nav-head">
         <span className="pc-nav-title">{labels.rangeLabel}</span>
@@ -1304,7 +1409,12 @@ export function ParticipationChart({
       )}
 
       <span className="pc-nav-subtitle">{labels.weeksTitle}</span>
-      <div className="pc-weeks" role="group" aria-label={labels.weeksTitle}>
+      <div
+        className="pc-weeks"
+        role="group"
+        aria-label={labels.weeksTitle}
+        ref={weeksRef}
+      >
         {WEEKS.map((w) => (
           <button
             key={`wk-${w.n}`}
@@ -1345,11 +1455,11 @@ export function ParticipationChart({
 
     {/* ---- key moments: labels live here instead of floating over the plot ---- */}
     <h2 className="pc-rail-title">{labels.momentsTitle}</h2>
-    <ul className="pc-events-list">
+    <ul className={`pc-events-list${railOpen ? " is-open" : ""}`} id="pc-moments">
       {participationEvents.map((ev) => {
         const Icon = ICONS[ev.icon];
         return (
-          <li key={`ev-li-${ev.day}`}>
+          <li key={`ev-li-${ev.day}`} className={RAIL_FEATURED.has(ev.day) ? undefined : "pc-ev-extra"}>
             <button
               type="button"
               className={`pc-ev-btn${pinned === ev.day ? " is-active" : ""}`}
@@ -1368,6 +1478,17 @@ export function ParticipationChart({
         );
       })}
     </ul>
+    <button
+      type="button"
+      className="pc-rail-more"
+      aria-controls="pc-moments"
+      aria-expanded={railOpen}
+      onClick={() => setRailOpen((open) => !open)}
+    >
+      {railOpen
+        ? labels.momentsFewer
+        : labels.momentsAll.replace("{n}", String(participationEvents.length))}
+    </button>
     </>
   );
 }

@@ -1,6 +1,7 @@
 "use client";
 
-import type { CSSProperties, ReactNode, Ref } from "react";
+import { useLayoutEffect, useRef, useState, type CSSProperties, type ReactNode, type Ref } from "react";
+import type { LucideIcon } from "lucide-react";
 import { isMeasured, participation, type ParticipationDay } from "@/data/participation";
 
 type Locale = "sq" | "en";
@@ -25,6 +26,16 @@ const RAMP = ["#cb938b", "#c47269", "#ba4f47", "#ac2724", "#8b1818", "#651412"];
 const LABEL_FROM = BREAKS[BREAKS.length - 1];
 
 const REVEAL_MS = 1200;
+
+/**
+ * Dot view: a dot's area follows the index, so its diameter grows with the square
+ * root. 20 June (100) fills its square; the quietest night (~3) is still a solid
+ * dot about a sixth as wide, so no night drops out of the chain.
+ */
+const sizeOf = (value: number) => Math.sqrt(Math.min(value, 100) / 100);
+
+/** Size key: the quiet floor, most nights, a big night, the biggest. */
+const KEY = [3, 10, 30, 100];
 
 function stepOf(value: number): number {
   const i = BREAKS.findIndex((b) => value < b);
@@ -96,11 +107,18 @@ export type CalendarLabels = {
   legendTitle: string;
   /** `{below}` and `{total}` are filled in from the data. */
   legendNote: string;
+  /** dot view only: the takeaway over the grid, its first sentence in bold */
+  title?: { lead: string; rest: string };
 };
 
+/** A key moment as the dot view marks it: the rail's icon and its name. */
+export type CalendarMark = { icon: LucideIcon; label: string };
+
 export function CalendarView({
+  variant,
   locale,
   labels,
+  marks,
   dayLabel,
   active,
   pinned,
@@ -111,8 +129,12 @@ export function CalendarView({
   detail,
   detailRef,
 }: {
+  /** coloured squares, or one red dot per night sized by the index */
+  variant: "heat" | "dots";
   locale: Locale;
   labels: CalendarLabels;
+  /** key moments by day; the dot view tucks their icons into the squares */
+  marks: Map<number, CalendarMark>;
   /** accessible name for a square: day, date and reading. */
   dayLabel: (d: ParticipationDay) => string;
   active: number | null;
@@ -137,9 +159,50 @@ export function CalendarView({
   const note = labels.legendNote
     .replace("{below}", String(BELOW_TEN))
     .replace("{total}", String(MEASURED.length));
+  const dots = variant === "dots";
+
+  // The size key draws its dots at the grid's own scale, so it needs a square's width.
+  const gridRef = useRef<HTMLDivElement | null>(null);
+  const [cellPx, setCellPx] = useState(0);
+  useLayoutEffect(() => {
+    const grid = gridRef.current;
+    if (!dots || !grid) return;
+    const measure = () => {
+      const cell = grid.querySelector<HTMLElement>(".pc-cal-cell");
+      if (cell) setCellPx(cell.offsetWidth);
+    };
+    measure();
+    const ro = new ResizeObserver(measure);
+    ro.observe(grid);
+    return () => ro.disconnect();
+  }, [dots]);
 
   return (
     <div className="pc-cal-wrap">
+      {dots ? (
+        <div className="pc-cal-head">
+        {labels.title && (
+          <p className="pc-cal-title">
+            <strong>{labels.title.lead}</strong> {labels.title.rest}
+          </p>
+        )}
+        <div className="pc-ramp" aria-hidden="true">
+          <span className="pc-ramp-title">{labels.legendTitle}</span>
+          <span className="pc-key-dots">
+            {KEY.map((v) => (
+              <span key={v} className="pc-key-item">
+                <span
+                  className="pc-key-dot"
+                  style={{ width: cellPx ? `${cellPx * sizeOf(v)}px` : undefined }}
+                />
+                {v}
+              </span>
+            ))}
+          </span>
+          <span className="pc-ramp-note">{note}</span>
+        </div>
+        </div>
+      ) : (
       <div className="pc-ramp" aria-hidden="true">
         <span className="pc-ramp-title">{labels.legendTitle}</span>
         <span className="pc-ramp-bar">
@@ -158,8 +221,13 @@ export function CalendarView({
         </span>
         <span className="pc-ramp-note">{note}</span>
       </div>
+      )}
 
-      <div className="pc-cal" style={{ "--weeks": WEEKS } as CSSProperties}>
+      <div
+        className={dots ? "pc-cal pc-cal--dots" : "pc-cal"}
+        ref={gridRef}
+        style={{ "--weeks": WEEKS } as CSSProperties}
+      >
         {MONTH_SPANS.map((m) => (
           <span
             key={`mo-${m.start}`}
@@ -187,6 +255,7 @@ export function CalendarView({
           const { week, row } = place(d);
           const measured = isMeasured(d);
           const step = measured ? stepOf(d.peak) : -1;
+          const mark = dots ? marks.get(d.day) : undefined;
           return (
             <button
               key={`cal-${d.day}`}
@@ -195,7 +264,7 @@ export function CalendarView({
               className={[
                 "pc-cal-cell",
                 measured ? "" : "pc-cal-cell--nodata",
-                step >= RAMP.length - 2 ? "pc-cal-cell--dark" : "",
+                !dots && step >= RAMP.length - 2 ? "pc-cal-cell--dark" : "",
                 d.day === lastDay ? "pc-cal-cell--latest" : "",
                 active === d.day ? "is-active" : "",
                 pinned === d.day ? "is-pinned" : "",
@@ -208,17 +277,31 @@ export function CalendarView({
                   "--wd": row,
                   "--shift": shift(week),
                   "--delay": `${((d.day - FIRST.day) / span) * REVEAL_MS}ms`,
-                  background: measured ? RAMP[step] : undefined,
+                  background: measured && !dots ? RAMP[step] : undefined,
                 } as CSSProperties
               }
-              aria-label={dayLabel(d)}
+              aria-label={mark ? `${dayLabel(d)}. ${mark.label}` : dayLabel(d)}
               aria-pressed={pinned === d.day}
               onMouseEnter={() => onHover(d.day)}
               onFocus={() => onFocusDay(d.day)}
               onBlur={onBlurDay}
               onClick={() => onToggle(d.day)}
             >
-              {measured && d.peak >= LABEL_FROM ? Math.round(d.peak) : null}
+              {dots ? (
+                <span
+                  className="pc-cal-dot"
+                  style={{ "--s": measured ? sizeOf(d.peak) : 0.3 } as CSSProperties}
+                >
+                  {measured && d.peak >= LABEL_FROM ? Math.round(d.peak) : null}
+                </span>
+              ) : measured && d.peak >= LABEL_FROM ? (
+                Math.round(d.peak)
+              ) : null}
+              {mark && (
+                <span className="pc-cal-mark" aria-hidden="true">
+                  <mark.icon strokeWidth={2.4} />
+                </span>
+              )}
             </button>
           );
         })}

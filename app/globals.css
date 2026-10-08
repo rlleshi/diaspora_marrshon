@@ -18,6 +18,7 @@
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 88px; /* in-page jumps land below the sticky header */
 }
 
 body {
@@ -113,6 +114,15 @@ textarea {
   gap: 7px;
 }
 
+/* phone menu (components/site-menu.tsx): on wide screens the button hides and the
+   panel dissolves, so its links sit inline in the nav as before */
+.menu-toggle {
+  display: none;
+}
+.site-menu {
+  display: contents;
+}
+
 .hero {
   position: relative;
   min-height: 76svh;
@@ -120,6 +130,31 @@ textarea {
   align-items: center;
   overflow: hidden;
   background: #1b1b1b;
+}
+
+/* hero link into the live tracker: tonight's count, then the way in */
+.hero-pulse-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  min-height: 44px;
+  margin-bottom: 16px;
+  padding: 8px 16px;
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  border-radius: 999px;
+  background: rgba(10, 10, 10, 0.45);
+  color: var(--white);
+  font-size: 0.94rem;
+  font-weight: 750;
+  backdrop-filter: blur(6px);
+}
+
+.hero-pulse-chip:hover {
+  background: rgba(185, 28, 28, 0.62);
+}
+
+.hero-pulse-chip .tracker-live-dot {
+  flex: 0 0 auto;
 }
 
 .hero-image {
@@ -743,6 +778,26 @@ textarea:focus {
   gap: 16px;
 }
 
+.copy-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  min-height: 44px;
+  margin: 2px 0 10px;
+  padding: 8px 14px;
+  border: 1px solid rgba(185, 28, 28, 0.28);
+  border-radius: 6px;
+  background: var(--white);
+  color: var(--red-dark);
+  font: inherit;
+  font-weight: 750;
+  cursor: pointer;
+}
+
+.copy-button:hover {
+  background: rgba(185, 28, 28, 0.06);
+}
+
 .qr-card img {
   width: min(290px, 100%);
   height: auto;
@@ -929,7 +984,7 @@ textarea:focus {
   align-items: center;
   justify-content: center;
   gap: 7px;
-  min-height: 38px;
+  min-height: 44px;
   padding: 8px 11px;
   border: 1px solid rgba(185, 28, 28, 0.28);
   border-radius: 6px;
@@ -1272,8 +1327,8 @@ textarea:focus {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 38px;
-  height: 38px;
+  width: 44px;
+  height: 44px;
   padding: 0;
   border: 1px solid var(--line);
   border-radius: 999px;
@@ -1296,21 +1351,30 @@ textarea:focus {
 .history-dots {
   display: flex;
   align-items: center;
-  gap: 8px;
 }
 
+/* a 24px button around a 9px dot: easy to hit with a thumb, same look */
 .history-dot {
-  width: 9px;
-  height: 9px;
+  display: grid;
+  place-items: center;
+  width: 24px;
+  height: 24px;
   padding: 0;
   border: 0;
+  background: transparent;
+  cursor: pointer;
+}
+
+.history-dot::before {
+  content: "";
+  width: 9px;
+  height: 9px;
   border-radius: 999px;
   background: var(--line);
-  cursor: pointer;
   transition: background 0.15s ease, transform 0.15s ease;
 }
 
-.history-dot-active {
+.history-dot-active::before {
   background: var(--red);
   transform: scale(1.25);
 }
@@ -1400,13 +1464,72 @@ textarea:focus {
 }
 
 @media (max-width: 900px) {
+  html {
+    scroll-padding-top: 72px;
+  }
+
+  /* one row: brand, language and the menu button; the section links fold into
+     the panel under the bar */
   .site-header {
-    align-items: flex-start;
-    flex-direction: column;
+    gap: 8px;
+    min-height: 60px;
+    padding: 8px 16px;
+  }
+
+  .brand {
+    min-width: 0;
   }
 
   .site-header nav {
-    justify-content: flex-start;
+    flex-wrap: nowrap;
+    gap: 4px;
+  }
+
+  .site-header nav > a {
+    min-height: 44px;
+  }
+
+  .menu-toggle {
+    order: 2;
+    display: inline-grid;
+    place-items: center;
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    border: 0;
+    border-radius: 8px;
+    background: transparent;
+    color: var(--ink);
+    cursor: pointer;
+  }
+
+  .site-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    display: none;
+    flex-direction: column;
+    gap: 2px;
+    padding: 8px 16px 16px;
+    background: var(--paper);
+    border-bottom: 1px solid var(--line);
+    box-shadow: 0 18px 30px rgba(21, 21, 21, 0.08);
+  }
+
+  .site-menu.is-open {
+    display: flex;
+  }
+
+  .site-header .site-menu a {
+    min-height: 44px;
+    padding: 10px 12px;
+    font-size: 1rem;
+  }
+
+  .site-header .site-menu .nav-cta {
+    justify-content: center;
+    margin-top: 6px;
   }
 
   .hero {
@@ -1464,6 +1587,23 @@ textarea:focus {
 @media (max-width: 620px) {
   .site-header nav a {
     font-size: 0.88rem;
+  }
+
+  /* subpages: the back link keeps its arrow; the brand beside it already leads home */
+  .lang-switch svg {
+    display: none; /* the word alone ("English", "Shqip") fits the one-row bar */
+  }
+  .site-header nav > a:not(.lang-switch) {
+    min-width: 44px;
+    justify-content: center;
+  }
+  .site-header nav > a:not(.lang-switch) > span {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
   }
 
   .hero {
@@ -1719,6 +1859,35 @@ textarea:focus {
     #5f625f 0 3px,
     transparent 3px 6px
   );
+}
+
+/* the hollow ring the line views put on the axis for a day with no figure. In the
+   legend on wide screens; under the chart on phones (.pc-legend-under) */
+.pc-legend-nodata {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--muted);
+  font-size: 0.78rem;
+  font-weight: 650;
+}
+.pc-legend .pc-legend-nodata::before,
+.pc-legend-under .pc-legend-nodata::before {
+  content: "";
+  box-sizing: border-box;
+  width: 9px;
+  height: 9px;
+  border: 1.5px solid var(--muted);
+  border-radius: 50%;
+  background: var(--paper);
+}
+.pc-legend-under {
+  display: none;
+}
+
+.pc-nodata {
+  fill: var(--paper);
+  stroke: var(--muted);
 }
 
 /* ---- event chips (HTML overlay) ---- */
@@ -2293,6 +2462,11 @@ textarea:focus {
   margin: 0;
 }
 
+/* phone-only: the shortened rail's toggle */
+.pc-rail-more {
+  display: none;
+}
+
 .pc-ev-btn {
   display: grid;
   grid-template-columns: auto 18px minmax(0, 1fr);
@@ -2392,6 +2566,15 @@ textarea:focus {
     gap: 10px;
     font-size: 0.7rem;
   }
+  /* no room for a third entry up there: it moves under the chart */
+  .pc-legend .pc-legend-nodata {
+    display: none;
+  }
+  .pc-legend-under {
+    display: flex;
+    justify-content: flex-end;
+    margin: 6px 4px 0;
+  }
   .pc-xlabel {
     font-size: 18px;
   }
@@ -2431,6 +2614,24 @@ textarea:focus {
   .pc-events-list {
     grid-template-columns: minmax(0, 1fr);
   }
+  .pc-events-list:not(.is-open) .pc-ev-extra {
+    display: none;
+  }
+  .pc-rail-more {
+    display: block;
+    width: 100%;
+    min-height: 44px;
+    margin-top: 10px;
+    padding: 10px 16px;
+    border: 1px solid rgba(185, 28, 28, 0.24);
+    border-radius: 999px;
+    background: transparent;
+    color: var(--red-dark);
+    font: inherit;
+    font-size: 0.9rem;
+    font-weight: 700;
+    cursor: pointer;
+  }
 }
 
 @media (max-width: 620px) {
@@ -2439,6 +2640,9 @@ textarea:focus {
     grid-auto-columns: minmax(30px, 1fr);
     overflow-x: auto;
     padding-bottom: 4px;
+    /* it opens on the newest weeks; the fade on the left says there is more */
+    -webkit-mask-image: linear-gradient(90deg, transparent, #000 28px);
+    mask-image: linear-gradient(90deg, transparent, #000 28px);
   }
   .pc-nav {
     padding: 12px 12px 10px;
@@ -2768,6 +2972,177 @@ textarea:focus {
     box-shadow 0.15s ease;
 }
 
+/* ---- dot calendar: the same grid, one red dot per night ---- */
+/* Every night keeps a faint square, so the grid still reads as a calendar (and
+   still shows where to tap) on the nights whose dot is small. */
+.pc-cal--dots .pc-cal-cell {
+  background: rgba(222, 215, 204, 0.3);
+}
+.pc-cal--dots .pc-cal-cell:hover {
+  background: rgba(222, 215, 204, 0.7);
+}
+
+/* --s is the square root of index / 100: area follows the crowd, and 20 June
+   fills its square */
+.pc-cal-dot {
+  display: grid;
+  place-items: center;
+  width: calc(var(--s) * 100%);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: var(--red);
+  transition: box-shadow 0.15s ease;
+}
+
+/* here the ring goes round the dot rather than the square */
+.pc-cal--dots .pc-cal-cell:hover,
+.pc-cal--dots .pc-cal-cell.is-active,
+.pc-cal--dots .pc-cal-cell:focus-visible,
+.pc-cal--dots .pc-cal-cell.is-pinned {
+  box-shadow: none;
+}
+.pc-cal--dots .pc-cal-cell:hover .pc-cal-dot,
+.pc-cal--dots .pc-cal-cell.is-active .pc-cal-dot,
+.pc-cal--dots .pc-cal-cell:focus-visible .pc-cal-dot {
+  box-shadow:
+    0 0 0 2px var(--paper),
+    0 0 0 4px var(--ink);
+}
+.pc-cal--dots .pc-cal-cell.is-pinned .pc-cal-dot {
+  box-shadow:
+    0 0 0 2px var(--paper),
+    0 0 0 4px var(--red-dark);
+}
+
+.pc-cal--dots .pc-cal-cell--nodata .pc-cal-dot {
+  background: transparent;
+  box-shadow: inset 0 0 0 1.5px var(--muted);
+}
+
+/* the pulse rings the newest night's dot */
+.pc-cal--dots .pc-cal-cell--latest::after {
+  content: none;
+}
+.pc-cal--dots .pc-cal-cell--latest .pc-cal-dot {
+  position: relative;
+}
+.pc-cal--dots .pc-cal-cell--latest .pc-cal-dot::after {
+  content: "";
+  position: absolute;
+  inset: -5px;
+  border: 2px solid var(--red);
+  border-radius: 50%;
+  pointer-events: none;
+  animation: pcLatest 2.4s ease-out infinite;
+}
+
+/* the squares stay put while the dots grow in, oldest first */
+.pc.is-armed:not(.is-revealed) .pc-cal--dots .pc-cal-cell {
+  opacity: 1;
+  transform: none;
+}
+.pc.is-armed:not(.is-revealed) .pc-cal--dots .pc-cal-dot {
+  transform: scale(0);
+}
+.pc.is-revealed .pc-cal--dots .pc-cal-dot {
+  transition:
+    transform 0.6s cubic-bezier(0.22, 1, 0.36, 1) var(--delay),
+    box-shadow 0.15s ease;
+}
+
+/* key moments: the icon they wear in the list below, pinned to the square's
+   corner (a circle leaves the corners free even when it fills the square) */
+.pc-cal--dots .pc-cal-cell {
+  position: relative;
+}
+.pc-cal-mark {
+  position: absolute;
+  top: 3px;
+  right: 3px;
+  display: grid;
+  place-items: center;
+  width: clamp(14px, 32%, 19px);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: var(--paper);
+  box-shadow: 0 0 0 1px var(--line);
+  color: var(--red-dark);
+  pointer-events: none;
+  z-index: 2;
+}
+.pc-cal-mark svg {
+  width: 66%;
+  height: 66%;
+}
+.pc.is-armed:not(.is-revealed) .pc-cal-mark {
+  opacity: 0;
+}
+.pc.is-revealed .pc-cal-mark {
+  transition: opacity 0.4s ease calc(var(--delay) + 350ms);
+}
+
+/* dot view header: the takeaway on the left, the size key on the right */
+.pc-cal-head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 12px 32px;
+}
+.pc-cal-title {
+  max-width: 34rem;
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.98rem;
+  line-height: 1.45;
+}
+.pc-cal-title strong {
+  color: var(--ink);
+  font-weight: 800;
+}
+.pc-cal-head .pc-ramp {
+  flex: 0 1 380px;
+}
+
+@media (max-width: 720px) {
+  .pc-cal-head {
+    display: grid;
+  }
+  /* the title takes the spot beside the icon-only replay button */
+  .pc-cal-title {
+    margin-left: 46px;
+    font-size: 0.9rem;
+  }
+  .pc-cal-head .pc-ramp {
+    margin-left: 0;
+  }
+  /* small squares: hang the badge over the corner, clear of the dot's number */
+  .pc-cal-mark {
+    top: -4px;
+    right: -4px;
+  }
+}
+
+/* size key: the same dots at the grid's scale, values underneath */
+.pc-key-dots {
+  display: flex;
+  align-items: flex-end;
+  gap: 16px;
+}
+.pc-key-item {
+  display: grid;
+  justify-items: center;
+  gap: 4px;
+  color: var(--muted);
+  font-size: 0.7rem;
+  font-weight: 650;
+  font-variant-numeric: tabular-nums;
+}
+.pc-key-dot {
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: var(--red);
+}
+
 /* inline detail card: phone layout only (wider screens float the card instead) */
 .pc-cal-detail {
   display: none;
@@ -2849,6 +3224,14 @@ textarea:focus {
   }
 }
 
+@media (max-width: 380px) {
+  /* four labels, the longest "Logaritmike": give the words the padding back */
+  .pc-switch-opt {
+    padding: 7px 4px;
+    font-size: 0.76rem;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .pc-switch-thumb,
   .pc-switch-opt,
@@ -2866,12 +3249,15 @@ textarea:focus {
   .pc-grid {
     animation: none;
   }
-  .pc .pc-cal-cell {
+  .pc .pc-cal-cell,
+  .pc .pc-cal-dot,
+  .pc .pc-cal-mark {
     transition: none !important;
     opacity: 1 !important;
     transform: none !important;
   }
-  .pc-cal-cell--latest::after {
+  .pc-cal-cell--latest::after,
+  .pc-cal--dots .pc-cal-cell--latest .pc-cal-dot::after {
     animation: none;
     opacity: 0.55;
   }
@@ -2942,11 +3328,26 @@ textarea:focus {
   color: var(--muted);
 }
 
-.participation-hint {
-  margin: 16px 0 0;
-  color: var(--ink);
-  font-size: 1rem;
+/* since when, how it is measured, and a jump to the method: one line under the intro */
+.tracker-facts {
+  margin: 14px 0 0;
+  color: var(--muted);
+  font-size: 0.92rem;
   font-weight: 650;
+  line-height: 1.5;
+}
+@media (max-width: 480px) {
+  /* a size down on small phones, so the chart starts on the first screen */
+  .tracker-band .section-heading h1.tracker-title {
+    gap: 10px;
+    font-size: 1.85rem;
+  }
+}
+.tracker-facts-how {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  white-space: nowrap;
 }
 
 .participation-disclaimer {
@@ -3429,6 +3830,14 @@ textarea:focus {
   z-index: 2;
 }
 
+/* the dot stays 13px; an invisible ring around it takes the tap */
+.chrono-dot::before {
+  content: "";
+  position: absolute;
+  inset: -10px -6px; /* narrower sideways: the last dot sits at the right edge */
+  border-radius: 50%;
+}
+
 .chrono-dot::after {
   content: attr(data-tip);
   position: absolute;
@@ -3446,16 +3855,15 @@ textarea:focus {
   padding: 5px 9px;
   border-radius: 4px;
   pointer-events: none;
-  opacity: 0;
-  visibility: hidden;
-  transition: opacity 0.12s ease, transform 0.12s ease;
+  /* out of the layout until shown: a hidden label still took up room past the
+     screen edge and let phones scroll the page sideways */
+  display: none;
   z-index: 3;
 }
 
 .chrono-dot:hover::after,
 .chrono-dot:focus-visible::after {
-  opacity: 1;
-  visibility: visible;
+  display: block;
   transform: translateX(-50%) translateY(0);
 }
 
@@ -3797,5 +4205,44 @@ a.source-chip-link:hover {
   .status-panel {
     min-width: 0;
     flex-basis: 100%;
+  }
+}
+
+/* ---- phones ---- */
+@media (max-width: 720px) {
+  /* a phone can't scan its own screen; the WhatsApp button does the QR's job */
+  .qr-card img {
+    display: none;
+  }
+
+  /* room under the last section for the floating "Ask Flamingo" button */
+  .site-shell {
+    padding-bottom: calc(88px + env(safe-area-inset-bottom));
+  }
+
+  /* range buttons big enough for a thumb */
+  .pc-range {
+    min-height: 44px;
+    padding: 8px 14px;
+  }
+
+  /* reading text no smaller than ~13px; uppercase micro-labels and the chart's
+     own internals keep their sizes */
+  .hero-date-note,
+  .hero-date-meta,
+  .pc-tip-head span,
+  .pc-tip-stats,
+  .pc-tip-link,
+  .pc-nav-hint,
+  .pc-ev-day,
+  .pc-ev-text span,
+  .pc-ramp-note,
+  .stat-sub,
+  .status-bar-caption,
+  .chrono-caption,
+  .case-code,
+  .case-more,
+  .source-chip {
+    font-size: 0.82rem;
   }
 }
