@@ -53,20 +53,24 @@ const WEEKDAYS: Record<Locale, string[]> = {
   en: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
 };
 
-const MONTHS: Record<Locale, { full: string[]; short: string[] }> = {
-  sq: {
-    full: [
-      "Janar", "Shkurt", "Mars", "Prill", "Maj", "Qershor",
-      "Korrik", "Gusht", "Shtator", "Tetor", "Nëntor", "Dhjetor",
-    ],
-    short: ["Jan", "Shk", "Mar", "Pri", "Maj", "Qer", "Kor", "Gus", "Sht", "Tet", "Nën", "Dhj"],
-  },
+/**
+ * `narrow` heads the week rows on phones. Albanian has no month abbreviations in common
+ * use ("Qer", "Kor" read as nothing), so it keeps the full names there; English uses
+ * the usual three letters.
+ */
+const SQ_MONTHS = [
+  "Janar", "Shkurt", "Mars", "Prill", "Maj", "Qershor",
+  "Korrik", "Gusht", "Shtator", "Tetor", "Nëntor", "Dhjetor",
+];
+
+const MONTHS: Record<Locale, { full: string[]; narrow: string[] }> = {
+  sq: { full: SQ_MONTHS, narrow: SQ_MONTHS },
   en: {
     full: [
       "January", "February", "March", "April", "May", "June",
       "July", "August", "September", "October", "November", "December",
     ],
-    short: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+    narrow: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
   },
 };
 
@@ -236,7 +240,7 @@ export function CalendarView({
             style={{ "--ws": m.start, "--span": m.span, "--shift": shift(m.start) } as CSSProperties}
           >
             <span className="pc-only-wide">{months.full[m.month]}</span>
-            <span className="pc-only-narrow">{months.short[m.month]}</span>
+            <span className="pc-only-narrow">{months.narrow[m.month]}</span>
           </span>
         ))}
 

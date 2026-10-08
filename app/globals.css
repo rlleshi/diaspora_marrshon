@@ -1861,35 +1861,6 @@ textarea:focus {
   );
 }
 
-/* the hollow ring the line views put on the axis for a day with no figure. In the
-   legend on wide screens; under the chart on phones (.pc-legend-under) */
-.pc-legend-nodata {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  color: var(--muted);
-  font-size: 0.78rem;
-  font-weight: 650;
-}
-.pc-legend .pc-legend-nodata::before,
-.pc-legend-under .pc-legend-nodata::before {
-  content: "";
-  box-sizing: border-box;
-  width: 9px;
-  height: 9px;
-  border: 1.5px solid var(--muted);
-  border-radius: 50%;
-  background: var(--paper);
-}
-.pc-legend-under {
-  display: none;
-}
-
-.pc-nodata {
-  fill: var(--paper);
-  stroke: var(--muted);
-}
-
 /* ---- event chips (HTML overlay) ---- */
 .pc-chip {
   position: absolute;
@@ -2565,15 +2536,6 @@ textarea:focus {
     right: 10px;
     gap: 10px;
     font-size: 0.7rem;
-  }
-  /* no room for a third entry up there: it moves under the chart */
-  .pc-legend .pc-legend-nodata {
-    display: none;
-  }
-  .pc-legend-under {
-    display: flex;
-    justify-content: flex-end;
-    margin: 6px 4px 0;
   }
   .pc-xlabel {
     font-size: 18px;

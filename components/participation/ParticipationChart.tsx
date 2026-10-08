@@ -84,9 +84,10 @@ const isCalendar = (v: View) => v === "calendar" || v === "dots";
 // and a 4-point weeknight are both legible at once.
 const DEFAULT_VIEW: View = "log";
 
-// Phones open on the dot calendar instead: it fits a tall screen, its squares are
-// thumb-sized, and it reads without knowing what a log axis is.
-const NARROW_DEFAULT_VIEW: View = "dots";
+// Phones open on the same log axis, zoomed to the last 30 nights: the whole run at phone
+// width packs each night into a couple of pixels, while a month reads night by night and
+// keeps the chart short. "All days" and the dot calendar are one tap away.
+const NARROW_DEFAULT_DAYS = 30;
 
 /**
  * How far a day stands above its own fortnight: its peak over the median peak of
@@ -358,8 +359,6 @@ export type ChartLabels = {
   peakUnit: string; // e.g. "indeks"
   legendPeak: string;
   legendMean: string;
-  /** the hollow ring on the axis: a day with no figure */
-  legendNoData: string;
   axisDay: string; // "Dita"
   axisIndex: string; // y-axis title, e.g. "Indeksi i turmës"
   tooltipPeak: string;
@@ -580,10 +579,11 @@ export function ParticipationChart({
   }, [pinned]);
 
   // Arm before paint so SSR/no-JS shows the finished chart, JS animates it.
-  // The server cannot see the screen, so phones swap to their own opening view
+  // The server cannot see the screen, so phones swap to their own opening range
   // here, in the same render that arms the reveal.
   useEffect(() => {
-    if (window.matchMedia("(max-width: 720px)").matches) setMode(NARROW_DEFAULT_VIEW);
+    if (window.matchMedia("(max-width: 720px)").matches && participation.length > NARROW_DEFAULT_DAYS)
+      setRange(lastN(NARROW_DEFAULT_DAYS));
     setArmed(true);
   }, []);
 
@@ -885,13 +885,11 @@ export function ParticipationChart({
             <feComposite operator="over" in2="SourceGraphic" />
           </filter>
           <clipPath id="pc-wipe">
-            {/* a little past the plot on both sides, so the line's round end caps and
-                the axis rings at the edges are not shaved off */}
             <rect
               className="pc-wipe-rect"
-              x={plot.left - 12}
+              x={plot.left}
               y="0"
-              width={plot.width + 24}
+              width={plot.width}
               height={view.height}
             />
           </clipPath>
@@ -995,34 +993,18 @@ export function ParticipationChart({
           />
         </g>
 
-        {/* hero line, drawn with a pen-tip dashoffset. It sits under the wipe too: past a
-            gap the line is a separate stretch, and the dash would draw it straight away
-            rather than when the pen gets there */}
-        <g clipPath="url(#pc-wipe)">
-          <path
-            className="pc-line"
-            d={geo.linePath}
-            style={morphD(geo.linePath)}
-            fill="none"
-            stroke="url(#pc-line-grad)"
-            strokeWidth="3"
-            strokeLinejoin="round"
-            strokeLinecap="round"
-            pathLength={1}
-          />
-          {/* a day with no figure: the lines break there and a hollow ring sits on the
-              axis, as in the dot view */}
-          {geo.noData.map(({ day, x }) => (
-            <circle
-              key={`nd-${day}`}
-              className="pc-nodata"
-              cx={x}
-              cy={plot.bottom}
-              r={(narrow ? 3.5 : 4.5) * unitsPerCss}
-              strokeWidth={(narrow ? 1.4 : 1.6) * unitsPerCss}
-            />
-          ))}
-        </g>
+        {/* hero line, drawn with a pen-tip dashoffset */}
+        <path
+          className="pc-line"
+          d={geo.linePath}
+          style={morphD(geo.linePath)}
+          fill="none"
+          stroke="url(#pc-line-grad)"
+          strokeWidth="3"
+          strokeLinejoin="round"
+          strokeLinecap="round"
+          pathLength={1}
+        />
 
         {/* peak apex glow + pulse */}
         {peakVisible && (
@@ -1142,7 +1124,6 @@ export function ParticipationChart({
       <div className="pc-legend" aria-hidden="true">
         <span className="pc-legend-peak">{labels.legendPeak}</span>
         <span className="pc-legend-mean">{labels.legendMean}</span>
-        {geo.noData.length > 0 && <span className="pc-legend-nodata">{labels.legendNoData}</span>}
       </div>
 
       {/* auto-placed annotations for the moments that have room in this view */}
@@ -1322,14 +1303,6 @@ export function ParticipationChart({
       </table>
       </div>
     </div>
-
-    {/* phones: the legend's no-figure entry, under the chart. The top of the plot has
-        no room left for it there beside the replay button and the peak label */}
-    {!cal && geo.noData.length > 0 && (
-      <p className="pc-legend-under" aria-hidden="true">
-        <span className="pc-legend-nodata">{labels.legendNoData}</span>
-      </p>
-    )}
 
     {/* full-width detail card for small screens (the floating tooltip is hidden there);
         the calendar opens its own card inline, under the tapped week */}

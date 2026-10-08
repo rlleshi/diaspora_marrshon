@@ -36,8 +36,6 @@ export type ChartGeometry = {
   linePath: string; // smooth peak line
   areaPath: string; // smooth peak area (closed to baseline)
   meanPath: string; // smooth mean line
-  /** days in the window with no figure, where the lines break; marked on the axis. */
-  noData: Array<{ day: number; x: number }>;
   /** map a day number to its x; used for events / scrubber. */
   xOf: (day: number) => number;
   yOf: (value: number) => number;
@@ -149,8 +147,7 @@ function logGridValues(minY: number, maxY: number): number[] {
 function monotonePath(pts: Array<{ x: number; y: number }>): string {
   const n = pts.length;
   if (n === 0) return "";
-  // a lone night between two gaps: a zero-length segment, which round caps draw as a dot
-  if (n === 1) return `M ${round(pts[0].x)} ${round(pts[0].y)} L ${round(pts[0].x)} ${round(pts[0].y)}`;
+  if (n === 1) return `M ${pts[0].x} ${pts[0].y}`;
 
   // Fritsch–Carlson monotone tangents (no overshoot below the baseline).
   const dx: number[] = [];
@@ -220,39 +217,23 @@ export function buildGeometry(
       : (value: number) => top + (1 - Math.max(0, value) / maxY) * plotH;
   const fracOf = (day: number) => (day - firstDay) / span;
 
-  // A day with no figure breaks the lines: they stop at the last measured day before it
-  // and start again at the first one after. Bridging it would draw a curve through a
-  // value nobody measured, and dropping to zero would draw a collapse that never
-  // happened; the chart marks the gap on the axis instead (`noData`).
-  const runs: MeasuredDay[][] = [];
-  let run: MeasuredDay[] = [];
-  for (const d of data) {
-    if (isMeasured(d)) {
-      run.push(d);
-    } else if (run.length) {
-      runs.push(run);
-      run = [];
-    }
-  }
-  if (run.length) runs.push(run);
-  const peakRuns: Pt[][] = runs.map((r) => r.map((d) => ({ day: d.day, x: xOf(d.day), y: yOf(d.peak), d })));
-  const meanRuns: Pt[][] = runs.map((r) => r.map((d) => ({ day: d.day, x: xOf(d.day), y: yOf(d.mean), d })));
-  const points = peakRuns.flat();
-  const meanPoints = meanRuns.flat();
+  // Days without a livestream analysis own no point, so the lines simply bridge
+  // them rather than dropping to a zero that was never measured.
+  const measured = data.filter(isMeasured);
+  const points: Pt[] = measured.map((d) => ({ day: d.day, x: xOf(d.day), y: yOf(d.peak), d }));
+  const meanPoints: Pt[] = measured.map((d) => ({ day: d.day, x: xOf(d.day), y: yOf(d.mean), d }));
 
-  const linePath = peakRuns.map(monotonePath).join(" ");
-  const meanPath = meanRuns.map(monotonePath).join(" ");
-  // Each run's fill closes on its own first and last x, so a gap stays empty down to the
-  // baseline and a window ending on a day with no figure stops the fill where the line
-  // stops. With every day measured this is one run spanning the plot, as before.
-  const areaPath = peakRuns
-    .map(
-      (r) =>
-        `${monotonePath(r)} L ${round(r[r.length - 1].x)} ${round(bottom)}` +
-        ` L ${round(r[0].x)} ${round(bottom)} Z`,
-    )
-    .join(" ");
-  const noData = data.filter((d) => !isMeasured(d)).map((d) => ({ day: d.day, x: xOf(d.day) }));
+  const linePath = monotonePath(points);
+  const meanPath = monotonePath(meanPoints);
+  // The fill closes on the first and last *measured* x, not on the plot edges. When a
+  // window ends on an unanalyzed day the line simply stops, and closing to the edge
+  // instead would rake the fill down to a baseline nobody measured, drawing exactly the
+  // collapse the bridged line is there to avoid. With every day measured these are the
+  // plot edges, so the path is unchanged.
+  const areaPath = points.length
+    ? `${linePath} L ${round(points[points.length - 1].x)} ${round(bottom)}` +
+      ` L ${round(points[0].x)} ${round(bottom)} Z`
+    : "";
 
   const gridValues =
     scale === "log" ? logGridValues(minY, maxY) : [0, 0.25, 0.5, 0.75, 1].map((f) => maxY * f);
@@ -272,7 +253,6 @@ export function buildGeometry(
     linePath,
     areaPath,
     meanPath,
-    noData,
     xOf,
     yOf,
     fracOf,
