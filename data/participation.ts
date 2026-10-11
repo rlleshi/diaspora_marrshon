@@ -268,6 +268,17 @@
 // do, and on day 131 umbrellas and close cameras make any count a floor, so both stay null and
 // their notes say why (no usable footage, below the 100-person threshold).
 // The notes for days 126 to 131 follow their research files (protest_story_notes_1_126 to _131).
+// Day 132 computed from the protesta_132 timeline from its only four retained frames (of 557
+// counted), all blue-framed splits pairing two street angles: fewer than ten, so the peak is the
+// mean of all four (peak 102.4, mean 102.4, median 101.3). It keeps the splits by the user's call
+// (a full protest day, not a missing one), unlike the clean-frame rule above. 361 of the 557 frames
+// are such splits and the single views top out at 72.4, so its series low likely reflects the
+// camera work more than the crowd; its note says the figure rests on four split-screen shots.
+// Day 133 computed from the protesta_133 timeline, single-view frames only (top-10 peak avg
+// 155.3, mean 128.9, median 129.3), normalized on the same Day-7 reference. It kept 159 of 165
+// retained (662 counted), dropping six blue-framed splits beside a speaker panel (keeping them,
+// 155.3 / 129.0 / 129.5).
+// The notes for days 132 and 133 follow their research files (protest_story_notes_1_132, _133).
 
 export type ParticipationDay = {
   day: number;
@@ -572,7 +583,10 @@ export const participation: ParticipationDay[] = [
   { day: 130, date: "2026-10-07", saturday: false, peak: 2.73, mean: 2.30, median: 2.22, source: yt("ccfVL5saOIE"),
     note: { sq: "E mërkura marshon pranë Kuvendit, në prag të votimit për reformën territoriale, dhe kthehet te Kryeministria, ku një protestues arrestohet pasi godet makinën që raportohet se mbante Ramën.", en: "Wednesday marches past Parliament on the eve of the territorial reform vote and returns to the PM's office, where a protester is arrested after striking the car reported to be carrying Rama." } },
   { day: 131, date: "2026-10-08", saturday: false, peak: null, mean: null, median: null, source: yt("a2r3pWKCFFU"),
-    note: { sq: "E enjtja qëndron gjithë ditën para Kuvendit, në shi, në ditën e votimit për hartën territoriale që shkrin 15 bashki; pas përplasjeve me policinë, tetë persona shoqërohen në Komisariatin Nr. 1. Pa pamje të përdorshme: shiu i mban kamerat afër, mes çadrave, transmetimi i dytë është kryesisht në studio dhe asnjë pamje nuk arrin pragun prej 100 vetësh që përdor indeksi.", en: "Thursday holds outside Parliament all day, in the rain, on the day of the vote on the territorial map that merges 15 municipalities; after clashes with police, eight people are taken to Police Station No. 1. No usable footage: the rain keeps the cameras close, among umbrellas, the second broadcast is mostly studio, and no shot reaches the 100-person threshold the index uses." } },
+    note: { sq: "E enjtja qëndron gjithë ditën para Kuvendit, në shi, në ditën e votimit për hartën territoriale që shkrin 15 bashki; pas përplasjeve me policinë, tetë persona shoqërohen në Komisariatin Nr. 1. Pa pamje të përdorshme: shiu i mban kamerat afër, mes çadrave, transmetimi i dytë është kryesisht në studio dhe asnjë pamje nuk arrin pragun prej 100 vetësh që përdor indeksi.", en: "Thursday holds outside Parliament all day, in the rain, on the day of the vote on the territorial map that merges 15 municipalities; after clashes with police, eight people are taken to Police Station No. 1. No usable footage: the rain keeps the cameras close, among umbrellas, the second broadcast is mostly studio, and no shot reaches the 100-person threshold the index uses." } },  { day: 132, date: "2026-10-09", saturday: false, peak: 1.98, mean: 1.98, median: 1.96, source: yt("_xPhOq6IvA8"),
+    note: { sq: "E premtja, një ditë pas votimit, marshon nga Sheshi Skënderbej te Kryeministria me pankarta kundër Ramës dhe Erion Braçes, që foli kundër reformës territoriale dhe votoi për të; kërkohet dorëheqja e Ramës dhe një qeveri tranzitore 12-mujore. Shifra e ditës mbështetet vetëm në katër pamje, të gjitha në ekran të ndarë.", en: "Friday, the day after the vote, marches from Skanderbeg Square to the PM's office with placards against Rama and Erion Braçe, who spoke against the territorial reform and voted for it; the demands are Rama's resignation and a 12-month transitional government. The day's figure rests on only four shots, all split-screen." } },
+  { day: 133, date: "2026-10-10", saturday: true, peak: 3.01, mean: 2.50, median: 2.50, source: yt("B0-bQTE2JbM"),
+    note: { sq: "E shtuna marshon nga Sheshi Skënderbej te Kryeministria, pastaj nëpër Shallvare dhe Unazën e Vogël drejt Komisariatit Nr. 3, me thirrje për lirimin e një protestuesi të ndaluar.", en: "Saturday marches from Skanderbeg Square to the PM's office, then through Shallvare and the Small Ring toward Police Station No. 3, calling for the release of a detained protester." } },
 ];
 
 export type ParticipationEvent = {
