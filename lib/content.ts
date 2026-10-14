@@ -49,6 +49,13 @@ export type SiteContent = {
       location: string;
       note?: string;
     }>;
+    /** while set, the hero shows this call to come home instead of the march date card */
+    call?: {
+      label: string;
+      title: string;
+      subtitle: string;
+      steps: [string, string, string];
+    };
     title: string;
     subtitle: string;
     subtitleEmphasis: string;
@@ -246,6 +253,16 @@ export const content: Record<Locale, SiteContent> = {
         { time: "19:00", location: "Sheshi Nënë Tereza" },
         { time: "19:15", location: "Sheshi Skënderbej" },
       ],
+      call: {
+        label: "Thirrje për çdo shqiptar jashtë vendit",
+        title: "Kthehu.",
+        subtitle: "Sheshi të pret.",
+        steps: [
+          "Na thuaj në WhatsApp kur vjen",
+          "Merr me vete familjen dhe miqtë",
+          "Bashkohu në protestë, çdo natë",
+        ],
+      },
       title: "Kur dheu jep zë, diaspora zbret.",
       subtitle:
         "Marshim qytetar, simbolik dhe paqësor drejt protestës kryesore. Ecim të organizuar, vetëm nën flamurin shqiptar.",
@@ -604,6 +621,16 @@ C) Nuk marshoj, por mund të ndihmoj me:
         { time: "19:00", location: "Mother Teresa Square" },
         { time: "19:15", location: "Skanderbeg Square" },
       ],
+      call: {
+        label: "A call to every Albanian abroad",
+        title: "Come home.",
+        subtitle: "The square is waiting.",
+        steps: [
+          "Tell us on WhatsApp you're coming",
+          "Bring your family and friends",
+          "Join the protest, any night",
+        ],
+      },
       title: "When the land speaks, the diaspora descends.",
       subtitle:
         "A civic, symbolic, peaceful march toward the main protest. We walk in an organized way, only under the Albanian flag.",

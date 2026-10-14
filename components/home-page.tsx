@@ -13,10 +13,13 @@ import {
   Gavel,
   Languages,
   MapPinned,
+  Megaphone,
   MessageCircle,
+  Plane,
   QrCode,
   Shirt,
   Timer,
+  Users,
   Utensils,
 } from "lucide-react";
 import { content, type Locale, type SiteContent } from "@/lib/content";
@@ -41,6 +44,9 @@ const practicalAdviceIcons = [
   Activity,
   Backpack,
 ];
+
+// one per step of the hero's call: say when you're coming, bring people, join the square
+const callStepIcons = [Plane, Users, Megaphone];
 
 function WalkingPersonIcon({
   className,
@@ -70,6 +76,7 @@ function WalkingPersonIcon({
 export function HomePage({ locale }: { locale: Locale }) {
   const t = content[locale];
   const alternateLocale = locale === "sq" ? "en" : "sq";
+  const call = t.hero.call;
   const heroScheduleLabel = t.hero.dateRows
     .map((row) => `${row.time}, ${row.location}`)
     .join("; ");
@@ -162,42 +169,63 @@ export function HomePage({ locale }: { locale: Locale }) {
             <Flag aria-hidden="true" size={18} />
             {t.hero.eyebrow}
           </p>
-          <div className="hero-date" aria-label={heroDateLabel}>
-            <span className="hero-date-day">{t.hero.dateDay}</span>
-            <span className="hero-date-copy">
-              <span className="hero-date-month">{t.hero.dateMonth}</span>
-              <span className="hero-date-meta">{t.hero.dateMeta}</span>
-              {t.hero.dateRows.length > 0 ? (
-                <span className="hero-date-schedule">
-                  {t.hero.dateRows.map((row, index) => (
-                    <span
-                      className="hero-date-row"
-                      key={`${row.time}-${row.location}`}
-                    >
-                      <span className="hero-date-time-track">
-                        <span className="hero-date-time">{row.time}</span>
-                        {index < t.hero.dateRows.length - 1 ? (
-                          <span className="hero-date-walk-marker">
-                            <span
-                              aria-hidden="true"
-                              className="hero-date-walk-arrow"
-                            />
-                            <WalkingPersonIcon className="hero-date-walker" />
-                          </span>
-                        ) : null}
+          {call ? (
+            <div className="hero-call">
+              <p className="hero-call-label">{call.label}</p>
+              <p className="hero-call-title">{call.title}</p>
+              <p className="hero-call-subtitle">{call.subtitle}</p>
+              <ol className="hero-call-steps">
+                {call.steps.map((step, index) => {
+                  const StepIcon = callStepIcons[index];
+                  return (
+                    <li key={step}>
+                      <span className="hero-call-step-icon">
+                        <StepIcon aria-hidden="true" size={17} />
                       </span>
-                      <span className="hero-date-location">
-                        {row.location}
-                        {row.note ? (
-                          <span className="hero-date-note">{row.note}</span>
-                        ) : null}
+                      {step}
+                    </li>
+                  );
+                })}
+              </ol>
+            </div>
+          ) : (
+            <div className="hero-date" aria-label={heroDateLabel}>
+              <span className="hero-date-day">{t.hero.dateDay}</span>
+              <span className="hero-date-copy">
+                <span className="hero-date-month">{t.hero.dateMonth}</span>
+                <span className="hero-date-meta">{t.hero.dateMeta}</span>
+                {t.hero.dateRows.length > 0 ? (
+                  <span className="hero-date-schedule">
+                    {t.hero.dateRows.map((row, index) => (
+                      <span
+                        className="hero-date-row"
+                        key={`${row.time}-${row.location}`}
+                      >
+                        <span className="hero-date-time-track">
+                          <span className="hero-date-time">{row.time}</span>
+                          {index < t.hero.dateRows.length - 1 ? (
+                            <span className="hero-date-walk-marker">
+                              <span
+                                aria-hidden="true"
+                                className="hero-date-walk-arrow"
+                              />
+                              <WalkingPersonIcon className="hero-date-walker" />
+                            </span>
+                          ) : null}
+                        </span>
+                        <span className="hero-date-location">
+                          {row.location}
+                          {row.note ? (
+                            <span className="hero-date-note">{row.note}</span>
+                          ) : null}
+                        </span>
                       </span>
-                    </span>
-                  ))}
-                </span>
-              ) : null}
-            </span>
-          </div>
+                    ))}
+                  </span>
+                ) : null}
+              </span>
+            </div>
+          )}
           <h1>{t.hero.title}</h1>
           <p className="hero-copy">
             {t.hero.subtitle}{" "}
