@@ -273,12 +273,28 @@
 // mean of all four (peak 102.4, mean 102.4, median 101.3). It keeps the splits by the user's call
 // (a full protest day, not a missing one), unlike the clean-frame rule above. 361 of the 557 frames
 // are such splits and the single views top out at 72.4, so its series low likely reflects the
-// camera work more than the crowd; its note says the figure rests on four split-screen shots.
+// camera work more than the crowd; its note says the livestream doesn't show the crowd clearly.
 // Day 133 computed from the protesta_133 timeline, single-view frames only (top-10 peak avg
 // 155.3, mean 128.9, median 129.3), normalized on the same Day-7 reference. It kept 159 of 165
 // retained (662 counted), dropping six blue-framed splits beside a speaker panel (keeping them,
 // 155.3 / 129.0 / 129.5).
 // The notes for days 132 and 133 follow their research files (protest_story_notes_1_132, _133).
+// Day 134 computed from the protesta_134 timeline, all 69 retained frames (675 counted), every one
+// a single view of the march (top-10 peak avg 186.2, mean 133.1, median 129.6), normalized on the
+// same Day-7 reference. Retention is thin (10.2%), as on days 129 and 130.
+// Day 135 kept 276 of 287 retained (1331 counted), single views only (top-10 peak avg 140.3, mean
+// 111.1, median 109.4). It dropped eight blue-framed splits beside a speaker panel and three
+// frames pairing the street with a studio presenter (keeping them, 140.3 / 110.9 / 108.8).
+// Day 136 kept 98 of 239 retained (3206 counted), single views only (top-10 peak avg 324.0, mean
+// 177.2, median 147.2). 137 are blue-framed splits (two street angles, or the street beside a
+// reporter or a speaker) and four are a replay of the afternoon clashes played in a desktop video
+// player; keeping them all would read 345.6 / 194.2 / 185.3. Its stream is the daytime student
+// protest at the Education Ministry, the day's main protest, kept as day 123's afternoon was
+// (unlike the day 54, 110, 117 and 128 mornings at Parliament): 97 of the 98 fall before 16:00
+// and none after 19:00, so the figures describe the afternoon gathering, not the evening. Its
+// top ten are full-screen daylight views of the crowd outside the ministry, between about 14:10
+// and 14:40. The run's peak is the highest since day 105.
+// The notes for days 134 to 136 follow their research files (protest_story_notes_1_134 to _136).
 
 export type ParticipationDay = {
   day: number;
@@ -583,10 +599,17 @@ export const participation: ParticipationDay[] = [
   { day: 130, date: "2026-10-07", saturday: false, peak: 2.73, mean: 2.30, median: 2.22, source: yt("ccfVL5saOIE"),
     note: { sq: "E mërkura marshon pranë Kuvendit, në prag të votimit për reformën territoriale, dhe kthehet te Kryeministria, ku një protestues arrestohet pasi godet makinën që raportohet se mbante Ramën.", en: "Wednesday marches past Parliament on the eve of the territorial reform vote and returns to the PM's office, where a protester is arrested after striking the car reported to be carrying Rama." } },
   { day: 131, date: "2026-10-08", saturday: false, peak: null, mean: null, median: null, source: yt("a2r3pWKCFFU"),
-    note: { sq: "E enjtja qëndron gjithë ditën para Kuvendit, në shi, në ditën e votimit për hartën territoriale që shkrin 15 bashki; pas përplasjeve me policinë, tetë persona shoqërohen në Komisariatin Nr. 1. Pa pamje të përdorshme: shiu i mban kamerat afër, mes çadrave, transmetimi i dytë është kryesisht në studio dhe asnjë pamje nuk arrin pragun prej 100 vetësh që përdor indeksi.", en: "Thursday holds outside Parliament all day, in the rain, on the day of the vote on the territorial map that merges 15 municipalities; after clashes with police, eight people are taken to Police Station No. 1. No usable footage: the rain keeps the cameras close, among umbrellas, the second broadcast is mostly studio, and no shot reaches the 100-person threshold the index uses." } },  { day: 132, date: "2026-10-09", saturday: false, peak: 1.98, mean: 1.98, median: 1.96, source: yt("_xPhOq6IvA8"),
-    note: { sq: "E premtja, një ditë pas votimit, marshon nga Sheshi Skënderbej te Kryeministria me pankarta kundër Ramës dhe Erion Braçes, që foli kundër reformës territoriale dhe votoi për të; kërkohet dorëheqja e Ramës dhe një qeveri tranzitore 12-mujore. Shifra e ditës mbështetet vetëm në katër pamje, të gjitha në ekran të ndarë.", en: "Friday, the day after the vote, marches from Skanderbeg Square to the PM's office with placards against Rama and Erion Braçe, who spoke against the territorial reform and voted for it; the demands are Rama's resignation and a 12-month transitional government. The day's figure rests on only four shots, all split-screen." } },
+    note: { sq: "E enjtja qëndron gjithë ditën para Kuvendit, në shi, në ditën e votimit për hartën territoriale që shkrin 15 bashki; pas përplasjeve me policinë, tetë persona shoqërohen në Komisariatin Nr. 1. Pa pamje të përdorshme: shiu i mban kamerat afër, mes çadrave, transmetimi i dytë është kryesisht në studio dhe asnjë pamje nuk arrin pragun prej 100 vetësh që përdor indeksi.", en: "Thursday holds outside Parliament all day, in the rain, on the day of the vote on the territorial map that merges 15 municipalities; after clashes with police, eight people are taken to Police Station No. 1. No usable footage: the rain keeps the cameras close, among umbrellas, the second broadcast is mostly studio, and no shot reaches the 100-person threshold the index uses." } },
+  { day: 132, date: "2026-10-09", saturday: false, peak: 1.98, mean: 1.98, median: 1.96, source: yt("_xPhOq6IvA8"),
+    note: { sq: "E premtja, një ditë pas votimit, marshon nga Sheshi Skënderbej te Kryeministria me pankarta kundër Ramës dhe Erion Braçes, që foli kundër reformës territoriale dhe votoi për të; kërkohet dorëheqja e Ramës dhe një qeveri tranzitore 12-mujore. Transmetimi live i asaj nate nuk e tregon qartë turmën, ndaj kjo shifër është më pak e besueshme se zakonisht.", en: "Friday, the day after the vote, marches from Skanderbeg Square to the PM's office with placards against Rama and Erion Braçe, who spoke against the territorial reform and voted for it; the demands are Rama's resignation and a 12-month transitional government. That night's livestream doesn't show the crowd clearly, so this figure is less reliable than usual." } },
   { day: 133, date: "2026-10-10", saturday: true, peak: 3.01, mean: 2.50, median: 2.50, source: yt("B0-bQTE2JbM"),
     note: { sq: "E shtuna marshon nga Sheshi Skënderbej te Kryeministria, pastaj nëpër Shallvare dhe Unazën e Vogël drejt Komisariatit Nr. 3, me thirrje për lirimin e një protestuesi të ndaluar.", en: "Saturday marches from Skanderbeg Square to the PM's office, then through Shallvare and the Small Ring toward Police Station No. 3, calling for the release of a detained protester." } },
+  { day: 134, date: "2026-10-11", saturday: false, peak: 3.61, mean: 2.58, median: 2.51, source: yt("-TE4pRMGIJw"),
+    note: { sq: "E diela marshon nga Kryeministria nëpër Shallvare dhe Tiranën e Re me mesazhet “Jemi kundër sistemit” dhe “Rama në burg, Berisha në burg”; nga sheshi i kërkohet SPAK-ut arrestimi i Ramës dhe i Ballukut.", en: "Sunday marches from the PM's office through Shallvare and New Tirana with the messages “Jemi kundër sistemit” and “Rama në burg, Berisha në burg”; the square calls on SPAK to arrest Rama and Balluku." } },
+  { day: 135, date: "2026-10-12", saturday: false, peak: 2.72, mean: 2.15, median: 2.12, source: yt("LE55MhD5pOw"),
+    note: { sq: "E hëna, pas fjalimeve, protestuesit bllokojnë rrugën te një nga hyrjet e Kryeministrisë, pasi njoftohet se Rama është brenda, dhe policia rrethon godinën; dy aktivistë shoqërohen nga policia.", en: "Monday, after the speeches, protesters block the road at one of the PM's office entrances on word that Rama is inside, and police surround the building; two activists are taken in by police." } },
+  { day: 136, date: "2026-10-13", saturday: false, peak: 6.27, mean: 3.43, median: 2.85, source: yt("RJlqCEGnTa4"),
+    note: { sq: "E marta studentët mblidhen para Ministrisë së Arsimit në orën 14:00 me thirrjen “Kur zgjohet rinia, bie qeveria”, për kushtet në universitete dhe kostot e studimeve. Drejt ministrisë hidhen vezë e bidona; policia përdor gaz lotsjellës e top uji dhe i ndjek studentët nëpër rrugicat e Tiranës, ndërsa në mbrëmje një grup hyn në hollin e Bashkisë dhe ndizen zjarre në rrugë. Policia arreston 16 vetë dhe nis procedim penal për 49 të tjerë; pesë policë pezullohen pasi një të riu 19-vjeçar i thyhet këmba.", en: "Tuesday, students gather outside the Education Ministry at 14:00 chanting “Kur zgjohet rinia, bie qeveria”, over university conditions and study costs. Eggs and bottles are thrown at the ministry; police use tear gas and water cannon and chase the students through Tirana's side streets, and in the evening a group enters the City Hall lobby and fires are lit in the streets. Police arrest 16 people and open criminal proceedings against 49 more; five officers are suspended after a 19-year-old's leg is broken." } },
 ];
 
 export type ParticipationEvent = {
@@ -666,6 +689,9 @@ export const participationEvents: ParticipationEvent[] = [
   { day: 120, tier: "primary", icon: "flag", mobile: true,
     label: { sq: "4 muaj protestë", en: "Four months" },
     sub: { sq: "27 shtator", en: "27 September" } },
+  { day: 136, tier: "primary", icon: "people", mobile: true,
+    label: { sq: "Protesta e studentëve", en: "The student protest" },
+    sub: { sq: "gaz lotsjellës, 16 arrestime", en: "tear gas, 16 arrests" } },
 ];
 
 /** Normalization reference shown in the methodology note. */
