@@ -294,7 +294,15 @@
 // and none after 19:00, so the figures describe the afternoon gathering, not the evening. Its
 // top ten are full-screen daylight views of the crowd outside the ministry, between about 14:10
 // and 14:40. The run's peak is the highest since day 105.
-// The notes for days 134 to 136 follow their research files (protest_story_notes_1_134 to _136).
+// Day 137 kept 280 of 602 retained (3972 counted), single views only (top-10 peak avg 367.9, mean
+// 185.2, median 161.2). 321 are blue-framed splits (the street beside a reporter, or two street
+// angles) and one is a blue studio box holding two clips; keeping them all would read 367.9 /
+// 170.3 / 151.2. Its stream runs from the late-morning march to the Education Ministry into the
+// night (about 10:55 to 21:45 broadcast time): 62 of the 280 fall before 14:00, 29 between 14:00
+// and 16:00, 173 between 16:00 and 19:00 and 16 after 19:00. Its top ten are full-screen views of
+// the crowd on the boulevard by the Pyramid and the PM's office, between about 17:35 and 18:40.
+// The run's peak is the highest since day 105.
+// The notes for days 134 to 137 follow their research files (protest_story_notes_1_134 to _137).
 
 export type ParticipationDay = {
   day: number;
@@ -609,7 +617,8 @@ export const participation: ParticipationDay[] = [
   { day: 135, date: "2026-10-12", saturday: false, peak: 2.72, mean: 2.15, median: 2.12, source: yt("LE55MhD5pOw"),
     note: { sq: "E hëna, pas fjalimeve, protestuesit bllokojnë rrugën te një nga hyrjet e Kryeministrisë, pasi njoftohet se Rama është brenda, dhe policia rrethon godinën; dy aktivistë shoqërohen nga policia.", en: "Monday, after the speeches, protesters block the road at one of the PM's office entrances on word that Rama is inside, and police surround the building; two activists are taken in by police." } },
   { day: 136, date: "2026-10-13", saturday: false, peak: 6.27, mean: 3.43, median: 2.85, source: yt("RJlqCEGnTa4"),
-    note: { sq: "E marta studentët mblidhen para Ministrisë së Arsimit në orën 14:00 me thirrjen “Kur zgjohet rinia, bie qeveria”, për kushtet në universitete dhe kostot e studimeve. Drejt ministrisë hidhen vezë e bidona; policia përdor gaz lotsjellës e top uji dhe i ndjek studentët nëpër rrugicat e Tiranës, ndërsa në mbrëmje një grup hyn në hollin e Bashkisë dhe ndizen zjarre në rrugë. Policia arreston 16 vetë dhe nis procedim penal për 49 të tjerë; pesë policë pezullohen pasi një të riu 19-vjeçar i thyhet këmba.", en: "Tuesday, students gather outside the Education Ministry at 14:00 chanting “Kur zgjohet rinia, bie qeveria”, over university conditions and study costs. Eggs and bottles are thrown at the ministry; police use tear gas and water cannon and chase the students through Tirana's side streets, and in the evening a group enters the City Hall lobby and fires are lit in the streets. Police arrest 16 people and open criminal proceedings against 49 more; five officers are suspended after a 19-year-old's leg is broken." } },
+    note: { sq: "E marta studentët mblidhen para Ministrisë së Arsimit në orën 14:00 me thirrjen “Kur zgjohet rinia, bie qeveria”, për kushtet në universitete dhe kostot e studimeve. Drejt ministrisë hidhen vezë e bidona; policia përdor gaz lotsjellës e top uji dhe i ndjek studentët nëpër rrugicat e Tiranës, ndërsa në mbrëmje një grup hyn në hollin e Bashkisë dhe ndizen zjarre në rrugë. Policia arreston 16 vetë dhe nis procedim penal për 49 të tjerë; pesë policë pezullohen pasi një të riu 19-vjeçar i thyhet këmba.", en: "Tuesday, students gather outside the Education Ministry at 14:00 chanting “Kur zgjohet rinia, bie qeveria”, over university conditions and study costs. Eggs and bottles are thrown at the ministry; police use tear gas and water cannon and chase the students through Tirana's side streets, and in the evening a group enters the City Hall lobby and fires are lit in the streets. Police arrest 16 people and open criminal proceedings against 49 more; five officers are suspended after a 19-year-old's leg is broken." } },  { day: 137, date: "2026-10-14", saturday: false, peak: 7.12, mean: 3.59, median: 3.12, source: yt("IX5-V9bI_MI"),
+    note: { sq: "E mërkura, dita e dytë e studentëve, nis me bojkot të mësimit dhe marshim te Ministria e Arsimit, ku shkulen kangjellat, thyhen xhamat dhe ndizet zjarr. Protesta shtrihet pastaj te Ministria e Financave, Piramida, Kryeministria dhe Kryesia e Kuvendit, ku protestuesit hapin derën dhe ndizet zjarr te hyrja, ndërsa policia përdor gaz lotsjellës e top uji; në mbrëmje digjet një makinë patrulle te Komisariati Nr. 2. Pas mbi 12 orë protestë, policia arreston 55 vetë dhe nis procedim penal për 98 të tjerë; 51 efektivë raportohen të lënduar.", en: "Wednesday, the students' second day, starts with a class boycott and a march to the Education Ministry, where railings are torn down, windows broken and a fire lit. The protest then spreads to the Finance Ministry, the Pyramid, the PM's office and the Assembly Presidency, where protesters force the door and a fire is lit at the entrance, while police use tear gas and water cannon; in the evening a patrol car burns at Police Station No. 2. After more than 12 hours of protest, police arrest 55 people and open criminal proceedings against 98 more; 51 officers are reported injured." } },
 ];
 
 export type ParticipationEvent = {
