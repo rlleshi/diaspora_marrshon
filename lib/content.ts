@@ -224,6 +224,10 @@ export type SiteContent = {
   };
 };
 
+/** Entry group for the diaspora on WhatsApp (homepage QR and the safety guide). */
+export const WHATSAPP_INVITE_URL =
+  "https://chat.whatsapp.com/L6oe4JyUi8k0h13oJSv7DP?s=cl&p=i&mlu=0&ilr=0&amv=2";
+
 export const content: Record<Locale, SiteContent> = {
   sq: {
     langLabel: "Shqip",

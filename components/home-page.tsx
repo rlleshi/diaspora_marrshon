@@ -23,7 +23,7 @@ import {
   Users,
   Utensils,
 } from "lucide-react";
-import { content, type Locale, type SiteContent } from "@/lib/content";
+import { content, WHATSAPP_INVITE_URL, type Locale, type SiteContent } from "@/lib/content";
 import { participation } from "@/data/participation";
 import { CopyButton } from "@/components/copy-button";
 import { SiteMenu } from "@/components/site-menu";
@@ -32,8 +32,7 @@ import { HistoryCarousel } from "@/components/history-carousel";
 import { SectionViewTracker, TrackedLink } from "@/components/analytics-events";
 import routeMapImage from "@/docs/marshimi_i_diaspores_bulevard_sheshi.png";
 
-const whatsAppInviteUrl =
-  "https://chat.whatsapp.com/L6oe4JyUi8k0h13oJSv7DP?s=cl&p=i&mlu=0&ilr=0&amv=2";
+const whatsAppInviteUrl = WHATSAPP_INVITE_URL;
 const googleMapsRouteUrl =
   "https://www.google.com/maps/dir/?api=1&origin=Sheshi+N%C3%ABn%C3%AB+Tereza%2C+Tiran%C3%AB&destination=Sheshi+Sk%C3%ABnderbej%2C+Tiran%C3%AB&travelmode=walking";
 

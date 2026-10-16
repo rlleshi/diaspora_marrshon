@@ -1,40 +1,136 @@
 import Link from "next/link";
+import type { ReactNode } from "react";
 import {
   ArrowDown,
   ArrowLeft,
-  CircleCheck,
   ExternalLink,
+  FileText,
   Flag,
   HeartPulse,
   Languages,
   Phone,
-  Route,
-  Camera,
   Scale,
   ShieldAlert,
+  ShieldCheck,
+  ShoppingBag,
   Siren,
-  Wind,
   type LucideIcon,
 } from "lucide-react";
 import type { Locale } from "@/lib/content";
 import {
-  LEGAL_AID_PHONE,
-  LEGAL_AID_URL,
   safetyPageContent,
+  type SafetyContact,
+  type SafetyTopic,
   type SafetyTopicId,
 } from "@/lib/safety-content";
 import { TrackedLink } from "@/components/analytics-events";
 
 const topicIcons: Record<SafetyTopicId, LucideIcon> = {
-  ndalimi: ShieldAlert,
-  avokatet: Scale,
-  gazi: Wind,
-  lendimet: HeartPulse,
-  siguria: Route,
-  dokumentimi: Camera,
+  pergatitja: ShoppingBag,
+  siguria: ShieldCheck,
+  ndalimi: Scale,
+  ndihma: HeartPulse,
+  kontaktet: Phone,
+  dokumentimi: FileText,
 };
 
 const telHref = (phone: string) => `tel:${phone.replace(/\s/g, "")}`;
+
+/** Renders the step markup: **bold** and [label](href); in-page links stay in the tab. */
+function rich(text: string): ReactNode[] {
+  return text.split(/(\*\*[^*]+\*\*|\[[^\]]+\]\([^)]+\))/g).map((part, i) => {
+    const bold = /^\*\*([^*]+)\*\*$/.exec(part);
+    if (bold) return <strong key={i}>{bold[1]}</strong>;
+    const link = /^\[([^\]]+)\]\(([^)]+)\)$/.exec(part);
+    if (link) {
+      const external = !link[2].startsWith("#");
+      return (
+        <a
+          key={i}
+          href={link[2]}
+          className="safety-inline-link"
+          {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+        >
+          {link[1]}
+        </a>
+      );
+    }
+    return part;
+  });
+}
+
+function ContactCard({ contact }: { contact: SafetyContact }) {
+  return (
+    <div className="safety-contact">
+      <div className="safety-contact-copy">
+        <span className="safety-contact-tag">{contact.tag}</span>
+        <h4>{contact.name}</h4>
+        <p>{contact.body}</p>
+        {contact.link && (
+          <a href={contact.link.href} target="_blank" rel="noopener noreferrer">
+            {contact.link.label}
+            <ExternalLink aria-hidden="true" size={14} />
+          </a>
+        )}
+      </div>
+      <a className="safety-contact-call" href={telHref(contact.phone)}>
+        <Phone aria-hidden="true" size={17} />
+        {contact.phone}
+      </a>
+    </div>
+  );
+}
+
+function TopicBody({ topic }: { topic: SafetyTopic }) {
+  const c = topic.contacts;
+  return (
+    <>
+      {topic.subsections && (
+        <div className="safety-subsections">
+          {topic.subsections.map((sub) => (
+            <div className="safety-subsection" key={sub.title}>
+              <h3>{sub.title}</h3>
+              <ul className="safety-steps">
+                {sub.steps.map((step) => (
+                  <li key={step}>
+                    <ShieldCheck aria-hidden="true" size={17} />
+                    <span>{rich(step)}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+      )}
+
+      {c && (
+        <div className="safety-contacts">
+          {c.confirmed.map((contact) => (
+            <ContactCard contact={contact} key={contact.name} />
+          ))}
+          <div className="safety-unverified">
+            <strong>{c.unverified.title}</strong>
+            <p>{c.unverified.body}</p>
+          </div>
+          {c.groups.map((group) => (
+            <div className="safety-contact-group" key={group.title}>
+              <h3>{group.title}</h3>
+              {group.contacts.map((contact) => (
+                <ContactCard contact={contact} key={contact.name} />
+              ))}
+              {group.note && (
+                <div className="safety-contact-note">
+                  <strong>{group.note.title}</strong>
+                  <p>{group.note.body}</p>
+                </div>
+              )}
+            </div>
+          ))}
+        </div>
+      )}
+    </>
+  );
+}
 
 export function SafetyPage({ locale }: { locale: Locale }) {
   const t = safetyPageContent[locale];
@@ -137,7 +233,7 @@ export function SafetyPage({ locale }: { locale: Locale }) {
                     <div>
                       <p className="kicker">{topic.kicker}</p>
                       <h2>{topic.title}</h2>
-                      <p>{topic.summary}</p>
+                      <p>{topic.lead}</p>
                     </div>
                   </div>
 
@@ -151,33 +247,9 @@ export function SafetyPage({ locale }: { locale: Locale }) {
                     </div>
                   )}
 
-                  <ol className="safety-steps">
-                    {topic.steps.map((step) => (
-                      <li key={step}>
-                        <CircleCheck aria-hidden="true" size={18} />
-                        <span>{step}</span>
-                      </li>
-                    ))}
-                  </ol>
+                  <TopicBody topic={topic} />
 
                   {topic.alert && <p className="safety-topic-alert">{topic.alert}</p>}
-
-                  {topic.aid && (
-                    <div className="safety-aid-contact">
-                      <div>
-                        <strong>{topic.aid.title}</strong>
-                        <p>{topic.aid.body}</p>
-                        <a href={LEGAL_AID_URL} target="_blank" rel="noopener noreferrer">
-                          {topic.aid.linkLabel}
-                          <ExternalLink aria-hidden="true" size={14} />
-                        </a>
-                      </div>
-                      <a className="safety-aid-call" href={telHref(LEGAL_AID_PHONE)}>
-                        <Phone aria-hidden="true" size={18} />
-                        {topic.aid.call}
-                      </a>
-                    </div>
-                  )}
                 </article>
               );
             })}
