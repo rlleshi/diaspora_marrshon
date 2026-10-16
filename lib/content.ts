@@ -28,6 +28,7 @@ export type SiteContent = {
     context: string;
     history: string;
     scandals: string;
+    safety: string;
     march: string;
     pledge: string;
     menuOpen: string;
@@ -233,6 +234,7 @@ export const content: Record<Locale, SiteContent> = {
       context: "Pse marshojmë",
       history: "Historiku",
       scandals: "Skandalet",
+      safety: "Siguria",
       march: "Marshimi",
       pledge: "Marshoj për Shqipërinë",
       menuOpen: "Hap menynë",
@@ -601,6 +603,7 @@ C) Nuk marshoj, por mund të ndihmoj me:
       context: "Why we march",
       history: "History",
       scandals: "Scandals",
+      safety: "Safety",
       march: "The march",
       pledge: "I march for Albania",
       menuOpen: "Open menu",

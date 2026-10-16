@@ -17,6 +17,7 @@ import {
   MessageCircle,
   Plane,
   QrCode,
+  ShieldAlert,
   Shirt,
   Timer,
   Users,
@@ -121,6 +122,10 @@ export function HomePage({ locale }: { locale: Locale }) {
             <a href="#context">{t.nav.context}</a>
             <a href="#history">{t.nav.history}</a>
             <Link href={t.scandalsTeaser.href}>{t.nav.scandals}</Link>
+            <Link className="nav-safety" href={locale === "sq" ? "/siguria" : "/en/siguria"}>
+              <ShieldAlert aria-hidden="true" size={16} />
+              {t.nav.safety}
+            </Link>
             <a href="#marshimi">{t.nav.march}</a>
             <a className="nav-cta" href="#pledge">
               {t.nav.pledge}

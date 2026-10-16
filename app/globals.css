@@ -4300,3 +4300,427 @@ a.source-chip-link:hover {
     font-size: 0.82rem;
   }
 }
+
+/* ============================================================
+   Protest safety guide (/siguria): standalone page and its header link
+   ============================================================ */
+
+.site-header .nav-safety {
+  gap: 7px;
+  border: 1px solid rgba(185, 28, 28, .28);
+  color: var(--red-dark);
+}
+.safety-shell .site-header {
+  background: rgba(255, 250, 242, .96);
+}
+
+.safety-hero {
+  padding: clamp(54px, 7vw, 98px) clamp(18px, 4vw, 56px) clamp(46px, 6vw, 80px);
+  color: var(--white);
+  background: radial-gradient(circle at 85% 10%, #5c2323 0%, transparent 40%), #181717;
+}
+
+.safety-hero-inner {
+  max-width: 1000px;
+}
+
+.safety-kicker {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0 0 16px;
+  color: #ffb4b4;
+  font-size: .81rem;
+  font-weight: 850;
+  letter-spacing: .075em;
+  text-transform: uppercase;
+}
+
+.safety-hero h1 {
+  max-width: 19ch;
+  margin: 0;
+  font-size: clamp(2.3rem, 5.5vw, 4.65rem);
+  line-height: 1.035;
+  letter-spacing: -.04em;
+}
+
+.safety-lead {
+  max-width: 68ch;
+  margin: 22px 0 0;
+  color: rgba(255, 255, 255, .86);
+  font-size: clamp(1.05rem, 1.8vw, 1.2rem);
+  line-height: 1.6;
+}
+
+.safety-emergency {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  margin-top: 34px;
+  padding: clamp(16px, 3vw, 24px);
+  border: 1px solid rgba(255, 255, 255, .19);
+  border-left: 5px solid #ef4444;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, .085);
+}
+
+.safety-emergency-symbol {
+  display: grid;
+  flex: 0 0 52px;
+  place-items: center;
+  width: 52px;
+  height: 52px;
+  border-radius: 12px;
+  color: #ffcaca;
+  background: rgba(239, 68, 68, .2);
+}
+
+.safety-emergency-content {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.safety-emergency-content strong {
+  font-size: 1.03rem;
+}
+
+.safety-emergency-content p {
+  margin: 5px 0 0;
+  color: rgba(255, 255, 255, .8);
+  line-height: 1.5;
+}
+
+.safety-emergency-call,
+.safety-aid-call {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  min-height: 50px;
+  padding: 12px 17px;
+  border-radius: 7px;
+  background: var(--red);
+  color: var(--white);
+  font-weight: 800;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.safety-emergency-call:hover,
+.safety-aid-call:hover {
+  background: var(--red-dark);
+}
+
+.safety-hero-note {
+  max-width: 90ch;
+  margin: 18px 0 0;
+  color: rgba(255, 255, 255, .71);
+  font-size: .89rem;
+  line-height: 1.6;
+}
+
+.safety-quick {
+  background: var(--paper);
+}
+
+.safety-heading h2 {
+  margin: 8px 0 10px;
+  font-size: clamp(1.7rem, 3.5vw, 2.5rem);
+  line-height: 1.12;
+}
+
+.safety-heading > p:last-child {
+  max-width: 67ch;
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+.safety-quick-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+  margin-top: 30px;
+}
+
+.safety-quick-card {
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 15px;
+  min-height: 178px;
+  padding: 22px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--white);
+  transition: border-color .18s ease, transform .18s ease;
+}
+
+.safety-quick-card:hover {
+  border-color: var(--red);
+  transform: translateY(-2px);
+}
+
+.safety-quick-icon {
+  display: inline-grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  flex: 0 0 42px;
+  border-radius: 9px;
+  background: #fef2f2;
+  color: var(--red-dark);
+}
+
+.safety-quick-text {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  padding-right: 26px;
+}
+
+.safety-quick-text strong {
+  font-size: 1.05rem;
+}
+
+.safety-quick-text small {
+  color: var(--muted);
+  font-size: .85rem;
+  line-height: 1.55;
+}
+
+.safety-quick-arrow {
+  position: absolute;
+  right: 19px;
+  top: 24px;
+  color: var(--red-dark);
+}
+
+.safety-details {
+  background: var(--bg);
+}
+
+.safety-details-inner {
+  max-width: 900px;
+}
+
+.safety-topic {
+  scroll-margin-top: 96px;
+  padding: 0 0 50px;
+}
+
+.safety-topic + .safety-topic {
+  padding-top: 52px;
+  border-top: 1px solid var(--line);
+}
+
+.safety-topic-title {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.safety-topic-index {
+  padding-top: 12px;
+  color: #8b8580;
+  font-size: .8rem;
+  font-weight: 850;
+  font-variant-numeric: tabular-nums;
+}
+
+.safety-topic-icon {
+  display: inline-grid;
+  flex: 0 0 48px;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 10px;
+  background: #fbe9e9;
+  color: var(--red-dark);
+}
+
+.safety-topic-title .kicker {
+  margin-top: 0;
+}
+
+.safety-topic-title h2 {
+  margin: 5px 0 8px;
+  font-size: clamp(1.52rem, 3vw, 2.15rem);
+  line-height: 1.12;
+}
+
+.safety-topic-title > div > p:last-child {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+.safety-steps {
+  display: grid;
+  gap: 15px;
+  margin: 26px 0 0 80px;
+  padding: 0;
+  list-style: none;
+}
+
+.safety-steps li {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  color: #30302d;
+  line-height: 1.65;
+}
+
+.safety-steps li svg {
+  flex: 0 0 auto;
+  margin-top: 4px;
+  color: var(--green);
+}
+
+.safety-phrase {
+  margin: 24px 0 0 80px;
+  padding: 17px 20px;
+  border-left: 4px solid var(--red);
+  border-radius: 0 8px 8px 0;
+  background: var(--white);
+}
+
+.safety-phrase > span {
+  color: var(--muted);
+  font-size: .78rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: .04em;
+}
+
+.safety-phrase blockquote {
+  margin: 8px 0 0;
+  font-size: 1.08rem;
+  font-weight: 700;
+  line-height: 1.6;
+}
+
+.safety-phrase-translation {
+  margin: 6px 0 0;
+  color: var(--muted);
+  font-size: .94rem;
+  line-height: 1.55;
+}
+
+.safety-topic-alert {
+  margin: 24px 0 0 80px;
+  padding: 14px 16px;
+  border: 1px solid #e9cda1;
+  border-radius: 7px;
+  background: #fff2df;
+  color: #553918;
+  font-size: .94rem;
+  line-height: 1.6;
+}
+
+/* the free legal-aid line: a call card under the legal-aid steps */
+.safety-aid-contact {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  margin: 24px 0 0 80px;
+  padding: 18px 20px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--paper);
+}
+
+.safety-aid-contact p {
+  max-width: 50ch;
+  margin: 7px 0;
+  color: var(--muted);
+  font-size: .9rem;
+  line-height: 1.6;
+}
+
+.safety-aid-contact a:not(.safety-aid-call) {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--red-dark);
+  font-size: .85rem;
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.safety-aid-call {
+  flex: 0 0 auto;
+  font-size: .9rem;
+}
+
+.safety-quick-card:focus-visible,
+.safety-shell a:focus-visible,
+.site-header .nav-safety:focus-visible {
+  outline: 3px solid #0f766e;
+  outline-offset: 3px;
+}
+
+@media (max-width: 900px) {
+  .safety-quick-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 700px) {
+  .safety-emergency,
+  .safety-aid-contact {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .safety-emergency-symbol {
+    display: none;
+  }
+
+  .safety-emergency-call,
+  .safety-aid-call {
+    width: 100%;
+  }
+
+  .safety-steps,
+  .safety-phrase,
+  .safety-topic-alert,
+  .safety-aid-contact {
+    margin-left: 0;
+  }
+}
+
+@media (max-width: 520px) {
+  .safety-quick-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .safety-quick-card {
+    flex-direction: row;
+    min-height: 0;
+    align-items: flex-start;
+  }
+
+  .safety-topic-title {
+    gap: 10px;
+  }
+
+  .safety-topic-index {
+    display: none;
+  }
+
+  .safety-topic-icon {
+    flex-basis: 42px;
+    width: 42px;
+    height: 42px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .safety-quick-card {
+    transition: none;
+  }
+}
