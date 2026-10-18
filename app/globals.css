@@ -157,6 +157,31 @@ textarea {
   flex: 0 0 auto;
 }
 
+.hero-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.hero-chips .hero-pulse-chip {
+  margin-bottom: 0;
+}
+
+/* the safety guide is easy to miss in the menu, so it gets a filled chip */
+.hero-safety-chip {
+  border-color: rgba(254, 202, 202, 0.7);
+  background: rgba(185, 28, 28, 0.82);
+}
+
+.hero-safety-chip:hover {
+  background: rgba(153, 27, 27, 0.95);
+}
+
+.hero-safety-chip svg {
+  flex: 0 0 auto;
+}
+
 .hero-image {
   object-fit: cover;
   object-position: center;

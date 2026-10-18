@@ -35,6 +35,8 @@ export type SiteContent = {
     menuClose: string;
   };
   hero: {
+    /** chip in the home hero that leads into the safety guide */
+    safetyChip: string;
     campaignTitle: {
       lead: string;
       accent: string;
@@ -245,6 +247,7 @@ export const content: Record<Locale, SiteContent> = {
       menuClose: "Mbyll menynë",
     },
     hero: {
+      safetyChip: "Para protestës: siguria dhe të drejtat",
       campaignTitle: {
         lead: "Flamingo Revolution",
         accent: "Diaspora",
@@ -614,6 +617,7 @@ C) Nuk marshoj, por mund të ndihmoj me:
       menuClose: "Close menu",
     },
     hero: {
+      safetyChip: "Before you go: safety and your rights",
       campaignTitle: {
         lead: "Flamingo Revolution",
         accent: "Diaspora",

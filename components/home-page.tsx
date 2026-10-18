@@ -157,11 +157,23 @@ export function HomePage({ locale }: { locale: Locale }) {
         />
         <div className="hero-tint" />
         <div className="hero-content">
-          <Link className="hero-pulse-chip" href={t.trackerTeaser.href}>
-            <span className="tracker-live-dot" aria-hidden="true" />
-            {t.trackerTeaser.heroChip}
-            <ArrowRight aria-hidden="true" size={16} />
-          </Link>
+          <div className="hero-chips">
+            <Link className="hero-pulse-chip" href={t.trackerTeaser.href}>
+              <span className="tracker-live-dot" aria-hidden="true" />
+              {t.trackerTeaser.heroChip}
+              <ArrowRight aria-hidden="true" size={16} />
+            </Link>
+            <TrackedLink
+              className="hero-pulse-chip hero-safety-chip"
+              href={locale === "sq" ? "/siguria" : "/en/siguria"}
+              eventName="Safety Guide Clicked"
+              eventProperties={{ locale, placement: "home_hero" }}
+            >
+              <ShieldAlert aria-hidden="true" size={17} />
+              {t.hero.safetyChip}
+              <ArrowRight aria-hidden="true" size={16} />
+            </TrackedLink>
+          </div>
           <div
             className="hero-campaign-title"
             aria-label={`${t.hero.campaignTitle.lead} ${t.hero.campaignTitle.accent}`}
