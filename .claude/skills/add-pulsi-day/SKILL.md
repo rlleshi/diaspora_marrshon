@@ -105,12 +105,15 @@ Established conventions:
 - Weekday-flavored openers are common for non-Saturday days ("E mërkura...",
   "E enjtja...", "Të dielën...") but not mandatory — plenty of notes just
   state the fact.
-- Informal PM nickname convention: Albanian text may use **"mjekrra"** /
-  "mjekrrës" / "mjekërroshi bardhërosh" (references his grey beard) when the
-  note is being informal/pointed about Rama personally. In **English, this
-  always renders as plain "Rama"** — it is never translated as a nickname.
-  Check the last few entries for live examples before choosing whether a
-  given note calls for the nickname or the plain name.
+- **Objective, journalist-grade register** (the user's rule from 2026-10-20, now
+  that the site is pitched to international media). The PM is always plain
+  **"Rama"** in both languages: never "mjekrra", "mjekrrës", "mjekërroshi" or any
+  other nickname, and no adjectives about him. Report what he said or did
+  ("Rama kërcënon...", "Rama refuzon dorëheqjen"), not what to think of it.
+  Attribute contested claims and figures to their source ("sipas policisë",
+  "police say", "according to the ministry"), keep both sides when accounts
+  conflict, and leave out loaded words ("regjim", "diktator", "terror",
+  "brutal") unless quoting a slogan or a named source, in quotation marks.
 - Numbers/dates/times mentioned in the note should be verbatim-accurate
   against the source file (e.g. an explicit mobilization call with a date
   and time is exactly the kind of detail that belongs in the note).
@@ -134,8 +137,8 @@ a new mobilization call/date, a government response or policy clash, a
 notable route or symbolic moment. The Graph Relevance suggested annotation
 is a useful compass for *what's graph-worthy* but is written in a more
 clinical register than the site's notes — don't paste it verbatim, use it to
-confirm you've picked the right thread. Then translate to English following
-the mjekrra→Rama rule above and the existing en notes' phrasing register.
+confirm you've picked the right thread. Then translate to English in the
+existing en notes' phrasing register, keeping the same objective wording.
 
 If the user gives you an explicit trim/edit instruction for the note (e.g.
 "just keep this part..."), apply it to both locales in parallel even if

@@ -7,7 +7,7 @@ export const metadata = pageMetadata({
   ownImage: true,
   title: "Pulsi i protestës | Diaspora marshon",
   description:
-    "Indeksi i pjesëmarrjes në protestat e qershorit 2026: 141 ditë në shesh, ditë pas dite, me momentet kyçe.",
+    "Indeksi i pjesëmarrjes në protestat e qershorit 2026: 142 ditë në shesh, ditë pas dite, me momentet kyçe.",
 });
 
 export default function Page() {
