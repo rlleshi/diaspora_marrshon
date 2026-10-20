@@ -67,6 +67,53 @@ export async function sendConfirmationEmail({
   }
 }
 
+export async function sendContactNotification({
+  to,
+  name,
+  email,
+  organisation,
+  message,
+  locale,
+}: {
+  to: string;
+  name: string;
+  email: string;
+  organisation?: string;
+  message: string;
+  locale: Locale;
+}) {
+  const apiKey = process.env.RESEND_API_KEY;
+  const from = process.env.EMAIL_FROM;
+
+  if (!apiKey || !from) {
+    console.warn(`Email provider is not configured. Contact message from ${email} was stored only.`);
+    return;
+  }
+
+  const sender = organisation ? `${name} (${organisation})` : name;
+  const subject = `Diaspora marshon: message from ${sender}`;
+  const header = `From: ${name} <${email}>${organisation ? `\nOrganisation: ${organisation}` : ""}\nPage language: ${locale}`;
+  const text = `${header}\n\n${message}`;
+  const html = `
+    <p>${escapeHtml(header).replaceAll("\n", "<br>")}</p>
+    <p style="white-space: pre-wrap">${escapeHtml(message)}</p>
+  `;
+
+  const resend = new Resend(apiKey);
+  const result = await resend.emails.send({
+    from,
+    to,
+    replyTo: email,
+    subject,
+    text,
+    html,
+  });
+
+  if (result.error) {
+    throw new Error(result.error.message);
+  }
+}
+
 function escapeHtml(value: string) {
   return value
     .replaceAll("&", "&amp;")

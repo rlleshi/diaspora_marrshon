@@ -21,6 +21,8 @@ export function getCollectionNames() {
       process.env.FIREBASE_CONSENT_VERSIONS_COLLECTION ?? "consent_versions",
     rateLimitEvents:
       process.env.FIREBASE_RATE_LIMIT_COLLECTION ?? "rate_limit_events",
+    contactMessages:
+      process.env.FIREBASE_CONTACT_MESSAGES_COLLECTION ?? "contact_messages",
   };
 }
 
@@ -29,6 +31,11 @@ export function getAllowedOrigins() {
     .split(",")
     .map((origin) => origin.trim())
     .filter(Boolean);
+}
+
+/** Where new contact-form messages are forwarded; unset means they are only stored. */
+export function getContactInbox() {
+  return process.env.CONTACT_INBOX_EMAIL?.trim() || undefined;
 }
 
 export function getAppBaseUrl() {

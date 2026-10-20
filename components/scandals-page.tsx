@@ -5,6 +5,7 @@ import { scandals } from "@/data/scandals";
 import { scandalsPageContent, statusBucketOrder } from "@/lib/scandals-content";
 import { TrackedLink } from "@/components/analytics-events";
 import { ScandalsExplorer } from "@/components/scandals-explorer";
+import { SiteFooter } from "@/components/site-footer";
 
 // Rama's tenure (2013–2026), not derived from scandal yearStart values —
 // several scandals (e.g. Bankers Petroleum's operations since 2004) predate
@@ -118,9 +119,7 @@ export function ScandalsPage({ locale }: { locale: Locale }) {
         </section>
       </main>
 
-      <footer className="site-footer">
-        <p>{t.footerNote}</p>
-      </footer>
+      <SiteFooter locale={locale} note={t.footerNote} />
     </div>
   );
 }

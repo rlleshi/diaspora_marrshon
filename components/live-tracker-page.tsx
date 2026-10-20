@@ -6,6 +6,7 @@ import {
   type ChartLabels,
 } from "@/components/participation/ParticipationChart";
 import { TrackedLink } from "@/components/analytics-events";
+import { SiteFooter } from "@/components/site-footer";
 
 const COPY: Record<
   Locale,
@@ -276,6 +277,7 @@ export function LiveTrackerPage({ locale }: { locale: Locale }) {
         </section>
       </main>
 
+      <SiteFooter locale={locale} />
     </div>
   );
 }

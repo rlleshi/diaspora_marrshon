@@ -24,6 +24,7 @@ import {
   type SafetyTopicId,
 } from "@/lib/safety-content";
 import { TrackedLink } from "@/components/analytics-events";
+import { SiteFooter } from "@/components/site-footer";
 
 const topicIcons: Record<SafetyTopicId, LucideIcon> = {
   pergatitja: ShoppingBag,
@@ -257,9 +258,7 @@ export function SafetyPage({ locale }: { locale: Locale }) {
         </section>
       </main>
 
-      <footer className="site-footer">
-        <p>{t.footer}</p>
-      </footer>
+      <SiteFooter locale={locale} note={t.footer} />
     </div>
   );
 }

@@ -16,6 +16,7 @@ import {
   type ShirtVersion,
 } from "@/lib/shirts-content";
 import { TrackedLink } from "@/components/analytics-events";
+import { SiteFooter } from "@/components/site-footer";
 
 const versionOrder: ShirtVersion[] = ["black", "white"];
 
@@ -149,6 +150,8 @@ export function ShirtsPage({ locale }: { locale: Locale }) {
           </div>
         </section>
       </main>
+
+      <SiteFooter locale={locale} />
     </div>
   );
 }

@@ -30,6 +30,7 @@ import { SiteMenu } from "@/components/site-menu";
 import { PledgeForm } from "@/components/pledge-form";
 import { HistoryCarousel } from "@/components/history-carousel";
 import { SectionViewTracker, TrackedLink } from "@/components/analytics-events";
+import { SiteFooter } from "@/components/site-footer";
 import routeMapImage from "@/docs/marshimi_i_diaspores_bulevard_sheshi.png";
 
 const whatsAppInviteUrl = WHATSAPP_INVITE_URL;
@@ -593,6 +594,7 @@ export function HomePage({ locale }: { locale: Locale }) {
         </section>
       </main>
 
+      <SiteFooter locale={locale} />
     </div>
   );
 }
