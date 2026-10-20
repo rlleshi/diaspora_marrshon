@@ -7,6 +7,8 @@ export type ContactFormText = {
   message: string;
   messagePlaceholder: string;
   privacy: string;
+  privacyLink: string;
+  privacyHref: string;
   submit: string;
   submitting: string;
   successTitle: string;
@@ -46,7 +48,9 @@ export const contactPageContent: Record<Locale, ContactPageContent> = {
       organisation: "Organizata (opsionale)",
       message: "Mesazhi",
       messagePlaceholder: "Si dëshiron të ndihmosh, ose çfarë do të dish?",
-      privacy: "Të dhënat e tua përdoren vetëm për të të kthyer përgjigje.",
+      privacy: "Duke dërguar mesazhin, pranon që të ruajmë emrin, email-in dhe mesazhin tënd për të të kthyer përgjigje.",
+      privacyLink: "Privatësia",
+      privacyHref: "/privacy",
       submit: "Dërgo mesazhin",
       submitting: "Duke dërguar...",
       successTitle: "Mesazhi u dërgua",
@@ -74,7 +78,9 @@ export const contactPageContent: Record<Locale, ContactPageContent> = {
       organisation: "Organisation (optional)",
       message: "Message",
       messagePlaceholder: "How would you like to help, or what would you like to know?",
-      privacy: "We only use your details to reply to you.",
+      privacy: "By sending a message, you agree to us storing your name, email and message so we can reply.",
+      privacyLink: "Privacy",
+      privacyHref: "/en/privacy",
       submit: "Send message",
       submitting: "Sending...",
       successTitle: "Message sent",

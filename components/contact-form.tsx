@@ -1,6 +1,7 @@
 "use client";
 
 import { FormEvent, useState } from "react";
+import Link from "next/link";
 import { MailCheck, Send } from "lucide-react";
 import type { Locale } from "@/lib/content";
 import type { ContactFormText } from "@/lib/contact-content";
@@ -189,7 +190,9 @@ export function ContactForm({
         <Send aria-hidden="true" size={19} />
         {isSubmitting ? content.submitting : content.submit}
       </button>
-      <p className="contact-privacy">{content.privacy}</p>
+      <p className="contact-privacy">
+        {content.privacy} <Link href={content.privacyHref}>{content.privacyLink}</Link>
+      </p>
     </form>
   );
 }

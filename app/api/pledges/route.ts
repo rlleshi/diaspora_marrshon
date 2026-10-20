@@ -15,6 +15,12 @@ const maxBodyBytes = 16_384;
 export async function POST(request: Request) {
   let locale: Locale = "sq";
 
+  // The pledge form is hidden on the homepage; keep its endpoint closed too until
+  // a march needs it again (set PLEDGES_OPEN=true, plus the Resend settings).
+  if (process.env.PLEDGES_OPEN !== "true") {
+    return errorResponse(locale, 503, content[locale].form.genericError);
+  }
+
   try {
     if (!isAllowedOrigin(request)) {
       return errorResponse(locale, 403, content[locale].form.genericError);

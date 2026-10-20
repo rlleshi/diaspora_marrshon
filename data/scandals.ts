@@ -48,7 +48,7 @@ export const scandals: Scandal[] = [
     status: `Marrëveshja Eagle Hills/ASDC është e nënshkruar dhe në zbatim; tenderi për portin e ri në Porto Romano ishte ende në proces sipas raportimit të gushtit 2025. Sfida kushtetuese e opozitës nuk ka çuar (deri më tani, sipas burimeve të gjetura) në anulimin e marrëveshjes. Nuk u gjet ndonjë hetim publik i njohur nga SPAK apo KLSH specifikisht mbi vetë kontratën Eagle Hills/ASDC; kritikat e dokumentuara mbeten kryesisht politike, ekonomike, nga shoqëria civile dhe nga BE-ja, jo penale. Çështja e ndarë e SPAK (30.06.2026, 8 të pandehur) trajton mashtrim pronash bregdetare në Durrës, por pa lidhje të vërtetuar me projektin e portit.`,
     claims: [
       {
-        claim: `~666 milionë euro 'grabitje' e ndarë në 124M tokë publike + 400M trualli + 84M taksë infrastrukture + 58.5M fond strehimi social hequr nga buxheti`,
+        claim: `~666 milionë euro humbje për shtetin, e ndarë në 124M tokë publike + 400M trualli + 84M taksë infrastrukture + 58.5M fond strehimi social hequr nga buxheti`,
         verdict: "unverified",
         note: `Asnjë nga burimet e kërkuara (citizens.al, spak.gov.al, kërkime të tjera në media shqiptare) nuk e përmban këtë ndarje apo shumë specifike. Burimet e gjetura japin shifra të tjera (p.sh. ekonomisti Pano Soko vlerëson ~150 milionë euro vlerë toke e transferuar, ose ~100 milionë nga vlerësim tjetër me €100/m² mbi ~1 milion m²), por asnjë prej tyre nuk e mbështet ndarjen apo shumën e saktë të pretenduar. Shifra mbetet e paverifikuar.`,
       },
@@ -104,7 +104,7 @@ export const scandals: Scandal[] = [
       {
         claim: `Koncesionarët paguhen edhe për shërbime të pakryera - rasti 'Check-Up'`,
         verdict: "confirmed",
-        note: `KLSH (auditim 2019 për buxhetin 2018) gjeti 801 milionë lekë kosto shtesë 2015-2018 (168 milionë vetëm në 2018) nga shpenzime variabël të parealizuara dhe TVSH e faturuar për shërbime të pakryera. Media (Pamfleti) raportoi mbi 6 milionë euro të futura në xhep nga analiza të pakryera dhe rimbursim i padrejtë i TVSH-së. Për dializën, KLSH 2024 gjeti pagesa 103.5 milionë lekë për 'shërbime të pakryera' në 2023 (9241 raste nën projeksion, 1557 mbi projeksion).`,
+        note: `KLSH (auditim 2019 për buxhetin 2018) gjeti 801 milionë lekë kosto shtesë 2015-2018 (168 milionë vetëm në 2018) nga shpenzime variabël të parealizuara dhe TVSH e faturuar për shërbime të pakryera. Media (Pamfleti) raportoi mbi 6 milionë euro të paguara për analiza të pakryera dhe rimbursim të padrejtë të TVSH-së. Për dializën, KLSH 2024 gjeti pagesa 103.5 milionë lekë për 'shërbime të pakryera' në 2023 (9241 raste nën projeksion, 1557 mbi projeksion).`,
       },
       {
         claim: `Racionim kujdesi - kufizim operacionesh, refuzim analizash pas 'mbarimit të kuotës mujore'`,
@@ -155,9 +155,9 @@ export const scandals: Scandal[] = [
     title: `Inceneratorët (Tiranë, Fier, Elbasan)`,
     period: `2016–2026 (kontratat 2016–2018; hetimet dhe gjyqet vazhdojnë)`,
     narrative: [
-      `Skema e inceneratorëve për djegien e mbeturinave në Tiranë, Fier dhe Elbasan është një nga rastet më të dokumentuara mirë të korrupsionit gjatë qeverisjes Rama. Ish-ministri i Mjedisit, Lefter Koka, u arrestua nga SPAK më 14 dhjetor 2021 dhe u mbajt në paraburgim rreth katër vjet, i akuzuar për korrupsion, shpërdorim detyre dhe pastrim parash lidhur me tenderë publikë të manipuluar (vetëm kontrata e Fierit vlerësohet ~30,5 milionë dollarë, rreth 28 milionë euro). Në shtator 2023 u dënua në shkallë të parë me 6 vjet e 8 muaj burg për rastin e Fierit, dhe u dënua veçmas edhe për rastin e Elbasanit — dënim që më pas u la në fuqi nga Gjykata e Lartë dhe tashmë është final. Statusi i çështjes së Fierit mbetet procedurialisht i hapur (u kthye për rigjykim nga Gjykata e Apelit në dhjetor 2024 dhe përsëri nga Gjykata e Lartë në tetor 2025), por vetë dënimi në shkallë të parë për këto akuza mbetet fakt historik i vendosur. Impianti i Tiranës raportohet të mos ketë ekzistuar kurrë fizikisht si funksional, ndërsa disa nga pronarët e kërkuar ndërkombëtarisht të kompanive përfituese vazhduan të merrnin pagesa nga thesari i shtetit edhe pasi ishin shpallur në arrati.`,
+      `Skema e inceneratorëve për djegien e mbeturinave në Tiranë, Fier dhe Elbasan është një nga rastet më të dokumentuara mirë të korrupsionit gjatë qeverisjes Rama. Ish-ministri i Mjedisit, Lefter Koka, u arrestua nga SPAK më 14 dhjetor 2021 dhe u mbajt në paraburgim rreth katër vjet, i akuzuar për korrupsion, shpërdorim detyre dhe pastrim parash lidhur me tenderë publikë të manipuluar (vetëm kontrata e Fierit vlerësohet ~30,5 milionë dollarë, rreth 28 milionë euro). Në shtator 2023 u dënua në shkallë të parë me 6 vjet e 8 muaj burg për rastin e Fierit, dhe u dënua veçmas edhe për rastin e Elbasanit — dënim që më pas u la në fuqi nga Gjykata e Lartë dhe tashmë është final. Statusi i çështjes së Fierit mbetet procedurialisht i hapur (u kthye për rigjykim nga Gjykata e Apelit në dhjetor 2024 dhe përsëri nga Gjykata e Lartë në tetor 2025), pa vendim final për këtë çështje. Impianti i Tiranës raportohet të mos ketë ekzistuar kurrë fizikisht si funksional, ndërsa disa nga pronarët e kërkuar ndërkombëtarisht të kompanive përfituese vazhduan të merrnin pagesa nga thesari i shtetit edhe pasi ishin shpallur në arrati.`,
     ],
-    status: `I dënuar — çështja e Elbasanit është finale; çështja e Fierit ka dënim në shkallë të parë, por ende në proces rigjykimi procedural (jo ende vendim absolutisht final).`,
+    status: `I dënuar — çështja e Elbasanit është finale; çështja e Fierit u kthye për rigjykim dhe nuk ka vendim final.`,
     claims: [],
     verificationNotes: undefined,
     confidence: `e lartë (i kryqëzuar me Balkan Insight, Albanian Daily News, Shqiptarja.com, Politiko.al, Pamfleti.net, BalkanWeb, Shekulli, Hashtag.al, CNA.al, Panorama.al, RTSH)`,
@@ -169,7 +169,7 @@ export const scandals: Scandal[] = [
     category: "justice-crime",
     statusBucket: "convicted",
     yearStart: 2016,
-    teaser: `Impianti i Tiranës nuk ekzistoi kurrë fizikisht; ish-ministri Lefter Koka mbeti katër vjet në paraburgim.`,
+    teaser: `Impianti i Tiranës raportohet të mos ketë funksionuar kurrë; ish-ministri Lefter Koka mbeti katër vjet në paraburgim.`,
     redactedPhrase: `katër vjet në paraburgim`,
   },
   {
@@ -196,7 +196,7 @@ export const scandals: Scandal[] = [
         note: `Konfirmuar nga telegraf.al (maj 2024) dhe raporti final i KLSH (shkurt 2025): 750 milionë euro janë detyrime të klientëve (jo borxh i vetë OSHEE) deri në 2023, nga mbi 564,000 debitorë; kronologjia: 2013 ~9M euro, 2022 687M euro (gusht).`,
       },
       {
-        claim: `Manipulim çmimesh/tenderash në bursën HUPX (2020-2021) nën ish-ministrin Gjiknuri`,
+        claim: `KLSH konstatoi modele të dyshimta çmimesh në blerjet në bursën HUPX (2020-2021), nën ish-ministrin Gjiknuri`,
         verdict: "confirmed",
         note: `Konfirmuar nga raporti i KLSH (cituar nga balkanweb.com) me data specifike (p.sh. më 2 korrik 2021, energjia u ble me 122,5 euro/MWh kundrejt 75,9 euro ditën e mëparshme — pothuajse dyfish brenda 24 orësh) dhe nga analiza e pavarur e të dhënave ERE/bursa rajonale (ndiqparate.al), që tregon ~80% mbivlerësim mbi mesataren HUPX në 2021. KLSH i kërkoi 'masa' ish-ministrit Gjiknuri si përfaqësues i aksionerit shtetëror - kjo është konstatim administrativ auditimi, jo akuzë apo dënim penal.`,
       },
@@ -270,7 +270,7 @@ export const scandals: Scandal[] = [
     redactedPhrase: `180 milionë euro`,
   },
   {
-    title: `Unaza e Madhe dhe Tuneli i Llogarasë (afera e tenderave nën ish-zv/kryeministren Balluku)`,
+    title: `Unaza e Madhe dhe Tuneli i Llogarasë (hetimi i SPAK për tenderat nën ish-zv/kryeministren Balluku)`,
     period: `2018–2026 (aktive)`,
     narrative: [
       `Kjo aferë ka dy shtresa të dallueshme. **E para** (2018): kompania "DH Albania", e përshkruar si firmë "fantazmë" pa adresë reale, fitoi brenda dy muajsh tendera publikë për rreth 30 milionë euro (përfshirë Lotin 1 të Unazës së Re, ~18 milionë euro), duke përdorur dokumente të falsifikuara me një nënshkrim të pretenduar të një zyrtari amerikan (Delaware). Agjencia e Prokurimit Publik e përjashtoi kompaninë; Gjykata e Tiranës e dënoi në mungesë administratorin e saj, Avdjol Dobi (26–28 vjeç sipas burimeve), me 6 muaj burg — ai mbetet i arratisur ndërkombëtarisht që nga 2018, ndërsa hetimi ndaj vetë zyrtarëve të ARRSH, OST dhe Ministrisë u mbyll pa akuza penale në atë kohë.`,
@@ -290,7 +290,7 @@ export const scandals: Scandal[] = [
         note: `Konfirmuar nga disa burime të pavarura (report-tv.al, panorama.com.al, acp.al, standard.al, balkanweb.com, referencë te VOA): kompania 'DH Albania' fitoi Lotin 1 (~18 mln euro, pjesë e ~30 mln euro gjithsej në 2 tendera brenda 2 muajsh, 2018), me dokumente të falsifikuara që përfshinin nënshkrim të pretenduar të një zyrtari amerikan (Delaware); adresa e regjistrimit rezultoi joekzistente. APP e përjashtoi nga tenderat; ARRSH bëri kallëzim penal; u dënua vetëm administratori i kompanisë, jo institucione apo zyrtarë shtetërorë.`,
       },
       {
-        claim: `Shtatë tenderë të tjerë të Unazës pretendohet të jenë të trukuar nga ministrja Balluku me fitues të caktuar paraprakisht`,
+        claim: `SPAK heton ministren Balluku për paracaktim fituesish në shtatë tenderë të tjerë të Unazës`,
         verdict: "confirmed",
         note: `Konfirmuar si hetim/akuzë aktive e SPAK (jo dënim final): SPAK po heton Ballukun për shpërdorim në të 7 lotet e tenderave të Unazës së Madhe (2021) plus tunelin e Llogarasë (disa raportime flasin për 8 tendera gjithsej), vlerë totale ~450 mln euro, bazuar në përgjime komunikimesh 2021-2023 që sipas prokurorisë tregojnë se fituesit u paracaktuan; 6 nga 7 tenderat u fituan me 94,5-96,1% të fondit limit. Balluku u pezullua dhe iu vu ndalim udhëtimi; më 12 mars 2026 Kuvendi refuzoi (82 vota) kërkesën e SPAK për arrestimin e saj — çështja mbetet e hapur, pa vendim gjyqësor final.`,
       },
@@ -400,9 +400,9 @@ export const scandals: Scandal[] = [
         note: `Njoftimi zyrtar i tenderit (Shkurt 2016) dhe faqja zyrtare e vetë koncesionarit AHC (ahc.al) referojnë VKM nr. 870/14.12.2016 dhe një koncesion 30-vjeçar për Milot-Morinë, jo 35. Afati 35-vjeçar përputhet në vend të kësaj me koncesionin tjetër, të anuluar, Milot-Balldre.`,
       },
       {
-        claim: `Aksident në janar me ~20 makina të përplasura për shkak të mos-hedhjes së kripës`,
+        claim: `Aksident në janar me ~20 makina të përplasura, që media e lidhën me mungesën e kripës nga koncesionari`,
         verdict: "confirmed",
-        note: `Të paktën 5-6 media të pavarura (Faktor.al, Telegraf.al, Mapo.al, Syri.net, Oranews.tv, TVKlan) raportuan aksidente zinxhir me mbi 20 automjete mbi Rrugën e Kombit më 2 janar 2026, të shkaktuara nga akulli/mungesa e kripës nga koncesionari; data e saktë (e premte, 2 janar 2026) u verifikua nga metadata e publikimit të Mapo.al.`,
+        note: `Të paktën 5-6 media të pavarura (Faktor.al, Telegraf.al, Mapo.al, Syri.net, Oranews.tv, TVKlan) raportuan aksidente zinxhir me mbi 20 automjete mbi Rrugën e Kombit më 2 janar 2026, të cilat i lidhën me akullin dhe mungesën e kripës nga koncesionari; data e saktë (e premte, 2 janar 2026) u verifikua nga metadata e publikimit të Mapo.al.`,
       },
     ],
     verificationNotes: `Një pretendim tjetër, i një lëvizjeje aktiviste, flet për "mbi 1 miliard euro" — por ai i referohet kostos historike totale të gjithë rrugës që nga ndërtimi fillestar 2006-2010, jo vlerës specifike të kontratës koncesionare 2016-2018, dhe nuk e kundërshton kështu shifrën 350 milionë euro.`,
@@ -428,7 +428,7 @@ export const scandals: Scandal[] = [
     redactedPhrase: `30-vjeçar`,
   },
   {
-    title: `Bashkia Tiranë: Leje ndërtimi dhe dyshime për pastrim parash (~1.6 mld euro, 2017–2019)`,
+    title: `Bashkia Tiranë: leje ndërtimi, gjyqi i kryebashkiakut dhe pastrimi i parave në ndërtim`,
     period: `2016-2026 (shifra e pastrimit prej ~1.6 mld euro i referohet konkretisht 2017-2019; hetimi/gjyqi ndaj Veliajt zhvillohet 2024-2026)`,
     narrative: [
       `Një studim i organizatës ndërkombëtare Global Initiative Against Transnational Organized Crime (GI-TOC), i rimarrë nga BIRN/Balkan Insight, Tirana Times, citizens.al, European Pulse dhe media të tjera, vlerëson se gjatë periudhës 2017–2019 (dhe jo 2016–2020, siç përmendet ndonjëherë) u pastruan rreth 1.6 miliardë euro nëpërmjet sektorit të ndërtimit/pasurive të paluajtshme në Shqipëri, kryesisht në Tiranë: rreth 320 mln euro në 2017, 570 mln në 2018 dhe 500 mln në 2019 — shuma e tre viteve arrin rreth 1.39 miliardë euro; diferenca me shifrën e përgjithshme 1.6 miliardë të cituar nga studimi nuk shpjegohet nga burimet e konsultuara. Sipas të njëjtit studim, nga 141 kompani që morën leje ndërtimi për pallate mbi 6 kate në Tiranë 2017–2019, rreth 59% nuk justifikonin dot kapacitete financiare për t'i përfunduar ato, çka konsiderohet tregues indirekt financimi me origjinë të paqartë. Kjo shifër mbetet një vlerësim/analizë e një organizate ndërkombëtare jofitimprurëse, jo konstatim gjyqësor, dhe është përdorur edhe politikisht nga opozita (PD) kundër kryebashkiakut Erion Veliaj. Në një zhvillim të lidhur por të veçantë, në shkurt 2025 vetë Veliaj (kryebashkiak i Tiranës që 2015, socialist i afërt me Edi Ramën) u arrestua nga SPAK me akuza specifike korrupsioni e pastrimi parash, lidhur konkretisht me lëshim lejesh ndërtimi/kontratash publike në këmbim përfitimesh rreth 1.1 milionë euro, të kanalizuara sipas prokurorisë përmes OJF-ve dhe firmës ligjore të bashkëshortes së tij, Ajola Xoxa. Në korrik 2025 ai u dërgua në gjyq me 13 akuza (korrupsion pasiv, pastrim parash, fshehje pasurie), bashkë me biznesmenë ndërtimi (Fusha, Palushi, AgiKons, Gerard-A, Kontakt) dhe ish-deputeten Klotilda Bushka; procesi është ende në zhvillim dhe Veliaj mbetet i paraburgosur, pa vendim gjyqësor final deri më sot. Paralelisht, SPAK po heton edhe një rrjet tjetër ndërkombëtar ("Karaibe-Adriatik") për pastrim parash droge nëpërmjet projekteve të mëdha ndërtimi në Tiranë dhe bregdet. Lidhja mes bumit të ndërtimit dhe rritjes së çmimeve të qerasë/banesave në Tiranë përmendet shpesh në komente e analiza, por asnjë studim specifik sasior nuk e kuantifikon këtë lidhje shkak-pasojë në burimet e konsultuara.`,
@@ -451,8 +451,8 @@ export const scandals: Scandal[] = [
         note: `E konfirmuar nga dy burime të pavarura (invest-in-albania.org dhe tiranatimes.com), të dyja duke cituar të njëjtin studim GI-TOC bazuar në 141 kompani të analizuara.`,
       },
       {
-        claim: `Kryebashkiaku i Tiranës është i përfshirë personalisht në pastrim parash lidhur me leje ndërtimi`,
-        verdict: "partial",
+        claim: `Kryebashkiaku i Tiranës akuzohet nga SPAK për pastrim parash e korrupsion lidhur me leje ndërtimi`,
+        verdict: "confirmed",
         note: `Erion Veliaj (kryebashkiak që nga 2015) u arrestua nga SPAK në shkurt 2025 dhe u dërgua në gjyq korrik 2025 me 13 akuza përfshi pastrim parash e korrupsion pasiv lidhur me leje ndërtimi/kontrata publike (~1.1 mln euro përfitime të pretenduara). Ky është hetim/akuzë e SPAK-ut, ende pa vendim gjyqësor final - nuk përbën fajësi të provuar ligjërisht.`,
       },
     ],
@@ -477,8 +477,8 @@ Një investigim i gjerë i BIRN-it ("The Albanian Files", korrik 2026) dokumento
     category: "infrastructure-land",
     statusBucket: "investigation",
     yearStart: 2016,
-    teaser: `Kryebashkiaku i Tiranës u arrestua për pastrim parash, ndërsa një studim ndërkombëtar vlerëson ~1.6 miliardë euro të pastruara në ndërtim.`,
-    redactedPhrase: `1.6 miliardë euro`,
+    teaser: `Kryebashkiaku i Tiranës u arrestua dhe gjykohet për korrupsion e pastrim parash, pa vendim final. Një studim ndërkombëtar i veçantë vlerëson ~1.6 miliardë euro të pastruara në ndërtim në vitet 2017–2019.`,
+    redactedPhrase: `pa vendim final`,
   },
   {
     title: `Tokat e bregdetit (Sazan, Zvërnec) dhe projekti turistik i lidhur me Jared Kushner`,
@@ -536,7 +536,7 @@ Një investigim i gjerë i BIRN-it ("The Albanian Files", korrik 2026) dokumento
     category: "infrastructure-land",
     statusBucket: "investigation",
     yearStart: 2022,
-    teaser: `SPAK sekuestroi ~128 milionë euro nga projekti turistik i lidhur me Jared Kushner mbi tokë ushtarake të Sazanit.`,
+    teaser: `SPAK heton dhënien e tokave për projektin turistik të lidhur me Jared Kushner dhe sekuestroi ~128 milionë euro nga një kompani vendase; ndaj Kushnerit apo kompanive të projektit nuk ka akuza.`,
     redactedPhrase: `128 milionë euro`,
   },
   {
@@ -598,7 +598,7 @@ Një investigim i gjerë i BIRN-it ("The Albanian Files", korrik 2026) dokumento
       {
         claim: `Skemë ku fermerët/aplikantët detyroheshin t'u jepnin përqindje kompanive 'konsulente' të lidhura me qeverinë`,
         verdict: "partial",
-        note: `Vetë raporti i OLAF-it (i cituar nga citizens.al dhe voxnews.al) përshkruan pikërisht këtë mekanizëm: aplikantët e IPARD II detyroheshin t'i paguanin kompanive konsulente të paracaktuara një pjesë të grantit për të lehtësuar miratimin. Lidhja specifike me 'qeverinë' nuk është vërtetuar si pronësi/lidhje formale institucionale, por hetimi i SPAK po shqyrton njëkohësisht ish-ministren e Bujqësisë Frida Krifca dhe administratorin e një prej këtyre kompanive konsulente (Converse Management Consulting), çka sugjeron lidhje të pretenduar mes tyre - ende pa u vërtetuar gjyqësisht.`,
+        note: `Vetë raporti i OLAF-it (i cituar nga citizens.al dhe voxnews.al) përshkruan pikërisht këtë mekanizëm: aplikantët e IPARD II detyroheshin t'i paguanin kompanive konsulente të paracaktuara një pjesë të grantit për të lehtësuar miratimin. Lidhja specifike me 'qeverinë' nuk është vërtetuar si pronësi/lidhje formale institucionale, por hetimi i SPAK po shqyrton njëkohësisht ish-ministren e Bujqësisë Frida Krifca dhe administratorin e një prej këtyre kompanive konsulente (Converse Management Consulting).`,
       },
       {
         claim: `Ka pasoja penale/hetimore konkrete ndaj zyrtarëve`,
@@ -770,7 +770,7 @@ Një investigim i gjerë i BIRN-it ("The Albanian Files", korrik 2026) dokumento
     title: `Skandali i "Marina Limion" / Portit të Limionit (Sarandë) – tjetërsimi i pronës ushtarake`,
     period: `2020–2026 (koncesioni 2020; denoncimi i Begajt dhjetor 2021; regjistrimi i hetimit 2022; sekuestro shkurt 2023; kontrolle të reja tetor 2025; projekti ende i bllokuar maj 2026)`,
     narrative: [
-      `Në vitin 2020, një sipërfaqe rreth 265.000 m² në Gjirin e Limionit pranë Sarandës – pjesë e një baze ndihmëse të Forcave Detare (prona nr. 696, e përfshirë në planin e vendosjes së Forcave të Armatosura) – u dha me koncesion për ndërtimin e një porti turistik/marine luksoze, në favor të interesave të biznesmenëve Artan Dulaku dhe (sipas disa medieve) Shefqet Kastrati, përmes shoqërive si "Concord Investment"/"Marina Bay Sarandë". Ministrja e Infrastrukturës dhe Energjisë, Belinda Balluku, raportohet të ketë nënshkruar aktet që çuan përpara koncesionin (letër më 13 janar 2020, miratim më 23 qershor 2020), pavarësisht kundërshtimit të shprehur nga Ministria e Mbrojtjes, Komanda Detare dhe Shtabi i Përgjithshëm, të cilët paralajmëruan rrezik për sigurinë kombëtare. Më 28 dhjetor 2021, ish-zëvendëskomandanti detar Artur Meçollari i dorëzoi SPAK-ut denoncimin që ngriti çështjen, duke e cilësuar dhënien e bazës si rrezik për sigurinë kombëtare dhe në kundërshtim me nenin 6 të ligjit 125/2013, pasi përfshinte pronë ushtarake të mbrojtur; disa burime më të hershme (gijotina.com, balkanweb.com) e kishin atribuar denoncimin te Bajram Begaj, atëherë Shef i Shtabit të Përgjithshëm (sot President, që korrik 2022), por raportimi më i vonë dhe më i detajuar i reporter.al/BIRN, i përputhur me burime të tjera të pavarura, e identifikon Meçollarin si denoncuesin. Hetimi i SPAK, i regjistruar që në 2022 dhe i drejtuar (sipas medieve) nga prokurorja Manjola Kajana, çoi në një vendim sekuestrimi parandalues të pronës në shkurt 2023, të mbajtur në fuqi në shkallët e apelit dhe të konfirmuar edhe nga Gjykata Kushtetuese/Gjykata e Lartë; sekuestro mbetet aktive të paktën deri në maj 2026, me projektin ende të bllokuar dhe pa aktivitet ndërtimi në terren. Më 16 tetor 2025, SPAK dhe Byroja Kombëtare e Hetimit kryen kontrolle të reja në banesat/zyrat e Artan Dulakut dhe administratorit Genard Kastrati, si dhe të ish-Shefit të Shtabit të Përgjithshëm (sot deputet i PS) Bardhyl Kollçaku, administratorit të OSHEE Enea Karakaçi, punonjëses së Ministrisë së Infrastrukturës Teuta Balili, dhe ish-shefes së kabinetit të ish-ministres së Mbrojtjes Olta Xhaçka, Belioza Çoku – veprim i nxitur nga një dëshmi video 5-orëshe e depozituar në shtator 2025 nga avokati Arben Llangozi. Deri në korrik 2026 nuk ka aktakuzë të njohur publikisht kundër asnjë personi për këtë çështje specifike; Balluku përballet paralelisht edhe me një hetim/akuzë tjetër, më të gjerë, të SPAK për abuzime me tenderë infrastrukturorë (dëm i pretenduar rreth 50 milionë euro), për të cilën u pezullua përkohësisht nga detyra dhe u rikthye pas vendimit të Gjykatës Kushtetuese në dhjetor 2025 – çështje e lidhur por e ndryshme nga rasti i Limionit.`,
+      `Në vitin 2020, një sipërfaqe rreth 265.000 m² në Gjirin e Limionit pranë Sarandës – pjesë e një baze ndihmëse të Forcave Detare (prona nr. 696, e përfshirë në planin e vendosjes së Forcave të Armatosura) – u dha me koncesion për ndërtimin e një porti turistik/marine luksoze, në favor të interesave të biznesmenëve Artan Dulaku dhe (sipas disa medieve) Shefqet Kastrati, përmes shoqërive si "Concord Investment"/"Marina Bay Sarandë". Ministrja e Infrastrukturës dhe Energjisë, Belinda Balluku, raportohet të ketë nënshkruar aktet që çuan përpara koncesionin (letër më 13 janar 2020, miratim më 23 qershor 2020), pavarësisht kundërshtimit të shprehur nga Ministria e Mbrojtjes, Komanda Detare dhe Shtabi i Përgjithshëm, të cilët paralajmëruan rrezik për sigurinë kombëtare. Më 28 dhjetor 2021, ish-zëvendëskomandanti detar Artur Meçollari i dorëzoi SPAK-ut denoncimin që ngriti çështjen, duke e cilësuar dhënien e bazës si rrezik për sigurinë kombëtare dhe në kundërshtim me nenin 6 të ligjit 125/2013, pasi përfshinte pronë ushtarake të mbrojtur; disa burime më të hershme (gijotina.com, balkanweb.com) e kishin atribuar denoncimin te Bajram Begaj, atëherë Shef i Shtabit të Përgjithshëm (sot President, që korrik 2022), por raportimi më i vonë dhe më i detajuar i reporter.al/BIRN, i përputhur me burime të tjera të pavarura, e identifikon Meçollarin si denoncuesin. Hetimi i SPAK, i regjistruar që në 2022 dhe i drejtuar (sipas medieve) nga prokurorja Manjola Kajana, çoi në një vendim sekuestrimi parandalues të pronës në shkurt 2023, të mbajtur në fuqi në shkallët e apelit dhe të konfirmuar edhe nga Gjykata Kushtetuese/Gjykata e Lartë; sekuestro mbetet aktive të paktën deri në maj 2026, me projektin ende të bllokuar dhe pa aktivitet ndërtimi në terren. Më 16 tetor 2025, SPAK dhe Byroja Kombëtare e Hetimit kryen kontrolle të reja në banesat/zyrat e Artan Dulakut dhe administratorit Genard Kastrati, si dhe të ish-Shefit të Shtabit të Përgjithshëm (sot deputet i PS) Bardhyl Kollçaku, administratorit të OSHEE Enea Karakaçi, një punonjëseje të Ministrisë së Infrastrukturës dhe ish-shefes së kabinetit të ish-ministres së Mbrojtjes – veprim i nxitur nga një dëshmi video 5-orëshe e depozituar në shtator 2025 nga avokati Arben Llangozi. Deri në korrik 2026 nuk ka aktakuzë të njohur publikisht kundër asnjë personi për këtë çështje specifike; Balluku përballet paralelisht edhe me një hetim/akuzë tjetër, më të gjerë, të SPAK për abuzime me tenderë infrastrukturorë (dëm i pretenduar rreth 50 milionë euro), për të cilën u pezullua përkohësisht nga detyra dhe u rikthye pas vendimit të Gjykatës Kushtetuese në dhjetor 2025 – çështje e lidhur por e ndryshme nga rasti i Limionit.`,
     ],
     status: `Nën hetim aktiv nga SPAK që nga viti 2022 (prokurore Manjola Kajana, sipas medieve); prona nën sekuestro parandaluese nga shkurti 2023, e konfirmuar në apel; kontrolle të reja tetor 2025; deri më korrik 2026 nuk ka aktakuzë publike të njohur për asnjë të përfshirë.`,
     claims: [
@@ -1120,10 +1120,10 @@ Një investigim i gjerë i BIRN-it ("The Albanian Files", korrik 2026) dokumento
     redactedPhrase: `javë pas sulmit të parë`,
   },
   {
-    title: `Eksportimi/vjedhja e paautorizuar e bazës së të dhënave TIMS nga drejtori i IT-së në Policinë e Shtetit (gusht 2023)`,
+    title: `Eksportimi i pretenduar i bazës së të dhënave TIMS nga drejtori i IT-së në Policinë e Shtetit (gusht 2023)`,
     period: `Gusht 2023 - vazhdon (proces gjyqësor aktiv deri korrik 2026)`,
     narrative: [
-      `Më 2 gusht 2023, Ervin Muça, atëherë Drejtor i Teknologjisë dhe Informacionit në Policinë e Shtetit, akuzohet se organizoi eksportimin e paautorizuar të bazës së të dhënave TIMS (sistemi që regjistron hyrje-daljet në kufi, të dhëna biometrike dhe informacione mbi ngjarje penale) drejt disqesh të jashtëm, duke përdorur kredencialet e një vartësi për të hyrë natën në ambientet e serverit. Ngjarja shqetësoi Ambasadën Amerikane, e cila më 17 gusht 2023, përmes ngarkuarit me punë Martin McDowell, i kërkoi zyrtarisht ministrit të Brendshëm, Taulant Balla, një hetim të shpejtë dhe ofroi asistencë teknike. Rasti çoi në krijimin e një komisioni hetimor parlamentar, të kryesuar nga deputeti i PD Ervin Salianji, i cili pas rreth katër muajsh pune prodhoi një raport shumice (PS) dhe një raport pakice (PD, që pretendoi - pa u vërtetuar penalisht - se të dhënat mund të ishin përdorur nga grupe kriminale). Prokuroria e Tiranës (jo SPAK, siç ndonjëherë pretendohet) e vuri Muçën në arrest shtëpie më 9 prill 2024 dhe e pezulloi nga detyra; në mars 2025 përfundoi hetimet dhe e dërgoi për gjyq me akuzat "hyrje e paautorizuar kompjuterike" dhe "shpërdorim detyre". Hetimet zbuluan gjithashtu se Muça nuk plotësonte kriteret e kërkuara për postin (certifikim sigurie, trajnim), kishte një dënim të mëparshëm në Itali (2007-2008) për falsifikim dokumentesh, dhe punonte pa deklaruar si këshilltar i jashtëm i ASHK-së. Muça mohon akuzat, duke i quajtur ato një "backup" rutinë teknike; Gjykata e Tiranës dhe Gjykata e Apelit kanë lënë në fuqi masën e arrestit shtëpie, por deri në korrik 2026 nuk u gjet asnjë vendim final gjykate - procesi mbetet aktiv. Ish-kreu i komisionit hetimor, Salianji (aktualisht vetë i burgosur për çështje të tjera), ka kërkuar publikisht që SPAK ta marrë përsipër hetimin, duke sugjeruar që deri tani struktura kundër korrupsionit të nivelit të lartë nuk ka qenë ajo që drejton këtë çështje.`,
+      `Më 2 gusht 2023, Ervin Muça, atëherë Drejtor i Teknologjisë dhe Informacionit në Policinë e Shtetit, akuzohet se organizoi eksportimin e paautorizuar të bazës së të dhënave TIMS (sistemi që regjistron hyrje-daljet në kufi, të dhëna biometrike dhe informacione mbi ngjarje penale) drejt disqesh të jashtëm, duke përdorur kredencialet e një vartësi për të hyrë natën në ambientet e serverit. Ngjarja shqetësoi Ambasadën Amerikane, e cila më 17 gusht 2023, përmes ngarkuarit me punë Martin McDowell, i kërkoi zyrtarisht ministrit të Brendshëm, Taulant Balla, një hetim të shpejtë dhe ofroi asistencë teknike. Rasti çoi në krijimin e një komisioni hetimor parlamentar, të kryesuar nga deputeti i PD Ervin Salianji, i cili pas rreth katër muajsh pune prodhoi një raport shumice (PS) dhe një raport pakice (PD, që pretendoi - pa u vërtetuar penalisht - se të dhënat mund të ishin përdorur nga grupe kriminale). Prokuroria e Tiranës (jo SPAK, siç ndonjëherë pretendohet) e vuri Muçën në arrest shtëpie më 9 prill 2024 dhe e pezulloi nga detyra; në mars 2025 përfundoi hetimet dhe e dërgoi për gjyq me akuzat "hyrje e paautorizuar kompjuterike" dhe "shpërdorim detyre". Hetimet zbuluan gjithashtu se Muça nuk plotësonte kriteret e kërkuara për postin (certifikim sigurie, trajnim), dhe punonte pa deklaruar si këshilltar i jashtëm i ASHK-së. Muça mohon akuzat, duke i quajtur ato një "backup" rutinë teknike; Gjykata e Tiranës dhe Gjykata e Apelit kanë lënë në fuqi masën e arrestit shtëpie, por deri në korrik 2026 nuk u gjet asnjë vendim final gjykate - procesi mbetet aktiv. Ish-kreu i komisionit hetimor, Salianji (aktualisht vetë i burgosur për çështje të tjera), ka kërkuar publikisht që SPAK ta marrë përsipër hetimin, duke sugjeruar që deri tani struktura kundër korrupsionit të nivelit të lartë nuk ka qenë ajo që drejton këtë çështje.`,
     ],
     status: `Proces gjyqësor aktiv - jo SPAK, por Prokuroria e Tiranës; Ervin Muça u dërgua për gjyq në mars 2025 me akuza 'hyrje e paautorizuar kompjuterike' dhe 'shpërdorim detyre', ndodhet në arrest shtëpie (masë e lënë në fuqi nga Gjykata e Apelit); deri korrik 2026 nuk ka vendim final gjykate. Ai mohon akuzat.`,
     claims: [
@@ -1173,7 +1173,7 @@ Një investigim i gjerë i BIRN-it ("The Albanian Files", korrik 2026) dokumento
     category: "cyber-data",
     statusBucket: "investigation",
     yearStart: 2023,
-    teaser: `Drejtori i IT-së në Polici eksportoi natën bazën e të dhënave biometrike të kufirit në disqe të jashtëm.`,
+    teaser: `Drejtori i IT-së në Polici akuzohet se eksportoi bazën e të dhënave biometrike të kufirit në disqe të jashtëm; ai i mohon akuzat dhe gjyqi vazhdon.`,
     redactedPhrase: `disqe të jashtëm`,
   },
   {
@@ -1235,7 +1235,7 @@ Një investigim i gjerë i BIRN-it ("The Albanian Files", korrik 2026) dokumento
     title: `Skandali i Rrjedhjes së të Dhënave Personale: Pagat dhe Targat e Makinave (Dhjetor 2021)`,
     period: undefined,
     narrative: [
-      `Më 22 dhjetor 2021, të dhëna personale të 637.138 qytetarëve (punonjës të sektorit publik dhe privat) - duke përfshirë numra karte ID, emra, vendpunë, paga, pozicione dhe orë pune - u përhapën masivisht në WhatsApp dhe rrjete sociale, sipas raportimit të citizens.al. Dy ditë më vonë, më 24 dhjetor, u bë publike edhe një bazë e dytë të dhënash me targa, modele dhe pronarë automjetesh në Shqipëri, e konfirmuar nga euronews.al, që citoi kryeprokuroren e Tiranës, Elisabeta Imeraj, duke premtuar zbulimin e autorit. Të njëjtën ditë dha dorëheqjen drejtori i IT-së në AKSHI (Agjencia Kombëtare e Shoqërisë së Informacionit), Ervin Muça, ndërsa Prokuroria e Tiranës hapi hetim për "shpërdorim detyre" dhe "ndërhyrje të paligjshme në sistem kompjuterik", duke marrë në pyetje punonjës të institucioneve të përfshira; edhe Komisioneri për të Drejtën e Informimit dhe Mbrojtjen e të Dhënave Personale nisi hetim administrativ. Presidenti Ilir Meta e cilësoi ngjarjen "shkelje flagrante" e të drejtave dhe dinjitetit njerëzor, opozita (PD, Sali Berisha) e përdori skandalin për të thirrur protesta duke akuzuar qeverinë, ndërsa Komisioni Evropian e listoi rrjedhjen si shqetësim në raportimet e shkurtit 2022 mbi Shqipërinë. E vetmja ngjarje e afërt e dokumentuar mirë me rrjedhje numrash telefoni është ajo e mëparshme, e prillit 2021, kur u publikuan të dhënat - përfshirë numra telefoni dhe preferenca politike - të 910.000 votuesve të Tiranës (skandal tjetër, i lidhur me listat e "patronazhistëve" të PS); një valë e tretë rrjedhjesh specifikisht brenda dhjetorit 2021 nuk figuron në burimet e kontrolluara, përfshirë një artikull përmbledhës të citizens.al nga shtatori 2022 mbi 5 sulme kibernetike në 14 muaj. Në burimet e konsultuara nuk u gjet ndonjë rezultat final publik i hetimit penal - as akuza formale zyrtare, as arrestime a dënime - ndaj përgjegjësia penale konkrete mbetet e paqartë/e pazgjidhur publikisht deri më sot.`,
+      `Më 22 dhjetor 2021, të dhëna personale të 637.138 qytetarëve (punonjës të sektorit publik dhe privat) - duke përfshirë numra karte ID, emra, vendpunë, paga, pozicione dhe orë pune - u përhapën masivisht në WhatsApp dhe rrjete sociale, sipas raportimit të citizens.al. Dy ditë më vonë, më 24 dhjetor, u bë publike edhe një bazë e dytë të dhënash me targa, modele dhe pronarë automjetesh në Shqipëri, e konfirmuar nga euronews.al, që citoi kryeprokuroren e Tiranës, Elisabeta Imeraj, duke premtuar zbulimin e autorit. Të njëjtën ditë dha dorëheqjen drejtori i IT-së në AKSHI (Agjencia Kombëtare e Shoqërisë së Informacionit), ndërsa Prokuroria e Tiranës hapi hetim për "shpërdorim detyre" dhe "ndërhyrje të paligjshme në sistem kompjuterik", duke marrë në pyetje punonjës të institucioneve të përfshira; edhe Komisioneri për të Drejtën e Informimit dhe Mbrojtjen e të Dhënave Personale nisi hetim administrativ. Presidenti Ilir Meta e cilësoi ngjarjen "shkelje flagrante" e të drejtave dhe dinjitetit njerëzor, opozita (PD, Sali Berisha) e përdori skandalin për të thirrur protesta duke akuzuar qeverinë, ndërsa Komisioni Evropian e listoi rrjedhjen si shqetësim në raportimet e shkurtit 2022 mbi Shqipërinë. E vetmja ngjarje e afërt e dokumentuar mirë me rrjedhje numrash telefoni është ajo e mëparshme, e prillit 2021, kur u publikuan të dhënat - përfshirë numra telefoni dhe preferenca politike - të 910.000 votuesve të Tiranës (skandal tjetër, i lidhur me listat e "patronazhistëve" të PS); një valë e tretë rrjedhjesh specifikisht brenda dhjetorit 2021 nuk figuron në burimet e kontrolluara, përfshirë një artikull përmbledhës të citizens.al nga shtatori 2022 mbi 5 sulme kibernetike në 14 muaj. Në burimet e konsultuara nuk u gjet ndonjë rezultat final publik i hetimit penal - as akuza formale zyrtare, as arrestime a dënime - ndaj përgjegjësia penale konkrete mbetet e paqartë/e pazgjidhur publikisht deri më sot.`,
     ],
     status: `Hetim i çelur nga Prokuroria e Tiranës (shpërdorim detyre / ndërhyrje kompjuterike e paligjshme) dhe nga Komisioneri për Mbrojtjen e të Dhënave Personale; drejtori IT i AKSHI-t dha dorëheqjen; nuk u gjet asnjë akuzë formale, arrestim apo dënim publik si rezultat final i hetimit në burimet e konsultuara - status i paqartë/i papërfunduar publikisht.`,
     claims: [
@@ -1396,8 +1396,8 @@ Një investigim i gjerë i BIRN-it ("The Albanian Files", korrik 2026) dokumento
     category: "justice-crime",
     statusBucket: "convicted",
     yearStart: 2013,
-    teaser: `Ministri i Brendshëm i Ramës u dënua përfundimisht për lidhje me trafikun e drogës drejt Italisë.`,
-    redactedPhrase: `u dënua përfundimisht`,
+    teaser: `Ish-ministri i Brendshëm i Ramës u dënua përfundimisht për shpërdorim detyre; u shpall i pafajshëm për trafik droge.`,
+    redactedPhrase: `shpërdorim detyre`,
   },
   {
     title: `Dosja 339: Përgjimet mbi lidhjet e pretenduara të krimit të organizuar me blerjen e votave për PS në Durrës (zgjedhjet 2017)`,
@@ -1408,7 +1408,7 @@ Një investigim i gjerë i BIRN-it ("The Albanian Files", korrik 2026) dokumento
     status: `E papërfunduar/e ngushtuar — asnjë figurë kryesore politike ose kriminale nuk është dënuar apo akuzuar zyrtarisht për blerje vote në kuadër të Dosjes 339; vetëm disa komisionerë të nivelit të ulët u ndoqën penalisht (sipas një burimi, Lapsi.al 2021). Vangjush Dako u mor në pyetje vetëm si "person me dijeni" në 2019 dhe nuk u akuzua për blerje vote; që nga qershori 2023 ai është nën akuzë të SPAK, por për një çështje tjetër, jo për Dosjen 339.`,
     claims: [
       {
-        claim: `Përgjime telefonike zbulojnë rol të krimit të organizuar (klani Avdylaj) në blerjen e votave për PS në Durrës, zgjedhjet 2017`,
+        claim: `Përgjime telefonike të publikuara sugjerojnë rol të grupit Avdylaj në blerjen e votave për PS në Durrës, zgjedhjet 2017`,
         verdict: "confirmed",
         note: `Konfirmuar nga burime të shumta e të pavarura: BIRN/Balkan Insight (28 tetor 2018), Zëri i Amerikës (citon hetim të BIRN), ABC News Albania, Shqiptarja.com, Gazeta Si, TV Klan, Balkanweb. Kryebashkiaku i Durrësit Vangjush Dako figuron në përgjime në kontakt me vëllezërit Astrit dhe Altin Avdylaj; hetimi prek edhe Kavajë, Lezhë, Dibër.`,
       },
@@ -1449,8 +1449,8 @@ Një investigim i gjerë i BIRN-it ("The Albanian Files", korrik 2026) dokumento
     category: "justice-crime",
     statusBucket: "no-process",
     yearStart: 2017,
-    teaser: `Përgjime tregonin blerje vote me krimin e organizuar në Durrës — askush në nivel të lartë nuk u dënua.`,
-    redactedPhrase: `askush në nivel të lartë`,
+    teaser: `Përgjime të publikuara sugjeronin blerje votash me ndihmën e një grupi kriminal në Durrës; asnjë figurë e lartë politike nuk u akuzua.`,
+    redactedPhrase: `asnjë figurë e lartë`,
   },
   {
     title: `Rikthimi dhe përhapja e kultivimit të kanabisit në gjithë Shqipërinë pas Lazaratit (2015–2021)`,
@@ -1506,7 +1506,7 @@ Një investigim i gjerë i BIRN-it ("The Albanian Files", korrik 2026) dokumento
     redactedPhrase: `qindra hektarë`,
   },
   {
-    title: `Dosja "Xibraka" – laboratori i kokainës (2015) dhe lidhjet e pretenduara me Olsi Ramën`,
+    title: `Dosja "Xibraka" – laboratori i kokainës (2015)`,
     period: undefined,
     narrative: [
       `Në janar 2015, policia shqiptare, në bashkëpunim me policinë gjermane, zbuloi në fshatin Xibrakë (Elbasan) atë që u përshkrua në media si laboratori i parë i përpunimit të kokainës i zbuluar në Shqipëri, rreth një vit pas ardhjes së Edi Ramës në pushtet. U sekuestruan rreth 100 kg substancë narkotike (sipas disa raportimeve, ~19 kg kokainë e pastër plus sasi shtesë të përzier), armë dhe para në disa monedha, dhe u arrestuan rreth 10-11 persona, mes tyre Ermal Hoxha (i afërm i ish-diktatorit Enver Hoxha) dhe dy shtetas kolumbianë (të identifikuar në shtyp si Cezar Gutiérrez/Avila dhe Valter/Juan Moreno). Genci Xhixha, i konsideruar nga prokuroria organizatori dhe financuesi i grupit, u shpall në kërkim, u dënua më vonë në mungesë (rreth 8 vjet e disa muaj) dhe, sipas burimeve të fundit të verifikueshme (2024-fillim 2025), mbetet i pakapur, me dyshime se jeton në Kubë. Në mars 2024, deputeti i opozitës Gazment Bardhi denoncoi publikisht të dhëna nga sistemi TIMS sipas të cilave një automjet (targa AA653DM) i përdorur nga anëtarë të grupit kriminal ishte regjistruar edhe në përdorim të Olsi Ramës, vëllait të kryeministrit Edi Rama, duke ngritur akuza për lidhje të mundshme me trafikun; Olsi Rama u paraqit dy herë vullnetarisht në SPAK (2024) dhe dha shpjegime si person me dijeni. Më 10 janar 2025, SPAK njoftoi se hetimi nuk gjeti prova apo fakte që lidhin Olsi Ramën me trafikun e kokainës dhe e mbylli këtë degë të çështjes, duke ia kthyer dosjen Drejtorisë së Përgjithshme të Policisë për autorë të tjerë ende të paidentifikuar.`,
@@ -1560,21 +1560,21 @@ Një investigim i gjerë i BIRN-it ("The Albanian Files", korrik 2026) dokumento
     category: "justice-crime",
     statusBucket: "convicted",
     yearStart: 2015,
-    teaser: `Një makinë e përbashkët lidhi grupin e trafikut me vëllain e kryeministrit — SPAK e mbylli hetimin pa gjetur prova kundër tij.`,
-    redactedPhrase: `vëllain e kryeministrit`,
+    teaser: `Laboratori i parë i kokainës në Shqipëri; opozita pretendoi lidhje me vëllain e kryeministrit, por SPAK nuk gjeti prova dhe e mbylli hetimin ndaj tij.`,
+    redactedPhrase: `nuk gjeti prova`,
   },
   {
     title: `Vdekja e Ardit Gjoklajt në landfillin e Sharrës (7 gusht 2016)`,
     period: `gusht 2016 – qershor 2023 (ngjarja: 7 gusht 2016; procesi gjyqësor: 2016–2018+; rihapje shqyrtimi vettingu: 2023)`,
     narrative: [
-      `Më 7 gusht 2016, në landfillin e Sharrës (Tiranë) u gjet i vdekur Ardit Gjoklaj, 17 vjeç, i lindur në Tropojë dhe banues në Tiranë, i cili punonte për kompaninë private "3R sh.p.k." (nënkontraktore për ndarjen/riciklimin e mbeturinave në landfill, në pronësi të Edurim Teqjas; më vonë u riemërtua "Alb Tech Plast"). Media dhe familja denoncuan se punësimi ishte i parregullt (pa kontratë të rregullt, pa masa sigurie), ndërsa ekzaminimi fillestar lidhi vdekjen me dëmtime nga një ekskavator i kompanisë. Prokuroria akuzoi fillimisht disa punonjës — operatorin e ekskavatorit Edmond Kallari, përgjegjësin e turnit Dëfrim Hakrama dhe drejtorin teknik Besnik Braha — për shkelje të rregullave të sigurisë në punë që shkaktuan vdekjen; Partia Demokratike depozitoi gjithashtu kallëzim penal ndaj kryebashkiakut Erion Veliaj (abuzim detyre, punësim i paligjshëm etj.), kallëzim që nuk çoi në ndjekje penale ndaj tij. Më 17 prill 2018, Gjykata e Tiranës (vendimi nr. 1170) e shpalli Hakramën të pafajshëm dhe e dënoi Kallarin vetëm për drejtim automjeti pa leje (2 vjet burg, konsideruar i vuajtur nga paraburgimi), duke gjetur se provat forenzike (mungesë gjurmësh gjaku/indi në vendngjarje, natyra e plagëve) hidhnin dyshime nëse vdekja ndodhi realisht aty ku u gjet trupi apo diku tjetër, dhe duke kritikuar vetë Prokurorinë për hetim "të paplotë dhe selektiv". Prokuroria e apeloi këtë vendim duke kërkuar dënim me burg për të akuzuarit, ndërsa hetimi ndaj drejtorit të kompanisë mbeti i pezulluar. Në qershor 2023, Komisioni i Pavarur i Kualifikimit (KPK) rihapi shqyrtimin e këtij dosjeje në kuadër të vettingut të prokurorit Julian Zonja, që kishte drejtuar hetimin fillestar, duke ngritur pikëpyetje shtesë mbi cilësinë e tij. Deri në burimet më të fundit të gjetura (2023), nuk rezulton të ketë pasur dënim penal final për vdekjen e Gjoklajt dhe rrethanat e sakta të saj mbeten ligjërisht të pazgjidhura.`,
+      `Më 7 gusht 2016, në landfillin e Sharrës (Tiranë) u gjet i vdekur Ardit Gjoklaj, 17 vjeç, i lindur në Tropojë dhe banues në Tiranë, i cili punonte për kompaninë private "3R sh.p.k." (nënkontraktore për ndarjen/riciklimin e mbeturinave në landfill; më vonë u riemërtua "Alb Tech Plast"). Media dhe familja denoncuan se punësimi ishte i parregullt (pa kontratë të rregullt, pa masa sigurie), ndërsa ekzaminimi fillestar lidhi vdekjen me dëmtime nga një ekskavator i kompanisë. Prokuroria akuzoi fillimisht disa punonjës — operatorin e ekskavatorit, përgjegjësin e turnit dhe drejtorin teknik — për shkelje të rregullave të sigurisë në punë që shkaktuan vdekjen; Partia Demokratike depozitoi gjithashtu kallëzim penal ndaj kryebashkiakut Erion Veliaj (abuzim detyre, punësim i paligjshëm etj.), kallëzim që nuk çoi në ndjekje penale ndaj tij. Më 17 prill 2018, Gjykata e Tiranës (vendimi nr. 1170) e shpalli përgjegjësin e turnit të pafajshëm dhe e dënoi operatorin e ekskavatorit vetëm për drejtim automjeti pa leje (2 vjet burg, konsideruar i vuajtur nga paraburgimi), duke gjetur se provat forenzike (mungesë gjurmësh gjaku/indi në vendngjarje, natyra e plagëve) hidhnin dyshime nëse vdekja ndodhi realisht aty ku u gjet trupi apo diku tjetër, dhe duke kritikuar vetë Prokurorinë për hetim "të paplotë dhe selektiv". Prokuroria e apeloi këtë vendim duke kërkuar dënim me burg për të akuzuarit, ndërsa hetimi ndaj drejtorit të kompanisë mbeti i pezulluar. Në qershor 2023, Komisioni i Pavarur i Kualifikimit (KPK) rihapi shqyrtimin e këtij dosjeje në kuadër të vettingut të prokurorit Julian Zonja, që kishte drejtuar hetimin fillestar, duke ngritur pikëpyetje shtesë mbi cilësinë e tij. Deri në burimet më të fundit të gjetura (2023), nuk rezulton të ketë pasur dënim penal final për vdekjen e Gjoklajt dhe rrethanat e sakta të saj mbeten ligjërisht të pazgjidhura.`,
     ],
     status: `Proces i papërfunduar / pa drejtësi finale: akuza fillestare u hodhën poshtë nga Gjykata e Tiranës (prill 2018), vendim i apeluar nga Prokuroria; hetimi ndaj drejtorit të kompanisë mbetet i pezulluar; në qershor 2023 KPK rihapi shqyrtimin e dosjes gjatë vettingut të prokurorit Julian Zonja. Nuk u gjet asnjë burim që të konfirmojë dënim penal final apo vendim të apelit të mëvonshëm se prillit 2018.`,
     claims: [
       {
         claim: `I punësuar në mënyrë të paligjshme (i mitur, pa kontratë, pa siguri) për kompaninë 3R sh.p.k.`,
         verdict: "partial",
-        note: `Emri i kompanisë '3R sh.p.k.' (më vonë 'Alb Tech Plast', pronë e Edurim Teqjas) konfirmohet nga disa burime. Pretendimet për punësim pa kontratë/pa siguri përsëriten në media dhe u përfshinë në kallëzimin penal të PD-së ndaj Veliajt (nen 170/a), por nuk u gjet vendim gjyqësor që të konfirmojë zyrtarisht kushtet e sakta të punësimit të Gjoklajt specifikisht.`,
+        note: `Emri i kompanisë '3R sh.p.k.' (më vonë 'Alb Tech Plast') konfirmohet nga disa burime. Pretendimet për punësim pa kontratë/pa siguri përsëriten në media dhe u përfshinë në kallëzimin penal të PD-së ndaj Veliajt (nen 170/a), por nuk u gjet vendim gjyqësor që të konfirmojë zyrtarisht kushtet e sakta të punësimit të Gjoklajt specifikisht.`,
       },
       {
         claim: `U gjet i vdekur mes mbeturinave me plagë të rënda nga mjete të rënda (ekskavator)`,
@@ -1604,14 +1604,14 @@ Një investigim i gjerë i BIRN-it ("The Albanian Files", korrik 2026) dokumento
     category: "life-safety-state",
     statusBucket: "no-process",
     yearStart: 2016,
-    teaser: `17-vjeçari vdiq duke punuar pa kontratë në landfillin e Sharrës — akuzat u hodhën poshtë nga gjykata.`,
+    teaser: `17-vjeçari vdiq në landfillin e Sharrës, ku sipas medias punonte pa kontratë; akuzat u hodhën poshtë nga gjykata.`,
     redactedPhrase: `pa kontratë`,
   },
   {
     title: `Vrasja e Klodian Rashës nga efektivi i Policisë Nevaldo Hajdaraj (8 dhjetor 2020)`,
     period: `8 dhjetor 2020 - 3 korrik 2025 (proces gjyqësor i mbyllur)`,
     narrative: [
-      `Në natën e 8 dhjetorit 2020, në rrugën "Dritan Hoxha" në Laprakë, Tiranë, gjatë kufizimeve anti-COVID, efektivi i njësisë speciale të Policisë "Shqiponjat", Nevaldo Hajdaraj, qëlloi dhe vrau 25-vjeçarin Klodian Rasha, i cili po largohej me vrap pasi nuk ndaloi në thirrjen e policisë; sipas video-dëshmive, të riu u godit teksa po ikte, duke pësuar plagë në shpatull dhe kokë. Pak orë pas ngjarjes u gjet një pistoletë rreth 100-200 metra larg vendngjarjes, e cila sipas ekspertizës nuk i përkiste Rashës (nuk kishte gjurmë gishtash apo DNA-je të tij); ky element ngriti dyshime për përpjekje për ta paraqitur rastin si vetëmbrojtje, dhe kontribuoi që prokuroria ta ndryshonte akuzën fillestare (tejkalim i kufijve të mbrojtjes së nevojshme) në "vrasje me dashje". Nuk u gjetën burime që raportojnë ndonjë koleg të Hajdarajt të akuzuar apo dënuar zyrtarisht për fshehje/manipulim provash lidhur me armën e gjetur; një koleg i pranishëm atë natë (Erion Gjore) u pezullua përkohësisht dhe më pas u rikthye në detyrë, pa u konfirmuar hetim penal ndaj tij. Gjykata e Tiranës e dënoi Hajdarajn më 14 korrik 2021 me 15 vjet burg për vrasje me dashje, dënim që, falë gjykimit të shkurtuar (ulje 1/3), u ekzekutua praktikisht si 10 vjet. Gjykata e Apelit e rriti më pas dënimin bazë në 18 vjet (rreth mars 2022), që me të njëjtën ulje 1/3 u kthye në 12 vjet burg efektive. Gjykata e Lartë, më 3 korrik 2025, rrëzoi si rekursin e Hajdarajt ashtu edhe atë të prokurorisë, duke lënë në fuqi përfundimisht dënimin me 12 vjet burg. Ngjarja shkaktoi protesta të mëdha në disa qytete dhe çoi në dorëheqjen e ministrit të Brendshëm, Sandër Lleshaj, më 10 dhjetor 2020.`,
+      `Në natën e 8 dhjetorit 2020, në rrugën "Dritan Hoxha" në Laprakë, Tiranë, gjatë kufizimeve anti-COVID, efektivi i njësisë speciale të Policisë "Shqiponjat", Nevaldo Hajdaraj, qëlloi dhe vrau 25-vjeçarin Klodian Rasha, i cili po largohej me vrap pasi nuk ndaloi në thirrjen e policisë; sipas video-dëshmive, të riu u godit teksa po ikte, duke pësuar plagë në shpatull dhe kokë. Pak orë pas ngjarjes u gjet një pistoletë rreth 100-200 metra larg vendngjarjes, e cila sipas ekspertizës nuk i përkiste Rashës (nuk kishte gjurmë gishtash apo DNA-je të tij); ky element ngriti dyshime për përpjekje për ta paraqitur rastin si vetëmbrojtje, dhe kontribuoi që prokuroria ta ndryshonte akuzën fillestare (tejkalim i kufijve të mbrojtjes së nevojshme) në "vrasje me dashje". Nuk u gjetën burime që raportojnë ndonjë koleg të Hajdarajt të akuzuar apo dënuar zyrtarisht për fshehje/manipulim provash lidhur me armën e gjetur; një koleg i pranishëm atë natë u pezullua përkohësisht dhe më pas u rikthye në detyrë, pa u konfirmuar hetim penal ndaj tij. Gjykata e Tiranës e dënoi Hajdarajn më 14 korrik 2021 me 15 vjet burg për vrasje me dashje, dënim që, falë gjykimit të shkurtuar (ulje 1/3), u ekzekutua praktikisht si 10 vjet. Gjykata e Apelit e rriti më pas dënimin bazë në 18 vjet (rreth mars 2022), që me të njëjtën ulje 1/3 u kthye në 12 vjet burg efektive. Gjykata e Lartë, më 3 korrik 2025, rrëzoi si rekursin e Hajdarajt ashtu edhe atë të prokurorisë, duke lënë në fuqi përfundimisht dënimin me 12 vjet burg. Ngjarja shkaktoi protesta të mëdha në disa qytete dhe çoi në dorëheqjen e ministrit të Brendshëm, Sandër Lleshaj, më 10 dhjetor 2020.`,
     ],
     status: `Proces gjyqësor i mbyllur me vendim të formës së prerë: Nevaldo Hajdaraj është dënuar përfundimisht (Gjykata e Lartë, korrik 2025) me 12 vjet burg për vrasje me dashje. Asnjë person tjetër (koleg efektiv) nuk rezulton i akuzuar publikisht për pretenduar mbulim krimi/manipulim provash.`,
     claims: [
@@ -1633,7 +1633,7 @@ Një investigim i gjerë i BIRN-it ("The Albanian Files", korrik 2026) dokumento
       {
         claim: `Kolegët e përfshirë në mbulim nuk janë prekur/dënuar`,
         verdict: "unverified",
-        note: `Nuk u gjet asnjë burim që raporton akuzë apo dënim penal ndaj ndonjë kolegu të Hajdarajt për mbulim krimi. U gjet vetëm se një koleg i pranishëm (Erion Gjore) u pezullua shkurtimisht pas ngjarjes dhe u rikthye në detyrë pasi hetimi nuk gjeti lidhje paraprake mes Hajdarajt dhe viktimës (çështje tjetër nga ajo e armës). Mungesa e raportimeve për ndjekje penale të kolegëve nuk provon vetë pretendimin, por përputhet me të - konsiderohet e pakonfirmuar në mungesë burimesh shtesë.`,
+        note: `Nuk u gjet asnjë burim që raporton akuzë apo dënim penal ndaj ndonjë kolegu të Hajdarajt për mbulim krimi. U gjet vetëm se një koleg i pranishëm u pezullua shkurtimisht pas ngjarjes dhe u rikthye në detyrë pasi hetimi nuk gjeti lidhje paraprake mes Hajdarajt dhe viktimës (çështje tjetër nga ajo e armës). Mungesa e raportimeve për ndjekje penale të kolegëve nuk provon vetë pretendimin, por përputhet me të - konsiderohet e pakonfirmuar në mungesë burimesh shtesë.`,
       },
     ],
     confidence: `mesatare`,

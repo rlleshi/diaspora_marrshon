@@ -1563,6 +1563,45 @@ textarea:focus {
   align-items: start;
 }
 
+.site-footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px;
+}
+
+.privacy-inner {
+  max-width: 760px;
+}
+
+.privacy-updated {
+  font-size: 0.9rem !important;
+}
+
+.privacy-section {
+  margin-top: 30px;
+}
+
+.privacy-section h2 {
+  margin: 0 0 10px;
+  font-size: 1.3rem;
+}
+
+.privacy-section p {
+  margin: 0 0 10px;
+  color: var(--muted);
+  line-height: 1.62;
+}
+
+.privacy-contact {
+  margin-top: 30px;
+  gap: 8px;
+}
+
+.contact-privacy a {
+  color: inherit;
+  text-decoration: underline;
+}
+
 .contact-privacy {
   margin: 0;
   color: var(--muted);
