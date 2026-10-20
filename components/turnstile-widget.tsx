@@ -24,6 +24,15 @@ export function TurnstileWidget({
 }) {
   const containerRef = useRef<HTMLDivElement | null>(null);
   const widgetIdRef = useRef<string | null>(null);
+  // The forms pass fresh callbacks on every render (every keystroke). Reading them through
+  // refs keeps the widget alive; otherwise it was torn down and restarted at "Verifying".
+  const onVerifyRef = useRef(onVerify);
+  const onExpireRef = useRef(onExpire);
+
+  useEffect(() => {
+    onVerifyRef.current = onVerify;
+    onExpireRef.current = onExpire;
+  });
 
   const renderWidget = useCallback(() => {
     const turnstileWindow = window as TurnstileWindow;
@@ -38,12 +47,12 @@ export function TurnstileWidget({
 
     widgetIdRef.current = turnstileWindow.turnstile.render(containerRef.current, {
       sitekey: siteKey,
-      callback: onVerify,
-      "expired-callback": onExpire,
-      "error-callback": onExpire,
+      callback: (token: string) => onVerifyRef.current(token),
+      "expired-callback": () => onExpireRef.current(),
+      "error-callback": () => onExpireRef.current(),
       theme: "light",
     });
-  }, [onExpire, onVerify, siteKey]);
+  }, [siteKey]);
 
   useEffect(() => {
     renderWidget();
