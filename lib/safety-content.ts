@@ -340,6 +340,13 @@ export const safetyPageContent: Record<Locale, SafetyPageContent> = {
                   body: "Ndihmë ligjore për personat e shoqëruar gjatë protestës. Avokatin mund ta zgjedhë vetë personi i shoqëruar ose familja.",
                   phone: "069 202 0286",
                 },
+                {
+                  tag: "Avokat",
+                  name: "Redi Shima",
+                  body: "Asistencë ligjore falas 24/7 për studentët dhe të miturit që ndalohen nga policia.",
+                  phone: "069 688 1469",
+                  link: { label: "@avokat_redi_shima", href: "https://www.instagram.com/avokat_redi_shima/" },
+                },
               ],
             },
             {
@@ -679,6 +686,13 @@ export const safetyPageContent: Record<Locale, SafetyPageContent> = {
                   name: "Arta Danaj",
                   body: "Legal help for people taken in during the protests. The person taken in or their family can choose the lawyer.",
                   phone: "069 202 0286",
+                },
+                {
+                  tag: "Lawyer",
+                  name: "Redi Shima",
+                  body: "Free legal help, 24/7, for students and minors detained by the police.",
+                  phone: "069 688 1469",
+                  link: { label: "@avokat_redi_shima", href: "https://www.instagram.com/avokat_redi_shima/" },
                 },
               ],
             },
