@@ -38,12 +38,6 @@ export const privacyPageContent: Record<Locale, PrivacyPageContent> = {
         ],
       },
       {
-        title: "Premtimi për marshim",
-        paragraphs: [
-          "Kur premtimi për marshim është i hapur dhe e plotëson, ruajmë të dhënat që shkruan, vetëm me pëlqimin tënd të shprehur, për të konfirmuar premtimin dhe për koordinimin e marshimit. Pëlqimin mund ta tërheqësh në çdo kohë.",
-        ],
-      },
-      {
         title: "Shërbimet që përdorim",
         paragraphs: [
           "Përdorim ofrues të besuar shërbimesh për të mbajtur faqen, për të ruajtur të dhënat e formularëve, për të ndaluar spamin dhe për të numëruar vizitat. Statistikat e vizitave nuk përdorin cookies dhe nuk na tregojnë kush je. Të dhënat e tua nuk i shesim dhe nuk i përdorim për reklama.",
@@ -80,12 +74,6 @@ export const privacyPageContent: Record<Locale, PrivacyPageContent> = {
         title: "Contact form",
         paragraphs: [
           "When you write to us, we store your name, email, organisation (if you give one) and message so we can reply. By sending a message, you agree to us handling this data for that purpose. We keep it only as long as the conversation needs it.",
-        ],
-      },
-      {
-        title: "March pledge",
-        paragraphs: [
-          "When the march pledge is open and you fill it in, we store the details you enter, only with your explicit consent, to confirm your pledge and coordinate the march. You can withdraw your consent at any time.",
         ],
       },
       {
