@@ -10,8 +10,8 @@ export function ContactPage({ locale }: { locale: Locale }) {
   const t = contactPageContent[locale];
   const alternateLocale = locale === "sq" ? "en" : "sq";
   const turnstileSiteKey =
-    process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY ??
-    process.env.TURNSTILE_SITE_KEY ??
+    process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY ||
+    process.env.TURNSTILE_SITE_KEY ||
     "";
 
   return (

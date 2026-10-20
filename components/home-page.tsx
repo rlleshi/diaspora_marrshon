@@ -88,8 +88,8 @@ export function HomePage({ locale }: { locale: Locale }) {
     ? "route-layout"
     : "route-layout route-layout-single";
   const turnstileSiteKey =
-    process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY ??
-    process.env.TURNSTILE_SITE_KEY ??
+    process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY ||
+    process.env.TURNSTILE_SITE_KEY ||
     "";
 
   const sparkWidth = 260;
