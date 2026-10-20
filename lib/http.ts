@@ -1,4 +1,8 @@
 import { getAllowedOrigins, isProduction } from "@/lib/env";
+import { SITE_URL } from "@/lib/metadata";
+
+/** The live site always accepts its own forms, with or without www, whatever the env lists. */
+const siteOrigins = [SITE_URL, SITE_URL.replace("://www.", "://")];
 
 export function getClientIp(request: Request) {
   const forwarded = request.headers.get("x-forwarded-for");
@@ -18,6 +22,10 @@ export function isAllowedOrigin(request: Request) {
 
   if (!origin) {
     return !isProduction();
+  }
+
+  if (siteOrigins.includes(origin)) {
+    return true;
   }
 
   if (allowedOrigins.length === 0) {
