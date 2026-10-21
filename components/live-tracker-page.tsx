@@ -5,8 +5,11 @@ import {
   ParticipationChart,
   type ChartLabels,
 } from "@/components/participation/ParticipationChart";
+import { DayLog } from "@/components/participation/DayLog";
 import { TrackedLink } from "@/components/analytics-events";
 import { SiteFooter } from "@/components/site-footer";
+import { participation } from "@/data/participation";
+import { pulsiDatasetJsonLd } from "@/lib/metadata";
 
 const COPY: Record<
   Locale,
@@ -202,8 +205,19 @@ export function LiveTrackerPage({ locale }: { locale: Locale }) {
   const c = content[locale];
   const alternateLocale = locale === "sq" ? "en" : "sq";
 
+  const dataset = pulsiDatasetJsonLd(
+    locale,
+    participation.length,
+    participation[0].date,
+    participation[participation.length - 1].date,
+  );
+
   return (
     <div className="site-shell tracker-shell">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(dataset) }}
+      />
       <header className="site-header">
         <Link href={t.homeHref} className="brand">
           <Flag aria-hidden="true" size={22} />
@@ -273,6 +287,7 @@ export function LiveTrackerPage({ locale }: { locale: Locale }) {
                 <span className="participation-disclaimer">{t.disclaimer}</span>
               </figcaption>
             </figure>
+            <DayLog locale={locale} />
           </div>
         </section>
       </main>

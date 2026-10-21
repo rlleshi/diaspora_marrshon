@@ -5,9 +5,9 @@ export const metadata = pageMetadata({
   locale: "sq",
   path: "/pulsi",
   ownImage: true,
-  title: "Pulsi i protestës | Diaspora marshon",
+  title: "Revolucioni Flamingo ditë pas dite: pulsi i protestës në Tiranë | Flamingo Revolution Diaspora",
   description:
-    "Indeksi i pjesëmarrjes në protestat e qershorit 2026: 143 ditë në shesh, ditë pas dite, me momentet kyçe.",
+    "Protestat kundër qeverisë Rama në Tiranë që nga 31 maji 2026: 143 ditë në shesh, me indeksin e pjesëmarrjes, një shënim për çdo natë dhe momentet kyçe.",
 });
 
 export default function Page() {

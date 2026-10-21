@@ -5,9 +5,9 @@ export const metadata = pageMetadata({
   locale: "en",
   path: "/pulsi",
   ownImage: true,
-  title: "Protest pulse | Diaspora marches",
+  title: "Flamingo Revolution, Albania: day-by-day protest crowd tracker | Flamingo Revolution Diaspora",
   description:
-    "The June 2026 protest participation index: 143 days in the square, day by day, with the key moments.",
+    "The anti-government protests in Tirana, Albania, demanding Rama's resignation since 31 May 2026: 143 days in the square, with a crowd index, a note for every night and the key moments.",
 });
 
 export default function Page() {

@@ -4,9 +4,9 @@ import { pageMetadata } from "@/lib/metadata";
 export const metadata = pageMetadata({
   locale: "en",
   path: "/",
-  title: "The diaspora marches in Tirana | Flamingo Revolution",
+  title: "Flamingo Revolution Diaspora: the diaspora marches in Tirana | Albania protests 2026",
   description:
-    "The Albanian diaspora marches in Tirana. Follow the protest pulse night by night, the scandal dossier and the next march.",
+    "The diaspora wing of Albania's Flamingo Revolution: the Albanian diaspora joins the anti-government protests in Tirana, daily since 31 May 2026. Follow the protest night by night, the scandal dossier and the next march.",
 });
 
 export default function EnglishPage() {

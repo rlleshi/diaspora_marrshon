@@ -169,7 +169,7 @@ Adding a day means the site's day-count strings go stale in **three
 files, four spots** — grep for the old number (`N-1`) to be sure you catch
 every instance before editing:
 
-- `app/pulsi/page.tsx` — metadata `description`: `"N ditë"`
+- `app/(sq)/pulsi/page.tsx` (the Albanian pages sit in the `(sq)` route group) — metadata `description`: `"N ditë"`
 - `app/en/pulsi/page.tsx` — metadata `description`: `"N days"`
 - `components/live-tracker-page.tsx`:
   - `COPY.sq.title` (e.g. `"N ditë në shesh për një mjekërrosh bardhërosh"`)

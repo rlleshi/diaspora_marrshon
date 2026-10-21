@@ -1,0 +1,24 @@
+# Flamingo Revolution Diaspora
+
+> Flamingo Revolution Diaspora (Albanian: "Diaspora marshon", also "Diaspora zbarkon") is the diaspora wing of the Flamingo Revolution (Revolucioni Flamingo), the civic movement behind the daily anti-government protests in Tirana, Albania, that began on 31 May 2026. The site organizes Albanians abroad who come to Tirana to march, and tracks the protests night by night.
+
+## Language
+
+Every page exists in Albanian (`sq`, at the root) and English (under `/en`).
+
+## Main Sections
+
+- [Home](https://www.diaspora-zbarkon.com/en): The diaspora march in Tirana: the next march and how to join it.
+- [Protest Pulse](https://www.diaspora-zbarkon.com/en/pulsi): A day-by-day participation index for the Tirana protests since 31 May 2026, estimated by a crowd-counting model from News24 livestreams and normalized so 100 = the largest day (20 June 2026), with a short note for every night and the key moments. Figures are estimates, not head counts.
+- [Safety and your rights](https://www.diaspora-zbarkon.com/en/siguria): A practical protest guide for Albania: what to do if detained or exposed to tear gas, free legal aid and emergency numbers.
+- [The Scandal Dossier](https://www.diaspora-zbarkon.com/en/liste_vuajtjesh): Rama-government scandals from 2013 to 2026, each checked against Albanian investigative journalism (mainly Citizens.al and Reporter.al). Claims should be evaluated against the cited sources.
+- [Shared clothing](https://www.diaspora-zbarkon.com/en/veshja): A preview of the diaspora T-shirts for the march in Tirana.
+- [Contact](https://www.diaspora-zbarkon.com/en/contact): How to reach the organizers.
+
+## Related
+
+- [Flamingo Revolution](https://www.flamingorevolution.eu/): The movement's main site, with news, the Flamingo Times, the protest map and the referendum initiative.
+
+## Crawling
+
+Public pages may be crawled and indexed. URL discovery: https://www.diaspora-zbarkon.com/sitemap.xml

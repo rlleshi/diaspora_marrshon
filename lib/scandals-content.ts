@@ -65,7 +65,7 @@ export const scandalsPageContent: Record<
       kicker: "Historiku i qeverisjes",
       title: "14 vjet, 33 dosje: çfarë i ka bërë Shqipërisë kjo organizatë.",
       intro:
-        "Çdo dosje këtu është hulumtuar dhe kontrolluar veç e veç kundrejt gazetarisë investigative shqiptare (kryesisht Citizens.al dhe Reporter.al), plus BIRN, SPAK, KLSH dhe burime ndërkombëtare. Teksti ndjek hulumtimin origjinal, pa u ripërmbledhur.",
+        "Çdo dosje këtu është hulumtuar dhe kontrolluar veç e veç kundrejt gazetarisë investigative shqiptare (kryesisht portalet investigative Citizens.al dhe Reporter.al), plus BIRN, SPAK, KLSH dhe burime ndërkombëtare. Teksti ndjek hulumtimin origjinal, pa u ripërmbledhur.",
       methodology:
         "Çdo pretendim është shënuar si i konfirmuar, pjesërisht i konfirmuar, i paverifikuar, ose i kundërshtuar nga burimet. Emrat e personave trajtohen sipas statusit real ligjor: \"i akuzuar\"/\"nën hetim\" për çështje aktive, \"i dënuar\" vetëm kur ka vendim gjyqësor.",
     },
@@ -119,7 +119,7 @@ export const scandalsPageContent: Record<
       kicker: "Government track record",
       title: "14 years, 33 case files: what this organization has done.",
       intro:
-        "Each case file here was researched and independently checked against Albanian investigative journalism (mainly Citizens.al and Reporter.al), plus BIRN, SPAK, KLSH, and international sources. The text follows the original research, not re-summarized.",
+        "Each case file here was researched and independently checked against Albanian investigative journalism (mainly the investigative news sites Citizens.al and Reporter.al), plus BIRN, SPAK, KLSH, and international sources. The text follows the original research, not re-summarized.",
       methodology:
         "Each claim is marked confirmed, partially confirmed, unverified, or contradicted by sources. Named individuals are described by their real legal status: \"charged\"/\"under investigation\" for active cases, \"convicted\" only where a court has actually ruled.",
       enOnlyNote:
