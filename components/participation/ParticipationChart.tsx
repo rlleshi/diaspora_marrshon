@@ -303,7 +303,9 @@ function xTicks(from: number, to: number): number[] {
   const step = span <= 10 ? 1 : span <= 24 ? 3 : 5;
   const ticks = [from];
   for (let d = Math.ceil((from + 1) / step) * step; d < to; d += step) {
-    if (d - from >= step * 0.5 && to - d >= step * 0.5) ticks.push(d);
+    // A full step clear of both ends: the end labels are wider ("Dita 1", three
+    // digits), and half a step let 140 run into 143.
+    if (d - from >= step && to - d >= step) ticks.push(d);
   }
   ticks.push(to);
   return ticks;
@@ -427,6 +429,14 @@ export function ParticipationChart({
   labels: ChartLabels;
 }) {
   const rootRef = useRef<HTMLDivElement | null>(null);
+  const tipRef = useRef<HTMLDivElement | null>(null);
+  const [tipSide, setTipSide] = useState<{
+    day: number;
+    top: number;
+    side: "left" | "right";
+  } | null>(
+    null,
+  );
   const panelRef = useRef<HTMLDivElement | null>(null);
   const scrollToDetail = useRef(false);
   const [armed, setArmed] = useState(false);
@@ -774,6 +784,40 @@ export function ParticipationChart({
   // rather than being drawn at a zero that was never measured.
   const activeAnchor =
     activePt ?? (activeDay ? { x: xOf(activeDay.day), y: plot.bottom } : null);
+  const tipBelow = activeAnchor != null && activeAnchor.y < 230;
+  // The card's above/below choice assumes a short note. A long one can outgrow the
+  // room on either side and get clipped by the chart's edge (day 142 lost its header
+  // and figures that way), so measure it and, when it doesn't fit, hang it beside
+  // the point instead: wider, so it runs shorter, and pulled fully inside the chart.
+  // The side card is keyed to its day, so a new day is first measured as usual.
+  useLayoutEffect(() => {
+    const root = rootRef.current;
+    const tip = tipRef.current;
+    if (cal || !root || !tip || !activeAnchor || active == null) {
+      setTipSide(null);
+      return;
+    }
+    const h = root.clientHeight;
+    const tipH = tip.offsetHeight;
+    const y = (activeAnchor.y / VIEW.height) * h;
+    const margin = 6;
+    const beside = tipSide?.day === active;
+    if (!beside) {
+      // Mirrors the CSS: -115% above the point, +16% below it.
+      const fits = tipBelow
+        ? y + tipH * 1.16 <= h - margin
+        : y - tipH * 1.15 >= margin;
+      if (fits) {
+        if (tipSide) setTipSide(null);
+        return;
+      }
+    }
+    const top = Math.max(margin, Math.min(y - tipH / 2, h - tipH - margin));
+    const side = activeAnchor.x > VIEW.width / 2 ? "left" : "right";
+    if (beside && tipSide.top === top && tipSide.side === side) return;
+    setTipSide({ day: active, top, side });
+  }, [cal, active, activeAnchor?.x, activeAnchor?.y, tipBelow, chartWidth, tipSide]);
+
 
   return (
     <>
@@ -1170,18 +1214,21 @@ export function ParticipationChart({
 
       {activeDay && activeAnchor && (
         <div
+          ref={tipRef}
           className={`pc-tip ${pinned != null ? "pc-tip--pinned" : ""} ${
-            activeAnchor.y < 230 ? "pc-tip--below" : ""
-          } ${
-            activeAnchor.x > view.width * 0.7
-              ? "pc-tip--end"
-              : activeAnchor.x < view.width * 0.3
-                ? "pc-tip--start"
-                : ""
+            tipSide?.day === active
+              ? `pc-tip--side-${tipSide.side}`
+              : `${tipBelow ? "pc-tip--below" : ""} ${
+                  activeAnchor.x > view.width * 0.7
+                    ? "pc-tip--end"
+                    : activeAnchor.x < view.width * 0.3
+                      ? "pc-tip--start"
+                      : ""
+                }`
           }`}
           style={{
             left: `${(activeAnchor.x / view.width) * 100}%`,
-            top: `${(activeAnchor.y / view.height) * 100}%`,
+            top: tipSide?.day === active ? `${tipSide.top}px` : `${(activeAnchor.y / view.height) * 100}%`,
           }}
           role="status"
         >

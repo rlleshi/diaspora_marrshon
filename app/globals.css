@@ -2181,6 +2181,19 @@ textarea:focus {
 .pc-tip.pc-tip--below.pc-tip--end {
   transform: translate(-90%, 16%);
 }
+/* Too tall for either side of the point: beside it, wider, top set in pixels. */
+.pc-tip.pc-tip--side-left,
+.pc-tip.pc-tip--side-right {
+  width: min(400px, 44%);
+  max-height: calc(100% - 12px);
+  overflow-y: auto;
+}
+.pc-tip.pc-tip--side-left {
+  transform: translateX(calc(-100% - 14px));
+}
+.pc-tip.pc-tip--side-right {
+  transform: translateX(14px);
+}
 
 .pc-tip .pc-tip-link,
 .pc-tip .pc-tip-note-link {

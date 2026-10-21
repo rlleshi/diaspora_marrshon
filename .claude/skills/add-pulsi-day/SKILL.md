@@ -174,6 +174,10 @@ every instance before editing:
 - `components/live-tracker-page.tsx`:
   - `COPY.sq.title` (e.g. `"N ditë në shesh për një mjekërrosh bardhërosh"`)
   - `COPY.en.title` (e.g. `"N days in the square for a grey-bearded Rama"`)
+
+  The nickname in these two titles is a deliberate exception to the plain-"Rama"
+  rule for notes (the user's call, 2026-10-21): bump the number only, and don't
+  suggest neutralizing the title.
   - `COPY.sq.labels.ariaSummary` (`"...përgjatë N ditëve..."`)
   - `COPY.en.labels.ariaSummary` (`"...across N days..."`)
 
