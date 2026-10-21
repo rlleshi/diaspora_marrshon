@@ -68,10 +68,6 @@ type SafetyPageContent = {
   footer: string;
 };
 
-/** Free primary legal aid (Drejtoria e Ndihmës Juridike Falas): green line and online service. */
-export const LEGAL_AID_PHONE = "0800 10 10";
-export const LEGAL_AID_URL = "https://ndihmajuridike.gov.al/index.php/online/";
-
 export const safetyPageContent: Record<Locale, SafetyPageContent> = {
   sq: {
     altLangHref: "/en/siguria",
@@ -187,7 +183,7 @@ export const safetyPageContent: Record<Locale, SafetyPageContent> = {
               "**Mos nënshkruaj** asgjë që nuk e kupton. Kërko ta lexosh dhe të këshillohesh me avokatin.",
               "Nëse je lënduar, thuaj: “**Kam nevojë për ndihmë mjekësore**” dhe kërko që lëndimet të shënohen.",
               "Kërko identifikimin e punonjësit dhe mbaj mend kohën, vendin dhe numrat identifikues, nëse është e sigurt.",
-              "Nëse nuk ke avokat, shiko [listën e avokatëve dhe linjën falas](#kontaktet).",
+              "Nëse nuk ke avokat, shiko [listën e avokatëve falas](#kontaktet).",
             ],
           },
           {
@@ -283,13 +279,6 @@ export const safetyPageContent: Record<Locale, SafetyPageContent> = {
         contacts: {
           confirmed: [
             {
-              tag: "Shtetërore · falas",
-              name: "Drejtoria e Ndihmës Juridike Falas",
-              body: "Informim dhe këshillim ligjor falas. Kush nuk ka të ardhura të mjaftueshme përfiton edhe avokat falas, që e cakton shteti. Nuk është linjë emergjence për arrestime.",
-              phone: LEGAL_AID_PHONE,
-              link: { label: "Juristi Online", href: LEGAL_AID_URL },
-            },
-            {
               tag: "Partia Demokratike · 24/7",
               name: "Grupi i avokatëve të PD-së",
               body: "Ndihmë juridike në polici, prokurori dhe gjykatë për protestues të shoqëruar, ndaluar ose arrestuar. Është shërbim i një partie politike. Avokatët: Marash Logu, Eda Grimci, Adriana Kalaja, Franc Nuri, Shaqir Manjani, Besart Logu dhe Ledio Nuraj.",
@@ -339,6 +328,54 @@ export const safetyPageContent: Record<Locale, SafetyPageContent> = {
                   name: "Arta Danaj",
                   body: "Ndihmë ligjore për personat e shoqëruar gjatë protestës. Avokatin mund ta zgjedhë vetë personi i shoqëruar ose familja.",
                   phone: "069 202 0286",
+                },
+                {
+                  tag: "Avokat · falas",
+                  name: "Edison Halili",
+                  body: "Ndihmë juridike falas për protestuesit.",
+                  phone: "069 677 3126",
+                },
+                {
+                  tag: "Avokate · falas",
+                  name: "Anxhela Lami",
+                  body: "Ndihmë juridike falas për protestuesit.",
+                  phone: "068 806 5055",
+                },
+                {
+                  tag: "Avokat · falas",
+                  name: "Emanuel Limçi",
+                  body: "Ndihmë juridike falas për protestuesit.",
+                  phone: "067 637 5499",
+                },
+                {
+                  tag: "Avokate · falas",
+                  name: "Gjystina Golloshi",
+                  body: "Ndihmë juridike falas për protestuesit.",
+                  phone: "068 608 9487",
+                },
+                {
+                  tag: "Avokate · falas",
+                  name: "Ida Caca",
+                  body: "Ndihmë juridike falas për protestuesit.",
+                  phone: "069 601 5413",
+                },
+                {
+                  tag: "Avokate · falas",
+                  name: "Brikena Kasmi",
+                  body: "Ndihmë juridike falas për protestuesit.",
+                  phone: "068 201 0106",
+                },
+                {
+                  tag: "Avokat · falas",
+                  name: "Kristal Shytani",
+                  body: "Ndihmë juridike falas për protestuesit.",
+                  phone: "069 602 1555",
+                },
+                {
+                  tag: "Avokat · falas",
+                  name: "Lulëzim Tanushi",
+                  body: "Ndihmë juridike falas për protestuesit.",
+                  phone: "069 774 4572",
                 },
                 {
                   tag: "Avokat",
@@ -534,7 +571,7 @@ export const safetyPageContent: Record<Locale, SafetyPageContent> = {
               "**Don't sign** anything you don't understand. Ask to read it and to speak to your lawyer.",
               "If you are hurt, say: “**Kam nevojë për ndihmë mjekësore**” (I need medical help) and ask for your injuries to be recorded.",
               "Ask for the officer's identification and remember the time, the place and any ID numbers, if it is safe.",
-              "If you don't have a lawyer, see [the lawyers and the free line](#kontaktet).",
+              "If you don't have a lawyer, see [the list of free lawyers](#kontaktet).",
             ],
           },
           {
@@ -630,13 +667,6 @@ export const safetyPageContent: Record<Locale, SafetyPageContent> = {
         contacts: {
           confirmed: [
             {
-              tag: "State · free",
-              name: "Free Legal Aid Directorate",
-              body: "Free legal information and advice. People without sufficient income can also get a free lawyer, assigned by the state. Not an emergency line for arrests.",
-              phone: LEGAL_AID_PHONE,
-              link: { label: "Juristi Online", href: LEGAL_AID_URL },
-            },
-            {
               tag: "Democratic Party · 24/7",
               name: "PD lawyers' group",
               body: "Legal help at the police, the prosecutor's office and court for protesters taken in, detained or arrested. It is a service of a political party. The lawyers: Marash Logu, Eda Grimci, Adriana Kalaja, Franc Nuri, Shaqir Manjani, Besart Logu and Ledio Nuraj.",
@@ -686,6 +716,54 @@ export const safetyPageContent: Record<Locale, SafetyPageContent> = {
                   name: "Arta Danaj",
                   body: "Legal help for people taken in during the protests. The person taken in or their family can choose the lawyer.",
                   phone: "069 202 0286",
+                },
+                {
+                  tag: "Lawyer · free",
+                  name: "Edison Halili",
+                  body: "Free legal help for protesters.",
+                  phone: "069 677 3126",
+                },
+                {
+                  tag: "Lawyer · free",
+                  name: "Anxhela Lami",
+                  body: "Free legal help for protesters.",
+                  phone: "068 806 5055",
+                },
+                {
+                  tag: "Lawyer · free",
+                  name: "Emanuel Limçi",
+                  body: "Free legal help for protesters.",
+                  phone: "067 637 5499",
+                },
+                {
+                  tag: "Lawyer · free",
+                  name: "Gjystina Golloshi",
+                  body: "Free legal help for protesters.",
+                  phone: "068 608 9487",
+                },
+                {
+                  tag: "Lawyer · free",
+                  name: "Ida Caca",
+                  body: "Free legal help for protesters.",
+                  phone: "069 601 5413",
+                },
+                {
+                  tag: "Lawyer · free",
+                  name: "Brikena Kasmi",
+                  body: "Free legal help for protesters.",
+                  phone: "068 201 0106",
+                },
+                {
+                  tag: "Lawyer · free",
+                  name: "Kristal Shytani",
+                  body: "Free legal help for protesters.",
+                  phone: "069 602 1555",
+                },
+                {
+                  tag: "Lawyer · free",
+                  name: "Lulëzim Tanushi",
+                  body: "Free legal help for protesters.",
+                  phone: "069 774 4572",
                 },
                 {
                   tag: "Lawyer",
