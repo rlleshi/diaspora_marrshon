@@ -3,7 +3,7 @@ import { participation } from "@/data/participation";
 import { SITE_URL } from "@/lib/metadata";
 
 /** Albanian routes; each has an English twin under /en. */
-const ROUTES = ["/", "/pulsi", "/siguria", "/liste_vuajtjesh", "/veshja", "/contact", "/privacy"];
+const ROUTES = ["/", "/pulsi", "/pulsi/metodologjia", "/siguria", "/liste_vuajtjesh", "/veshja", "/contact", "/privacy"];
 
 const PRIORITY: Record<string, number> = { "/": 1, "/pulsi": 0.9, "/siguria": 0.8, "/liste_vuajtjesh": 0.7 };
 

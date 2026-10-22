@@ -1597,6 +1597,21 @@ textarea:focus {
   gap: 8px;
 }
 
+.methodology-resources {
+  margin: 0 0 14px;
+  padding-left: 20px;
+  color: var(--muted);
+  line-height: 1.62;
+}
+
+.methodology-resources li + li {
+  margin-top: 6px;
+}
+
+.methodology-resources span::before {
+  content: " · ";
+}
+
 .contact-privacy a {
   color: inherit;
   text-decoration: underline;
@@ -3566,6 +3581,15 @@ textarea:focus {
   margin-top: 8px;
   font-style: italic;
   opacity: 0.82;
+}
+
+.participation-links {
+  grid-column: 2;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 14px;
+  margin-top: 8px;
+  font-weight: 650;
 }
 
 @media (prefers-reduced-motion: reduce) {

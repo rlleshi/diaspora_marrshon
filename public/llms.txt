@@ -10,6 +10,9 @@ Every page exists in Albanian (`sq`, at the root) and English (under `/en`).
 
 - [Home](https://www.diaspora-zbarkon.com/en): The diaspora march in Tirana: the next march and how to join it.
 - [Protest Pulse](https://www.diaspora-zbarkon.com/en/pulsi): A day-by-day participation index for the Tirana protests since 31 May 2026, estimated by a crowd-counting model from News24 livestreams and normalized so 100 = the largest day (20 June 2026), with a short note for every night and the key moments. Figures are estimates, not head counts.
+- [How Pulsi counts](https://www.diaspora-zbarkon.com/en/pulsi/metodologjia): The method behind the index: source livestreams, the CLIP-EBC crowd-counting model, the visual check of split-screen frames, normalization, anchor days and limitations.
+- [Pulsi data (CSV)](https://www.diaspora-zbarkon.com/pulsi/protest_days.csv): The full published series, one row per day, with index values, source and notes in Albanian and English.
+- [Pulsi RSS](https://www.diaspora-zbarkon.com/en/pulsi/feed.xml): One item for each new protest day (Albanian feed at /pulsi/feed.xml).
 - [Safety and your rights](https://www.diaspora-zbarkon.com/en/siguria): A practical protest guide for Albania: what to do if detained or exposed to tear gas, free legal aid and emergency numbers.
 - [The Scandal Dossier](https://www.diaspora-zbarkon.com/en/liste_vuajtjesh): Rama-government scandals from 2013 to 2026, each checked against Albanian investigative journalism (mainly Citizens.al and Reporter.al). Claims should be evaluated against the cited sources.
 - [Shared clothing](https://www.diaspora-zbarkon.com/en/veshja): A preview of the diaspora T-shirts for the march in Tirana.

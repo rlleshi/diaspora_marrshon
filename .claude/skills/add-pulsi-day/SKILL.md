@@ -222,9 +222,16 @@ consequences when writing a marker:
   "Momentet kyçe" rail below the chart, which is the reliable surface, and its
   label does show once the reader zooms into a week or month containing it.
 
-## 7. Verify
+## 7. Refresh the published CSV and verify
 
-Run `npm run typecheck` and confirm it's clean. Don't run a full build or
+Run `node scripts/export-pulsi-csv.mjs` from the repo root. It regenerates
+`crowd-analysis/data/protest_days.csv` (the open-data copy on GitHub)
+from `data/participation.ts`; it should report the new day as the last row. The
+site's own copies (`/pulsi/protest_days.csv`, and the RSS feeds at
+`/pulsi/feed.xml` and `/en/pulsi/feed.xml`) are built from the data at deploy,
+so they need no edit. Include the regenerated CSV in the same commit as the day.
+
+Then run `npm run typecheck` and confirm it's clean. Don't run a full build or
 restart the dev server unless something looks off or the user asks — a
 clean typecheck has been sufficient for this recurring task.
 

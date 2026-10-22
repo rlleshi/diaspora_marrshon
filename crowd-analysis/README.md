@@ -8,9 +8,10 @@ This folder contains the code and inputs used to analyze the News24 livestreams 
 - count_crowd_clip_ebc.py is the shared image counter imported by the analysis script.
 - run_protesta_batches.sh runs the videos listed in its BATCHES array.
 - CLIP-EBC is the upstream model pinned at revision b52a5944bd75beed34fd3d0da516aa833ae63354.
-- data/protest_days.csv records 119 source video IDs and the corresponding values currently published by the website. Published values are normalized index values, not raw people counts.
+- data/protest_days.csv is the published series: one row per protest day with its source video ID, the three index values shown on the website, the source URL and the day's note in Albanian and English. Days without a publishable figure leave the index cells empty. Published values are normalized index values, not raw people counts. The file is generated from the website data with `node scripts/export-pulsi-csv.mjs` (run from the repository root) whenever a day is added, and the live site serves the same file at https://www.diaspora-zbarkon.com/pulsi/protest_days.csv.
+- A plain-language method page is at https://www.diaspora-zbarkon.com/en/pulsi/metodologjia.
 - data/crowd_visibility_index_1_30.csv preserves the original raw-statistics summary and preliminary indices for days 1-30.
-- data/review_notes.md carries the dated methodology and per-day visual-audit notes copied from the website data.
+- data/review_notes.md carries the dated methodology and per-day visual-audit notes copied from the website data on 2026-09-27. Notes for later days are in the header comment of data/participation.ts.
 - research/geometry_estimates.md and research/day_35_density_estimate.md record the footprint-and-density scenarios used to assess the large anchor days.
 - scripts/fetch_models.sh downloads the model checkpoints.
 

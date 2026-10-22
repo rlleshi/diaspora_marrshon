@@ -108,10 +108,11 @@ To add a new protest day:
 3. Add `noteLink` only when one word or phrase in the note should link to supporting material.
 4. Add or adjust `participationEvents` only for major explanatory moments.
 5. Update `/pulsi` and `/en/pulsi` metadata if the day count changes.
-6. Run `npm run typecheck`.
-7. Run `npm run build` before deploying.
+6. Run `node scripts/export-pulsi-csv.mjs` to refresh `crowd-analysis/data/protest_days.csv`.
+7. Run `npm run typecheck`.
+8. Run `npm run build` before deploying.
 
-The tracker is a normalized participation index, not an exact official crowd count. It covers 119 days through 26 September 2026 and supports all-days, recent, monthly, and weekly views. Keep methodology and disclaimer language honest about camera and model limitations.
+The tracker is a normalized participation index, not an exact official crowd count. It covers every protest day since 31 May 2026 and supports all-days, recent, monthly, and weekly views. Keep methodology and disclaimer language honest about camera and model limitations.
 
 ## Coordination Model
 

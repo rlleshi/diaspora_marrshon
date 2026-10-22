@@ -26,7 +26,7 @@ const COPY = {
   },
 };
 
-function formatDate(iso: string, locale: Locale) {
+export function formatDate(iso: string, locale: Locale) {
   const [y, m, d] = iso.split("-").map(Number);
   return locale === "en" ? `${d} ${MONTHS.en[m - 1]} ${y}` : `${d} ${MONTHS.sq[m - 1]} ${y}`;
 }

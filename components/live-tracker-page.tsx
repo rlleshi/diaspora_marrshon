@@ -10,6 +10,7 @@ import { TrackedLink } from "@/components/analytics-events";
 import { SiteFooter } from "@/components/site-footer";
 import { participation } from "@/data/participation";
 import { pulsiDatasetJsonLd } from "@/lib/metadata";
+import { methodologyLinks } from "@/lib/methodology-content";
 
 const COPY: Record<
   Locale,
@@ -285,6 +286,13 @@ export function LiveTrackerPage({ locale }: { locale: Locale }) {
                 <Activity aria-hidden="true" size={15} />
                 <span>{t.methodology}</span>
                 <span className="participation-disclaimer">{t.disclaimer}</span>
+                <span className="participation-links">
+                  {methodologyLinks[locale].map((link) => (
+                    <a className="context-link" href={link.href} key={link.href}>
+                      {link.label}
+                    </a>
+                  ))}
+                </span>
               </figcaption>
             </figure>
             <DayLog locale={locale} />

@@ -18,7 +18,8 @@ type Locale = "sq" | "en";
  * Title, description, language alternates and link-preview tags for one page.
  * `path` is the Albanian route ("/" or "/pulsi"); its English twin lives under /en.
  * A page that ships its own opengraph-image file passes `ownImage`, so that image
- * is the one that shows up when the link is shared.
+ * is the one that shows up when the link is shared. A page with an RSS feed passes
+ * its path as `feed`, which adds the <link rel="alternate"> that feed readers look for.
  */
 export function pageMetadata({
   locale,
@@ -26,12 +27,14 @@ export function pageMetadata({
   title,
   description,
   ownImage = false,
+  feed,
 }: {
   locale: Locale;
   path: string;
   title: string;
   description: string;
   ownImage?: boolean;
+  feed?: string;
 }): Metadata {
   const sq = path;
   const en = path === "/" ? "/en" : `/en${path}`;
@@ -40,7 +43,11 @@ export function pageMetadata({
   return {
     title,
     description,
-    alternates: { canonical: url, languages: { sq, en, "x-default": sq } },
+    alternates: {
+      canonical: url,
+      languages: { sq, en, "x-default": sq },
+      ...(feed && { types: { "application/rss+xml": feed } }),
+    },
     openGraph: {
       type: "website",
       siteName: SITE_NAME,
