@@ -721,13 +721,13 @@ export function ParticipationChart({
           (ev) =>
             ev.tier === "peak" ||
             // secondary moments are footnotes; they never earn plot space here
-            (ev.tier !== "secondary" && standsOut(ev)),
+            (ev.tier !== "secondary" && (ev.pin || standsOut(ev))),
         )
       : events;
   if (chipCandidates.length > chipSlots) {
     const keep = new Set(
       [...chipCandidates]
-        .sort((a, b) => rank(b) - rank(a))
+        .sort((a, b) => Number(!!b.pin) - Number(!!a.pin) || rank(b) - rank(a))
         .slice(0, chipSlots)
         .map((ev) => ev.day),
     );

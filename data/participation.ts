@@ -720,6 +720,11 @@ export type ParticipationEvent = {
   sub: { sq: string; en: string };
   /** keep this event when space is tight (mobile). */
   mobile: boolean;
+  /**
+   * label it on the full-range chart even when it doesn't clear the prominence bar,
+   * e.g. a high inside an already-high stretch. It still needs a clear slot.
+   */
+  pin?: boolean;
 };
 
 export const participationEvents: ParticipationEvent[] = [
@@ -789,9 +794,9 @@ export const participationEvents: ParticipationEvent[] = [
   { day: 136, tier: "primary", icon: "people", mobile: true,
     label: { sq: "Protesta e studentëve", en: "The student protest" },
     sub: { sq: "gaz lotsjellës, 16 arrestime", en: "tear gas, 16 arrests" } },
-  { day: 143, tier: "secondary", icon: "people", mobile: false,
-    label: { sq: "Marshimi i pedagogëve", en: "The lecturers' march" },
-    sub: { sq: "20 tetor · e martë", en: "20 October · Tuesday" } },
+  { day: 143, tier: "primary", icon: "people", mobile: true, pin: true,
+    label: { sq: "Kulmi i protestës studentore", en: "Student protest peak" },
+    sub: { sq: "20 tetor · me pedagogët", en: "20 October · with lecturers" } },
 ];
 
 /** Normalization reference shown in the methodology note. */
