@@ -183,13 +183,16 @@ export const safetyPageContent: Record<Locale, SafetyPageContent> = {
               "**Mos nënshkruaj** asgjë që nuk e kupton. Kërko ta lexosh dhe të këshillohesh me avokatin.",
               "Nëse je lënduar, thuaj: “**Kam nevojë për ndihmë mjekësore**” dhe kërko që lëndimet të shënohen.",
               "Kërko identifikimin e punonjësit dhe mbaj mend kohën, vendin dhe numrat identifikues, nëse është e sigurt.",
+              "**Shëno orën kur të ndaluan** dhe në fund kërko kopjen e procesverbalit.",
               "Nëse nuk ke avokat, shiko [listën e avokatëve falas](#kontaktet).",
             ],
           },
           {
             title: "Çfarë thotë ligji",
             steps: [
-              "**Kushtetuta, neni 28:** të njoftohesh menjëherë, në një gjuhë që e kupton, për arsyen dhe akuzën, të mos bësh deklarata dhe të komunikosh menjëherë me avokatin.",
+              "**Ligji për Policinë e Shtetit, neni 10:** polici duhet të identifikohet para se të marrë një masë ndaj teje.",
+              "**Po ky ligj, neni 19:** ndalimi i përkohshëm policor zgjat maksimumi 5 orë dhe koha fillon kur të ndalojnë, jo kur mbërrin në komisariat. Ke të drejtë për një kopje të procesverbalit.",
+              "**Kushtetuta, neni 28:** të njoftohesh menjëherë, në një gjuhë që e kupton, për arsyen dhe akuzën, të mos bësh deklarata dhe të komunikosh menjëherë me avokatin. Nëse je arrestuar ose ndaluar për vepër penale, duhet të dalësh para gjyqtarit brenda 48 orëve.",
               "**Kushtetuta, neni 31:** nëse nuk ke mjete për avokat, ke të drejtë për mbrojtje falas në procesin penal.",
               "**Kodi i Procedurës Penale, neni 255:** policia duhet të njoftojë pa vonesë familjen, me pëlqimin tënd.",
               "**Nën 18 vjeç:** policia duhet të njoftojë familjen dhe nuk duhet të të pyesë pa praninë e avokatit dhe të psikologut.",
@@ -197,7 +200,7 @@ export const safetyPageContent: Record<Locale, SafetyPageContent> = {
           },
         ],
         alert:
-          "Kujdes: shoqërimi, ndalimi dhe arrestimi kanë statuse juridike të ndryshme. Ruaj një numër avokati në letër përpara se të dalësh.",
+          "Kujdes: ndalimi i përkohshëm policor (deri në 5 orë) dhe arrestimi për vepër penale (para gjyqtarit brenda 48 orëve) kanë statuse juridike të ndryshme. Ruaj një numër avokati në letër përpara se të dalësh.",
       },
       {
         id: "ndihma",
@@ -571,13 +574,16 @@ export const safetyPageContent: Record<Locale, SafetyPageContent> = {
               "**Don't sign** anything you don't understand. Ask to read it and to speak to your lawyer.",
               "If you are hurt, say: “**Kam nevojë për ndihmë mjekësore**” (I need medical help) and ask for your injuries to be recorded.",
               "Ask for the officer's identification and remember the time, the place and any ID numbers, if it is safe.",
+              "**Note the time you were stopped** and at the end ask for a copy of the police report (procesverbal).",
               "If you don't have a lawyer, see [the list of free lawyers](#kontaktet).",
             ],
           },
           {
             title: "What the law says",
             steps: [
-              "**Constitution, Article 28:** you must be told at once, in a language you understand, why you are held and what you are accused of; you do not have to make any statement, and you can contact a lawyer immediately.",
+              "**State Police Law, Article 10:** an officer must identify themselves before taking any measure against you.",
+              "**Same law, Article 19:** temporary police holding lasts at most 5 hours, and the clock starts when you are stopped, not when you reach the station. You are entitled to a copy of the police report (procesverbal).",
+              "**Constitution, Article 28:** you must be told at once, in a language you understand, why you are held and what you are accused of; you do not have to make any statement, and you can contact a lawyer immediately. If you are arrested or detained over a criminal offence, you must be brought before a judge within 48 hours.",
               "**Constitution, Article 31:** if you cannot afford a lawyer, you are entitled to free defence in criminal proceedings.",
               "**Code of Criminal Procedure, Article 255:** the police must notify your family without delay, with your consent.",
               "**Under 18:** the police must notify your family and must not question you without a lawyer and a psychologist present.",
@@ -585,7 +591,7 @@ export const safetyPageContent: Record<Locale, SafetyPageContent> = {
           },
         ],
         alert:
-          "Careful: being taken in, detained and arrested are different legal situations. Keep a lawyer's number on paper before you go out.",
+          "Careful: temporary police holding (up to 5 hours) and arrest over a criminal offence (before a judge within 48 hours) are different legal situations. Keep a lawyer's number on paper before you go out.",
       },
       {
         id: "ndihma",
