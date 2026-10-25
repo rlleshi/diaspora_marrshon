@@ -398,7 +398,16 @@
 // / 131.1. Retention is thin and 42 of the 52 fall before 13:15, in the morning gathering outside the
 // PM's office. The News24 stream kept none: its 19 retained frames are all splits of the night street
 // beside daylight inserts (among them the 1220.6 raw maximum) or NBA footage.
-// The notes for days 134 to 146 follow their research files (protest_story_notes_1_134 to _146); day
+// Day 147 kept 1028 of 1574 retained (6171 counted), single views only (top-10 peak avg 762.7, mean
+// 227.6, median 171.4). 533 are blue-framed splits (the street beside a reporter, an interviewee or a
+// studio presenter), all scoring a ring of +56 or more against +48 or less for the single views. 13
+// more, before the live coverage starts (scenes 272 to 318), are dropped by the sheet: recaps of earlier
+// days (the medical students outside the PM's office, the overturned dialogue chairs), a CNN interview
+// carrying a Tuesday bug and the 1298.8 raw maximum, an aerial insert of a red-and-white crowd that the
+// research file also withholds; keeping all would read 822.6 / 216.0 / 167.0. The top ten all come from
+// one long boulevard shot at about 15:07. Retained frames run from about 12:36 to 19:06; the last three
+// hours of the stream keep none.
+// The notes for days 134 to 147 follow their research files (protest_story_notes_1_134 to _147); day
 // 141's injury and arrest figures follow its refresh of 20 October, day 142's those of 21 October,
 // day 143's those of 22 October and day 144's those of 23 October.
 
@@ -736,6 +745,8 @@ export const participation: ParticipationDay[] = [
     note: { sq: "E enjtja, dita e dhjetë e studentëve: studentë e pedagogë mblidhen para Kuvendit gjatë seancës plenare, ku deputetët e opozitës bllokojnë foltoren, ndodhin përplasje fizike dhe mazhoranca miraton projektligjet e mbyll seancën. Pas mesdite protestuesit marshojnë te Kryeministria dhe heqin stolat prej guri me ftesat e Ramës për dialog; në mbrëmje policia përdor ujë në bulevard. Bojkoti i mësimit vijon në Korçë e Shkodër. Studentët thërrasin protestë kombëtare të shtunën më 24 tetor para Ministrisë së Arsimit.", en: "Thursday, the students' tenth day: students and lecturers gather outside Parliament during the plenary session, where opposition MPs block the rostrum, scuffles break out and the majority passes its bills and closes the session. In the early afternoon protesters march to the PM's office and remove the stone benches carrying Rama's invitations to dialogue; in the evening police use water cannon on the boulevard. The teaching boycott continues in Korçë and Shkodër. Students call a national protest for Saturday 24 October outside the Education Ministry." } },
   { day: 146, date: "2026-10-23", saturday: false, peak: 4.39, mean: 3.02, median: 2.72, source: yt("wB7Pi4kLzQw"),
     note: { sq: "E premtja, dita e njëmbëdhjetë e studentëve: studentë të Mjekësisë e mjekë rezidentë i bashkohen protestës para Kryeministrisë. Rama përsërit ftesën për dialog dhe pretendon se protesta orkestrohet nga qarqe kriminale e nga jashtë; një student i Mjekësisë që ai e paraqet si trafikant droge e hedh poshtë akuzën, për të cilën, sipas BIRN, Kryeministria nuk ka paraqitur prova. Zëvendësministrja Silva Caka raporton deri tani shtatë policë të pezulluar dhe 55 ankesa për tejkalim detyre. Sipas A2, të shtunën thirren dy protesta: PD-ja në orën 12:00 para Kryeministrisë dhe studentët në orën 14:00 te Ministria e Arsimit.", en: "Friday, the students' eleventh day: medical students and resident doctors join the protest outside the PM's office. Rama renews his offer of dialogue and claims the protest is orchestrated by criminal circles and from abroad; a medical student he describes as a drug trafficker rejects the accusation, for which, according to BIRN, the PM's office has provided no evidence. Deputy minister Silva Caka reports seven officers suspended so far and 55 complaints of officers exceeding their authority. According to A2, two protests are called for Saturday: the Democratic Party's at 12:00 outside the PM's office and the students' at 14:00 at the Education Ministry." } },
+  { day: 147, date: "2026-10-24", saturday: true, peak: 14.77, mean: 4.41, median: 3.32, source: yt("E86KwXr5hAw"),
+    note: { sq: "E shtuna, dita e dymbëdhjetë e studentëve: deputetë e mbështetës të PD-së marshojnë në mesditë te Kryeministria, ku digjen jastëkët e vendosur për dialog, pastaj drejt Ministrisë së Arsimit, ku studentët thirren në orën 14:00, me pedagogë e mjekë në krah. Te ministria hidhen gurë e mjete piroteknike dhe policia përdor top uji, gaz lotsjellës dhe plumba gome; përplasjet përhapen te Sheshi Skënderbej, Ministria e Brendshme dhe selia e PS-së. Sipas Ministrisë së Shëndetësisë, 23 vetë marrin ndihmë në spital: 13 protestues, gjashtë policë, tre punonjës të medias dhe një deputet; një protestues 28-vjeçar operohet në sy. Policia njofton hetim për dëmtimin në sy, pezullon veçmas një inspektor të Shqiponjave për tejkalim detyre dhe raporton 23 të arrestuar, procedim penal për 13 të tjerë dhe 30 të shpallur në kërkim. Studentët thirren sërish të dielën, 25 tetor, para Ministrisë së Arsimit.", en: "Saturday, the students' twelfth day: Democratic Party MPs and supporters march at midday to the PM's office, where the cushions set out for dialogue are burned, then on to the Education Ministry, where students are called for 14:00, with lecturers and doctors alongside them. At the ministry stones and pyrotechnics are thrown and police use water cannon, tear gas and rubber bullets; the clashes spread to Skanderbeg Square, the Interior Ministry and the Socialist Party headquarters. According to the Health Ministry, 23 people go to hospital: 13 protesters, six officers, three media workers and one MP; a 28-year-old protester undergoes eye surgery. Police announce an inquiry into the eye injury, separately suspend an inspector of the Shqiponja unit for overstepping their powers, and report 23 arrests, criminal proceedings against 13 others and 30 people wanted. Students are called back to the Education Ministry on Sunday 25 October." } },
 ];
 export type ParticipationEvent = {
   day: number;
@@ -822,9 +833,12 @@ export const participationEvents: ParticipationEvent[] = [
   { day: 136, tier: "primary", icon: "people", mobile: true,
     label: { sq: "Protesta e studentëve", en: "The student protest" },
     sub: { sq: "gaz lotsjellës, 16 arrestime", en: "tear gas, 16 arrests" } },
-  { day: 143, tier: "primary", icon: "people", mobile: true, pin: true,
+  { day: 143, tier: "primary", icon: "people", mobile: true,
+    label: { sq: "Marshimi me pedagogët", en: "March with lecturers" },
+    sub: { sq: "20 tetor · dialogu refuzohet", en: "20 October · talks rejected" } },
+  { day: 147, tier: "primary", icon: "people", mobile: true, pin: true,
     label: { sq: "Kulmi i protestës studentore", en: "Student protest peak" },
-    sub: { sq: "20 tetor · me pedagogët", en: "20 October · with lecturers" } },
+    sub: { sq: "24 tetor · me PD-në", en: "24 October · with the PD" } },
 ];
 
 /** Normalization reference shown in the methodology note. */
