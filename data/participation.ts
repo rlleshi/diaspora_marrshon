@@ -838,7 +838,7 @@ export const participationEvents: ParticipationEvent[] = [
     sub: { sq: "20 tetor · dialogu refuzohet", en: "20 October · talks rejected" } },
   { day: 147, tier: "primary", icon: "people", mobile: true, pin: true,
     label: { sq: "Kulmi i protestës studentore", en: "Student protest peak" },
-    sub: { sq: "24 tetor · me PD-në", en: "24 October · with the PD" } },
+    sub: { sq: "24 tetor · protesta kombëtare", en: "24 October · national protest" } },
 ];
 
 /** Normalization reference shown in the methodology note. */
