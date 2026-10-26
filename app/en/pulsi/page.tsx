@@ -8,7 +8,7 @@ export const metadata = pageMetadata({
   feed: "/en/pulsi/feed.xml",
   title: "Flamingo Revolution, Albania: day-by-day protest crowd tracker | Flamingo Revolution Diaspora",
   description:
-    "The anti-government protests in Tirana, Albania, demanding Rama's resignation since 31 May 2026: 147 days in the square, with a crowd index, a note for every night and the key moments.",
+    "The anti-government protests in Tirana, Albania, demanding Rama's resignation since 31 May 2026: 148 days in the square, with a crowd index, a note for every night and the key moments.",
 });
 
 export default function Page() {
