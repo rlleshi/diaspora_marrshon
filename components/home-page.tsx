@@ -7,11 +7,13 @@ import {
   Flag,
   Footprints,
   Gavel,
+  Lock,
   Megaphone,
   MessageCircle,
   Plane,
   QrCode,
   ShieldAlert,
+  UserCheck,
   Users,
 } from "lucide-react";
 import { content, WHATSAPP_INVITE_URL, type Locale, type SiteContent } from "@/lib/content";
@@ -27,6 +29,9 @@ const whatsAppInviteUrl = WHATSAPP_INVITE_URL;
 
 // one per step of the hero's call: say when you're coming, bring people, join the square
 const callStepIcons = [Plane, Users, Megaphone];
+
+// one per WhatsApp assurance: the group is private, every member is approved
+const assuranceIcons = [Lock, UserCheck];
 
 function WalkingPersonIcon({
   className,
@@ -243,6 +248,17 @@ export function HomePage({ locale }: { locale: Locale }) {
             <div className="section-copy">
               <h2>{t.pledgeIntro.title}</h2>
               <p>{t.pledgeIntro.body}</p>
+              <div className="assurance-list">
+                {t.pledgeIntro.assurances.map((assurance, index) => {
+                  const AssuranceIcon = assuranceIcons[index];
+                  return (
+                    <span key={assurance}>
+                      <AssuranceIcon aria-hidden="true" size={17} />
+                      {assurance}
+                    </span>
+                  );
+                })}
+              </div>
             </div>
             <WhatsAppIntakePanel content={t.whatsapp} locale={locale} />
             <div className="hidden-pledge-form" hidden>

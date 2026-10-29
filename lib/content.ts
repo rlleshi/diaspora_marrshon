@@ -69,6 +69,8 @@ export type SiteContent = {
   pledgeIntro: {
     title: string;
     body: string;
+    /** chips under the intro: the group is private, and the admins approve every member */
+    assurances: [string, string];
   };
   shirtsTeaser: {
     kicker: string;
@@ -290,7 +292,8 @@ export const content: Record<Locale, SiteContent> = {
     pledgeIntro: {
       title: "Bashkohu në WhatsApp për koordinim.",
       body:
-        "Hyr në grup me butonin ose me QR-in dhe shkruaj mesazhin e shkurtër më poshtë.",
+        "Kërko hyrjen me butonin ose me QR-in. Pasi të pranohesh në grup, shkruaj mesazhin e shkurtër më poshtë.",
+      assurances: ["Grup privat", "Çdo anëtar miratohet nga administratorët"],
     },
     shirtsTeaser: {
       kicker: "Veshja e përbashkët",
@@ -348,7 +351,7 @@ export const content: Record<Locale, SiteContent> = {
     whatsapp: {
       title: "Hyr në grupin e diasporës",
       body:
-        "Ky është grupi i hyrjes për diasporën. Mund të hysh me një klikim.",
+        "Ky është grupi privat i hyrjes për diasporën. Çdo kërkesë për hyrje shqyrtohet nga administratorët.",
       qrAlt: "QR për grupin WhatsApp të diasporës",
       openLabel: "Hap WhatsApp",
       templateTitle: "Mesazhi që mund të shkruash pas hyrjes",
@@ -662,7 +665,8 @@ C) Nuk marshoj, por mund të ndihmoj me:
     pledgeIntro: {
       title: "Join WhatsApp for coordination.",
       body:
-        "Join the group with the button or the QR, then post the short template below.",
+        "Request to join with the button or the QR. Once you're accepted into the group, post the short template below.",
+      assurances: ["Private group", "Every member is approved by the admins"],
     },
     shirtsTeaser: {
       kicker: "Shared clothing",
@@ -720,7 +724,7 @@ C) Nuk marshoj, por mund të ndihmoj me:
     whatsapp: {
       title: "Join the diaspora group",
       body:
-        "This is the diaspora intake group. You can join with one click.",
+        "This is the diaspora's private intake group. The admins review every request to join.",
       qrAlt: "QR for the diaspora WhatsApp group",
       openLabel: "Open WhatsApp",
       templateTitle: "Message you can post after joining",
