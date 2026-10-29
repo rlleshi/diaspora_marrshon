@@ -309,7 +309,7 @@ export const content: Record<Locale, SiteContent> = {
       kicker: "Indeksi i pjesëmarrjes",
       title: `${protestDays} ditë në shesh, ditë pas dite.`,
       body:
-        "Ndiq pulsin e protestës: pjesëmarrje e dokumentuar qartësisht në kamera, nga vala e parë e 6 qershorit, te dy marshimet e mëdha të diasporës më 20 qershor dhe 4 korrik, deri te aksioni kombëtar i 1 gushtit.",
+        "Ndiq pulsin e protestës: pjesëmarrje e dokumentuar qartësisht në kamera, nga vala e parë e 6 qershorit dhe marshimet e diasporës (20 qershor, 4 korrik, 14-16 gusht, 12 shtator), te protestat e studentëve që nga 13 tetori, deri te protesta kombëtare e 24 tetorit, nata më e madhe që nga 4 korriku.",
       href: "/pulsi",
       cta: "Shiko pulsin e protestës",
       heroChip: `Nata ${protestDays} · shiko pulsin e protestës`,
@@ -682,7 +682,7 @@ C) Nuk marshoj, por mund të ndihmoj me:
       kicker: "Participation index",
       title: `${protestDays} days in the square, day by day.`,
       body:
-        "Follow the pulse of the protest: participation clearly documented on camera, from the 6 June surge, through the two major diaspora marches on 20 June and 4 July, to the 1 August national action.",
+        "Follow the pulse of the protest: participation clearly documented on camera, from the 6 June surge and the diaspora marches (20 June, 4 July, 14-16 August, 12 September), through the student protests since 13 October, to the 24 October national protest, the biggest night since 4 July.",
       href: "/en/pulsi",
       cta: "See the protest pulse",
       heroChip: `Night ${protestDays} · see the protest pulse`,
