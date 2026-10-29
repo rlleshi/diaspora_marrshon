@@ -3815,6 +3815,15 @@ textarea:focus {
   background: var(--paper);
 }
 
+/* "What you'll find here", between the mission and the cards */
+.overview-cards-title {
+  margin-top: 40px;
+}
+
+.overview-cards-title + .link-card-grid {
+  margin-top: 16px;
+}
+
 /* ===================================================================
  * Scandals dossier — standalone page (/liste_vuajtjesh)
  * =================================================================== */

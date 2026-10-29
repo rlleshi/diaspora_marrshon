@@ -348,11 +348,14 @@ export function HomePage({ locale }: { locale: Locale }) {
           </div>
         </section>
 
-        <section className="section overview-band" aria-labelledby="overview-title">
+        <section className="section overview-band" aria-labelledby="mission-title">
           <div className="section-inner">
             <div className="section-heading">
-              <h2 id="overview-title">{t.overview.title}</h2>
+              <p className="kicker">{t.mission.kicker}</p>
+              <h2 id="mission-title">{t.mission.title}</h2>
+              <p>{t.mission.body}</p>
             </div>
+            <h3 className="overview-cards-title">{t.overview.title}</h3>
             <div className="link-card-grid">
               {overviewCards.map((card) => (
                 <TrackedLink

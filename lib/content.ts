@@ -63,8 +63,6 @@ export type SiteContent = {
     badges: string[];
     primaryCta: string;
     secondaryCta: string;
-    statLabel: string;
-    statValue: string;
   };
   pledgeIntro: {
     title: string;
@@ -98,6 +96,12 @@ export type SiteContent = {
   };
   scandalsTeaser: {
     href: string;
+  };
+  /** who we are, at the head of the homepage overview */
+  mission: {
+    kicker: string;
+    title: string;
+    body: string;
   };
   /** the homepage cards that lead to the march, scandals and safety pages; titles come from nav, the march card reuses marchPage.body */
   overview: {
@@ -285,9 +289,6 @@ export const content: Record<Locale, SiteContent> = {
       badges: ["Paqësor", "Simbolik", "Katharsis"],
       primaryCta: "Bashkohu në WhatsApp",
       secondaryCta: "Shiko itinerarin",
-      statLabel: "Qëllimi i faqes",
-      statValue:
-        "Ta bashkojmë diasporën në protestë për Shqipërinë, në numër sa më të madh.",
     },
     pledgeIntro: {
       title: "Bashkohu në WhatsApp për koordinim.",
@@ -328,6 +329,12 @@ export const content: Record<Locale, SiteContent> = {
     },
     scandalsTeaser: {
       href: "/liste_vuajtjesh",
+    },
+    mission: {
+      kicker: "Kush jemi",
+      title: "Revolucioni Flamingo, nga diaspora.",
+      body:
+        "Flamingo Revolution Diaspora është shtëpia e shqiptarëve të diasporës në Revolucionin Flamingo, kudo që jetojnë. Marshimet e diasporës në Tiranë kanë qenë deri tani veprimtaria jonë kryesore. Hapat e ardhshëm i vendosim së bashku, sipas asaj që i duhet lëvizjes.",
     },
     overview: {
       title: "Çfarë gjen në këtë faqe",
@@ -658,9 +665,6 @@ C) Nuk marshoj, por mund të ndihmoj me:
       badges: ["Peaceful", "Symbolic", "Catharsis"],
       primaryCta: "Join WhatsApp",
       secondaryCta: "View the route",
-      statLabel: "Site purpose",
-      statValue:
-        "Bring the diaspora together to protest for Albania, in the largest numbers possible.",
     },
     pledgeIntro: {
       title: "Join WhatsApp for coordination.",
@@ -701,6 +705,12 @@ C) Nuk marshoj, por mund të ndihmoj me:
     },
     scandalsTeaser: {
       href: "/en/liste_vuajtjesh",
+    },
+    mission: {
+      kicker: "Who we are",
+      title: "The Flamingo Revolution, from the diaspora.",
+      body:
+        "Flamingo Revolution Diaspora is the home of Albanians abroad in the Flamingo Revolution, wherever they live. The diaspora marches in Tirana have been our main activity so far. What comes next we decide together, based on what the movement needs.",
     },
     overview: {
       title: "What you'll find here",
