@@ -23,9 +23,6 @@ export type ContactFormText = {
 
 export type ContactPageContent = {
   altLangHref: string;
-  altLangLabel: string;
-  homeHref: string;
-  homeLabel: string;
   kicker: string;
   title: string;
   lead: string;
@@ -35,9 +32,6 @@ export type ContactPageContent = {
 export const contactPageContent: Record<Locale, ContactPageContent> = {
   sq: {
     altLangHref: "/en/contact",
-    altLangLabel: "English",
-    homeHref: "/",
-    homeLabel: "Kthehu te faqja kryesore",
     kicker: "Kontakt",
     title: "Na shkruaj",
     lead:
@@ -65,9 +59,6 @@ export const contactPageContent: Record<Locale, ContactPageContent> = {
   },
   en: {
     altLangHref: "/contact",
-    altLangLabel: "Shqip",
-    homeHref: "/en",
-    homeLabel: "Back to homepage",
     kicker: "Contact",
     title: "Write to us",
     lead:

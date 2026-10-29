@@ -1,11 +1,9 @@
-import Link from "next/link";
-import { ArrowLeft, Flag, Languages } from "lucide-react";
 import type { Locale } from "@/lib/content";
 import { scandals } from "@/data/scandals";
 import { scandalsPageContent, statusBucketOrder } from "@/lib/scandals-content";
-import { TrackedLink } from "@/components/analytics-events";
 import { ScandalsExplorer } from "@/components/scandals-explorer";
 import { SiteFooter } from "@/components/site-footer";
+import { SiteHeader } from "@/components/site-header";
 
 // Rama's tenure (2013–2026), not derived from scandal yearStart values —
 // several scandals (e.g. Bankers Petroleum's operations since 2004) predate
@@ -20,35 +18,15 @@ const STATUS_COUNTS = statusBucketOrder.map((bucket) => ({
 
 export function ScandalsPage({ locale }: { locale: Locale }) {
   const t = scandalsPageContent[locale];
-  const alternateLocale = locale === "sq" ? "en" : "sq";
 
   return (
     <div className="site-shell scandals-shell">
-      <header className="site-header">
-        <Link href={t.homeHref} className="brand">
-          <Flag aria-hidden="true" size={22} />
-          <span>Diaspora marshon</span>
-        </Link>
-        <nav aria-label="Scandals dossier navigation">
-          <Link href={t.homeHref}>
-            <ArrowLeft aria-hidden="true" size={18} />
-            <span>{t.homeLabel}</span>
-          </Link>
-          <TrackedLink
-            className="lang-switch"
-            href={t.altLangHref}
-            eventName="Language Switched"
-            eventProperties={{
-              from: locale,
-              to: alternateLocale,
-              placement: "scandals_header",
-            }}
-          >
-            <Languages aria-hidden="true" size={18} />
-            <span>{t.altLangLabel}</span>
-          </TrackedLink>
-        </nav>
-      </header>
+      <SiteHeader
+        locale={locale}
+        altLangHref={t.altLangHref}
+        placement="scandals_header"
+        current="scandals"
+      />
 
       <main>
         <section className="section scandals-hero-band">

@@ -11,7 +11,6 @@ import {
   Flag,
   Footprints,
   Gavel,
-  Languages,
   MapPinned,
   Megaphone,
   MessageCircle,
@@ -26,11 +25,11 @@ import {
 import { content, WHATSAPP_INVITE_URL, type Locale, type SiteContent } from "@/lib/content";
 import { participation } from "@/data/participation";
 import { CopyButton } from "@/components/copy-button";
-import { SiteMenu } from "@/components/site-menu";
 import { PledgeForm } from "@/components/pledge-form";
 import { HistoryCarousel } from "@/components/history-carousel";
 import { SectionViewTracker, TrackedLink } from "@/components/analytics-events";
 import { SiteFooter } from "@/components/site-footer";
+import { SiteHeader } from "@/components/site-header";
 import routeMapImage from "@/docs/marshimi_i_diaspores_bulevard_sheshi.png";
 
 const whatsAppInviteUrl = WHATSAPP_INVITE_URL;
@@ -76,7 +75,6 @@ function WalkingPersonIcon({
 
 export function HomePage({ locale }: { locale: Locale }) {
   const t = content[locale];
-  const alternateLocale = locale === "sq" ? "en" : "sq";
   const call = t.hero.call;
   const heroScheduleLabel = t.hero.dateRows
     .map((row) => `${row.time}, ${row.location}`)
@@ -111,41 +109,12 @@ export function HomePage({ locale }: { locale: Locale }) {
 
   return (
     <div className="site-shell">
-      <header className="site-header">
-        <Link href={locale === "sq" ? "/" : "/en"} className="brand">
-          <Flag aria-hidden="true" size={22} />
-          <span>Diaspora marshon</span>
-        </Link>
-        <nav aria-label="Primary navigation">
-          <SiteMenu openLabel={t.nav.menuOpen} closeLabel={t.nav.menuClose}>
-            <Link href={t.trackerTeaser.href}>{t.nav.tracker}</Link>
-            <a href="#context">{t.nav.context}</a>
-            <a href="#history">{t.nav.history}</a>
-            <Link href={t.scandalsTeaser.href}>{t.nav.scandals}</Link>
-            <Link className="nav-safety" href={locale === "sq" ? "/siguria" : "/en/siguria"}>
-              <ShieldAlert aria-hidden="true" size={16} />
-              {t.nav.safety}
-            </Link>
-            <a href="#marshimi">{t.nav.march}</a>
-            <a className="nav-cta" href="#pledge">
-              {t.nav.pledge}
-            </a>
-          </SiteMenu>
-          <TrackedLink
-            className="lang-switch"
-            href={t.altLangHref}
-            eventName="Language Switched"
-            eventProperties={{
-              from: locale,
-              to: alternateLocale,
-              placement: "home_header",
-            }}
-          >
-            <Languages aria-hidden="true" size={18} />
-            <span>{t.altLangLabel}</span>
-          </TrackedLink>
-        </nav>
-      </header>
+      <SiteHeader
+        locale={locale}
+        altLangHref={t.altLangHref}
+        placement="home_header"
+        current="home"
+      />
 
       <section className="hero">
         <Image

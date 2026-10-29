@@ -1,13 +1,9 @@
-import Link from "next/link";
 import type { ReactNode } from "react";
 import {
   ArrowDown,
-  ArrowLeft,
   ExternalLink,
   FileText,
-  Flag,
   HeartPulse,
-  Languages,
   Phone,
   Scale,
   ShieldAlert,
@@ -23,8 +19,8 @@ import {
   type SafetyTopic,
   type SafetyTopicId,
 } from "@/lib/safety-content";
-import { TrackedLink } from "@/components/analytics-events";
 import { SiteFooter } from "@/components/site-footer";
+import { SiteHeader } from "@/components/site-header";
 
 const topicIcons: Record<SafetyTopicId, LucideIcon> = {
   pergatitja: ShoppingBag,
@@ -135,35 +131,15 @@ function TopicBody({ topic }: { topic: SafetyTopic }) {
 
 export function SafetyPage({ locale }: { locale: Locale }) {
   const t = safetyPageContent[locale];
-  const alternateLocale = locale === "sq" ? "en" : "sq";
 
   return (
     <div className="site-shell safety-shell">
-      <header className="site-header">
-        <Link href={t.homeHref} className="brand">
-          <Flag aria-hidden="true" size={22} />
-          <span>Diaspora marshon</span>
-        </Link>
-        <nav aria-label="Safety page navigation">
-          <Link href={t.homeHref}>
-            <ArrowLeft aria-hidden="true" size={18} />
-            <span>{t.homeLabel}</span>
-          </Link>
-          <TrackedLink
-            className="lang-switch"
-            href={t.altLangHref}
-            eventName="Language Switched"
-            eventProperties={{
-              from: locale,
-              to: alternateLocale,
-              placement: "safety_header",
-            }}
-          >
-            <Languages aria-hidden="true" size={18} />
-            <span>{t.altLangLabel}</span>
-          </TrackedLink>
-        </nav>
-      </header>
+      <SiteHeader
+        locale={locale}
+        altLangHref={t.altLangHref}
+        placement="safety_header"
+        current="safety"
+      />
 
       <main>
         <section className="safety-hero" aria-labelledby="safety-title">

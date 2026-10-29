@@ -51,9 +51,6 @@ export type SafetyTopic = {
 
 type SafetyPageContent = {
   altLangHref: string;
-  altLangLabel: string;
-  homeHref: string;
-  homeLabel: string;
   hero: {
     kicker: string;
     title: string;
@@ -71,9 +68,6 @@ type SafetyPageContent = {
 export const safetyPageContent: Record<Locale, SafetyPageContent> = {
   sq: {
     altLangHref: "/en/siguria",
-    altLangLabel: "English",
-    homeHref: "/",
-    homeLabel: "Kthehu te faqja kryesore",
     hero: {
       kicker: "Udhëzues praktik",
       title: "Siguria në protestë. Të drejtat e tua.",
@@ -460,9 +454,6 @@ export const safetyPageContent: Record<Locale, SafetyPageContent> = {
   },
   en: {
     altLangHref: "/siguria",
-    altLangLabel: "Shqip",
-    homeHref: "/en",
-    homeLabel: "Back to homepage",
     hero: {
       kicker: "Practical guide",
       title: "Safety at the protest. Your rights.",

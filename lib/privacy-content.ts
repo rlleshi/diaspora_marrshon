@@ -7,9 +7,6 @@ export type PrivacySection = {
 
 export type PrivacyPageContent = {
   altLangHref: string;
-  altLangLabel: string;
-  homeHref: string;
-  homeLabel: string;
   kicker: string;
   title: string;
   lead: string;
@@ -22,9 +19,6 @@ export type PrivacyPageContent = {
 export const privacyPageContent: Record<Locale, PrivacyPageContent> = {
   sq: {
     altLangHref: "/en/privacy",
-    altLangLabel: "English",
-    homeHref: "/",
-    homeLabel: "Kthehu te faqja kryesore",
     kicker: "Privatësia",
     title: "Si i trajtojmë të dhënat e tua",
     lead:
@@ -61,9 +55,6 @@ export const privacyPageContent: Record<Locale, PrivacyPageContent> = {
   },
   en: {
     altLangHref: "/privacy",
-    altLangLabel: "Shqip",
-    homeHref: "/en",
-    homeLabel: "Back to homepage",
     kicker: "Privacy",
     title: "How we handle your data",
     lead:

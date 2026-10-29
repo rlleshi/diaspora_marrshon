@@ -1,10 +1,6 @@
 import Image from "next/image";
-import Link from "next/link";
 import {
-  ArrowLeft,
   Download,
-  Flag,
-  Languages,
   Shirt,
 } from "lucide-react";
 import type { Locale } from "@/lib/content";
@@ -17,40 +13,20 @@ import {
 } from "@/lib/shirts-content";
 import { TrackedLink } from "@/components/analytics-events";
 import { SiteFooter } from "@/components/site-footer";
+import { SiteHeader } from "@/components/site-header";
 
 const versionOrder: ShirtVersion[] = ["black", "white"];
 
 export function ShirtsPage({ locale }: { locale: Locale }) {
   const t = shirtsPageContent[locale];
-  const alternateLocale = locale === "sq" ? "en" : "sq";
 
   return (
     <div className="site-shell shirts-shell">
-      <header className="site-header">
-        <Link href={t.homeHref} className="brand">
-          <Flag aria-hidden="true" size={22} />
-          <span>Diaspora marshon</span>
-        </Link>
-        <nav aria-label="Shirt page navigation">
-          <Link href={t.homeHref}>
-            <ArrowLeft aria-hidden="true" size={18} />
-            <span>{t.homeLabel}</span>
-          </Link>
-          <TrackedLink
-            className="lang-switch"
-            href={t.altLangHref}
-            eventName="Language Switched"
-            eventProperties={{
-              from: locale,
-              to: alternateLocale,
-              placement: "shirts_header",
-            }}
-          >
-            <Languages aria-hidden="true" size={18} />
-            <span>{t.altLangLabel}</span>
-          </TrackedLink>
-        </nav>
-      </header>
+      <SiteHeader
+        locale={locale}
+        altLangHref={t.altLangHref}
+        placement="shirts_header"
+      />
 
       <main>
         <section className="shirts-hero">

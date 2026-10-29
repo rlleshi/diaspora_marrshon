@@ -29,9 +29,6 @@ export const shirtsPageContent: Record<
   {
     langLabel: string;
     altLangHref: string;
-    altLangLabel: string;
-    homeHref: string;
-    homeLabel: string;
     hero: {
       kicker: string;
       title: string;
@@ -56,9 +53,6 @@ export const shirtsPageContent: Record<
   sq: {
     langLabel: "Shqip",
     altLangHref: "/en/veshja",
-    altLangLabel: "English",
-    homeHref: "/",
-    homeLabel: "Kthehu te faqja kryesore",
     hero: {
       kicker: "Veshje sugjeruese",
       title: "Nëse do, mbaj të njëjtin mesazh.",
@@ -90,9 +84,6 @@ export const shirtsPageContent: Record<
   en: {
     langLabel: "English",
     altLangHref: "/veshja",
-    altLangLabel: "Shqip",
-    homeHref: "/en",
-    homeLabel: "Back to homepage",
     hero: {
       kicker: "Suggested clothing",
       title: "If you want, carry the same message.",

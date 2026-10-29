@@ -1,13 +1,12 @@
-import Link from "next/link";
-import { Activity, ArrowDown, ArrowLeft, Flag, Languages } from "lucide-react";
-import { content, type Locale } from "@/lib/content";
+import { Activity, ArrowDown } from "lucide-react";
+import type { Locale } from "@/lib/content";
 import {
   ParticipationChart,
   type ChartLabels,
 } from "@/components/participation/ParticipationChart";
 import { DayLog } from "@/components/participation/DayLog";
-import { TrackedLink } from "@/components/analytics-events";
 import { SiteFooter } from "@/components/site-footer";
+import { SiteHeader } from "@/components/site-header";
 import { participation } from "@/data/participation";
 import { pulsiDatasetJsonLd } from "@/lib/metadata";
 import { methodologyLinks } from "@/lib/methodology-content";
@@ -15,8 +14,6 @@ import { methodologyLinks } from "@/lib/methodology-content";
 const COPY: Record<
   Locale,
   {
-    homeHref: string;
-    homeLabel: string;
     eyebrow: string;
     title: string;
     liveLabel: string;
@@ -29,8 +26,6 @@ const COPY: Record<
   }
 > = {
   sq: {
-    homeHref: "/",
-    homeLabel: "Kthehu te faqja kryesore",
     eyebrow: "Pulsi i protestës për Shqipërinë e re",
     title: "151 ditë në shesh për një mjekërrosh bardhërosh",
     liveLabel: "Live",
@@ -116,8 +111,6 @@ const COPY: Record<
     },
   },
   en: {
-    homeHref: "/en",
-    homeLabel: "Back to the homepage",
     eyebrow: "Protest pulse for a new Albania",
     title: "151 days in the square for a grey-bearded Rama",
     liveLabel: "Live",
@@ -203,8 +196,6 @@ const COPY: Record<
 
 export function LiveTrackerPage({ locale }: { locale: Locale }) {
   const t = COPY[locale];
-  const c = content[locale];
-  const alternateLocale = locale === "sq" ? "en" : "sq";
 
   const dataset = pulsiDatasetJsonLd(
     locale,
@@ -219,31 +210,12 @@ export function LiveTrackerPage({ locale }: { locale: Locale }) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(dataset) }}
       />
-      <header className="site-header">
-        <Link href={t.homeHref} className="brand">
-          <Flag aria-hidden="true" size={22} />
-          <span>Diaspora marshon</span>
-        </Link>
-        <nav aria-label="Live tracker navigation">
-          <Link href={t.homeHref}>
-            <ArrowLeft aria-hidden="true" size={18} />
-            <span>{t.homeLabel}</span>
-          </Link>
-          <TrackedLink
-            className="lang-switch"
-            href={alternateLocale === "en" ? "/en/pulsi" : "/pulsi"}
-            eventName="Language Switched"
-            eventProperties={{
-              from: locale,
-              to: alternateLocale,
-              placement: "tracker_header",
-            }}
-          >
-            <Languages aria-hidden="true" size={18} />
-            <span>{c.altLangLabel}</span>
-          </TrackedLink>
-        </nav>
-      </header>
+      <SiteHeader
+        locale={locale}
+        altLangHref={locale === "sq" ? "/en/pulsi" : "/pulsi"}
+        placement="tracker_header"
+        current="tracker"
+      />
 
       <main>
         <section className="section tracker-band" id="participation">

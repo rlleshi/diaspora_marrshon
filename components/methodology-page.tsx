@@ -1,42 +1,21 @@
 import Link from "next/link";
-import { Activity, ArrowLeft, Flag, Languages } from "lucide-react";
+import { Activity } from "lucide-react";
 import type { Locale } from "@/lib/content";
 import { methodologyPageContent } from "@/lib/methodology-content";
-import { TrackedLink } from "@/components/analytics-events";
 import { SiteFooter } from "@/components/site-footer";
+import { SiteHeader } from "@/components/site-header";
 
 /** How the Pulsi index is made, its limits, and where to get the data and code. */
 export function MethodologyPage({ locale }: { locale: Locale }) {
   const t = methodologyPageContent[locale];
-  const alternateLocale = locale === "sq" ? "en" : "sq";
 
   return (
     <div className="site-shell contact-shell">
-      <header className="site-header">
-        <Link href={t.homeHref} className="brand">
-          <Flag aria-hidden="true" size={22} />
-          <span>Diaspora marshon</span>
-        </Link>
-        <nav aria-label="Methodology page navigation">
-          <Link href={t.trackerHref}>
-            <ArrowLeft aria-hidden="true" size={18} />
-            <span>{t.trackerLabel}</span>
-          </Link>
-          <TrackedLink
-            className="lang-switch"
-            href={t.altLangHref}
-            eventName="Language Switched"
-            eventProperties={{
-              from: locale,
-              to: alternateLocale,
-              placement: "methodology_header",
-            }}
-          >
-            <Languages aria-hidden="true" size={18} />
-            <span>{t.altLangLabel}</span>
-          </TrackedLink>
-        </nav>
-      </header>
+      <SiteHeader
+        locale={locale}
+        altLangHref={t.altLangHref}
+        placement="methodology_header"
+      />
 
       <main className="section contact-band">
         <div className="section-inner privacy-inner">

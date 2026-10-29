@@ -19,9 +19,6 @@ export type MethodologyResource = {
 
 export type MethodologyPageContent = {
   altLangHref: string;
-  altLangLabel: string;
-  homeHref: string;
-  homeLabel: string;
   trackerHref: string;
   trackerLabel: string;
   kicker: string;
@@ -38,9 +35,6 @@ export type MethodologyPageContent = {
 export const methodologyPageContent: Record<Locale, MethodologyPageContent> = {
   sq: {
     altLangHref: "/en/pulsi/metodologjia",
-    altLangLabel: "English",
-    homeHref: "/",
-    homeLabel: "Kthehu te faqja kryesore",
     trackerHref: "/pulsi",
     trackerLabel: "Kthehu te Pulsi",
     kicker: "Pulsi i protestës · Metodologjia",
@@ -130,9 +124,6 @@ export const methodologyPageContent: Record<Locale, MethodologyPageContent> = {
   },
   en: {
     altLangHref: "/pulsi/metodologjia",
-    altLangLabel: "Shqip",
-    homeHref: "/en",
-    homeLabel: "Back to the homepage",
     trackerHref: "/en/pulsi",
     trackerLabel: "Back to Pulsi",
     kicker: "Protest Pulse · Method",

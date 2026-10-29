@@ -20,9 +20,6 @@ export const scandalsPageContent: Record<
   {
     langLabel: string;
     altLangHref: string;
-    altLangLabel: string;
-    homeHref: string;
-    homeLabel: string;
     hero: {
       kicker: string;
       title: string;
@@ -58,9 +55,6 @@ export const scandalsPageContent: Record<
   sq: {
     langLabel: "Shqip",
     altLangHref: "/en/liste_vuajtjesh",
-    altLangLabel: "English",
-    homeHref: "/",
-    homeLabel: "Kthehu te faqja kryesore",
     hero: {
       kicker: "Historiku i qeverisjes",
       title: "14 vjet, 33 dosje: çfarë i ka bërë Shqipërisë kjo organizatë.",
@@ -112,9 +106,6 @@ export const scandalsPageContent: Record<
   en: {
     langLabel: "English",
     altLangHref: "/liste_vuajtjesh",
-    altLangLabel: "Shqip",
-    homeHref: "/en",
-    homeLabel: "Back to homepage",
     hero: {
       kicker: "Government track record",
       title: "14 years, 33 case files: what this organization has done.",

@@ -97,7 +97,8 @@ textarea {
   font-weight: 650;
 }
 
-.site-header nav a:hover {
+.site-header nav a:hover,
+.site-header nav a[aria-current="page"] {
   background: rgba(185, 28, 28, 0.08);
 }
 
@@ -1784,21 +1785,8 @@ textarea:focus {
     font-size: 0.88rem;
   }
 
-  /* subpages: the back link keeps its arrow; the brand beside it already leads home */
   .lang-switch svg {
     display: none; /* the word alone ("English", "Shqip") fits the one-row bar */
-  }
-  .site-header nav > a:not(.lang-switch) {
-    min-width: 44px;
-    justify-content: center;
-  }
-  .site-header nav > a:not(.lang-switch) > span {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    overflow: hidden;
-    clip: rect(0 0 0 0);
-    white-space: nowrap;
   }
 
   .hero {
