@@ -126,14 +126,15 @@ export function axisFor(
 /**
  * Gridlines for a log axis: the floor and ceiling always, plus the coarsest ladder
  * that puts at least two rungs between them. A rung crowding a bound is dropped so
- * two labels never stack.
+ * two labels never stack. A phone-width plot is about a third as tall on screen
+ * while its labels are not, so it needs a wider gap.
  */
-function logGridValues(minY: number, maxY: number): number[] {
+function logGridValues(minY: number, maxY: number, narrow: boolean): number[] {
   const span = Math.log10(maxY) - Math.log10(minY);
   const inner = (steps: number[]) =>
     ladder(steps, minY, maxY).filter((v) => v > minY * 1.001 && v < maxY * 0.999);
   const rungs = LOG_LADDERS.map(inner).find((r) => r.length >= 2) ?? inner(FINEST);
-  const minGap = span * 0.06;
+  const minGap = span * (narrow ? 0.1 : 0.06);
   const kept = [minY];
   for (const v of rungs) {
     if (Math.log10(v) - Math.log10(kept[kept.length - 1]) < minGap) continue;
@@ -189,6 +190,7 @@ export function buildGeometry(
   maxY: number = VIEW.maxY,
   scale: Scale = "linear",
   minY: number = 0,
+  narrow: boolean = false,
 ): ChartGeometry {
   const { width, height, padTop, padBottom, padLeft, padRight } = VIEW;
   const left = padLeft;
@@ -236,7 +238,9 @@ export function buildGeometry(
     : "";
 
   const gridValues =
-    scale === "log" ? logGridValues(minY, maxY) : [0, 0.25, 0.5, 0.75, 1].map((f) => maxY * f);
+    scale === "log"
+      ? logGridValues(minY, maxY, narrow)
+      : [0, 0.25, 0.5, 0.75, 1].map((f) => maxY * f);
   const gridLines = gridValues.map((value) => ({ value, y: yOf(value), label: tick(value) }));
 
   return {

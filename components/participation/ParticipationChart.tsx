@@ -297,10 +297,16 @@ function placeChips(
   return placed;
 }
 
-/** Sparse enough to stay legible at any window width. */
-function xTicks(from: number, to: number): number[] {
+/**
+ * Sparse enough to stay legible at any window width. A phone-width plot has about
+ * a third of the room, so it steps wider: every 5th day across all 151 piled the
+ * labels into one unbroken row of digits.
+ */
+function xTicks(from: number, to: number, narrow: boolean): number[] {
   const span = to - from;
-  const step = span <= 10 ? 1 : span <= 24 ? 3 : 5;
+  const step = narrow
+    ? span <= 7 ? 1 : span <= 16 ? 2 : span <= 40 ? 5 : span <= 80 ? 10 : 25
+    : span <= 10 ? 1 : span <= 24 ? 3 : 5;
   const ticks = [from];
   for (let d = Math.ceil((from + 1) / step) * step; d < to; d += step) {
     // A full step clear of both ends: the end labels are wider ("Dita 1", three
@@ -483,10 +489,10 @@ export function ParticipationChart({
   const { maxY } = axis;
 
   const geo = useMemo(
-    () => buildGeometry(days, axis.maxY, scale, axis.minY),
-    [days, axis, scale],
+    () => buildGeometry(days, axis.maxY, scale, axis.minY, narrow),
+    [days, axis, scale, narrow],
   );
-  const ticks = useMemo(() => xTicks(range.from, range.to), [range]);
+  const ticks = useMemo(() => xTicks(range.from, range.to, narrow), [range, narrow]);
   const events = useMemo(
     () => participationEvents.filter((ev) => ev.day >= range.from && ev.day <= range.to),
     [range],
@@ -880,6 +886,8 @@ export function ParticipationChart({
         {
           "--draw-ms": `${DRAW_MS}ms`,
           "--peak-delay": `${peakDelay}ms`,
+          // viewBox units per CSS pixel, so the mobile stylesheet can size axis text in screen pixels
+          "--pc-u": sized ? unitsPerCss : undefined,
           aspectRatio: cal ? undefined : `${geo.view.width} / ${geo.view.height}`,
         } as CSSProperties
       }
@@ -1012,7 +1020,8 @@ export function ParticipationChart({
             fill="#5f625f"
             textAnchor="middle"
           >
-            {day === 1 ? `${labels.axisDay} 1` : day}
+            {/* "Dita 1" overruns the left edge of a phone-width plot */}
+            {day === 1 && !narrow ? `${labels.axisDay} 1` : day}
           </text>
         ))}
 

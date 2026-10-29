@@ -2794,11 +2794,14 @@ textarea:focus {
     gap: 10px;
     font-size: 0.7rem;
   }
+  /* axis text lives in viewBox units and shrinks with the plot (~6px on a
+     phone); --pc-u turns a screen size into those units, with a typical phone
+     ratio until the chart has measured itself */
   .pc-xlabel {
-    font-size: 18px;
+    font-size: calc(11px * var(--pc-u, 2.7));
   }
   .pc-ylabel {
-    font-size: 17px;
+    font-size: calc(10.5px * var(--pc-u, 2.7));
   }
   /* the replay button sits over the top gridline label on the short chart */
   .pc-ylabel--top {
