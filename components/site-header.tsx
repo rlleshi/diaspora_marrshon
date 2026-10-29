@@ -5,12 +5,12 @@ import { SiteMenu } from "@/components/site-menu";
 import { TrackedLink } from "@/components/analytics-events";
 
 /** The menu entry for the page the visitor is on, marked as current. */
-export type SiteHeaderPage = "home" | "tracker" | "scandals" | "safety";
+export type SiteHeaderPage = "home" | "tracker" | "march" | "scandals" | "safety";
 
 /**
- * The sticky bar on every page: brand, the full section menu and the language
- * switch. Off the homepage the section links lead back to its anchors, so the
- * menu reads the same wherever the visitor is.
+ * The sticky bar on every page: brand, the full page menu and the language
+ * switch. The call to action leads back to the homepage's WhatsApp section,
+ * so the menu reads the same wherever the visitor is.
  */
 export function SiteHeader({
   locale,
@@ -27,7 +27,6 @@ export function SiteHeader({
 }) {
   const t = content[locale];
   const homeHref = locale === "sq" ? "/" : "/en";
-  const section = (id: string) => (current === "home" ? `#${id}` : `${homeHref}#${id}`);
   const ariaCurrent = (page: SiteHeaderPage) => (page === current ? "page" : undefined);
 
   return (
@@ -41,8 +40,9 @@ export function SiteHeader({
           <Link href={t.trackerTeaser.href} aria-current={ariaCurrent("tracker")}>
             {t.nav.tracker}
           </Link>
-          <Link href={section("context")}>{t.nav.context}</Link>
-          <Link href={section("history")}>{t.nav.history}</Link>
+          <Link href={t.marchPage.href} aria-current={ariaCurrent("march")}>
+            {t.nav.march}
+          </Link>
           <Link href={t.scandalsTeaser.href} aria-current={ariaCurrent("scandals")}>
             {t.nav.scandals}
           </Link>
@@ -54,8 +54,7 @@ export function SiteHeader({
             <ShieldAlert aria-hidden="true" size={16} />
             {t.nav.safety}
           </Link>
-          <Link href={section("marshimi")}>{t.nav.march}</Link>
-          <Link className="nav-cta" href={section("pledge")}>
+          <Link className="nav-cta" href={current === "home" ? "#pledge" : `${homeHref}#pledge`}>
             {t.nav.pledge}
           </Link>
         </SiteMenu>

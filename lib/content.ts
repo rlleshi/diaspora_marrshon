@@ -25,8 +25,6 @@ export type SiteContent = {
   altLangLabel: string;
   nav: {
     tracker: string;
-    context: string;
-    history: string;
     scandals: string;
     safety: string;
     march: string;
@@ -97,12 +95,20 @@ export type SiteContent = {
     };
   };
   scandalsTeaser: {
+    href: string;
+  };
+  /** the homepage cards that lead to the march, scandals and safety pages; titles come from nav, the march card reuses marchPage.body */
+  overview: {
+    title: string;
+    scandals: string;
+    safety: string;
+  };
+  /** the top of /marshimi, which holds why we march, the history, the next march and the clothing */
+  marchPage: {
+    href: string;
     kicker: string;
     title: string;
     body: string;
-    href: string;
-    cta: string;
-    stats: Array<{ value: string; label: string }>;
   };
   march: {
     kicker: string;
@@ -237,8 +243,6 @@ export const content: Record<Locale, SiteContent> = {
     altLangLabel: "English",
     nav: {
       tracker: "Pulsi i protestës",
-      context: "Pse marshojmë",
-      history: "Historiku",
       scandals: "Skandalet",
       safety: "Siguria",
       march: "Marshimi",
@@ -320,16 +324,20 @@ export const content: Record<Locale, SiteContent> = {
       },
     },
     scandalsTeaser: {
-      kicker: "Historiku i qeverisjes",
-      title: `${scandalCount} dosje, 14 vjet: çfarë i ka bërë Shqipërisë kjo organizatë.`,
-      body:
-        "Çdo skandal i kontrolluar veç e veç kundrejt gazetarisë investigative shqiptare: statusi ligjor real, pretendimet e verifikuara, dhe burimet.",
       href: "/liste_vuajtjesh",
-      cta: "Shiko dosjen",
-      stats: [
-        { value: scandalCount, label: "dosje" },
-        { value: "14", label: "vjet, e njëjta mjekërr" },
-      ],
+    },
+    overview: {
+      title: "Çfarë gjen në këtë faqe",
+      scandals: `${scandalCount} dosje nga 14 vjet qeverisje, me statusin ligjor, pretendimet e verifikuara dhe burimet.`,
+      safety:
+        "Çfarë të marrësh me vete, të drejtat e tua dhe ku të drejtohesh në rast rreziku.",
+    },
+    marchPage: {
+      href: "/marshimi",
+      kicker: "Marshimi i diasporës",
+      title: "Marshojmë së bashku, nën flamurin shqiptar.",
+      body:
+        "Pse marshojmë, çfarë kemi bërë deri tani, marshimi i radhës dhe veshja e përbashkët.",
     },
     march: {
       kicker: "Marshimi",
@@ -607,8 +615,6 @@ C) Nuk marshoj, por mund të ndihmoj me:
     altLangLabel: "Shqip",
     nav: {
       tracker: "Protest pulse",
-      context: "Why we march",
-      history: "History",
       scandals: "Scandals",
       safety: "Safety",
       march: "The march",
@@ -690,16 +696,20 @@ C) Nuk marshoj, por mund të ndihmoj me:
       },
     },
     scandalsTeaser: {
-      kicker: "Government track record",
-      title: `${scandalCount} case files, 14 years: what this organization has done.`,
-      body:
-        "Every scandal independently checked against Albanian investigative journalism: real legal status, verified claims, and sources.",
       href: "/en/liste_vuajtjesh",
-      cta: "See the dossier",
-      stats: [
-        { value: scandalCount, label: "case files" },
-        { value: "14", label: "years, same beard" },
-      ],
+    },
+    overview: {
+      title: "What you'll find here",
+      scandals: `${scandalCount} case files from 14 years in government, with the legal status, the verified claims and the sources.`,
+      safety:
+        "What to bring, your rights and where to turn when things get dangerous.",
+    },
+    marchPage: {
+      href: "/en/marshimi",
+      kicker: "The diaspora march",
+      title: "We march together, under the Albanian flag.",
+      body:
+        "Why we march, what we have done so far, the next march and the shared clothing.",
     },
     march: {
       kicker: "The march",

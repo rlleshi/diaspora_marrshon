@@ -986,7 +986,8 @@ textarea:focus {
   background: var(--bg);
 }
 
-.shirts-hero {
+.shirts-hero,
+.march-hero {
   padding: clamp(58px, 8vw, 104px) clamp(18px, 4vw, 56px);
   background: #151515;
   color: var(--white);
@@ -999,12 +1000,14 @@ textarea:focus {
   align-items: center;
 }
 
-.shirts-hero h1 {
+.shirts-hero h1,
+.march-hero h1 {
   max-width: 700px;
   font-size: clamp(3rem, 7vw, 5.4rem);
 }
 
-.shirts-hero-copy > p:not(.eyebrow) {
+.shirts-hero-copy > p:not(.eyebrow),
+.march-hero-copy > p:not(.eyebrow) {
   max-width: 680px;
   margin: 22px 0 0;
   color: rgba(255, 255, 255, 0.8);
@@ -1012,7 +1015,8 @@ textarea:focus {
   line-height: 1.62;
 }
 
-.shirts-hero .button {
+.shirts-hero .button,
+.march-hero .button {
   width: fit-content;
   margin-top: 30px;
 }
@@ -1912,7 +1916,8 @@ textarea:focus {
   }
 
   .shirts-teaser .button,
-  .shirts-hero .button {
+  .shirts-hero .button,
+  .march-hero .button {
     width: 100%;
   }
 
@@ -3796,35 +3801,11 @@ textarea:focus {
 }
 
 /* ===================================================================
- * Scandals dossier — homepage teaser band
+ * Homepage overview — one link card per page beyond the pulse
  * =================================================================== */
 
-.scandals-teaser-band {
-  background: #151515;
-  color: var(--white);
-}
-
-/* Both this band and the shirts band right after it share the same dark
-   background, so without a seam they read as one continuous block. */
-.scandals-teaser-band + .shirts-teaser-band {
-  border-top: 1px solid rgba(255, 255, 255, 0.14);
-}
-
-.scandals-teaser {
-  max-width: 720px;
-}
-
-.scandals-teaser .kicker {
-  color: #fecaca;
-}
-
-.scandals-teaser .section-copy p {
-  color: rgba(255, 255, 255, 0.78);
-}
-
-.scandals-teaser .button {
-  width: fit-content;
-  margin-top: 24px;
+.overview-band {
+  background: var(--paper);
 }
 
 /* ===================================================================
@@ -4605,14 +4586,15 @@ a.source-chip-link:hover {
   line-height: 1.6;
 }
 
-.safety-quick-grid {
+/* Cards that lead somewhere: the guide's topic jumps and the homepage overview. */
+.link-card-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 14px;
   margin-top: 30px;
 }
 
-.safety-quick-card {
+.link-card {
   display: flex;
   position: relative;
   flex-direction: column;
@@ -4626,12 +4608,12 @@ a.source-chip-link:hover {
   transition: border-color .18s ease, transform .18s ease;
 }
 
-.safety-quick-card:hover {
+.link-card:hover {
   border-color: var(--red);
   transform: translateY(-2px);
 }
 
-.safety-quick-icon {
+.link-card-icon {
   display: inline-grid;
   place-items: center;
   width: 42px;
@@ -4642,24 +4624,24 @@ a.source-chip-link:hover {
   color: var(--red-dark);
 }
 
-.safety-quick-text {
+.link-card-text {
   display: flex;
   flex-direction: column;
   gap: 7px;
   padding-right: 26px;
 }
 
-.safety-quick-text strong {
+.link-card-text strong {
   font-size: 1.05rem;
 }
 
-.safety-quick-text small {
+.link-card-text small {
   color: var(--muted);
   font-size: .85rem;
   line-height: 1.55;
 }
 
-.safety-quick-arrow {
+.link-card-arrow {
   position: absolute;
   right: 19px;
   top: 24px;
@@ -4923,7 +4905,6 @@ a.source-chip-link:hover {
   line-height: 1.55;
 }
 
-.safety-quick-card:focus-visible,
 .safety-shell a:focus-visible,
 .site-header .nav-safety:focus-visible {
   outline: 3px solid #0f766e;
@@ -4931,7 +4912,7 @@ a.source-chip-link:hover {
 }
 
 @media (max-width: 900px) {
-  .safety-quick-grid {
+  .link-card-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
@@ -4965,11 +4946,11 @@ a.source-chip-link:hover {
 }
 
 @media (max-width: 520px) {
-  .safety-quick-grid {
+  .link-card-grid {
     grid-template-columns: minmax(0, 1fr);
   }
 
-  .safety-quick-card {
+  .link-card {
     flex-direction: row;
     min-height: 0;
     align-items: flex-start;
@@ -4991,7 +4972,7 @@ a.source-chip-link:hover {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .safety-quick-card {
+  .link-card {
     transition: none;
   }
 }

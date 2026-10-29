@@ -174,19 +174,19 @@ export function SafetyPage({ locale }: { locale: Locale }) {
               <h2 id="safety-quick-title">{t.quick.title}</h2>
               <p>{t.quick.body}</p>
             </div>
-            <div className="safety-quick-grid">
+            <div className="link-card-grid">
               {t.topics.map((topic) => {
                 const Icon = topicIcons[topic.id];
                 return (
-                  <a href={`#${topic.id}`} className="safety-quick-card" key={topic.id}>
-                    <span className="safety-quick-icon" aria-hidden="true">
+                  <a href={`#${topic.id}`} className="link-card" key={topic.id}>
+                    <span className="link-card-icon" aria-hidden="true">
                       <Icon size={21} />
                     </span>
-                    <span className="safety-quick-text">
+                    <span className="link-card-text">
                       <strong>{topic.kicker}</strong>
                       <small>{topic.summary}</small>
                     </span>
-                    <ArrowDown className="safety-quick-arrow" aria-hidden="true" size={18} />
+                    <ArrowDown className="link-card-arrow" aria-hidden="true" size={18} />
                   </a>
                 );
               })}

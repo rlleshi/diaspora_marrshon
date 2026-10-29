@@ -2,48 +2,28 @@ import Image from "next/image";
 import Link from "next/link";
 import {
   Activity,
-  ArrowDown,
   ArrowRight,
-  Backpack,
-  CheckCircle2,
-  Droplets,
   ExternalLink,
   Flag,
   Footprints,
   Gavel,
-  MapPinned,
   Megaphone,
   MessageCircle,
   Plane,
   QrCode,
   ShieldAlert,
-  Shirt,
-  Timer,
   Users,
-  Utensils,
 } from "lucide-react";
 import { content, WHATSAPP_INVITE_URL, type Locale, type SiteContent } from "@/lib/content";
 import { participation } from "@/data/participation";
 import { CopyButton } from "@/components/copy-button";
 import { PledgeForm } from "@/components/pledge-form";
-import { HistoryCarousel } from "@/components/history-carousel";
 import { SectionViewTracker, TrackedLink } from "@/components/analytics-events";
+import { MovedSectionRedirect } from "@/components/moved-section-redirect";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
-import routeMapImage from "@/docs/marshimi_i_diaspores_bulevard_sheshi.png";
 
 const whatsAppInviteUrl = WHATSAPP_INVITE_URL;
-const googleMapsRouteUrl =
-  "https://www.google.com/maps/dir/?api=1&origin=Sheshi+N%C3%ABn%C3%AB+Tereza%2C+Tiran%C3%AB&destination=Sheshi+Sk%C3%ABnderbej%2C+Tiran%C3%AB&travelmode=walking";
-
-const practicalAdviceIcons = [
-  Droplets,
-  Utensils,
-  Timer,
-  Footprints,
-  Activity,
-  Backpack,
-];
 
 // one per step of the hero's call: say when you're coming, bring people, join the square
 const callStepIcons = [Plane, Users, Megaphone];
@@ -82,9 +62,30 @@ export function HomePage({ locale }: { locale: Locale }) {
   const heroDateLabel = heroScheduleLabel
     ? `${t.hero.dateLabel}: ${t.hero.dateText}; ${heroScheduleLabel}`
     : `${t.hero.dateLabel}: ${t.hero.dateText}`;
-  const routeLayoutClassName = t.itinerary.showMap
-    ? "route-layout"
-    : "route-layout route-layout-single";
+  // the pulse has its own band above; these cards lead to the other pages
+  const overviewCards = [
+    {
+      href: t.marchPage.href,
+      title: t.nav.march,
+      body: t.marchPage.body,
+      Icon: Footprints,
+      eventName: "March Page Opened",
+    },
+    {
+      href: t.scandalsTeaser.href,
+      title: t.nav.scandals,
+      body: t.overview.scandals,
+      Icon: Gavel,
+      eventName: "Scandals Page Opened",
+    },
+    {
+      href: locale === "sq" ? "/siguria" : "/en/siguria",
+      title: t.nav.safety,
+      body: t.overview.safety,
+      Icon: ShieldAlert,
+      eventName: "Safety Guide Clicked",
+    },
+  ];
   const turnstileSiteKey =
     process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY ||
     process.env.TURNSTILE_SITE_KEY ||
@@ -115,6 +116,7 @@ export function HomePage({ locale }: { locale: Locale }) {
         placement="home_header"
         current="home"
       />
+      <MovedSectionRedirect marchHref={t.marchPage.href} />
 
       <section className="hero">
         <Image
@@ -227,10 +229,10 @@ export function HomePage({ locale }: { locale: Locale }) {
               <ArrowRight aria-hidden="true" size={20} />
               {t.hero.primaryCta}
             </a>
-            <a className="button button-secondary" href="#marshimi">
-              <ArrowDown aria-hidden="true" size={20} />
+            <Link className="button button-secondary" href={`${t.marchPage.href}#marshimi`}>
+              <ArrowRight aria-hidden="true" size={20} />
               {t.hero.secondaryCta}
-            </a>
+            </Link>
           </div>
         </div>
       </section>
@@ -328,237 +330,31 @@ export function HomePage({ locale }: { locale: Locale }) {
           </div>
         </section>
 
-        <section className="section context-band" id="context">
-          <div className="section-inner context-grid">
-            <div>
-              <p className="kicker">{t.context.kicker}</p>
-              <h2>{t.context.title}</h2>
-              <p>
-                {t.context.body.before}
-                <a
-                  className="context-link"
-                  href={t.context.body.href}
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  {t.context.body.link}
-                </a>
-                {t.context.body.after}
-              </p>
-              <p className="context-closing">{t.context.closing}</p>
-            </div>
-            <ul className="demand-list">
-              {t.context.demands.map((demand) => (
-                <li key={demand.text}>
-                  <CheckCircle2 aria-hidden="true" size={18} />
-                  <div className="demand-content">
-                    <span>{demand.text}</span>
-                    {demand.items ? (
-                      <ul className="demand-subgroup">
-                        {demand.items.map((item) => (
-                          <li key={item}>{item}</li>
-                        ))}
-                      </ul>
-                    ) : null}
-                  </div>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </section>
-
-        <section className="section history-band" id="history">
+        <section className="section overview-band" aria-labelledby="overview-title">
           <div className="section-inner">
             <div className="section-heading">
-              <p className="kicker">{t.pastMarches.kicker}</p>
-              <h2>{t.pastMarches.title}</h2>
-              <p>{t.pastMarches.body}</p>
+              <h2 id="overview-title">{t.overview.title}</h2>
             </div>
-            <HistoryCarousel
-              items={t.pastMarches.items}
-              carousel={t.pastMarches.carousel}
-            />
-          </div>
-        </section>
-
-        <section className="section marshimi-band" id="marshimi">
-          <SectionViewTracker
-            targetId="marshimi"
-            eventName="March Section Viewed"
-            eventProperties={{ locale }}
-          />
-          <div className="section-inner">
-            <div className="section-heading marshimi-heading">
-              <p className="kicker">{t.march.kicker}</p>
-              <h2>{t.march.title}</h2>
-              <p>{t.march.body}</p>
+            <div className="link-card-grid">
+              {overviewCards.map((card) => (
+                <TrackedLink
+                  className="link-card"
+                  href={card.href}
+                  key={card.href}
+                  eventName={card.eventName}
+                  eventProperties={{ locale, placement: "home_overview" }}
+                >
+                  <span className="link-card-icon" aria-hidden="true">
+                    <card.Icon size={22} />
+                  </span>
+                  <span className="link-card-text">
+                    <strong>{card.title}</strong>
+                    <small>{card.body}</small>
+                  </span>
+                  <ArrowRight className="link-card-arrow" aria-hidden="true" size={18} />
+                </TrackedLink>
+              ))}
             </div>
-
-            <div className="marshimi-part">
-              <div className="marshimi-part-head">
-                <h3>{t.itinerary.title}</h3>
-                <p className="route-date">{t.itinerary.dateLine}</p>
-                <p>{t.itinerary.body}</p>
-              </div>
-              <div className={routeLayoutClassName}>
-                <div className="route-timeline">
-                  <div className="route-visual" aria-hidden="true">
-                    <MapPinned size={34} />
-                    <div className="route-line">
-                      {t.itinerary.points.map((point) => (
-                        <span key={point.time} />
-                      ))}
-                    </div>
-                  </div>
-                  <ol className="timeline">
-                    {t.itinerary.points.map((point) => (
-                      <li key={`${point.time}-${point.title}`}>
-                        <span className="timeline-time">{point.time}</span>
-                        <div>
-                          <h3>{point.title}</h3>
-                          <p>{point.body}</p>
-                        </div>
-                      </li>
-                    ))}
-                  </ol>
-                </div>
-                <figure className="route-map">
-                  {t.itinerary.showMap ? (
-                    <a
-                      href={routeMapImage.src}
-                      target="_blank"
-                      rel="noreferrer"
-                      aria-label={t.itinerary.mapOpenLabel}
-                    >
-                      <Image
-                        src={routeMapImage}
-                        alt={t.itinerary.mapAlt}
-                        sizes="(max-width: 900px) calc(100vw - 28px), 520px"
-                      />
-                    </a>
-                  ) : null}
-                  <TrackedLink
-                    className="route-map-link"
-                    href={googleMapsRouteUrl}
-                    target="_blank"
-                    rel="noreferrer"
-                    eventName="Google Maps Opened"
-                    eventProperties={{ locale, placement: "route_map" }}
-                  >
-                    <MapPinned aria-hidden="true" size={18} />
-                    {t.itinerary.mapExternalLabel}
-                  </TrackedLink>
-                </figure>
-              </div>
-            </div>
-
-            <div className="marshimi-part">
-              <div className="marshimi-part-head">
-                <h3>{t.rules.title}</h3>
-                <p>{t.rules.body}</p>
-              </div>
-              <div className="rules-grid">
-                {t.rules.items.map((item) => (
-                  <article className="rule-item" key={item.title}>
-                    <CheckCircle2 aria-hidden="true" size={22} />
-                    <h3>{item.title}</h3>
-                    <p>{item.body}</p>
-                  </article>
-                ))}
-              </div>
-            </div>
-
-            <div className="marshimi-part" hidden>
-              <div className="marshimi-part-head">
-                <h3>{t.practicalAdvice.title}</h3>
-                <p>{t.practicalAdvice.body}</p>
-              </div>
-              <div className="advice-grid">
-                {t.practicalAdvice.items.map((item, index) => {
-                  const AdviceIcon =
-                    practicalAdviceIcons[index] ?? CheckCircle2;
-
-                  return (
-                    <article className="advice-item" key={item.title}>
-                      <span className="advice-icon">
-                        <AdviceIcon aria-hidden="true" size={22} />
-                      </span>
-                      <div>
-                        <h3>{item.title}</h3>
-                        <p>{item.body}</p>
-                      </div>
-                    </article>
-                  );
-                })}
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <section className="section scandals-teaser-band">
-          <SectionViewTracker
-            targetId="scandals-teaser"
-            eventName="Scandals Section Viewed"
-            eventProperties={{ locale }}
-          />
-          <div className="section-inner scandals-teaser" id="scandals-teaser">
-            <div className="section-copy">
-              <p className="kicker">{t.scandalsTeaser.kicker}</p>
-              <h2>{t.scandalsTeaser.title}</h2>
-              <p>{t.scandalsTeaser.body}</p>
-              <ul className="pulse-stats">
-                {t.scandalsTeaser.stats.map((stat) => (
-                  <li key={stat.label}>
-                    <span className="pulse-stat-value">{stat.value}</span>
-                    <span className="pulse-stat-label">{stat.label}</span>
-                  </li>
-                ))}
-              </ul>
-              <TrackedLink
-                className="button button-primary"
-                href={t.scandalsTeaser.href}
-                eventName="Scandals Page Opened"
-                eventProperties={{ locale, placement: "home_teaser" }}
-              >
-                <Gavel aria-hidden="true" size={20} />
-                {t.scandalsTeaser.cta}
-              </TrackedLink>
-            </div>
-          </div>
-        </section>
-
-        <section className="section shirts-teaser-band">
-          <div className="section-inner shirts-teaser">
-            <div className="section-copy">
-              <p className="kicker">{t.shirtsTeaser.kicker}</p>
-              <h2>{t.shirtsTeaser.title}</h2>
-              <p>{t.shirtsTeaser.body}</p>
-              <TrackedLink
-                className="button button-secondary"
-                href={t.shirtsTeaser.href}
-                eventName="Shirts Page Opened"
-                eventProperties={{ locale, placement: "home_teaser" }}
-              >
-                <Shirt aria-hidden="true" size={20} />
-                {t.shirtsTeaser.cta}
-              </TrackedLink>
-            </div>
-            <figure className="shirts-teaser-preview">
-              <div>
-                <Image
-                  src="/shirts/black-germany.jpg"
-                  alt={t.shirtsTeaser.previewAlt}
-                  width={256}
-                  height={448}
-                />
-                <Image
-                  src="/shirts/white-germany.jpg"
-                  alt=""
-                  width={256}
-                  height={488}
-                />
-              </div>
-            </figure>
           </div>
         </section>
       </main>
