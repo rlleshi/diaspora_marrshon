@@ -4,7 +4,7 @@ import { pageMetadata } from "@/lib/metadata";
 export const metadata = pageMetadata({
   locale: "sq",
   path: "/privacy",
-  title: "Privatësia | Diaspora marshon",
+  title: "Privatësia | Flamingo Revolution Diaspora",
   description: "Si i trajtojmë të dhënat që na jep përmes formularëve të faqes.",
 });
 

@@ -4,9 +4,9 @@ import { pageMetadata } from "@/lib/metadata";
 export const metadata = pageMetadata({
   locale: "sq",
   path: "/veshja",
-  title: "Veshja e përbashkët | Diaspora marshon",
+  title: "Veshja e përbashkët e diasporës | Flamingo Revolution Diaspora",
   description:
-    "Pamje paraprake të bluzave të diasporës për marshimin në Tiranë.",
+    "Bluzat e diasporës për marshimet në Tiranë, për një pamje të përbashkët në shesh.",
 });
 
 export default function Page() {

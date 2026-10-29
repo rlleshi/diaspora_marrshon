@@ -215,6 +215,8 @@ textarea {
   display: grid;
   justify-items: start;
   width: 100%;
+  /* an h1 for search engines; opt out of the h1 measure, which would wrap it */
+  max-width: none;
   margin: 0 0 34px;
   color: var(--white);
   font-size: 5.4rem;
@@ -535,7 +537,7 @@ h3 {
   letter-spacing: 0;
 }
 
-.hero h1 {
+.hero .hero-title {
   grid-column: 1;
   grid-row: 3;
 }

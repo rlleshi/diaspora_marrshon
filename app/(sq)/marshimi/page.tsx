@@ -4,9 +4,9 @@ import { pageMetadata } from "@/lib/metadata";
 export const metadata = pageMetadata({
   locale: "sq",
   path: "/marshimi",
-  title: "Marshimi i diasporës në Tiranë | Diaspora marshon",
+  title: "Marshimet e diasporës në Tiranë | Flamingo Revolution Diaspora",
   description:
-    "Pse marshon diaspora shqiptare në Tiranë, kërkesat e protestës, marshimet e diasporës që nga 20 qershori 2026 dhe marshimi i radhës.",
+    "Pse marshon diaspora shqiptare në Tiranë me Revolucionin Flamingo, kërkesat e protestës, marshimet që nga 20 qershori 2026 dhe marshimi i radhës.",
 });
 
 export default function Page() {

@@ -151,13 +151,15 @@ export function HomePage({ locale }: { locale: Locale }) {
               <ArrowRight aria-hidden="true" size={16} />
             </TrackedLink>
           </div>
-          <div
+          {/* the site's name is the page's main heading, so search engines read
+              "Flamingo Revolution Diaspora" as what this page is */}
+          <h1
             className="hero-campaign-title"
             aria-label={`${t.hero.campaignTitle.lead} ${t.hero.campaignTitle.accent}`}
           >
             <span>{t.hero.campaignTitle.lead}</span>
             <strong>{t.hero.campaignTitle.accent}</strong>
-          </div>
+          </h1>
           <p className="eyebrow">
             <Flag aria-hidden="true" size={18} />
             {t.hero.eyebrow}
@@ -219,7 +221,7 @@ export function HomePage({ locale }: { locale: Locale }) {
               </span>
             </div>
           )}
-          <h1>{t.hero.title}</h1>
+          <h1 className="hero-title">{t.hero.title}</h1>
           <p className="hero-copy">
             {t.hero.subtitle}{" "}
             <strong>{t.hero.subtitleEmphasis}</strong>

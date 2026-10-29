@@ -1,6 +1,6 @@
 # Flamingo Revolution Diaspora
 
-> Flamingo Revolution Diaspora (Albanian: "Diaspora marshon", also "Diaspora zbarkon") is the diaspora wing of the Flamingo Revolution (Revolucioni Flamingo), the civic movement behind the daily anti-government protests in Tirana, Albania, that began on 31 May 2026. The site organizes Albanians abroad who come to Tirana to march, and tracks the protests night by night.
+> Flamingo Revolution Diaspora (Albanian: "Diaspora marshon", also "Diaspora zbarkon") is the diaspora wing of the Flamingo Revolution (Revolucioni Flamingo), the civic movement behind the daily anti-government protests in Tirana, Albania, that began on 31 May 2026. The site organizes Albanians abroad, from any country, who come to Tirana to march, and tracks the protests night by night.
 
 ## Language
 
@@ -8,7 +8,8 @@ Every page exists in Albanian (`sq`, at the root) and English (under `/en`).
 
 ## Main Sections
 
-- [Home](https://www.diaspora-zbarkon.com/en): The diaspora march in Tirana: the next march and how to join it.
+- [Home](https://www.diaspora-zbarkon.com/en): The Flamingo Revolution's diaspora page: how to join the private WhatsApp group for Albanians abroad, the protest pulse and an overview of the site.
+- [The diaspora marches](https://www.diaspora-zbarkon.com/en/marshimi): Why the diaspora marches, the protest's demands, every diaspora march so far (20 June, 4 July, 14-16 August and 12 September 2026) and the next march.
 - [Protest Pulse](https://www.diaspora-zbarkon.com/en/pulsi): A day-by-day participation index for the Tirana protests since 31 May 2026, estimated by a crowd-counting model from News24 livestreams and normalized so 100 = the largest day (20 June 2026), with a short note for every night and the key moments. Figures are estimates, not head counts.
 - [How Pulsi counts](https://www.diaspora-zbarkon.com/en/pulsi/metodologjia): The method behind the index: source livestreams, the CLIP-EBC crowd-counting model, the visual check of split-screen frames, normalization, anchor days and limitations.
 - [Pulsi data (CSV)](https://www.diaspora-zbarkon.com/pulsi/protest_days.csv): The full published series, one row per day, with index values, source and notes in Albanian and English.

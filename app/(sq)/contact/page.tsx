@@ -4,9 +4,9 @@ import { pageMetadata } from "@/lib/metadata";
 export const metadata = pageMetadata({
   locale: "sq",
   path: "/contact",
-  title: "Kontakt | Diaspora marshon",
+  title: "Kontakt | Flamingo Revolution Diaspora",
   description:
-    "Dëshiron të ndihmosh Flamingo Revolution apo ke ndonjë pyetje rreth saj? Na shkruaj.",
+    "Dëshiron të ndihmosh Revolucionin Flamingo nga diaspora apo ke ndonjë pyetje? Na shkruaj.",
 });
 
 export default function Page() {
