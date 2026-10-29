@@ -18,6 +18,8 @@ const COPY: Record<
     title: string;
     liveLabel: string;
     intro: { before: string; link: string; href: string; after: string };
+    /** plain reading of the chart for someone landing here first */
+    explainer: string;
     methodology: string;
     /** one line under the intro: since when, how it is measured, a jump to the method */
     facts: { since: string; method: string; how: string };
@@ -36,6 +38,8 @@ const COPY: Record<
       href: "https://www.youtube.com/watch?v=XF3nEmKziWU",
       after: ".",
     },
+    explainer:
+      "Grafiku tregon madhësinë e turmës çdo natë. 100 është nata më e madhe (20 qershor) dhe netët e tjera maten në raport me të.",
     methodology:
       "Indeks i pjesëmarrjes së vlerësuar, i normalizuar: 100 = dita më e madhe (20 qershor). Tubimet më të mëdha (6 qershor, 20 qershor dhe 4 korrik) janë ankoruar me vlerësime gjeometrike në terren; ditët e tjera pasqyrojnë intensitetin e dukshëm në kamerat e News24, të analizuar me një model numërimi turme.",
     facts: {
@@ -121,6 +125,8 @@ const COPY: Record<
       href: "https://www.youtube.com/watch?v=XF3nEmKziWU",
       after: ".",
     },
+    explainer:
+      "The chart shows the size of the crowd each night. 100 is the biggest night (20 June) and every other night is measured against it.",
     methodology:
       "An estimated participation index, normalized so 100 = the largest day (20 June). The largest gatherings (6 June, 20 June and 4 July) are anchored to on-the-ground geometry estimates; other days reflect camera-visible intensity from News24 livestreams, analyzed with a crowd-counting model.",
     facts: {
@@ -241,6 +247,7 @@ export function LiveTrackerPage({ locale }: { locale: Locale }) {
                 </a>
                 {t.intro.after}
               </p>
+              <p className="tracker-explainer">{t.explainer}</p>
               <p className="tracker-facts">
                 {t.facts.since}
                 <span aria-hidden="true"> · </span>

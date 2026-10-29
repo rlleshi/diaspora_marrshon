@@ -3540,11 +3540,13 @@ textarea:focus {
   }
 }
 
-.participation-caption--more {
-  margin-top: 14px;
-  font-style: normal;
-  font-size: 1rem;
-  color: var(--muted);
+/* what the chart shows, in full ink so it holds its own next to the red chart */
+.section-heading .tracker-explainer {
+  margin: 0;
+  color: var(--ink);
+  font-size: 1.1rem;
+  font-weight: 600;
+  line-height: 1.5;
 }
 
 /* since when, how it is measured, and a jump to the method: one line under the intro */
