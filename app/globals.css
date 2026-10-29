@@ -691,6 +691,11 @@ h3 {
   font-weight: 750;
 }
 
+/* keep the icon full size when a long chip wraps onto two lines */
+.assurance-list svg {
+  flex-shrink: 0;
+}
+
 .form-panel {
   display: grid;
   gap: 18px;

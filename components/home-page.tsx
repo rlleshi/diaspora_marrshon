@@ -7,6 +7,7 @@ import {
   Flag,
   Footprints,
   Gavel,
+  HandHeart,
   Lock,
   Megaphone,
   MessageCircle,
@@ -30,8 +31,8 @@ const whatsAppInviteUrl = WHATSAPP_INVITE_URL;
 // one per step of the hero's call: say when you're coming, bring people, join the square
 const callStepIcons = [Plane, Users, Megaphone];
 
-// one per WhatsApp assurance: the group is private, every member is approved
-const assuranceIcons = [Lock, UserCheck];
+// one per WhatsApp assurance: the group is private, every member is approved, it stays peaceful
+const assuranceIcons = [Lock, UserCheck, HandHeart];
 
 function WalkingPersonIcon({
   className,

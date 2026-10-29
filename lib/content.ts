@@ -68,7 +68,7 @@ export type SiteContent = {
     title: string;
     body: string;
     /** chips under the intro: the group is private, and the admins approve every member */
-    assurances: [string, string];
+    assurances: [string, string, string];
   };
   shirtsTeaser: {
     kicker: string;
@@ -294,7 +294,11 @@ export const content: Record<Locale, SiteContent> = {
       title: "Bashkohu në WhatsApp për koordinim.",
       body:
         "Kërko hyrjen me butonin ose me QR-in. Pasi të pranohesh në grup, shkruaj mesazhin e shkurtër më poshtë.",
-      assurances: ["Grup privat", "Çdo anëtar miratohet nga administratorët"],
+      assurances: [
+        "Grup privat",
+        "Çdo anëtar miratohet nga administratorët",
+        "Paqësor: pa fyerje, kërcënime apo nxitje dhune",
+      ],
     },
     shirtsTeaser: {
       kicker: "Veshja e përbashkët",
@@ -670,7 +674,11 @@ C) Nuk marshoj, por mund të ndihmoj me:
       title: "Join WhatsApp for coordination.",
       body:
         "Request to join with the button or the QR. Once you're accepted into the group, post the short template below.",
-      assurances: ["Private group", "Every member is approved by the admins"],
+      assurances: [
+        "Private group",
+        "Every member is approved by the admins",
+        "Peaceful: no insults, threats or incitement to violence",
+      ],
     },
     shirtsTeaser: {
       kicker: "Shared clothing",
