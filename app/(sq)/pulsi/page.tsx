@@ -8,7 +8,7 @@ export const metadata = pageMetadata({
   feed: "/pulsi/feed.xml",
   title: "Revolucioni Flamingo ditë pas dite: pulsi i protestës në Tiranë | Flamingo Revolution Diaspora",
   description:
-    "Protestat kundër qeverisë Rama në Tiranë që nga 31 maji 2026: 151 ditë në shesh, me indeksin e pjesëmarrjes, një shënim për çdo natë dhe momentet kyçe.",
+    "Protestat kundër qeverisë Rama në Tiranë që nga 31 maji 2026: 152 ditë në shesh, me indeksin e pjesëmarrjes, një shënim për çdo natë dhe momentet kyçe.",
 });
 
 export default function Page() {
