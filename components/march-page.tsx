@@ -13,7 +13,7 @@ import {
   Timer,
   Utensils,
 } from "lucide-react";
-import { content, type Locale } from "@/lib/content";
+import { content, SHOW_NEXT_MARCH, type Locale } from "@/lib/content";
 import { HistoryCarousel } from "@/components/history-carousel";
 import { SectionViewTracker, TrackedLink } from "@/components/analytics-events";
 import { SiteFooter } from "@/components/site-footer";
@@ -122,61 +122,62 @@ export function MarchPage({ locale }: { locale: Locale }) {
           </div>
         </section>
 
-        <section className="section marshimi-band" id="marshimi">
-          <SectionViewTracker
-            targetId="marshimi"
-            eventName="March Section Viewed"
-            eventProperties={{ locale }}
-          />
-          <div className="section-inner">
-            <div className="section-heading marshimi-heading">
-              <p className="kicker">{t.march.kicker}</p>
-              <h2>{t.march.title}</h2>
-              <p>{t.march.body}</p>
-            </div>
-
-            <div className="marshimi-part">
-              <div className="marshimi-part-head">
-                <h3>{t.itinerary.title}</h3>
-                <p className="route-date">{t.itinerary.dateLine}</p>
-                <p>{t.itinerary.body}</p>
+        {SHOW_NEXT_MARCH ? (
+          <section className="section marshimi-band" id="marshimi">
+            <SectionViewTracker
+              targetId="marshimi"
+              eventName="March Section Viewed"
+              eventProperties={{ locale }}
+            />
+            <div className="section-inner">
+              <div className="section-heading marshimi-heading">
+                <p className="kicker">{t.march.kicker}</p>
+                <h2>{t.march.title}</h2>
+                <p>{t.march.body}</p>
               </div>
-              <div className={routeLayoutClassName}>
-                <div className="route-timeline">
-                  <div className="route-visual" aria-hidden="true">
-                    <MapPinned size={34} />
-                    <div className="route-line">
-                      {t.itinerary.points.map((point) => (
-                        <span key={point.time} />
-                      ))}
-                    </div>
-                  </div>
-                  <ol className="timeline">
-                    {t.itinerary.points.map((point) => (
-                      <li key={`${point.time}-${point.title}`}>
-                        <span className="timeline-time">{point.time}</span>
-                        <div>
-                          <h3>{point.title}</h3>
-                          <p>{point.body}</p>
-                        </div>
-                      </li>
-                    ))}
-                  </ol>
+
+              <div className="marshimi-part">
+                <div className="marshimi-part-head">
+                  <h3>{t.itinerary.title}</h3>
+                  <p className="route-date">{t.itinerary.dateLine}</p>
+                  <p>{t.itinerary.body}</p>
                 </div>
-                <figure className="route-map">
-                  {t.itinerary.showMap ? (
-                    <a
-                      href={routeMapImage.src}
-                      target="_blank"
-                      rel="noreferrer"
-                      aria-label={t.itinerary.mapOpenLabel}
-                    >
-                      <Image
-                        src={routeMapImage}
-                        alt={t.itinerary.mapAlt}
-                        sizes="(max-width: 900px) calc(100vw - 28px), 520px"
-                      />
-                    </a>
+                <div className={routeLayoutClassName}>
+                  <div className="route-timeline">
+                    <div className="route-visual" aria-hidden="true">
+                      <MapPinned size={34} />
+                      <div className="route-line">
+                        {t.itinerary.points.map((point) => (
+                          <span key={point.time} />
+                        ))}
+                      </div>
+                    </div>
+                    <ol className="timeline">
+                      {t.itinerary.points.map((point) => (
+                        <li key={`${point.time}-${point.title}`}>
+                          <span className="timeline-time">{point.time}</span>
+                          <div>
+                            <h3>{point.title}</h3>
+                            <p>{point.body}</p>
+                          </div>
+                        </li>
+                      ))}
+                    </ol>
+                  </div>
+                  <figure className="route-map">
+                    {t.itinerary.showMap ? (
+                      <a
+                        href={routeMapImage.src}
+                        target="_blank"
+                        rel="noreferrer"
+                        aria-label={t.itinerary.mapOpenLabel}
+                      >
+                        <Image
+                          src={routeMapImage}
+                          alt={t.itinerary.mapAlt}
+                          sizes="(max-width: 900px) calc(100vw - 28px), 520px"
+                        />
+                      </a>
                   ) : null}
                   <TrackedLink
                     className="route-map-link"
@@ -235,6 +236,7 @@ export function MarchPage({ locale }: { locale: Locale }) {
             </div>
           </div>
         </section>
+        ) : null}
 
         <section className="section shirts-teaser-band">
           <div className="section-inner shirts-teaser">

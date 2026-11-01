@@ -242,6 +242,15 @@ export type SiteContent = {
 export const WHATSAPP_INVITE_URL =
   "https://chat.whatsapp.com/L6oe4JyUi8k0h13oJSv7DP?s=cl&p=i&mlu=0&ilr=0&amv=2";
 
+/**
+ * Shows the "next march" section on /marshimi (itinerary and principles), the
+ * hero button that links to it and the march wording in the WhatsApp message
+ * template, the /marshimi intro and its search description. Off while no
+ * march is planned; both versions of the text stay in place, so turning it
+ * back on is this one line.
+ */
+export const SHOW_NEXT_MARCH = false;
+
 export const content: Record<Locale, SiteContent> = {
   sq: {
     langLabel: "Shqip",
@@ -350,8 +359,9 @@ export const content: Record<Locale, SiteContent> = {
       href: "/marshimi",
       kicker: "Marshimi i diasporës",
       title: "Marshojmë së bashku, nën flamurin shqiptar.",
-      body:
-        "Pse marshojmë, çfarë kemi bërë deri tani, marshimi i radhës dhe veshja e përbashkët.",
+      body: SHOW_NEXT_MARCH
+        ? "Pse marshojmë, çfarë kemi bërë deri tani, marshimi i radhës dhe veshja e përbashkët."
+        : "Pse marshojmë, çfarë kemi bërë deri tani dhe veshja e përbashkët.",
     },
     march: {
       kicker: "Marshimi",
@@ -368,7 +378,8 @@ export const content: Record<Locale, SiteContent> = {
       templateTitle: "Mesazhi që mund të shkruash pas hyrjes",
       templateIntro:
         "Nëse dëshiron, kopjoje mesazhin, shkruaj emrin dhe zgjidh një ose më shumë nga mundësitë më poshtë.",
-      template: `Përshëndetje, jam [Emri] nga [Shteti / qyteti].
+      template: SHOW_NEXT_MARCH
+        ? `Përshëndetje, jam [Emri] nga [Shteti / qyteti].
 
 Zgjedh njërën nga këto:
 
@@ -378,6 +389,16 @@ A) Bashkohem në marshimin e radhës te:
 B) Dua të mbaj fjalim tek fonia
 
 C) Nuk marshoj, por mund të ndihmoj me:
+[opsionale]`
+        : `Përshëndetje, jam [Emri] nga [Shteti / qyteti].
+
+Zgjedh njërën nga këto:
+
+A) Vij në Tiranë më [data] dhe bashkohem në protestë
+
+B) Dua të mbaj fjalim tek fonia
+
+C) Nuk mund të vij, por mund të ndihmoj me:
 [opsionale]`,
       copyLabel: "Kopjo mesazhin",
       copiedLabel: "U kopjua",
@@ -535,6 +556,13 @@ C) Nuk marshoj, por mund të ndihmoj me:
         goToLabel: "Shko te marshimi",
       },
       items: [
+        {
+          dateLabel: "16-19 tetor 2026",
+          title: "Diaspora kthehet për studentët",
+          route: "Tiranë, në protestën e studentëve",
+          summary:
+            "Pa marshim të organizuar: qindra shqiptarë të diasporës u kthyen vetë në Tiranë për t'u bashkuar me protestën e studentëve, në solidaritet me ta.",
+        },
         {
           dateLabel: "12 shtator 2026",
           title: "Marshimi i katërt i diasporës",
@@ -730,8 +758,9 @@ C) Nuk marshoj, por mund të ndihmoj me:
       href: "/en/marshimi",
       kicker: "The diaspora march",
       title: "We march together, under the Albanian flag.",
-      body:
-        "Why we march, what we have done so far, the next march and the shared clothing.",
+      body: SHOW_NEXT_MARCH
+        ? "Why we march, what we have done so far, the next march and the shared clothing."
+        : "Why we march, what we have done so far and the shared clothing.",
     },
     march: {
       kicker: "The march",
@@ -748,7 +777,8 @@ C) Nuk marshoj, por mund të ndihmoj me:
       templateTitle: "Message you can post after joining",
       templateIntro:
         "If you wish, copy the message, add your name, and choose one or more of the options below.",
-      template: `Hi, I am [Name] from [Country / city].
+      template: SHOW_NEXT_MARCH
+        ? `Hi, I am [Name] from [Country / city].
 
 Choose one:
 
@@ -758,6 +788,16 @@ A) I will join the next march at:
 B) I want to speak at the mic
 
 C) I will not march, but I can help with:
+[optional]`
+        : `Hi, I am [Name] from [Country / city].
+
+Choose one:
+
+A) I am coming to Tirana on [date] to join the protest
+
+B) I want to speak at the mic
+
+C) I can't come, but I can help with:
 [optional]`,
       copyLabel: "Copy message",
       copiedLabel: "Copied",
@@ -915,6 +955,13 @@ C) I will not march, but I can help with:
         goToLabel: "Go to march",
       },
       items: [
+        {
+          dateLabel: "October 16-19, 2026",
+          title: "The diaspora returns for the students",
+          route: "Tirana, at the students' protest",
+          summary:
+            "Not an organized march: hundreds of Albanians from the diaspora came back to Tirana on their own to join the students' protest in solidarity.",
+        },
         {
           dateLabel: "September 12, 2026",
           title: "The fourth diaspora march",

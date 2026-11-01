@@ -17,7 +17,13 @@ import {
   UserCheck,
   Users,
 } from "lucide-react";
-import { content, WHATSAPP_INVITE_URL, type Locale, type SiteContent } from "@/lib/content";
+import {
+  content,
+  SHOW_NEXT_MARCH,
+  WHATSAPP_INVITE_URL,
+  type Locale,
+  type SiteContent,
+} from "@/lib/content";
 import { participation } from "@/data/participation";
 import { CopyButton } from "@/components/copy-button";
 import { PledgeForm } from "@/components/pledge-form";
@@ -237,10 +243,12 @@ export function HomePage({ locale }: { locale: Locale }) {
               <ArrowRight aria-hidden="true" size={20} />
               {t.hero.primaryCta}
             </a>
-            <Link className="button button-secondary" href={`${t.marchPage.href}#marshimi`}>
-              <ArrowRight aria-hidden="true" size={20} />
-              {t.hero.secondaryCta}
-            </Link>
+            {SHOW_NEXT_MARCH ? (
+              <Link className="button button-secondary" href={`${t.marchPage.href}#marshimi`}>
+                <ArrowRight aria-hidden="true" size={20} />
+                {t.hero.secondaryCta}
+              </Link>
+            ) : null}
           </div>
         </div>
       </section>
