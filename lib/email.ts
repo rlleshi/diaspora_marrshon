@@ -81,13 +81,13 @@ export async function sendContactNotification({
   organisation?: string;
   message: string;
   locale: Locale;
-}) {
+}): Promise<boolean> {
   const apiKey = process.env.RESEND_API_KEY;
   const from = process.env.EMAIL_FROM;
 
   if (!apiKey || !from) {
     console.warn(`Email provider is not configured. Contact message from ${email} was stored only.`);
-    return;
+    return false;
   }
 
   const sender = organisation ? `${name} (${organisation})` : name;
@@ -112,6 +112,8 @@ export async function sendContactNotification({
   if (result.error) {
     throw new Error(result.error.message);
   }
+
+  return true;
 }
 
 function escapeHtml(value: string) {

@@ -23,7 +23,7 @@ export const privacyPageContent: Record<Locale, PrivacyPageContent> = {
     title: "Si i trajtojmë të dhënat e tua",
     lead:
       "Diaspora marshon është një faqe vullnetare dhe jo-fitimprurëse. Mbledhim vetëm të dhënat që na jep vetë, i përdorim vetëm për qëllimin për të cilin na i dhe dhe nuk i shesim kurrë.",
-    updated: "Përditësuar më 20 tetor 2026",
+    updated: "Përditësuar më 2 nëntor 2026",
     sections: [
       {
         title: "Formulari i kontaktit",
@@ -34,7 +34,7 @@ export const privacyPageContent: Record<Locale, PrivacyPageContent> = {
       {
         title: "Shërbimet që përdorim",
         paragraphs: [
-          "Përdorim ofrues të besuar shërbimesh për të mbajtur faqen, për të ruajtur të dhënat e formularëve, për të ndaluar spamin dhe për të numëruar vizitat. Statistikat e vizitave nuk përdorin cookies dhe nuk na tregojnë kush je. Të dhënat e tua nuk i shesim dhe nuk i përdorim për reklama.",
+          "Përdorim ofrues të besuar shërbimesh për të mbajtur faqen, për të ruajtur të dhënat e formularëve, për të na i përcjellë mesazhet me email, për të ndaluar spamin dhe për të numëruar vizitat. Statistikat e vizitave nuk përdorin cookies dhe nuk na tregojnë kush je. Të dhënat e tua nuk i shesim dhe nuk i përdorim për reklama.",
         ],
       },
       {
@@ -59,7 +59,7 @@ export const privacyPageContent: Record<Locale, PrivacyPageContent> = {
     title: "How we handle your data",
     lead:
       "Diaspora marshon is a volunteer, non-commercial site. We only collect the data you give us, use it only for the purpose you gave it for, and never sell it.",
-    updated: "Updated 20 October 2026",
+    updated: "Updated 2 November 2026",
     sections: [
       {
         title: "Contact form",
@@ -70,7 +70,7 @@ export const privacyPageContent: Record<Locale, PrivacyPageContent> = {
       {
         title: "Services we use",
         paragraphs: [
-          "We use trusted service providers to host the site, store form data, block spam and count visits. Visit statistics use no cookies and don't tell us who you are. We never sell your data or use it for ads.",
+          "We use trusted service providers to host the site, store form data, forward messages to our email inbox, block spam and count visits. Visit statistics use no cookies and don't tell us who you are. We never sell your data or use it for ads.",
         ],
       },
       {

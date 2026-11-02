@@ -3588,6 +3588,11 @@ textarea:focus {
   opacity: 0.82;
 }
 
+.participation-corrections {
+  grid-column: 2;
+  margin-top: 8px;
+}
+
 .participation-links {
   grid-column: 2;
   display: flex;

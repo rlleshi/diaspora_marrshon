@@ -57,7 +57,7 @@ export async function createContactMessage({
   if (!inbox) return;
 
   try {
-    await sendContactNotification({
+    const sent = await sendContactNotification({
       to: inbox,
       name: submission.name,
       email: submission.email,
@@ -65,7 +65,7 @@ export async function createContactMessage({
       message: submission.message,
       locale: submission.sourceLanguage,
     });
-    await ref.update({ notified: true });
+    if (sent) await ref.update({ notified: true });
   } catch (error) {
     console.error("Contact notification failed", error);
   }

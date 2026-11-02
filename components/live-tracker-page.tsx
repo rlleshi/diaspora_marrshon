@@ -9,7 +9,7 @@ import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import { participation } from "@/data/participation";
 import { pulsiDatasetJsonLd } from "@/lib/metadata";
-import { methodologyLinks } from "@/lib/methodology-content";
+import { methodologyLinks, methodologyPageContent } from "@/lib/methodology-content";
 
 const COPY: Record<
   Locale,
@@ -202,6 +202,7 @@ const COPY: Record<
 
 export function LiveTrackerPage({ locale }: { locale: Locale }) {
   const t = COPY[locale];
+  const corrections = methodologyPageContent[locale].corrections;
 
   const dataset = pulsiDatasetJsonLd(
     locale,
@@ -265,6 +266,13 @@ export function LiveTrackerPage({ locale }: { locale: Locale }) {
                 <Activity aria-hidden="true" size={15} />
                 <span>{t.methodology}</span>
                 <span className="participation-disclaimer">{t.disclaimer}</span>
+                <span className="participation-corrections">
+                  {corrections.before}
+                  <a className="context-link" href={corrections.href}>
+                    {corrections.link}
+                  </a>
+                  {corrections.after}
+                </span>
                 <span className="participation-links">
                   {methodologyLinks[locale].map((link) => (
                     <a className="context-link" href={link.href} key={link.href}>
