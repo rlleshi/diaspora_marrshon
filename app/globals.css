@@ -2051,6 +2051,9 @@ textarea:focus {
   display: block;
   width: 100%;
   height: 100%;
+  /* sideways drags select days (see the chart's pointer handlers); vertical ones
+     still scroll the page */
+  touch-action: pan-y pinch-zoom;
 }
 
 .pc-ylabel {
@@ -2110,6 +2113,11 @@ textarea:focus {
     #5f625f 0 3px,
     transparent 3px 6px
   );
+}
+
+/* the phone copy of the key, drawn above the plot instead of inside it */
+.pc-legend--above {
+  display: none;
 }
 
 /* ---- event chips (HTML overlay) ---- */
@@ -2788,6 +2796,14 @@ textarea:focus {
   .pc-chip--peak {
     transform: translate(-50%, 0);
   }
+  /* the edge placements outrank the rule above, so they need their own top anchor:
+     on "All days" the peak sits near the left edge and its "100" was cut in half */
+  .pc-chip--peak.pc-place-start {
+    transform: translate(-6%, 0);
+  }
+  .pc-chip--peak.pc-place-end {
+    transform: translate(-94%, 0);
+  }
   .pc-peak-num {
     font-size: 2.2rem;
   }
@@ -2795,11 +2811,18 @@ textarea:focus {
   .pc-event--desk {
     display: none;
   }
-  .pc-legend {
-    top: 10px;
-    right: 10px;
-    gap: 10px;
-    font-size: 0.7rem;
+  /* the key moves above the plot: inside it, the label of a window's tallest night
+     had nowhere to go but into the key */
+  .pc .pc-legend {
+    display: none;
+  }
+  .pc-legend--above {
+    position: static;
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    margin: 0 4px 8px;
+    font-size: 0.72rem;
   }
   /* axis text lives in viewBox units and shrinks with the plot (~6px on a
      phone); --pc-u turns a screen size into those units, with a typical phone

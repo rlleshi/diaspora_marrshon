@@ -70,7 +70,7 @@ const COPY: Record<
         "Indeksi i pjesëmarrjes në protesta përgjatë 155 ditëve, me kulmin në ditën e 21-të (20 qershor 2026).",
       rangeLabel: "Periudha",
       rangeAll: "Të gjitha ditët",
-      rangeLast30: "30 ditët e fundit",
+      rangeLastLong: "60 ditët e fundit",
       rangeLast14: "14 ditët e fundit",
       monthsTitle: "Sipas muajit",
       weeksTitle: "Sipas javës",
@@ -109,7 +109,7 @@ const COPY: Record<
       howLineWide:
         "Lëviz mbi një ditë për detaje dhe kliko për ta fiksuar; zgjidh një periudhë ose një javë më poshtë për ta parë nga afër.",
       howLineNarrow:
-        "Prek një ditë për detaje; zgjidh një periudhë ose një javë më poshtë për ta parë nga afër.",
+        "Prek ose rrëshqit gishtin përgjatë grafikut për detajet e një dite; zgjidh një periudhë ose një javë më poshtë për ta parë nga afër.",
       howCalWide: "Lëviz mbi një natë për historinë e saj dhe kliko për ta fiksuar.",
       howCalNarrow: "Prek një natë për historinë e saj.",
     },
@@ -157,7 +157,7 @@ const COPY: Record<
         "Protest participation index across 155 days, peaking on day 21 (20 June 2026).",
       rangeLabel: "Range",
       rangeAll: "All days",
-      rangeLast30: "Last 30 days",
+      rangeLastLong: "Last 60 days",
       rangeLast14: "Last 14 days",
       monthsTitle: "By month",
       weeksTitle: "By week",
@@ -193,7 +193,8 @@ const COPY: Record<
       dotsTitleRest: "The big crowds came in June; the protest never stopped.",
       howLineWide:
         "Hover a day for detail and click to pin it; pick a range or a week below to zoom in.",
-      howLineNarrow: "Tap a day for detail; pick a range or a week below to zoom in.",
+      howLineNarrow:
+        "Tap or slide along the chart for a day's detail; pick a range or a week below to zoom in.",
       howCalWide: "Hover a night for its story and click to pin it.",
       howCalNarrow: "Tap a night for its story.",
     },

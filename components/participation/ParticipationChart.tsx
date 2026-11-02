@@ -84,10 +84,12 @@ const isCalendar = (v: View) => v === "calendar" || v === "dots";
 // and a 4-point weeknight are both legible at once.
 const DEFAULT_VIEW: View = "log";
 
-// Phones open on the same log axis, zoomed to the last 30 nights: the whole run at phone
-// width packs each night into a couple of pixels, while a month reads night by night and
-// keeps the chart short. "All days" and the dot calendar are one tap away.
-const NARROW_DEFAULT_DAYS = 30;
+// Phones open on the same log axis, zoomed to the last 60 nights: the whole run at phone
+// width packs each night into a couple of pixels, while two months still read night by
+// night and give the latest weeks their context (a month alone started at the October
+// low and showed the rebound with nothing to measure it against). "All days" and the
+// dot calendar are one tap away.
+const NARROW_DEFAULT_DAYS = 60;
 
 /**
  * How far a day stands above its own fortnight: its peak over the median peak of
@@ -224,28 +226,45 @@ type PlacedChip = {
   halfH: number;
 };
 
+type ChipLayout = {
+  locale: Locale;
+  narrow: boolean;
+  unitsPerCss: number;
+  xOf: (day: number) => number;
+  yOf: (value: number) => number;
+  peakChipY: number;
+  viewWidth: number;
+};
+
 /**
  * Lay the surviving chips out left to right, nudging each one up until it clears
  * everything already placed. Replaces the hand-tuned label table: with only a
  * handful of chips in any view there is nothing left to tune by hand.
+ *
+ * A pinned moment must not lose its label to an earlier one. On a phone the plot
+ * has room for about one chip, and in day order the earlier chip took it (the
+ * 12 September march hid the pinned 24 October peak). So when the left-to-right
+ * pass drops a pinned chip, the layout runs again with the pinned ones placed first.
  */
-function placeChips(
+function placeChips(list: ParticipationEvent[], opts: ChipLayout): PlacedChip[] {
+  const leftToRight = layoutChips(list, opts, false);
+  const keptAllPins = list.every(
+    (ev) => !ev.pin || leftToRight.some((c) => c.ev.day === ev.day),
+  );
+  return keptAllPins ? leftToRight : layoutChips(list, opts, true);
+}
+
+function layoutChips(
   list: ParticipationEvent[],
-  opts: {
-    locale: Locale;
-    narrow: boolean;
-    unitsPerCss: number;
-    xOf: (day: number) => number;
-    yOf: (value: number) => number;
-    peakChipY: number;
-    viewWidth: number;
-  },
+  opts: ChipLayout,
+  pinsFirst: boolean,
 ): PlacedChip[] {
   const { locale, narrow, unitsPerCss, xOf, yOf, peakChipY, viewWidth } = opts;
   const placed: PlacedChip[] = [];
-  const ordered = [...list].sort((a, b) =>
-    a.tier === "peak" ? -1 : b.tier === "peak" ? 1 : a.day - b.day,
-  );
+  // the peak always goes first; it has a fixed slot of its own
+  const rank = (ev: ParticipationEvent) =>
+    ev.tier === "peak" ? 0 : pinsFirst && ev.pin ? 1 : 2;
+  const ordered = [...list].sort((a, b) => rank(a) - rank(b) || a.day - b.day);
   const clear = CHIP_CLEAR * unitsPerCss;
 
   for (const ev of ordered) {
@@ -385,7 +404,8 @@ export type ChartLabels = {
   /** range control */
   rangeLabel: string; // "Periudha"
   rangeAll: string; // "Të gjitha ditët"
-  rangeLast30: string; // "30 ditët e fundit"
+  /** the phones' opening window, NARROW_DEFAULT_DAYS long */
+  rangeLastLong: string; // "60 ditët e fundit"
   rangeLast14: string; // "14 ditët e fundit"
   /** month + week navigators */
   monthsTitle: string; // "Sipas muajit"
@@ -475,6 +495,10 @@ export function ParticipationChart({
   const [railOpen, setRailOpen] = useState(false);
   const weeksRef = useRef<HTMLDivElement | null>(null);
   const hoverTimer = useRef<number | null>(null);
+  // A finger sliding along the plot: where it went down, and whether it has moved
+  // far enough to count as a slide rather than a tap.
+  const scrub = useRef<{ id: number; x0: number; moved: boolean } | null>(null);
+  const swallowClick = useRef(false);
   const active = pinned ?? hovered;
 
   const days = useMemo(
@@ -515,6 +539,23 @@ export function ParticipationChart({
     cancelHover();
     setPinned(null);
     setHovered(null);
+  }
+
+  /** The window's day nearest a screen x, for a finger sliding along the plot. */
+  function dayAtClientX(svg: SVGSVGElement, clientX: number): number | null {
+    const box = svg.getBoundingClientRect();
+    if (box.width === 0) return null;
+    const x = ((clientX - box.left) / box.width) * geo.view.width;
+    let best: number | null = null;
+    let bestGap = Infinity;
+    for (const d of days) {
+      const gap = Math.abs(geo.xOf(d.day) - x);
+      if (gap < bestGap) {
+        bestGap = gap;
+        best = d.day;
+      }
+    }
+    return best;
   }
 
   useEffect(
@@ -879,6 +920,15 @@ export function ParticipationChart({
       </p>
     </div>
 
+    {/* phones: the key sits above the plot, leaving the plot's top band to the labels
+        (the tallest night's label ran into it on a 360px screen) */}
+    {!cal && (
+      <div className="pc-legend pc-legend--above" aria-hidden="true">
+        <span className="pc-legend-peak">{labels.legendPeak}</span>
+        <span className="pc-legend-mean">{labels.legendMean}</span>
+      </div>
+    )}
+
     <div
       className={cls}
       ref={rootRef}
@@ -906,6 +956,39 @@ export function ParticipationChart({
         viewBox={`0 0 ${view.width} ${view.height}`}
         role="img"
         aria-label={labels.ariaSummary}
+        // On a phone a night is ~5px wide, narrower than a fingertip, so a tap often
+        // lands a night off. Sliding sideways moves the selection with the finger;
+        // the stylesheet leaves vertical drags to the page, so scrolling still works.
+        onPointerDown={(e) => {
+          swallowClick.current = false;
+          if (e.pointerType === "mouse") return;
+          scrub.current = { id: e.pointerId, x0: e.clientX, moved: false };
+        }}
+        onPointerMove={(e) => {
+          const s = scrub.current;
+          if (!s || s.id !== e.pointerId) return;
+          if (!s.moved && Math.abs(e.clientX - s.x0) < 6) return;
+          s.moved = true;
+          const day = dayAtClientX(e.currentTarget, e.clientX);
+          if (day == null || day === pinned) return;
+          cancelHover();
+          setHovered(day);
+          setPinned(day);
+        }}
+        onPointerUp={() => {
+          // a slide that ends where it began can still fire a click, which would
+          // toggle the day it just selected back off
+          if (scrub.current?.moved) swallowClick.current = true;
+          scrub.current = null;
+        }}
+        onPointerCancel={() => {
+          scrub.current = null;
+        }}
+        onClickCapture={(e) => {
+          if (!swallowClick.current) return;
+          swallowClick.current = false;
+          e.stopPropagation();
+        }}
       >
         <defs>
           <linearGradient id="pc-line-grad" x1="0" y1="1" x2="1" y2="0">
@@ -1392,14 +1475,14 @@ export function ParticipationChart({
         >
           {labels.rangeAll} ({participation.length})
         </button>
-        {participation.length > 30 && (
+        {participation.length > NARROW_DEFAULT_DAYS && (
           <button
             type="button"
             className="pc-range"
-            aria-pressed={range.key === "30"}
-            onClick={() => selectRange(lastN(30))}
+            aria-pressed={range.key === String(NARROW_DEFAULT_DAYS)}
+            onClick={() => selectRange(lastN(NARROW_DEFAULT_DAYS))}
           >
-            {labels.rangeLast30}
+            {labels.rangeLastLong}
           </button>
         )}
         {participation.length > 14 && (
