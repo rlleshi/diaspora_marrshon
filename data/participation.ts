@@ -839,9 +839,9 @@ export type ParticipationEvent = {
   mobile: boolean;
   /**
    * label it on the full-range chart even when it doesn't clear the prominence bar,
-   * e.g. a high inside an already-high stretch. It still needs a clear slot; when an
-   * earlier label would take that slot (a phone plot has about one), the pinned
-   * moment is placed first.
+   * e.g. a high inside an already-high stretch. It still needs a clear slot; when
+   * another label would take that slot (a phone plot holds two at most), the pinned
+   * moment wins it.
    */
   pin?: boolean;
 };

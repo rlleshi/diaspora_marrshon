@@ -190,6 +190,8 @@ const CHIP_MIN_SLOT = { narrow: 150, wide: 200 }; // horizontal room one chip ne
 const CHIP_CLEAR = 8; // vertical breathing room demanded between two chips
 const CHIP_LIFT = { narrow: 8, wide: 29 }; // gap between the point and the chip box
 const CHIP_MIN_Y = 20; // never push a chip above this viewBox y
+const CHIP_TOP_PAD = 4; // phones: CSS px kept between a chip's top edge and the chart's
+const CHIP_LINE_GAP = 4; // phones: CSS px kept between a chip's bottom and the line under it
 
 /**
  * Painted size of a chip, estimated from its own text. Deliberately an estimate
@@ -234,37 +236,90 @@ type ChipLayout = {
   yOf: (value: number) => number;
   peakChipY: number;
   viewWidth: number;
+  /** the peak line's points, so a phone label can be kept clear of the line */
+  points: Array<{ x: number; y: number }>;
+  /** distance between two days, in viewBox units */
+  slotWidth: number;
+  /** how much a moment matters in this view, to choose between two phone layouts */
+  weight: (ev: ParticipationEvent) => number;
 };
 
-/**
- * Lay the surviving chips out left to right, nudging each one up until it clears
- * everything already placed. Replaces the hand-tuned label table: with only a
- * handful of chips in any view there is nothing left to tune by hand.
- *
- * A pinned moment must not lose its label to an earlier one. On a phone the plot
- * has room for about one chip, and in day order the earlier chip took it (the
- * 12 September march hid the pinned 24 October peak). So when the left-to-right
- * pass drops a pinned chip, the layout runs again with the pinned ones placed first.
- */
-function placeChips(list: ParticipationEvent[], opts: ChipLayout): PlacedChip[] {
-  const leftToRight = layoutChips(list, opts, false);
-  const keptAllPins = list.every(
-    (ev) => !ev.pin || leftToRight.some((c) => c.ev.day === ev.day),
-  );
-  return keptAllPins ? leftToRight : layoutChips(list, opts, true);
+/** The highest the line climbs (smallest y) over a span, including the days just
+ *  outside it: between two points the curve never passes either one, so the
+ *  neighbours bound the stretch that enters the span. */
+function lineTopOver(points: Array<{ x: number; y: number }>, from: number, to: number) {
+  let top = Infinity;
+  for (const pt of points) if (pt.x >= from && pt.x <= to && pt.y < top) top = pt.y;
+  return top;
 }
 
-function layoutChips(
-  list: ParticipationEvent[],
-  opts: ChipLayout,
-  pinsFirst: boolean,
-): PlacedChip[] {
-  const { locale, narrow, unitsPerCss, xOf, yOf, peakChipY, viewWidth } = opts;
+/** Every order of a short list, the given order first. */
+function orders<T>(items: T[]): T[][] {
+  if (items.length <= 1) return [items];
+  return items.flatMap((item, i) =>
+    orders([...items.slice(0, i), ...items.slice(i + 1)]).map((rest) => [item, ...rest]),
+  );
+}
+
+/**
+ * Lay the surviving chips out, nudging each one up until it clears everything
+ * already placed. Replaces the hand-tuned label table: with only a handful of chips
+ * in any view there is nothing left to tune by hand. The peak always goes first; it
+ * has a fixed slot of its own.
+ *
+ * Wide screens go left to right. A pinned moment must not lose its label to an
+ * earlier one, so if that pass drops a pinned chip it runs again with the pinned
+ * ones placed first.
+ *
+ * Phones hold two labels at most, and which two fit depends on the order: a label
+ * can only rise, so the 12 September march has to go down first for 24 October to
+ * stack above it, while in September's linear view the march has to go first or the
+ * 7 September label climbs over its spike and takes the only room. With so few
+ * labels every order is cheap to try. The winner keeps the pinned moments, then the
+ * most labels, then the weightiest ones; on a tie, the left-to-right order.
+ */
+function placeChips(list: ParticipationEvent[], opts: ChipLayout): PlacedChip[] {
+  const peakFirst = (a: ParticipationEvent, b: ParticipationEvent) =>
+    Number(b.tier === "peak") - Number(a.tier === "peak");
+  const byDay = [...list].sort((a, b) => peakFirst(a, b) || a.day - b.day);
+  const pinsKept = (layout: PlacedChip[]) => layout.filter((c) => c.ev.pin).length;
+
+  if (!opts.narrow) {
+    const leftToRight = layoutChips(byDay, opts);
+    if (pinsKept(leftToRight) === list.filter((ev) => ev.pin).length) return leftToRight;
+    return layoutChips(
+      [...list].sort(
+        (a, b) => peakFirst(a, b) || Number(!!b.pin) - Number(!!a.pin) || a.day - b.day,
+      ),
+      opts,
+    );
+  }
+
+  const fixed = byDay.filter((ev) => ev.tier === "peak");
+  const free = byDay.filter((ev) => ev.tier !== "peak");
+  let best: PlacedChip[] = [];
+  let bestScore = [-1, -1, -1];
+  for (const order of orders(free)) {
+    const layout = layoutChips([...fixed, ...order], opts);
+    const score = [
+      pinsKept(layout),
+      layout.length,
+      layout.reduce((sum, c) => sum + opts.weight(c.ev), 0),
+    ];
+    const i = score.findIndex((v, k) => v !== bestScore[k]);
+    if (i !== -1 && score[i] > bestScore[i]) {
+      best = layout;
+      bestScore = score;
+    }
+  }
+  return best;
+}
+
+/** Place the chips in the order given. */
+function layoutChips(ordered: ParticipationEvent[], opts: ChipLayout): PlacedChip[] {
+  const { locale, narrow, unitsPerCss, xOf, yOf, peakChipY, viewWidth, points, slotWidth } =
+    opts;
   const placed: PlacedChip[] = [];
-  // the peak always goes first; it has a fixed slot of its own
-  const rank = (ev: ParticipationEvent) =>
-    ev.tier === "peak" ? 0 : pinsFirst && ev.pin ? 1 : 2;
-  const ordered = [...list].sort((a, b) => rank(a) - rank(b) || a.day - b.day);
   const clear = CHIP_CLEAR * unitsPerCss;
 
   for (const ev of ordered) {
@@ -282,6 +337,12 @@ function layoutChips(
           ? x - halfW * 0.12
           : x - halfW;
     const right = left + halfW * 2;
+    // Phones: a label has to sit above the line across its whole width. Stacked two
+    // deep, the lower one otherwise covered a neighbouring spike (the 1 August label
+    // hid the 14-16 August one, so the label above it pointed at nothing).
+    const lineTop = narrow
+      ? lineTopOver(points, left - slotWidth, right + slotWidth) - CHIP_LINE_GAP * unitsPerCss
+      : Infinity;
 
     if (ev.tier === "peak") {
       // narrow screens top-anchor this chip, so its centre is half a box lower
@@ -295,18 +356,34 @@ function layoutChips(
     let y = yOf(BY_DAY.get(ev.day)?.peak ?? 0) - lift;
     let fits = false;
     for (let i = 0; i < 8; i++) {
-      if (y < CHIP_MIN_Y) break;
-      const hit = placed.some(
+      // phones test the chip's top edge: half a chip is ~40 viewBox units there, so
+      // a centre-only test would let a chip poke out of the chart
+      if (narrow ? y - halfH < CHIP_TOP_PAD * unitsPerCss : y < CHIP_MIN_Y) break;
+      const blockers = placed.filter(
         (p) =>
           right > p.left &&
           left < p.right &&
           Math.abs(p.cy - y) < p.halfH + halfH + clear,
       );
-      if (!hit) {
+      const overLine = y + halfH > lineTop;
+      if (blockers.length === 0 && !overLine) {
         fits = true;
         break;
       }
-      y -= step;
+      if (!narrow) {
+        y -= step;
+        continue;
+      }
+      // A phone has no room to waste: rise just clear of the highest blocker and of
+      // the line, so two labels can stack (24 October above 12 September). Wide
+      // screens keep the whole-chip steps they were tuned with. (One unit past the
+      // exact clearance: landing on it, rounding can still read as an overlap and
+      // the chip would re-test the same spot until it gives up.)
+      const clearOf = [
+        ...blockers.map((p) => p.cy - p.halfH - halfH - clear),
+        overLine ? lineTop - halfH : Infinity,
+      ];
+      y = Math.min(...clearOf) - 1;
     }
     // No clear slot at this width: the moment keeps its dot on the line and the
     // rail below keeps its wording. Dropping beats stacking into a pile.
@@ -788,6 +865,9 @@ export function ParticipationChart({
     yOf,
     peakChipY,
     viewWidth: view.width,
+    points,
+    slotWidth,
+    weight: rank,
   });
   const chipByDay = new Map(chips.map((c) => [c.ev.day, c]));
 
