@@ -197,10 +197,14 @@ If the new day is a new high or new low relative to recent days (the Story
 Note's comparison paragraphs usually say this explicitly — "lowest since
 Day X", "strongest since Day Y"), consider whether it's worth a marker in
 the `participationEvents` array further down `data/participation.ts`
-(secondary tier, `spark` icon is the usual choice — see the Day 50 "Dita më
-e dobët" / "The weakest day" entry as precedent). This is an editorial
+(secondary tier, `spark` icon is the usual choice — see the Day 9 "Vala e
+dytë" / "Second wave" entry as precedent). This is an editorial
 judgment call, not a required step — only add one when the extreme is
-genuinely notable, not for routine day-to-day fluctuation.
+genuinely notable, not for routine day-to-day fluctuation. Don't mark a low
+day just for being the lowest of its month: the June and July month-low
+markers (days 25 and 50) were removed in November because later months had
+many lower days and no other month's low was marked. A low day only earns a
+marker when it is a turning point or has a documented story behind it.
 
 **You no longer place the marker by hand.** `ParticipationChart.tsx` used to
 carry a `LABEL_Y` table with a hand-tuned y for every marker, which had to be
