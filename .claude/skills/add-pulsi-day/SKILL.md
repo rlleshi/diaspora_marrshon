@@ -118,7 +118,7 @@ Established conventions:
   against the source file (e.g. an explicit mobilization call with a date
   and time is exactly the kind of detail that belongs in the note).
 
-Three standing rules the user has corrected notes for more than once. Apply
+Four standing rules the user has corrected notes for more than once. Apply
 them while drafting rather than waiting to be told:
 
 - **No singular activist names.** The source file names individuals freely;
@@ -127,6 +127,12 @@ them while drafting rather than waiting to be told:
   publicly in their own right (a foreign journalist's question to Rama, a
   politician's statement) are fine — the rule is about protesters.
 - **No em-dashes.** Use a comma, a colon, or `;`.
+- **No comma before "dhe" in the Albanian note.** Never write ", dhe" (nor
+  before a single "e", "edhe", "ose" or "apo"). Drop the comma, or split
+  with ";" or a new sentence; an aside before "dhe" goes in parentheses
+  ("55 incidente (shumicën prej tyre të atribuara policisë) dhe kërkojnë
+  hetime"). A comma is still required before "por", "ndërsa" and "kurse".
+  Grep the finished sq note for ", dhe" before saving.
 - **No closing times.** The source almost always records when the march ended
   ("mbyllet në 22:36") — leave it out. Times that are part of a *call to
   action* ("mbledhja para Kuvendit nesër në orën 08:30") do belong.
