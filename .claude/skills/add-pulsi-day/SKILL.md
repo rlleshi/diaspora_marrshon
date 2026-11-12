@@ -118,7 +118,7 @@ Established conventions:
   against the source file (e.g. an explicit mobilization call with a date
   and time is exactly the kind of detail that belongs in the note).
 
-Four standing rules the user has corrected notes for more than once. Apply
+Five standing rules the user has corrected notes for more than once. Apply
 them while drafting rather than waiting to be told:
 
 - **No singular activist names.** The source file names individuals freely;
@@ -136,6 +136,18 @@ them while drafting rather than waiting to be told:
 - **No closing times.** The source almost always records when the march ended
   ("mbyllet në 22:36") — leave it out. Times that are part of a *call to
   action* ("mbledhja para Kuvendit nesër në orën 08:30") do belong.
+- **No abbreviations.** Readers, Albanian ones included, often can't place
+  them: the user did not know "MCN" (day 165) and had "KKT" written out (day
+  161). Write every name in full, in both notes: outlets, institutions,
+  parties and places ("Qendra Spitalore Universitare \"Nënë Tereza\"" / "the
+  Mother Teresa University Hospital Centre", not QSUT; "Këshilli Kombëtar i
+  Territorit", not KKT; "Partia Demokratike", not PD). When an outlet is
+  known only by its letters (MCN), attribute to "mediat vendase" / "local
+  media" instead. Outlet names that are brands rather than abbreviations
+  (News24, Top News, A2 CNN) stay. The English "PM's office", used in every
+  en note, predates this rule; leave it unless the user says otherwise.
+  Older notes still carry abbreviations (PD, SPAK, BIRN, AMA); don't sweep
+  them unasked.
 
 Draft the Albanian note first, pulling the single most newsworthy thread out
 of the Story Note section — usually one of: a notable rebound/dip and why,
