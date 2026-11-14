@@ -5,7 +5,7 @@ import { SiteMenu } from "@/components/site-menu";
 import { TrackedLink } from "@/components/analytics-events";
 
 /** The menu entry for the page the visitor is on, marked as current. */
-export type SiteHeaderPage = "home" | "tracker" | "march" | "scandals" | "safety";
+export type SiteHeaderPage = "home" | "tracker" | "map" | "march" | "scandals" | "safety";
 
 /**
  * The sticky bar on every page: brand, the full page menu and the language
@@ -33,12 +33,15 @@ export function SiteHeader({
     <header className="site-header">
       <Link href={homeHref} className="brand">
         <Flag aria-hidden="true" size={22} />
-        <span>Diaspora marshon</span>
+        <span>Flamingo Diaspora</span>
       </Link>
       <nav aria-label="Primary navigation">
         <SiteMenu openLabel={t.nav.menuOpen} closeLabel={t.nav.menuClose}>
           <Link href={t.trackerTeaser.href} aria-current={ariaCurrent("tracker")}>
             {t.nav.tracker}
+          </Link>
+          <Link href={t.mapTeaser.href} aria-current={ariaCurrent("map")}>
+            {t.nav.map}
           </Link>
           <Link href={t.marchPage.href} aria-current={ariaCurrent("march")}>
             {t.nav.march}

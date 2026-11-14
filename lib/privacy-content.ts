@@ -22,8 +22,8 @@ export const privacyPageContent: Record<Locale, PrivacyPageContent> = {
     kicker: "Privatësia",
     title: "Si i trajtojmë të dhënat e tua",
     lead:
-      "Diaspora marshon është një faqe vullnetare dhe jo-fitimprurëse. Mbledhim vetëm të dhënat që na jep vetë, i përdorim vetëm për qëllimin për të cilin na i dhe dhe nuk i shesim kurrë.",
-    updated: "Përditësuar më 2 nëntor 2026",
+      "Flamingo Revolution Diaspora është një faqe vullnetare dhe jofitimprurëse. Mbledhim vetëm të dhënat që na jep vetë, i përdorim vetëm për qëllimin për të cilin na i dhe dhe nuk i shesim kurrë.",
+    updated: "Përditësuar më 12 nëntor 2026",
     sections: [
       {
         title: "Formulari i kontaktit",
@@ -38,6 +38,12 @@ export const privacyPageContent: Record<Locale, PrivacyPageContent> = {
         ],
       },
       {
+        title: "Harta e protestave",
+        paragraphs: [
+          "Harta e protestave vjen nga projekti vullnetar Flamingo Map. Nuk ngarkohet derisa të shtypësh “Shfaq hartën”; atëherë shfletuesi yt lidhet me GitHub Pages dhe me serverët e OpenStreetMap, që e marrin adresën tënde IP si çdo faqe tjetër interneti.",
+        ],
+      },
+      {
         title: "Chatbot-i “Pyet Flamingon”",
         paragraphs: [
           "Pyetjet që i bën chatbot-it përpunohen për të krijuar përgjigjen. Mos shkruaj të dhëna personale në të.",
@@ -46,7 +52,7 @@ export const privacyPageContent: Record<Locale, PrivacyPageContent> = {
       {
         title: "Të drejtat e tua",
         paragraphs: [
-          "Mund të kërkosh të shohësh, të korrigjosh ose të fshish të dhënat e tua, ose të tërheqësh pëlqimin, duke na shkruar përmes faqes së kontaktit. Ke gjithashtu të drejtë të ankohesh te një autoritet për mbrojtjen e të dhënave.",
+          "Mund të kërkosh të shohësh, të korrigjosh ose të fshish të dhënat e tua ose të tërheqësh pëlqimin, duke na shkruar përmes faqes së kontaktit. Ke gjithashtu të drejtë të ankohesh te një autoritet për mbrojtjen e të dhënave.",
         ],
       },
     ],
@@ -58,8 +64,8 @@ export const privacyPageContent: Record<Locale, PrivacyPageContent> = {
     kicker: "Privacy",
     title: "How we handle your data",
     lead:
-      "Diaspora marshon is a volunteer, non-commercial site. We only collect the data you give us, use it only for the purpose you gave it for, and never sell it.",
-    updated: "Updated 2 November 2026",
+      "Flamingo Revolution Diaspora is a volunteer, non-commercial site. We only collect the data you give us, use it only for the purpose you gave it for, and never sell it.",
+    updated: "Updated 12 November 2026",
     sections: [
       {
         title: "Contact form",
@@ -71,6 +77,12 @@ export const privacyPageContent: Record<Locale, PrivacyPageContent> = {
         title: "Services we use",
         paragraphs: [
           "We use trusted service providers to host the site, store form data, forward messages to our email inbox, block spam and count visits. Visit statistics use no cookies and don't tell us who you are. We never sell your data or use it for ads.",
+        ],
+      },
+      {
+        title: "The protest map",
+        paragraphs: [
+          "The protest map comes from the volunteer Flamingo Map project. It doesn't load until you press “Show the map”; your browser then connects to GitHub Pages and the OpenStreetMap servers, which receive your IP address like any other website.",
         ],
       },
       {

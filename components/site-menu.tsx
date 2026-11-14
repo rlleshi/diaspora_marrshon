@@ -25,7 +25,7 @@ export function SiteMenu({
     const onKey = (e: KeyboardEvent) => {
       if (e.key === "Escape") setOpen(false);
     };
-    const wide = window.matchMedia("(min-width: 901px)");
+    const wide = window.matchMedia("(min-width: 1101px)");
     const onWide = () => {
       if (wide.matches) setOpen(false);
     };

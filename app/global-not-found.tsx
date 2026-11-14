@@ -6,7 +6,7 @@ import "./globals.css";
 // The site has two root layouts (app/(sq) and app/en), so an unknown URL has no
 // layout to render inside; this page carries its own <html>.
 export const metadata: Metadata = {
-  title: "404 | Diaspora marshon",
+  title: "404 | Flamingo Revolution Diaspora",
   robots: { index: false },
 };
 
@@ -18,17 +18,23 @@ export default function GlobalNotFound() {
           <header className="site-header">
             <Link href="/" className="brand">
               <Flag aria-hidden="true" size={22} />
-              <span>Diaspora marshon</span>
+              <span>Flamingo Diaspora</span>
             </Link>
           </header>
           <main className="section">
             <div className="section-inner">
               <h1>404</h1>
               <p>
-                Kjo faqe nuk u gjet. <Link href="/">Kthehu te faqja kryesore</Link>
+                Kjo faqe nuk u gjet.{" "}
+                <Link className="context-link" href="/">
+                  Kthehu te faqja kryesore
+                </Link>
               </p>
               <p lang="en">
-                This page could not be found. <Link href="/en">Back to the homepage</Link>
+                This page could not be found.{" "}
+                <Link className="context-link" href="/en">
+                  Back to the homepage
+                </Link>
               </p>
             </div>
           </main>
