@@ -1,5 +1,7 @@
 import Image from "next/image";
+import Link from "next/link";
 import {
+  ArrowRight,
   Download,
   Shirt,
 } from "lucide-react";
@@ -73,6 +75,10 @@ export function ShirtsPage({ locale }: { locale: Locale }) {
             <aside className="shirt-notice">
               <strong>{t.notice.title}</strong>
               <p>{t.notice.body}</p>
+              <Link className="shirt-notice-link" href={t.notice.link.href}>
+                {t.notice.link.label}
+                <ArrowRight aria-hidden="true" size={16} />
+              </Link>
             </aside>
 
             {versionOrder.map((version) => {

@@ -35,9 +35,11 @@ export const shirtsPageContent: Record<
       body: string;
       downloadAll: string;
     };
+    /** says the shirts are history now, and where today's advice on what to wear lives */
     notice: {
       title: string;
       body: string;
+      link: { label: string; href: string };
     };
     versions: Record<
       ShirtVersion,
@@ -54,27 +56,31 @@ export const shirtsPageContent: Record<
     langLabel: "Shqip",
     altLangHref: "/en/veshja",
     hero: {
-      kicker: "Veshje sugjeruese",
-      title: "Nëse do, mbaj të njëjtin mesazh.",
+      kicker: "Nga marshimet e verës",
+      title: "Bluzat e diasporës.",
       body:
-        "Këto dizajne janë sugjerime për një pamje të përbashkët dhe për një mesazh më të dukshëm në shesh.",
-      downloadAll: "Shkarko sugjerimet",
+        "Në marshimet e verës 2026, diaspora doli në shesh me bluza të përbashkëta: flamuri shqiptar pranë flamurit të vendit ku jetojmë. I bëmë si grup dhe njerëzit na i merrnin nga duart, na fotografonin dhe thoshin sa bukur dukej diaspora. Kjo u jepte zemër dhe ky ishte qëllimi.",
+      downloadAll: "Shkarko modelet",
     },
     notice: {
-      title: "Për përdorim të lirë",
+      title: "Pjesë e historisë",
       body:
-        "Mund t'i përdorësh për koordinim, shpërndarje online ose si ide për printim personal. Skedarët me rezolucion profesional për printim do të shtohen së shpejti.",
+        "Modelet mbeten të lira për t'u shkarkuar dhe shpërndarë, por nuk janë më një sugjerim veshjeje.",
+      link: {
+        label: "Çfarë të veshësh e të marrësh me vete sot: udhëzuesi i sigurisë",
+        href: "/siguria",
+      },
     },
     versions: {
       black: {
         title: "Bluza e zezë",
         body:
-          "Versioni më i fortë për marshim dhe kamera: përpara flamujt, nga pas DIASPORA.",
+          "Ajo që binte më shumë në sy në marshime dhe në kamera: përpara flamujt, nga pas DIASPORA.",
       },
       white: {
         title: "Bluza e bardhë",
         body:
-          "Versioni shpjegues: përpara mesazhi i përbashkët, nga pas arsyet pse marshojmë.",
+          "Versioni shpjegues: përpara mesazhi i përbashkët, nga pas arsyet pse marshuam.",
       },
     },
     downloadLabel: "Shkarko",
@@ -85,27 +91,31 @@ export const shirtsPageContent: Record<
     langLabel: "English",
     altLangHref: "/veshja",
     hero: {
-      kicker: "Suggested clothing",
-      title: "If you want, carry the same message.",
+      kicker: "From the summer marches",
+      title: "The diaspora shirts.",
       body:
-        "These designs are suggestions for a shared look and a more visible message in the square.",
-      downloadAll: "Download suggestions",
+        "At the summer 2026 marches the diaspora came to the square in shared shirts: the Albanian flag beside the flag of the country where we live. We made them as a group, and people took them out of our hands, photographed us and said how good the diaspora looked. It gave them heart, which was the point.",
+      downloadAll: "Download the designs",
     },
     notice: {
-      title: "Free to use",
+      title: "Part of the history",
       body:
-        "You can use these for coordination, online sharing, or as an idea for personal printing. Professional-resolution print files will be added shortly.",
+        "The designs stay free to download and share, but they are no longer a clothing suggestion.",
+      link: {
+        label: "What to wear and bring today: the safety guide",
+        href: "/en/siguria",
+      },
     },
     versions: {
       black: {
         title: "Black shirt",
         body:
-          "The strongest march and camera version: flags on the front, DIASPORA on the back.",
+          "The one that stood out most at the marches and on camera: flags on the front, DIASPORA on the back.",
       },
       white: {
         title: "White shirt",
         body:
-          "The explanatory version: the shared message on the front, the reasons for marching on the back.",
+          "The explanatory one: the shared message on the front, the reasons we marched on the back.",
       },
     },
     downloadLabel: "Download",

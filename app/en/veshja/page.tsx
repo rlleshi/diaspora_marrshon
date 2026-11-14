@@ -4,9 +4,9 @@ import { pageMetadata } from "@/lib/metadata";
 export const metadata = pageMetadata({
   locale: "en",
   path: "/veshja",
-  title: "Shared clothing for the diaspora marches | Flamingo Revolution Diaspora",
+  title: "The diaspora shirts from the summer marches | Flamingo Revolution Diaspora",
   description:
-    "The diaspora T-shirts for the marches in Tirana, for a shared look in the square.",
+    "The shirts the diaspora wore at the summer 2026 marches in Tirana, with the Albanian flag beside the flag of the country where we live: now part of the history.",
 });
 
 export default function Page() {

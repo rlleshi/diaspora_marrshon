@@ -8,7 +8,14 @@ import {
   Droplets,
   Flag,
   Footprints,
+  GraduationCap,
+  HandHeart,
+  Landmark,
+  Mail,
   MapPinned,
+  Newspaper,
+  PlaneLanding,
+  Scale,
   Shirt,
   Timer,
   Utensils,
@@ -23,6 +30,9 @@ import routeMapImage from "@/docs/marshimi_i_diaspores_bulevard_sheshi.png";
 const googleMapsRouteUrl =
   "https://www.google.com/maps/dir/?api=1&origin=Sheshi+N%C3%ABn%C3%AB+Tereza%2C+Tiran%C3%AB&destination=Sheshi+Sk%C3%ABnderbej%2C+Tiran%C3%AB&travelmode=walking";
 
+// one per item of "beyond the square": funds and supplies, politicians, media, human rights, academics, the open letter
+const beyondIcons = [HandHeart, Landmark, Newspaper, Scale, GraduationCap, Mail];
+
 const practicalAdviceIcons = [
   Droplets,
   Utensils,
@@ -33,12 +43,14 @@ const practicalAdviceIcons = [
 ];
 
 /**
- * /marshimi: everything about the diaspora march in one place. The sections
- * keep the ids they had on the homepage, so old /#history style links still
+ * /marshimi: the diaspora's history in the Flamingo Revolution. It began as the
+ * march page, so the URL stays and the march sections keep the ids they had on
+ * the homepage (#context, #history, #marshimi): old /#history style links still
  * have somewhere to land.
  */
 export function MarchPage({ locale }: { locale: Locale }) {
   const t = content[locale];
+  const h = t.history;
   const homeHref = locale === "sq" ? "/" : "/en";
   const routeLayoutClassName = t.itinerary.showMap
     ? "route-layout"
@@ -69,42 +81,37 @@ export function MarchPage({ locale }: { locale: Locale }) {
           </div>
         </section>
 
-        <section className="section context-band" id="context">
-          <div className="section-inner context-grid">
-            <div>
-              <p className="kicker">{t.context.kicker}</p>
-              <h2>{t.context.title}</h2>
-              <p>
-                {t.context.body.before}
-                <a
-                  className="context-link"
-                  href={t.context.body.href}
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  {t.context.body.link}
-                </a>
-                {t.context.body.after}
-              </p>
-              <p className="context-closing">{t.context.closing}</p>
+        <section className="section origin-band" id="origin" aria-labelledby="origin-title">
+          <div className="section-inner origin">
+            <span className="origin-icon" aria-hidden="true">
+              <PlaneLanding size={26} />
+            </span>
+            <div className="section-heading">
+              <p className="kicker">{h.origin.kicker}</p>
+              <h2 id="origin-title">{h.origin.title}</h2>
+              <p>{h.origin.body}</p>
             </div>
-            <ul className="demand-list">
-              {t.context.demands.map((demand) => (
-                <li key={demand.text}>
-                  <CheckCircle2 aria-hidden="true" size={18} />
-                  <div className="demand-content">
-                    <span>{demand.text}</span>
-                    {demand.items ? (
-                      <ul className="demand-subgroup">
-                        {demand.items.map((item) => (
-                          <li key={item}>{item}</li>
-                        ))}
-                      </ul>
-                    ) : null}
-                  </div>
-                </li>
-              ))}
-            </ul>
+          </div>
+        </section>
+
+        <section className="section abroad-band" id="abroad" aria-labelledby="abroad-title">
+          <div className="section-inner">
+            <div className="section-heading">
+              <p className="kicker">{h.abroad.kicker}</p>
+              <h2 id="abroad-title">{h.abroad.title}</h2>
+              <p>{h.abroad.body}</p>
+              <TrackedLink
+                className="button button-secondary abroad-map-link"
+                href={t.mapTeaser.href}
+                eventName="Map Page Opened"
+                eventProperties={{ locale, placement: "history_abroad" }}
+              >
+                <MapPinned aria-hidden="true" size={20} />
+                {h.abroad.mapCta}
+              </TrackedLink>
+            </div>
+            <h3 className="carousel-heading">{h.abroad.highlightsTitle}</h3>
+            <HistoryCarousel items={h.abroad.moments} carousel={h.abroad.carousel} />
           </div>
         </section>
 
@@ -237,6 +244,86 @@ export function MarchPage({ locale }: { locale: Locale }) {
           </div>
         </section>
         ) : null}
+
+        <section className="section beyond-band" id="beyond" aria-labelledby="beyond-title">
+          <div className="section-inner">
+            <div className="section-heading">
+              <p className="kicker">{h.beyond.kicker}</p>
+              <h2 id="beyond-title">{h.beyond.title}</h2>
+              <p>{h.beyond.body}</p>
+            </div>
+            {h.beyond.highlight ? (
+              <article className="history-item beyond-highlight">
+                <span className="history-date">
+                  <Flag aria-hidden="true" size={18} />
+                  {h.beyond.highlight.dateLabel}
+                </span>
+                <h3>{h.beyond.highlight.title}</h3>
+                <p className="history-route">
+                  <MapPinned aria-hidden="true" size={16} />
+                  {h.beyond.highlight.route}
+                </p>
+                <p>{h.beyond.highlight.summary}</p>
+              </article>
+            ) : null}
+            <div className="beyond-grid">
+              {h.beyond.items.map((item, index) => {
+                const ItemIcon = beyondIcons[index] ?? CheckCircle2;
+                return (
+                  <article className="beyond-item" key={item.title}>
+                    <span className="link-card-icon" aria-hidden="true">
+                      <ItemIcon size={22} />
+                    </span>
+                    <h3>{item.title}</h3>
+                    <p>{item.body}</p>
+                  </article>
+                );
+              })}
+            </div>
+          </div>
+        </section>
+
+        <section className="section context-band" id="context" aria-labelledby="context-title">
+          <div className="section-inner">
+            <div className="section-heading">
+              <p className="kicker">{t.context.kicker}</p>
+              <h2 id="context-title">{t.context.title}</h2>
+              <p>
+                {t.context.body.before}
+                <a
+                  className="context-link"
+                  href={t.context.body.href}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  {t.context.body.link}
+                </a>
+                {t.context.body.after}
+              </p>
+            </div>
+            {/* two cards per row: the two short demands, then the two lists, then the last one full width */}
+            <ol className="demand-grid">
+              {t.context.demands.map((demand, index) => (
+                <li className="demand-card" key={demand.text}>
+                  <span className="demand-number" aria-hidden="true">
+                    {String(index + 1).padStart(2, "0")}
+                  </span>
+                  <div className="demand-content">
+                    <p className="demand-text">{demand.text}</p>
+                    {demand.items ? (
+                      <ul className="demand-subgroup">
+                        {demand.items.map((item) => (
+                          <li key={item}>{item}</li>
+                        ))}
+                      </ul>
+                    ) : null}
+                  </div>
+                </li>
+              ))}
+            </ol>
+            <p className="context-closing">{t.context.closing}</p>
+          </div>
+        </section>
 
         <section className="section shirts-teaser-band">
           <div className="section-inner shirts-teaser">

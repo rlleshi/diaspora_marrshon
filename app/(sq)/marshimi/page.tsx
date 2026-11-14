@@ -5,10 +5,10 @@ import { pageMetadata } from "@/lib/metadata";
 export const metadata = pageMetadata({
   locale: "sq",
   path: "/marshimi",
-  title: "Marshimet e diasporës në Tiranë | Flamingo Revolution Diaspora",
+  title: "Historiku i diasporës në Revolucionin Flamingo | Flamingo Revolution Diaspora",
   description: SHOW_NEXT_MARCH
-    ? "Pse marshon diaspora shqiptare në Tiranë me Revolucionin Flamingo, kërkesat e protestës, marshimet që nga 20 qershori 2026 dhe marshimi i radhës."
-    : "Pse marshon diaspora shqiptare në Tiranë me Revolucionin Flamingo, kërkesat e protestës dhe marshimet që nga 20 qershori 2026.",
+    ? "Çfarë ka bërë diaspora shqiptare për Revolucionin Flamingo: protestat jashtë Shqipërisë, autokolonat dhe marshimet në Tiranë që nga 20 qershori 2026, marshimi i radhës dhe kërkesat e protestës."
+    : "Çfarë ka bërë diaspora shqiptare për Revolucionin Flamingo: protestat jashtë Shqipërisë, autokolonat dhe marshimet në Tiranë që nga 20 qershori 2026, ndihma për sheshin dhe kërkesat e protestës.",
 });
 
 export default function Page() {

@@ -4,9 +4,9 @@ import { pageMetadata } from "@/lib/metadata";
 export const metadata = pageMetadata({
   locale: "sq",
   path: "/veshja",
-  title: "Veshja e përbashkët e diasporës | Flamingo Revolution Diaspora",
+  title: "Bluzat e diasporës nga marshimet e verës | Flamingo Revolution Diaspora",
   description:
-    "Bluzat e diasporës për marshimet në Tiranë, për një pamje të përbashkët në shesh.",
+    "Bluzat që diaspora veshi në marshimet e verës 2026 në Tiranë, me flamurin shqiptar pranë flamurit të vendit ku jetojmë: tani pjesë e historisë.",
 });
 
 export default function Page() {

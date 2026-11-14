@@ -5,10 +5,10 @@ import { pageMetadata } from "@/lib/metadata";
 export const metadata = pageMetadata({
   locale: "en",
   path: "/marshimi",
-  title: "The diaspora marches in Tirana | Flamingo Revolution Diaspora",
+  title: "The diaspora's history in the Flamingo Revolution | Flamingo Revolution Diaspora",
   description: SHOW_NEXT_MARCH
-    ? "Why the Albanian diaspora marches in Tirana with the Flamingo Revolution, the protest's demands, every diaspora march since 20 June 2026 and the next one."
-    : "Why the Albanian diaspora marches in Tirana with the Flamingo Revolution, the protest's demands and every diaspora march since 20 June 2026.",
+    ? "What the Albanian diaspora has done for the Flamingo Revolution: the protests outside Albania, the convoys and marches in Tirana since 20 June 2026, the next march and the protest's demands."
+    : "What the Albanian diaspora has done for the Flamingo Revolution: the protests outside Albania, the convoys and marches in Tirana since 20 June 2026, the help for the square and the protest's demands.",
 });
 
 export default function EnglishPage() {
