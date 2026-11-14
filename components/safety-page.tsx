@@ -6,10 +6,8 @@ import {
   HeartPulse,
   Phone,
   Scale,
-  ShieldAlert,
   ShieldCheck,
   ShoppingBag,
-  Siren,
   type LucideIcon,
 } from "lucide-react";
 import type { Locale } from "@/lib/content";
@@ -145,24 +143,11 @@ export function SafetyPage({ locale }: { locale: Locale }) {
         <section className="safety-hero" aria-labelledby="safety-title">
           <div className="section-inner safety-hero-inner">
             <p className="safety-kicker">
-              <ShieldAlert aria-hidden="true" size={16} />
+              <ShieldCheck aria-hidden="true" size={16} />
               {t.hero.kicker}
             </p>
             <h1 id="safety-title">{t.hero.title}</h1>
             <p className="safety-lead">{t.hero.lead}</p>
-            <div className="safety-emergency">
-              <div className="safety-emergency-symbol" aria-hidden="true">
-                <Siren size={26} />
-              </div>
-              <div className="safety-emergency-content">
-                <strong>{t.hero.emergencyTitle}</strong>
-                <p>{t.hero.emergencyBody}</p>
-              </div>
-              <a className="safety-emergency-call" href="tel:127">
-                <Phone aria-hidden="true" size={19} />
-                {t.hero.emergencyCall}
-              </a>
-            </div>
             <p className="safety-hero-note">{t.hero.note}</p>
           </div>
         </section>
@@ -213,6 +198,8 @@ export function SafetyPage({ locale }: { locale: Locale }) {
                       <p>{topic.lead}</p>
                     </div>
                   </div>
+
+                  {topic.intro && <p className="safety-topic-intro">{rich(topic.intro)}</p>}
 
                   {topic.phrase && (
                     <div className="safety-phrase">

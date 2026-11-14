@@ -37,6 +37,8 @@ export type SafetyTopic = {
   lead: string;
   /** one line on the quick-pick card */
   summary: string;
+  /** a short paragraph under the topic heading */
+  intro?: string;
   /** text stays in Albanian (it is said to Albanian police); English adds a translation */
   phrase?: { label: string; text: string; translation?: string };
   subsections?: SafetySubsection[];
@@ -55,9 +57,6 @@ type SafetyPageContent = {
     kicker: string;
     title: string;
     lead: string;
-    emergencyTitle: string;
-    emergencyBody: string;
-    emergencyCall: string;
     note: string;
   };
   quick: { kicker: string; title: string; body: string };
@@ -71,16 +70,13 @@ export const safetyPageContent: Record<Locale, SafetyPageContent> = {
     hero: {
       kicker: "Udhëzues praktik",
       title: "Siguria në protestë. Të drejtat e tua.",
-      lead: "Udhëzime të shkurtra. Çfarë të marrësh me vete. Ku të drejtohesh në rast rreziku.",
-      emergencyTitle: "Urgjencë mjekësore · 127",
-      emergencyBody: "Vështirësi në frymëmarrje. Gjakderdhje e rëndë. Pa ndjenja. Djegie apo trauma.",
-      emergencyCall: "Telefono 127",
+      lead: "Udhëzime të shkurtra për protestën: çfarë të marrësh me vete, si të kujdesesh për veten e të tjerët dhe cilat janë të drejtat e tua.",
       note: "Ky material është përgatitur për orientim praktik. Për këshilla ligjore kërko avokat; për urgjenca mjekësore telefono 127.",
     },
     quick: {
-      kicker: "Gjeje shpejt",
-      title: "Çfarë të duhet tani?",
-      body: "Zgjidh situatën. Lexo hapat. Vepro.",
+      kicker: "Në këtë faqe",
+      title: "Zgjidh një temë",
+      body: "Nga përgatitja para protestës deri te dokumentimi pas saj. Lexoji para se të dalësh.",
     },
     topics: [
       {
@@ -106,6 +102,7 @@ export const safetyPageContent: Record<Locale, SafetyPageContent> = {
               "**Mos përdor makijazh**, kremra me bazë vaji apo vazelinë mbi lëkurën që mund të ekspozohet: e mbajnë gazin mbi lëkurë.",
               "**Mos vendos lente kontakti.** Lidh flokët dhe shmang aksesorët që mund të tërhiqen.",
               "**Maska N95 nuk mbron nga gazi lotsjellës**, por është më mirë se asgjë; maska kundërgaz mbron më shumë. Çdo maskë kufizon edhe identifikimin nga kamerat.",
+              "**Mbro sytë** me syze noti ose syze mbrojtëse. Në mot të ftohtë ose me shi, vish një xhup kundër shiut mbi rroba të ngrohta.",
             ],
           },
           {
@@ -133,7 +130,7 @@ export const safetyPageContent: Record<Locale, SafetyPageContent> = {
         kicker: "Gjatë protestës",
         title: "Largohu nga rreziku",
         lead: "Qëndro me grupin. Mos lejo të mbetesh i bllokuar.",
-        summary: "Si të veprosh kur situata bëhet e rrezikshme.",
+        summary: "Si të qëndrosh me grupin dhe të largohesh nëse situata tensionohet.",
         subsections: [
           {
             title: "Në turmë",
@@ -163,6 +160,8 @@ export const safetyPageContent: Record<Locale, SafetyPageContent> = {
         title: "Mos bëj deklarata pa avokat",
         lead: "Kërko arsyen e ndalimit. Kërko avokatin. Kërko të njoftohet familja.",
         summary: "Të drejtat ligjore dhe veprimet e para.",
+        intro:
+          "Të gjithë e dimë se Shqipëria ka probleme me sundimin e ligjit. Megjithatë, ajo mbetet shtet ligjor: autoritetet, sidomos policia, janë të detyruara t'u përmbahen ligjeve. Prandaj kush i njeh ligjet ka një avantazh. Sa më mirë t'i njohim të drejtat që na garantojnë Kushtetuta dhe ligjet, aq më pak gjasa ka që të na shkelen.",
         phrase: {
           label: "Thuaje qartë",
           text: "“Dua të di arsyen e ndalimit. Kërkoj të njoftoj familjen dhe të komunikoj me avokatin tim. Nuk bëj deklarata pa praninë e avokatit.”",
@@ -185,8 +184,8 @@ export const safetyPageContent: Record<Locale, SafetyPageContent> = {
             title: "Çfarë thotë ligji",
             steps: [
               "**Ligji për Policinë e Shtetit, neni 10:** polici duhet të identifikohet para se të marrë një masë ndaj teje.",
-              "**Po ky ligj, neni 19:** ndalimi i përkohshëm policor zgjat maksimumi 5 orë dhe koha fillon kur të ndalojnë, jo kur mbërrin në komisariat. Ke të drejtë për një kopje të procesverbalit.",
-              "**Kushtetuta, neni 28:** të njoftohesh menjëherë, në një gjuhë që e kupton, për arsyen dhe akuzën, të mos bësh deklarata dhe të komunikosh menjëherë me avokatin. Nëse je arrestuar ose ndaluar për vepër penale, duhet të dalësh para gjyqtarit brenda 48 orëve.",
+              "**Po ky ligj, neni 19:** ndalimi i përkohshëm policor zgjat maksimumi 5 orë dhe koha fillon kur të ndalojnë, jo kur mbërrin në komisariat. Ke të drejtë për një kopje të procesverbalit: këmbëngul ta marrësh para se të largohesh nga komisariati.",
+              "**Kushtetuta, neni 28:** të njoftohesh menjëherë, në një gjuhë që e kupton, për arsyen dhe akuzën, të mos bësh deklarata dhe të komunikosh menjëherë me avokatin. Nëse je arrestuar ose ndaluar për vepër penale, duhet të dalësh para gjyqtarit brenda 48 orëve. Këmbëngul në këto të drejta: të dhënat e identitetit duhet t'i japësh, por për pyetje të tjera mund t'i thuash policisë me qetësi se i di të drejtat e tua dhe kërkon që të zbatohen.",
               "**Kushtetuta, neni 31:** nëse nuk ke mjete për avokat, ke të drejtë për mbrojtje falas në procesin penal.",
               "**Kodi i Procedurës Penale, neni 255:** policia duhet të njoftojë pa vonesë familjen, me pëlqimin tënd.",
               "**Nën 18 vjeç:** policia duhet të njoftojë familjen dhe nuk duhet të të pyesë pa praninë e avokatit dhe të psikologut.",
@@ -206,7 +205,7 @@ export const safetyPageContent: Record<Locale, SafetyPageContent> = {
           {
             title: "Gaz lotsjellës · sytë dhe frymëmarrja",
             steps: [
-              "**Largohu menjëherë** drejt ajrit të pastër dhe, nëse mundesh, drejt një vendi më të lartë: gazi qëndron afër tokës.",
+              "**Largohu menjëherë** drejt ajrit të pastër dhe (nëse mundesh) drejt një vendi më të lartë: gazi qëndron afër tokës.",
               "**Mos i fërko sytë.** Shpëlaji me ujë të pastër ose solucion fiziologjik për 10 deri në 15 minuta.",
               "Hiq lentet e kontaktit dhe mos i vendos përsëri.",
               "Kur je i sigurt, **hiq rrobat e ndotura pa i kaluar mbi kokë**, mbylli në një qese dhe laj lëkurën me ujë dhe sapun.",
@@ -218,7 +217,7 @@ export const safetyPageContent: Record<Locale, SafetyPageContent> = {
             title: "Djegie nga zjarri",
             steps: [
               "Nëse rrobat marrin flakë: **ndalo, shtrihu, mbulo fytyrën dhe rrotullohu**.",
-              "Ftoje djegien me ujë të rrjedhshëm të freskët **për 20 minuta**. Mos përdor akull, vaj, gjalpë ose kremra.",
+              "Ftohe djegien me ujë të rrjedhshëm të freskët **për 20 minuta**. Mos përdor akull, vaj, gjalpë ose kremra.",
               "Hiq bizhuteritë dhe rrobat pranë djegies, por **mos tërhiq asgjë që është ngjitur në lëkurë** dhe mos çaj flluskat. Mbuloje lirshëm me film plastik të pastër.",
               "**Kërko trajtim urgjent** për djegie të mëdha ose të thella, në fytyrë, duar, qafë ose zona intime.",
             ],
@@ -429,7 +428,7 @@ export const safetyPageContent: Record<Locale, SafetyPageContent> = {
           ],
         },
         alert:
-          "Kujdes: këto numra nuk janë shërbime emergjente. Për rrezik për jetën, telefono 127.",
+          "Kujdes: këta numra nuk janë shërbime emergjente. Për rrezik për jetën, telefono 127.",
       },
       {
         id: "dokumentimi",
@@ -445,6 +444,7 @@ export const safetyPageContent: Record<Locale, SafetyPageContent> = {
               "Ruaj fotot, videot origjinale dhe dokumentet mjekësore pa i redaktuar, me një **kopje rezervë** në vend të sigurt.",
               "**Mos publiko fytyra, emra apo vendndodhje** të të tjerëve pa pëlqimin e tyre, sidomos të të miturve.",
               "Këshillohu me avokat për ankimin. Mos u mbështet vetëm te postimet në rrjete sociale.",
+              `Diaspora përgatit raporte për shkeljet e të drejtave të njeriut gjatë protestave dhe ua dërgon institucioneve evropiane. Në [grupin e diasporës në WhatsApp](${WHATSAPP_INVITE_URL}) mund të gjesh njerëz që merren me to. Materialet dërgoji **vetëm privatisht**, jo në grup; për ato ku shfaqen të tjerë, kërko më parë pëlqimin e tyre.`,
             ],
           },
         ],
@@ -457,16 +457,13 @@ export const safetyPageContent: Record<Locale, SafetyPageContent> = {
     hero: {
       kicker: "Practical guide",
       title: "Safety at the protest. Your rights.",
-      lead: "Short guidance. What to bring. Where to turn when things get dangerous.",
-      emergencyTitle: "Medical emergency · 127",
-      emergencyBody: "Trouble breathing. Heavy bleeding. Unconscious. Burns or trauma.",
-      emergencyCall: "Call 127",
+      lead: "Short guidance for the protest: what to bring, how to look after yourself and others, and what your rights are.",
       note: "This material is for practical orientation. For legal advice, ask a lawyer; for medical emergencies, call 127.",
     },
     quick: {
-      kicker: "Find it fast",
-      title: "What do you need right now?",
-      body: "Pick your situation. Read the steps. Act.",
+      kicker: "On this page",
+      title: "Pick a topic",
+      body: "From getting ready before the protest to documenting what you saw afterwards. Read them before you go.",
     },
     topics: [
       {
@@ -492,6 +489,7 @@ export const safetyPageContent: Record<Locale, SafetyPageContent> = {
               "**No make-up**, oil-based creams or Vaseline on skin that may be exposed: they hold the gas on your skin.",
               "**Don't wear contact lenses.** Tie your hair back and avoid accessories that can be grabbed.",
               "**An N95 mask does not protect against tear gas**, but it is better than nothing; a gas mask protects more. Any mask also limits identification by cameras.",
+              "**Protect your eyes** with swimming goggles or safety goggles. In cold or wet weather, wear a waterproof jacket over warm layers.",
             ],
           },
           {
@@ -519,7 +517,7 @@ export const safetyPageContent: Record<Locale, SafetyPageContent> = {
         kicker: "During the protest",
         title: "Get away from danger",
         lead: "Stay with your group. Don't let yourself get trapped.",
-        summary: "What to do when things turn dangerous.",
+        summary: "How to stay with your group and leave if things get tense.",
         subsections: [
           {
             title: "In the crowd",
@@ -549,6 +547,8 @@ export const safetyPageContent: Record<Locale, SafetyPageContent> = {
         title: "No statements without a lawyer",
         lead: "Ask for the reason. Ask for your lawyer. Ask for your family to be told.",
         summary: "Your legal rights and the first steps.",
+        intro:
+          "We all know Albania has problems with the rule of law. Even so, it remains a state governed by law: the authorities, and the police above all, are bound to follow the law. So knowing the law gives you an advantage. The better we know the rights the Constitution and the law guarantee us, the less likely they are to be violated.",
         phrase: {
           label: "Say it clearly",
           text: "“Dua të di arsyen e ndalimit. Kërkoj të njoftoj familjen dhe të komunikoj me avokatin tim. Nuk bëj deklarata pa praninë e avokatit.”",
@@ -573,8 +573,8 @@ export const safetyPageContent: Record<Locale, SafetyPageContent> = {
             title: "What the law says",
             steps: [
               "**State Police Law, Article 10:** an officer must identify themselves before taking any measure against you.",
-              "**Same law, Article 19:** temporary police holding lasts at most 5 hours, and the clock starts when you are stopped, not when you reach the station. You are entitled to a copy of the police report (procesverbal).",
-              "**Constitution, Article 28:** you must be told at once, in a language you understand, why you are held and what you are accused of; you do not have to make any statement, and you can contact a lawyer immediately. If you are arrested or detained over a criminal offence, you must be brought before a judge within 48 hours.",
+              "**Same law, Article 19:** temporary police holding lasts at most 5 hours, and the clock starts when you are stopped, not when you reach the station. You are entitled to a copy of the police report (procesverbal): insist on getting it before you leave the station.",
+              "**Constitution, Article 28:** you must be told at once, in a language you understand, why you are held and what you are accused of; you do not have to make any statement, and you can contact a lawyer immediately. If you are arrested or detained over a criminal offence, you must be brought before a judge within 48 hours. Insist on these rights: you must give your identity details, but to any other question you can calmly tell the police that you know your rights and want them respected.",
               "**Constitution, Article 31:** if you cannot afford a lawyer, you are entitled to free defence in criminal proceedings.",
               "**Code of Criminal Procedure, Article 255:** the police must notify your family without delay, with your consent.",
               "**Under 18:** the police must notify your family and must not question you without a lawyer and a psychologist present.",
@@ -832,6 +832,7 @@ export const safetyPageContent: Record<Locale, SafetyPageContent> = {
               "Keep original photos, videos and medical records unedited, with a **backup** somewhere safe.",
               "**Don't publish other people's faces, names or locations** without their consent, especially minors'.",
               "Talk to a lawyer about filing a complaint. Don't rely only on social media posts.",
+              `The diaspora prepares reports on human rights abuses during the protests and sends them to European institutions. In [the diaspora's WhatsApp group](${WHATSAPP_INVITE_URL}) you can find people who work on them. Send your material **only privately**, never to the group; if other people appear in it, ask for their consent first.`,
             ],
           },
         ],

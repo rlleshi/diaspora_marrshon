@@ -4635,45 +4635,6 @@ a.source-chip-link:hover {
   line-height: 1.6;
 }
 
-.safety-emergency {
-  display: flex;
-  align-items: center;
-  gap: 18px;
-  margin-top: 34px;
-  padding: clamp(16px, 3vw, 24px);
-  border: 1px solid rgba(255, 255, 255, .19);
-  border-left: 5px solid #ef4444;
-  border-radius: 10px;
-  background: rgba(255, 255, 255, .085);
-}
-
-.safety-emergency-symbol {
-  display: grid;
-  flex: 0 0 52px;
-  place-items: center;
-  width: 52px;
-  height: 52px;
-  border-radius: 12px;
-  color: #ffcaca;
-  background: rgba(239, 68, 68, .2);
-}
-
-.safety-emergency-content {
-  flex: 1 1 auto;
-  min-width: 0;
-}
-
-.safety-emergency-content strong {
-  font-size: 1.03rem;
-}
-
-.safety-emergency-content p {
-  margin: 5px 0 0;
-  color: rgba(255, 255, 255, .8);
-  line-height: 1.5;
-}
-
-.safety-emergency-call,
 .safety-contact-call {
   display: inline-flex;
   align-items: center;
@@ -4689,7 +4650,6 @@ a.source-chip-link:hover {
   white-space: nowrap;
 }
 
-.safety-emergency-call:hover,
 .safety-contact-call:hover {
   background: var(--red-dark);
 }
@@ -4895,6 +4855,13 @@ a.source-chip-link:hover {
   text-underline-offset: 3px;
 }
 
+.safety-topic-intro {
+  max-width: 68ch;
+  margin: 22px 0 0 80px;
+  font-size: 1.02rem;
+  line-height: 1.65;
+}
+
 .safety-phrase {
   margin: 24px 0 0 80px;
   padding: 17px 20px;
@@ -5051,22 +5018,17 @@ a.source-chip-link:hover {
 }
 
 @media (max-width: 700px) {
-  .safety-emergency,
   .safety-contact {
     align-items: stretch;
     flex-direction: column;
   }
 
-  .safety-emergency-symbol {
-    display: none;
-  }
-
-  .safety-emergency-call,
   .safety-contact-call {
     width: 100%;
   }
 
   .safety-subsections,
+  .safety-topic-intro,
   .safety-phrase,
   .safety-topic-alert,
   .safety-contacts {

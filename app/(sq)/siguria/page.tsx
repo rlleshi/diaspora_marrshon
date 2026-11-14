@@ -6,7 +6,7 @@ export const metadata = pageMetadata({
   path: "/siguria",
   title: "Siguria në protestë dhe të drejtat e tua | Flamingo Revolution Diaspora",
   description:
-    "Udhëzues praktik për protestën: çfarë të bësh nëse të ndalojnë, nga gazi lotsjellës dhe lëndimet, ndihma juridike falas dhe urgjenca 127.",
+    "Udhëzues praktik për protestën: çfarë të bësh nëse të ndalojnë, nëse të zë gazi lotsjellës ose nëse lëndohesh, ndihma juridike falas dhe urgjenca 127.",
 });
 
 export default function Page() {
