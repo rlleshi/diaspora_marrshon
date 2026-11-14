@@ -31,7 +31,7 @@ const COPY: Record<
 > = {
   sq: {
     eyebrow: "Pulsi i protestës për Shqipërinë e re",
-    title: "167 ditë në shesh për një mjekërrosh bardhërosh",
+    title: "168 ditë në shesh për një mjekërrosh bardhërosh",
     liveLabel: "Live",
     intro: {
       before:
@@ -71,7 +71,7 @@ const COPY: Record<
       replay: "Rishfaq",
       saturday: "e shtunë",
       ariaSummary:
-        "Indeksi i pjesëmarrjes në protesta përgjatë 167 ditëve, me kulmin në ditën e 21-të (20 qershor 2026).",
+        "Indeksi i pjesëmarrjes në protesta përgjatë 168 ditëve, me kulmin në ditën e 21-të (20 qershor 2026).",
       rangeLabel: "Periudha",
       rangeAll: "Të gjitha ditët",
       rangeLastLong: "60 ditët e fundit",
@@ -120,7 +120,7 @@ const COPY: Record<
   },
   en: {
     eyebrow: "Protest pulse for a new Albania",
-    title: "167 days in the square for a grey-bearded Rama",
+    title: "168 days in the square for a grey-bearded Rama",
     liveLabel: "Live",
     intro: {
       before:
@@ -160,7 +160,7 @@ const COPY: Record<
       replay: "Replay",
       saturday: "Saturday",
       ariaSummary:
-        "Protest participation index across 167 days, peaking on day 21 (20 June 2026).",
+        "Protest participation index across 168 days, peaking on day 21 (20 June 2026).",
       rangeLabel: "Range",
       rangeAll: "All days",
       rangeLastLong: "Last 60 days",

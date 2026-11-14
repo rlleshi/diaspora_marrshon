@@ -64,7 +64,7 @@ export const methodologyPageContent: Record<Locale, MethodologyPageContent> = {
       {
         title: "Kontrolli me sy",
         paragraphs: [
-          "Transmetimi shpesh e vendos turmën pranë një folësi ose studioje në ekran të ndarë ose e shfaq turmën në murin me ekrane të studios. Këto kuadro mund t'i fryjnë shifrat e natës, prandaj një fletë me kuadrin më të fortë të çdo plani kontrollohet me sy dhe kuadrot e tilla hiqen. Që nga fundi i shtatorit hiqen nga të tria shifrat; për ditët më të hershme janë hequr nga piku, aty ku i gjeti rishikimi. Vendimet e çdo dite shënohen pranë të dhënave në GitHub.",
+          "Transmetimi shpesh e vendos turmën në ekran të ndarë pranë një reporteri, studios ose pamjeve të tjera. Ndonjëherë e shfaq turmën në murin me ekrane të studios. Një fletë me kuadrin më të fortë të çdo plani kontrollohet me sy. Ekranet e ndara ku paneli i dytë tregon pamje të regjistruara ose të njëjtën turmë nga një kamerë e dytë mund t'i fryjnë shifrat e natës, prandaj hiqen, ashtu si edhe pamjet e murit me ekrane të studios. Që nga 7 nëntori, një ekran i ndarë numërohet kur paneli i dytë nuk tregon turmë tjetër, për shembull një reporter ose një të intervistuar, kurse që nga 14 nëntori edhe kur tregon studion; ky panel shton të shumtën disa njerëz. Në këto kuadro turma zë vetëm një pjesë të ekranit, prandaj zakonisht japin shifra më të ulëta. Më parë, që nga fundi i shtatorit, ekranet e ndara hiqeshin nga të tria shifrat; për ditët më të hershme janë hequr nga piku, aty ku i gjeti rishikimi. Vendimet e çdo dite shënohen pranë të dhënave në GitHub.",
         ],
       },
       {
@@ -153,7 +153,7 @@ export const methodologyPageContent: Record<Locale, MethodologyPageContent> = {
       {
         title: "Checking by eye",
         paragraphs: [
-          "The broadcast often puts the crowd in a split screen beside a speaker or a studio, or shows it on a studio video wall. Those frames can inflate a night's figures, so a sheet of each shot's strongest frame is checked by eye and such frames are removed. Since late September they are removed from all three figures; for earlier days they were removed from the peak where the review found them. Each day's decisions are recorded with the data on GitHub.",
+          "The broadcast often puts the crowd in a split screen beside a reporter, the studio or other footage. Sometimes it shows the crowd on a studio video wall. A sheet of each shot's strongest frame is checked by eye. Splits whose second panel shows recorded footage or the same crowd from a second camera can inflate a night's figures, so they are removed, as are shots of a studio video wall. Since 7 November, a split counts when its second panel shows no other crowd, for example a reporter or an interviewee, and since 14 November also when it shows the studio; that panel adds a few people at most. In these frames the crowd fills only part of the screen, so they tend to count lower. Before that, from late September, splits were removed from all three figures; on earlier days they were removed from the peak where the review found them. Each day's decisions are recorded with the data on GitHub.",
         ],
       },
       {

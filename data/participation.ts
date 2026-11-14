@@ -606,7 +606,29 @@
 // a retained frame. The first clip's title asks whether there was a clash outside the PM's office and
 // the second's mentions more than 200 fines; neither was checked against the speech, so the note
 // reports neither. Missing, not zero.
-// The notes for days 134 to 167 follow their research files (protest_story_notes_1_134 to _167); day
+// Day 168 arrived as one News24 stream (protesta_168, VrE2yx6sM6I, 04:51:20, released at 14:38,
+// analysed from 00:20:00 to 04:51:20, about 14:58 to 19:29 broadcast time), 2382 frames counted and
+// 623 retained; the run finished at 21:39, before the research file (21:55). At the user's request
+// the day keeps every split whose second panel cannot double the crowd or bring in other crowds, the
+// day-161 rule widened to studio panels: 603 kept (top-10 peak avg 264.8, mean 133.9, median 123.4).
+// They are 316 clean full-screen views, 260 studio splits (the evening gathering in a panel beside the
+// presenters, 258 of them from about 17:06 to 18:57 with rings of +138 to +159, and two daytime ones in
+// a cyan studio at +26 and +35), 12 of a reporter on the street beside the afternoon crowd (scenes 6
+// and 7), 11 of a street interview beside the evening gathering (scene 107) and 4 whose second panel
+// shows one protester, with a placard or writing on a wall (scenes 6 and 10). It drops 17 where a
+// second street camera shows the edge of the same gathering (scenes 6, 11 and 19), one promotional
+// graphic over crowd footage (scene 23, 01:22:50) and two frames of a social-media post with photos of
+// an indoor audience shown full screen (scene 42, 241.0 and 220.4, about 17:16), which the ring cannot
+// flag (+2). The studio splits are why the mean and median sit low: the crowd fills only part of the
+// screen, so they count 118.0 on average (151.2 at most). Without them (the day-161 rule as on days
+// 161 and 165) the day would read 264.8 / 146.0 / 135.8; clean full-screen views alone 264.8 / 148.0 /
+// 138.1; every retained frame 264.8 / 134.1 / 123.7. Four clean views were kept by sight above a ring
+// of +10 (scene 23 at +19 to +45 under a bright sky, scene 25 at +10). The ten highest frames are all
+// clean wide daylight views of the march in the rain, about 16:09 to 16:11, headed by the 284.2 raw
+// maximum (01:31:00). Kept frames run from about 15:12 to 19:00, 401 of the 603 after about 17:00. The
+// analysed window starts after the rally at the ministry began (14:00), so its first hour and the
+// morning in Manëz are not in the figure.
+// The notes for days 134 to 168 follow their research files (protest_story_notes_1_134 to _168); day
 // 141's injury and arrest figures follow its refresh of 20 October, day 142's those of 21 October,
 // day 143's those of 22 October and day 144's those of 23 October, and the notes for days 156 and 157
 // follow their refresh of 5 November (day 157's rights statement has 15 signatories, not 13). Day
@@ -615,7 +637,10 @@
 // are the police bulletin of 12 November for Wednesday's gathering. Day 156's
 // six taken to police, as they left the gathering, were first reported at 17:26 (CNA), before the
 // effigies were reported (News24, 19:23). Tuesday's police notice of 16 fines for Monday, 14 of them to people taken to
-// police, is the official follow-up; it does not name the six or reconcile with them.
+// police, is the official follow-up; it does not name the six or reconcile with them. Day 168's note
+// follows a same-evening file (cutoff 21:52) with no Sunday follow-up. At the user's request it leaves
+// out the morning custody figure in Manëz, which two outlets reported as ten and twelve; the afternoon
+// one has no number. Rama's Assembly remarks were checked against the BalkanWeb report of 12:08.
 
 export type ParticipationDay = {
   day: number;
@@ -993,6 +1018,8 @@ export const participation: ParticipationDay[] = [
     note: { sq: "E enjtja, dita e tridhjetenjëtë e studentëve: studentë dhe qytetarë mblidhen në mbrëmje para Kryeministrisë, duke kërkuar dorëheqjen e Ramës dhe duke refuzuar dialogun. Sipas News24, gjatë ndeshjes së Shqipërisë me Finlandën në stadiumin Air Albania disa tifozë kërkojnë me thirrje dorëheqjen e Ramës, ndërsa në tribunë Tifozat Kuqezi shpalosin një koreografi në mbështetje të protestuesit të plagosur në sy më 24 tetor. Policia njofton 26 gjoba nga 5 mijë lekë për bllokimin e rrugës gjatë tubimit të 11 nëntorit. Në një intervistë për News24, një protestues thotë se diaspora pritet në Tiranë më 28 dhe 29 nëntor dhe se më 28 nëntor ata që vijnë nga veriu do të takohen me ata nga jugu te ish-stacioni i trenit, para se të nisen drejt sheshit. Në Dublin, në samitin e Komunitetit Politik Evropian, Rama mbron mandatin zgjedhor dhe thotë se negociatat për projektin e lidhur me Kushnerin vazhdojnë. Pa shifër: për të enjten nuk u bë numërim; transmetimi i News24 në mbrëmje është program studioje që e tregon tubimin në një panel pranë studios.", en: "Thursday, the students' thirty-first day: students and citizens gather in the evening outside the PM's office, demanding Rama's resignation and rejecting dialogue. According to News24, during Albania's match against Finland at the Air Albania stadium some fans chant for Rama's resignation, while in the stands the national team's supporters' group Tifozat Kuqezi stages a display in support of the protester injured in the eye on 24 October. Police announce 26 fines of about €55 each for blocking the road during the gathering of 11 November. In an interview with News24, a protester says the diaspora is expected in Tirana on 28 and 29 November and that on 28 November those arriving from the north will meet those from the south at the former railway station before setting off towards the square. In Dublin, at the European Political Community summit, Rama defends the electoral mandate and says negotiations on the Kushner-linked project are continuing. No figure: no count was made for Thursday; News24's evening broadcast is a studio programme that shows the gathering in a panel beside the studio." } },
   { day: 167, date: "2026-11-13", saturday: false, peak: null, mean: null, median: null, source: yt("iZxH83kzdes"),
     note: { sq: "E premtja, dita e tridhjetedytë e studentëve: studentë dhe qytetarë mblidhen në mbrëmje para Kryeministrisë, duke kërkuar dorëheqjen e Ramës dhe duke refuzuar dialogun. Sindikata e punonjësve të universiteteve fton pedagogët dhe stafin universitar t'i bashkohen protestës kombëtare të studentëve të shtunën, 14 nëntor, në orën 14:00 para Ministrisë së Arsimit. News24 shkruan për një studim mbi zgjerimin e Bashkimit Evropian, të kërkuar nga Komisioni i Punëve të Jashtme i Parlamentit Evropian, që trajton edhe protestat e verës me të dhëna deri në fund të korrikut; sipas një të intervistuari në studim, protestat nxorën në pah përqendrimin e pushtetit. Autorët shënojnë se mendimet e tyre nuk përfaqësojnë qëndrimin zyrtar të Parlamentit. Pa shifër: transmetimi i mbrëmjes përzien studion me pamje nga rruga dhe numërimi i tij u ndërpre; në tri video të shkurtra nga rruga asnjë pamje nuk arrin pragun prej 100 vetësh që përdor indeksi.", en: "Friday, the students' thirty-second day: students and citizens gather in the evening outside the PM's office, demanding Rama's resignation and rejecting dialogue. The university employees' union invites lecturers and university staff to join the students' national protest on Saturday 14 November at 14:00 outside the Education Ministry. News24 reports on a study of European Union enlargement, requested by the European Parliament's Foreign Affairs Committee, which also covers the summer protests with evidence up to the end of July; according to one interviewee in the study, the protests exposed a concentration of power. The authors note that their views are not the Parliament's official position. No figure: the evening broadcast mixes studio and street footage and its count was stopped; in three short street clips no shot reaches the 100-person threshold the index uses." } },
+  { day: 168, date: "2026-11-14", saturday: true, peak: 5.13, mean: 2.59, median: 2.39, source: yt("VrE2yx6sM6I"),
+    note: { sq: "E shtuna, dita e tridhjetetretë e studentëve: nën shi, protesta kombëtare e studentëve nis në orën 14:00 para Ministrisë së Arsimit, ku studentë dhe qytetarë bllokojnë Rrugën e Durrësit dhe kërkojnë dorëheqjen e Ramës, jo dialog; sipas mediave vendase, u bashkohen edhe pedagogë dhe përfaqësues të diasporës. Pas rreth një ore e gjysmë, protestuesit marshojnë nëpër Zogun e Zi, 21 Dhjetorin dhe Rrugën Vasil Shanto drejt Kryeministrisë; sipas mediave vendase, gjatë rrugës disa prej tyre dëmtojnë panele reklamash, parmakë e stacione autobusi. Më pas, sipas Euronews Albania, dy protestues tentojnë të thyejnë me një shtyllë hekuri derën e Kryesisë së Kuvendit, ndërsa media të tjera raportojnë gurë të hedhur drejt godinës dhe disa persona të shoqëruar nga policia. Në mëngjes, në Manëz, protestues hedhin vezë drejt eskortës së Ramës, që po shkonte në Asamblenë e Partisë Socialiste. Në Asamble, Rama mbron mandatin zgjedhor dhe u bën thirrje socialistëve të dalin në çdo lagje e fshat për të biseduar me qytetarët.", en: "Saturday, the students' thirty-third day: in the rain, the students' national protest starts at 14:00 outside the Education Ministry, where students and citizens block Rruga e Durrësit and demand Rama's resignation, not dialogue; according to local media, lecturers and representatives of the diaspora join them. After about an hour and a half the protesters march through Zogu i Zi, 21 Dhjetori and Rruga Vasil Shanto towards the PM's office; according to local media, some of them damage advertising panels, railings and bus stops along the way. Later, according to Euronews Albania, two protesters try to break down the door of the Parliament presidency with a metal pole, while other outlets report stones thrown at the building and several people taken away by police. In the morning in Manëz, protesters throw eggs at Rama's convoy on its way to the Socialist Party Assembly. At the Assembly, Rama defends the electoral mandate and calls on Socialists to go out to every neighbourhood and village to talk with citizens." } },
 ];
 export type ParticipationEvent = {
   day: number;
