@@ -1,5 +1,6 @@
 import type { Locale } from "@/lib/content";
 import { scandals } from "@/data/scandals";
+import { scandalsFor } from "@/data/scandals-en";
 import { scandalsPageContent, statusBucketOrder } from "@/lib/scandals-content";
 import { ScandalsExplorer } from "@/components/scandals-explorer";
 import { SiteFooter } from "@/components/site-footer";
@@ -35,8 +36,8 @@ export function ScandalsPage({ locale }: { locale: Locale }) {
             <h1 className="scandals-title">{t.hero.title}</h1>
             <p className="scandals-intro">{t.hero.intro}</p>
             <p className="scandals-methodology">{t.hero.methodology}</p>
-            {locale === "en" && t.hero.enOnlyNote ? (
-              <p className="scandals-en-note">{t.hero.enOnlyNote}</p>
+            {t.hero.translationNote ? (
+              <p className="scandals-en-note">{t.hero.translationNote}</p>
             ) : null}
 
             <div className="dossier-stats">
@@ -92,7 +93,7 @@ export function ScandalsPage({ locale }: { locale: Locale }) {
 
         <section className="section scandals-room">
           <div className="section-inner">
-            <ScandalsExplorer locale={locale} />
+            <ScandalsExplorer locale={locale} items={scandalsFor(locale)} />
           </div>
         </section>
       </main>

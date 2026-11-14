@@ -7,7 +7,7 @@ export const metadata = pageMetadata({
   path: "/liste_vuajtjesh",
   title: "Rama government scandals 2013–2026: the dossier | Flamingo Revolution Diaspora",
   description:
-    `${scandals.length} Rama-government scandals (2013–2026), researched and checked against Albanian investigative journalism. Report text is Albanian-only for now.`,
+    `${scandals.length} Rama-government scandals (2013–2026), researched and checked against Albanian investigative journalism, translated from the original Albanian research.`,
 });
 
 export default function Page() {

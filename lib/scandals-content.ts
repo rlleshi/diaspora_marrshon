@@ -25,7 +25,8 @@ export const scandalsPageContent: Record<
       title: string;
       intro: string;
       methodology: string;
-      enOnlyNote?: string;
+      /** English only: says the case files are a translation */
+      translationNote?: string;
     };
     dashboard: {
       totalLabel: string;
@@ -108,13 +109,13 @@ export const scandalsPageContent: Record<
     altLangHref: "/liste_vuajtjesh",
     hero: {
       kicker: "Government track record",
-      title: "14 years, 33 case files: what this organization has done.",
+      title: "14 years, 33 case files: what this organisation has done to Albania.",
       intro:
-        "Each case file here was researched and independently checked against Albanian investigative journalism (mainly the investigative news sites Citizens.al and Reporter.al), plus BIRN, SPAK, KLSH, and international sources. The text follows the original research, not re-summarized.",
+        "Each case file here was researched and checked one by one against Albanian investigative journalism (mainly the investigative news sites Citizens.al and Reporter.al), as well as the Balkan Investigative Reporting Network, the Special Prosecution Office against Corruption and Organised Crime, the Albanian Supreme Audit Institution and international sources. The text follows the original research and has not been re-summarised.",
       methodology:
-        "Each claim is marked confirmed, partially confirmed, unverified, or contradicted by sources. Named individuals are described by their real legal status: \"charged\"/\"under investigation\" for active cases, \"convicted\" only where a court has actually ruled.",
-      enOnlyNote:
-        "This report is currently written in Albanian only — it's sourced from Albanian investigative journalism, and every figure is checked against Albanian-language reporting. An English translation may follow later.",
+        "Each claim is marked as confirmed, partially confirmed, unverified or contradicted by the sources. Named individuals are described by their actual legal status: \"charged\"/\"under investigation\" for active cases, and \"convicted\" only where there is a court ruling.",
+      translationNote:
+        "These case files are an English translation of the original Albanian research.",
     },
     dashboard: {
       totalLabel: "Documented case files",

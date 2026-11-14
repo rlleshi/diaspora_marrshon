@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState, type ReactNode } from "react";
+import { useEffect, useMemo, useState, type ReactNode } from "react";
 import {
   ChevronDown,
   Construction,
@@ -11,12 +11,7 @@ import {
   type LucideIcon,
 } from "lucide-react";
 import type { Locale } from "@/lib/content";
-import {
-  scandals,
-  type ClaimVerdict,
-  type Scandal,
-  type ScandalCategory,
-} from "@/data/scandals";
+import type { ClaimVerdict, Scandal, ScandalCategory } from "@/data/scandals";
 import { categoryOrder, scandalsPageContent } from "@/lib/scandals-content";
 
 const CATEGORY_ICONS: Record<ScandalCategory, LucideIcon> = {
@@ -40,44 +35,51 @@ const STAMP_CLASS: Record<Scandal["statusBucket"], string> = {
   convicted: "stamp--convicted",
 };
 
-const YEARS = scandals.map((s) => s.yearStart);
-const MIN_YEAR = Math.min(...YEARS);
-const MAX_YEAR = Math.max(...YEARS);
-const YEAR_TICKS = Array.from(
-  new Set(
-    [0, 0.25, 0.5, 0.75, 1].map((f) =>
-      Math.round(MIN_YEAR + f * (MAX_YEAR - MIN_YEAR)),
-    ),
-  ),
-);
-
-function yearPct(year: number) {
-  if (MAX_YEAR === MIN_YEAR) return 0;
-  return ((year - MIN_YEAR) / (MAX_YEAR - MIN_YEAR)) * 100;
-}
-
-// Several scandals can share the same yearStart; stacking them on identical
-// x-coordinates makes them collapse into one dot. Assign each a "lane" so
-// same-year cases fan out vertically into a visible column instead.
-const CHRONO_LANE: Record<string, number> = {};
-const chronoYearCounts = new Map<number, number>();
-for (const s of scandals) {
-  const lane = chronoYearCounts.get(s.yearStart) ?? 0;
-  CHRONO_LANE[s.id] = lane;
-  chronoYearCounts.set(s.yearStart, lane + 1);
-}
-const CHRONO_MAX_LANE = Math.max(...chronoYearCounts.values()) - 1;
 const CHRONO_LANE_GAP = 15;
-// Vertical space reserved above the baseline for the tallest stack of dots.
-const CHRONO_ABOVE = 16 + CHRONO_MAX_LANE * CHRONO_LANE_GAP;
 const CHRONO_BELOW = 26;
-const CHRONO_TRACK_HEIGHT = CHRONO_ABOVE + CHRONO_BELOW;
-const CHRONO_STACKS = Array.from(chronoYearCounts.entries()).filter(
-  ([, count]) => count > 1,
-);
 
-function chronoDotTop(id: string) {
-  return CHRONO_ABOVE - 6 - CHRONO_LANE[id] * CHRONO_LANE_GAP;
+// The timeline layout depends only on each case's id and yearStart, which are
+// the same in both languages. It is computed from the list the page passes in,
+// so the client bundle carries no case-file text of its own.
+function chronoLayout(items: Scandal[]) {
+  const years = items.map((s) => s.yearStart);
+  const minYear = Math.min(...years);
+  const maxYear = Math.max(...years);
+  const ticks = Array.from(
+    new Set(
+      [0, 0.25, 0.5, 0.75, 1].map((f) =>
+        Math.round(minYear + f * (maxYear - minYear)),
+      ),
+    ),
+  );
+
+  // Several scandals can share the same yearStart; stacking them on identical
+  // x-coordinates makes them collapse into one dot. Assign each a "lane" so
+  // same-year cases fan out vertically into a visible column instead.
+  const lane: Record<string, number> = {};
+  const yearCounts = new Map<number, number>();
+  for (const s of items) {
+    const l = yearCounts.get(s.yearStart) ?? 0;
+    lane[s.id] = l;
+    yearCounts.set(s.yearStart, l + 1);
+  }
+  const maxLane = Math.max(...yearCounts.values()) - 1;
+  // Vertical space reserved above the baseline for the tallest stack of dots.
+  const above = 16 + maxLane * CHRONO_LANE_GAP;
+
+  return {
+    ticks,
+    above,
+    trackHeight: above + CHRONO_BELOW,
+    stacks: Array.from(yearCounts.entries()).filter(([, count]) => count > 1),
+    yearPct(year: number) {
+      if (maxYear === minYear) return 0;
+      return ((year - minYear) / (maxYear - minYear)) * 100;
+    },
+    dotTop(id: string) {
+      return above - 6 - lane[id] * CHRONO_LANE_GAP;
+    },
+  };
 }
 
 function renderRich(text: string, keyPrefix: string): ReactNode {
@@ -127,8 +129,16 @@ function renderSource(source: string, key: string) {
   );
 }
 
-export function ScandalsExplorer({ locale }: { locale: Locale }) {
+export function ScandalsExplorer({
+  locale,
+  items,
+}: {
+  locale: Locale;
+  /** the case files in the page's language (scandalsFor(locale)) */
+  items: Scandal[];
+}) {
   const t = scandalsPageContent[locale];
+  const chrono = useMemo(() => chronoLayout(items), [items]);
   const [activeCategory, setActiveCategory] = useState<ScandalCategory | "all">(
     "all",
   );
@@ -140,7 +150,7 @@ export function ScandalsExplorer({ locale }: { locale: Locale }) {
     el?.scrollIntoView({ behavior: "smooth", block: "center" });
   }, [openId]);
 
-  const visible = scandals.filter(
+  const visible = items.filter(
     (s) => activeCategory === "all" || s.category === activeCategory,
   );
 
@@ -153,41 +163,41 @@ export function ScandalsExplorer({ locale }: { locale: Locale }) {
     <div className="scandals-explorer">
       <div className="chrono">
         <span className="chrono-caption">{t.chrono.caption}</span>
-        <div className="chrono-track" style={{ height: `${CHRONO_TRACK_HEIGHT}px` }}>
-          <div className="chrono-line" style={{ top: `${CHRONO_ABOVE}px` }} />
-          {YEAR_TICKS.map((yr) => (
+        <div className="chrono-track" style={{ height: `${chrono.trackHeight}px` }}>
+          <div className="chrono-line" style={{ top: `${chrono.above}px` }} />
+          {chrono.ticks.map((yr) => (
             <span
               key={`tick-${yr}`}
               className="chrono-tick"
-              style={{ left: `${yearPct(yr)}%`, top: `${CHRONO_ABOVE}px` }}
+              style={{ left: `${chrono.yearPct(yr)}%`, top: `${chrono.above}px` }}
             />
           ))}
-          {CHRONO_STACKS.map(([yr, count]) => (
+          {chrono.stacks.map(([yr, count]) => (
             <span
               key={`stem-${yr}`}
               className="chrono-stem"
               style={{
-                left: `${yearPct(yr)}%`,
-                top: `${CHRONO_ABOVE - 6 - (count - 1) * CHRONO_LANE_GAP}px`,
+                left: `${chrono.yearPct(yr)}%`,
+                top: `${chrono.above - 6 - (count - 1) * CHRONO_LANE_GAP}px`,
                 height: `${(count - 1) * CHRONO_LANE_GAP}px`,
               }}
             />
           ))}
-          {YEAR_TICKS.map((yr) => (
+          {chrono.ticks.map((yr) => (
             <span
               key={yr}
               className="chrono-yr"
-              style={{ left: `${yearPct(yr)}%`, top: `${CHRONO_ABOVE + 8}px` }}
+              style={{ left: `${chrono.yearPct(yr)}%`, top: `${chrono.above + 8}px` }}
             >
               {yr}
             </span>
           ))}
-          {scandals.map((s) => (
+          {items.map((s) => (
             <button
               key={s.id}
               type="button"
               className={`chrono-dot ${STAMP_CLASS[s.statusBucket]}`}
-              style={{ left: `${yearPct(s.yearStart)}%`, top: `${chronoDotTop(s.id)}px` }}
+              style={{ left: `${chrono.yearPct(s.yearStart)}%`, top: `${chrono.dotTop(s.id)}px` }}
               data-tip={`${s.title} · ${s.yearStart}`}
               aria-label={`${s.title} (${s.yearStart})`}
               onClick={() => openFromChrono(s)}
@@ -208,11 +218,11 @@ export function ScandalsExplorer({ locale }: { locale: Locale }) {
           onClick={() => setActiveCategory("all")}
         >
           {t.filterAllLabel}
-          <span className="filter-count">{scandals.length}</span>
+          <span className="filter-count">{items.length}</span>
         </button>
         {categoryOrder.map((cat) => {
           const Icon = CATEGORY_ICONS[cat];
-          const count = scandals.filter((s) => s.category === cat).length;
+          const count = items.filter((s) => s.category === cat).length;
           return (
             <button
               key={cat}
