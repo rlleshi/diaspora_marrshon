@@ -1,12 +1,16 @@
 # Diaspora Zbarkon
 
-Albanian-first civic campaign site for **Diaspora marshon**.
+Albanian-first site of **Flamingo Revolution Diaspora**, the Albanian diaspora in
+the Flamingo Revolution. It began as **Diaspora marshon**, the site for the diaspora
+marches in Tirana.
 
 The app currently combines:
 
-- A bilingual public campaign homepage.
-- WhatsApp-first coordination for diaspora marches.
+- A bilingual homepage with the mission statement.
+- WhatsApp-first coordination for the diaspora.
 - A source-linked protest participation tracker.
+- The protest map: the volunteer Flamingo Map, embedded on click.
+- The diaspora's history: protests abroad, the convoys and marches in Tirana, the help beyond the square.
 - A source-backed government-scandal dossier.
 - Suggested clothing/download resources.
 - A site-wide Flamingo Bot assistant, served by the independent bot project.
@@ -18,8 +22,12 @@ The app currently combines:
 - `/en` - English homepage.
 - `/pulsi` - Albanian protest participation tracker.
 - `/en/pulsi` - English protest participation tracker.
-- `/veshja` - Albanian suggested clothing/downloads.
-- `/en/veshja` - English suggested clothing/downloads.
+- `/harta` - Albanian protest map (embeds https://pomodoren.github.io/flamingo-map/ on click).
+- `/en/harta` - English protest map.
+- `/marshimi` - Albanian history page (the URL dates from when it was the march page).
+- `/en/marshimi` - English history page.
+- `/veshja` - Albanian page of the summer-march shirts, kept as history (downloads).
+- `/en/veshja` - English page of the summer-march shirts.
 - `/liste_vuajtjesh` - Albanian government scandal dossier (33 case files, 2013–2026).
 - `/en/liste_vuajtjesh` - English page chrome for the scandal dossier; the report text itself is Albanian-only.
 - `/confirm-email` - legacy pledge confirmation route.
@@ -77,6 +85,8 @@ In local development, the API skips Turnstile if `TURNSTILE_SECRET_KEY` is empty
 ```bash
 npm run typecheck
 npm run build
+node scripts/export-pulsi-csv.mjs        # after a new Pulsi day
+node scripts/refresh-map-snapshot.mjs    # newer protest-map counts for the homepage and /harta
 ```
 
 Run `npm run typecheck` before committing. Run `npm run build` before release when route structure, assets, or tracker rendering changes.
