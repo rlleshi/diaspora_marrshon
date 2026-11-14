@@ -6,7 +6,7 @@ export const metadata = pageMetadata({
   path: "/",
   title: "Flamingo Revolution Diaspora: Revolucioni Flamingo i diasporës shqiptare",
   description:
-    "Krahu i diasporës i Revolucionit Flamingo: shqiptarët jashtë vendit në protestat kundër qeverisë në Tiranë që nga 31 maji 2026. Pulsi i protestës, marshimet, skandalet dhe siguria.",
+    "Krahu i diasporës i Revolucionit Flamingo: shqiptarët jashtë vendit në protestat kundër qeverisë që nga 31 maji 2026, në Tiranë dhe në qindra protesta në botë. Pulsi i protestës, harta, historiku, skandalet dhe siguria.",
 });
 
 export default function Page() {

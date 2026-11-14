@@ -6,7 +6,7 @@ export const metadata = pageMetadata({
   path: "/",
   title: "Flamingo Revolution Diaspora: Albanians abroad in the Tirana protests",
   description:
-    "The diaspora wing of Albania's Flamingo Revolution: Albanians abroad joining the anti-government protests in Tirana since 31 May 2026. Protest pulse, marches, scandals and safety.",
+    "The diaspora wing of Albania's Flamingo Revolution: Albanians abroad in the anti-government protests since 31 May 2026, in Tirana and in hundreds of protests around the world. Protest pulse, map, history, scandals and safety.",
 });
 
 export default function EnglishPage() {

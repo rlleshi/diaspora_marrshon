@@ -9,11 +9,12 @@ import {
   Gavel,
   HandHeart,
   Lock,
+  MapPinned,
   Megaphone,
   MessageCircle,
   Plane,
   QrCode,
-  ShieldAlert,
+  ShieldCheck,
   UserCheck,
   Users,
 } from "lucide-react";
@@ -74,8 +75,22 @@ export function HomePage({ locale }: { locale: Locale }) {
   const heroDateLabel = heroScheduleLabel
     ? `${t.hero.dateLabel}: ${t.hero.dateText}; ${heroScheduleLabel}`
     : `${t.hero.dateLabel}: ${t.hero.dateText}`;
-  // the pulse has its own band above; these cards lead to the other pages
+  // one card per page of the site, Pulsi and the map included, even though both also have a band above
   const overviewCards = [
+    {
+      href: t.trackerTeaser.href,
+      title: t.nav.tracker,
+      body: t.overview.tracker,
+      Icon: Activity,
+      eventName: "Tracker Page Opened",
+    },
+    {
+      href: t.mapTeaser.href,
+      title: t.nav.map,
+      body: t.overview.map,
+      Icon: MapPinned,
+      eventName: "Map Page Opened",
+    },
     {
       href: t.marchPage.href,
       title: t.nav.march,
@@ -94,7 +109,7 @@ export function HomePage({ locale }: { locale: Locale }) {
       href: locale === "sq" ? "/siguria" : "/en/siguria",
       title: t.nav.safety,
       body: t.overview.safety,
-      Icon: ShieldAlert,
+      Icon: ShieldCheck,
       eventName: "Safety Guide Clicked",
     },
   ];
@@ -147,16 +162,6 @@ export function HomePage({ locale }: { locale: Locale }) {
               {t.trackerTeaser.heroChip}
               <ArrowRight aria-hidden="true" size={16} />
             </Link>
-            <TrackedLink
-              className="hero-pulse-chip hero-safety-chip"
-              href={locale === "sq" ? "/siguria" : "/en/siguria"}
-              eventName="Safety Guide Clicked"
-              eventProperties={{ locale, placement: "home_hero" }}
-            >
-              <ShieldAlert aria-hidden="true" size={17} />
-              {t.hero.safetyChip}
-              <ArrowRight aria-hidden="true" size={16} />
-            </TrackedLink>
           </div>
           {/* the site's name is the page's main heading, so search engines read
               "Flamingo Revolution Diaspora" as what this page is */}
@@ -176,6 +181,18 @@ export function HomePage({ locale }: { locale: Locale }) {
               <p className="hero-call-label">{call.label}</p>
               <p className="hero-call-title">{call.title}</p>
               <p className="hero-call-subtitle">{call.subtitle}</p>
+              {call.date ? (
+                <p className="hero-call-date">
+                  <span className="hero-call-date-day">{call.date.day}</span>
+                  <span className="hero-call-date-copy">
+                    <span className="hero-call-date-month">{call.date.month}</span>
+                    <span className="hero-call-date-meta">{call.date.meta}</span>
+                    {call.date.note ? (
+                      <span className="hero-call-date-note">{call.date.note}</span>
+                    ) : null}
+                  </span>
+                </p>
+              ) : null}
               <ol className="hero-call-steps">
                 {call.steps.map((step, index) => {
                   const StepIcon = callStepIcons[index];
@@ -254,31 +271,85 @@ export function HomePage({ locale }: { locale: Locale }) {
       </section>
 
       <main>
-        <section className="section pledge-band" id="pledge">
-          <div className="section-inner pledge-grid">
-            <div className="section-copy">
-              <h2>{t.pledgeIntro.title}</h2>
-              <p>{t.pledgeIntro.body}</p>
-              <div className="assurance-list">
-                {t.pledgeIntro.assurances.map((assurance, index) => {
-                  const AssuranceIcon = assuranceIcons[index];
-                  return (
-                    <span key={assurance}>
-                      <AssuranceIcon aria-hidden="true" size={17} />
-                      {assurance}
-                    </span>
-                  );
-                })}
-              </div>
+        <section className="section mission-band" id="mission" aria-labelledby="mission-title">
+          <div className="section-inner mission-grid">
+            <div className="mission-copy">
+              <p className="kicker">{t.mission.kicker}</p>
+              <h2 id="mission-title">{t.mission.title}</h2>
+              {t.mission.paragraphs.map((paragraph) => (
+                <p key={paragraph}>
+                  {/* "[text](https://…)" in the copy becomes a link; split gives text, label, href, text… */}
+                  {paragraph
+                    .split(/\[([^\]]+)\]\((https:[^)\s]+)\)/)
+                    .map((part, index, parts) =>
+                      index % 3 === 1 ? (
+                        <a key={index} href={parts[index + 1]} target="_blank" rel="noreferrer">
+                          {part}
+                        </a>
+                      ) : index % 3 === 2 ? null : (
+                        part
+                      ),
+                    )}
+                </p>
+              ))}
+              <ul className="mission-links">
+                <li>
+                  <Link href={t.trackerTeaser.href}>
+                    {t.mission.links.tracker}
+                    <ArrowRight aria-hidden="true" size={17} />
+                  </Link>
+                </li>
+                <li>
+                  <Link href={`${t.marchPage.href}#context`}>
+                    {t.mission.links.demands}
+                    <ArrowRight aria-hidden="true" size={17} />
+                  </Link>
+                </li>
+                <li>
+                  <Link href={t.marchPage.href}>
+                    {t.mission.links.history}
+                    <ArrowRight aria-hidden="true" size={17} />
+                  </Link>
+                </li>
+                <li>
+                  <Link href={t.mapTeaser.href}>
+                    {t.mission.links.map}
+                    <ArrowRight aria-hidden="true" size={17} />
+                  </Link>
+                </li>
+              </ul>
             </div>
-            <WhatsAppIntakePanel content={t.whatsapp} locale={locale} />
-            <div className="hidden-pledge-form" hidden>
-              <PledgeForm
-                locale={locale}
-                content={t.form}
-                turnstileSiteKey={turnstileSiteKey}
-              />
-            </div>
+            <figure className="principle-card" aria-labelledby="principle-title">
+              <p className="kicker" id="principle-title">
+                {t.mission.principle.kicker}
+              </p>
+              <blockquote cite={t.mission.principle.href}>
+                {t.mission.principle.quote.map((paragraph) => (
+                  <p key={paragraph}>
+                    {paragraph.split(/\*\*(.+?)\*\*/).map((part, index) =>
+                      index % 2 === 1 ? <strong key={index}>{part}</strong> : part,
+                    )}
+                  </p>
+                ))}
+              </blockquote>
+              <figcaption>
+                <strong>{t.mission.principle.author}</strong>,{" "}
+                <a href={t.mission.principle.href} target="_blank" rel="noreferrer">
+                  <cite>{t.mission.principle.work}</cite>
+                </a>
+              </figcaption>
+              <p className="principle-gloss">
+                {t.mission.principle.gloss.split(/\*\*(.+?)\*\*/).map((part, index) =>
+                  index % 2 === 1 ? (
+                    <strong key={index} className="principle-punch">
+                      {part}
+                    </strong>
+                  ) : (
+                    part
+                  ),
+                )}
+              </p>
+            </figure>
           </div>
         </section>
 
@@ -357,15 +428,78 @@ export function HomePage({ locale }: { locale: Locale }) {
           </div>
         </section>
 
-        <section className="section overview-band" aria-labelledby="mission-title">
-          <div className="section-inner">
-            <div className="section-heading">
-              <p className="kicker">{t.mission.kicker}</p>
-              <h2 id="mission-title">{t.mission.title}</h2>
-              <p>{t.mission.body}</p>
+        <section className="section map-teaser-band" id="map" aria-labelledby="map-teaser-title">
+          <div className="section-inner map-teaser">
+            <div className="map-teaser-copy">
+              <p className="kicker">{t.mapTeaser.kicker}</p>
+              <h2 id="map-teaser-title">{t.mapTeaser.title}</h2>
+              <p>{t.mapTeaser.body}</p>
+              <p className="map-teaser-source">{t.mapTeaser.source}</p>
+              <TrackedLink
+                className="button button-primary"
+                href={t.mapTeaser.href}
+                eventName="Map Page Opened"
+                eventProperties={{ locale, placement: "home_map" }}
+              >
+                <MapPinned aria-hidden="true" size={20} />
+                {t.mapTeaser.cta}
+              </TrackedLink>
             </div>
-            <h3 className="overview-cards-title">{t.overview.title}</h3>
-            <div className="link-card-grid">
+            {/* the same link again for the picture; the button above is the one in the tab order */}
+            <Link
+              className="map-teaser-preview"
+              href={t.mapTeaser.href}
+              tabIndex={-1}
+              aria-hidden="true"
+            >
+              <Image
+                src="/map/flamingo-map-preview.jpg"
+                alt=""
+                width={1280}
+                height={550}
+                sizes="(max-width: 900px) calc(100vw - 36px), 620px"
+              />
+            </Link>
+          </div>
+        </section>
+
+        <section className="section pledge-band" id="pledge">
+          <div className="section-inner pledge-grid">
+            <div className="section-copy">
+              <h2>{t.pledgeIntro.title}</h2>
+              <p>
+                <span className="pledge-body-wide">{t.pledgeIntro.body}</span>
+                <span className="pledge-body-phone">{t.pledgeIntro.bodyPhone}</span>
+              </p>
+              <div className="assurance-list">
+                {t.pledgeIntro.assurances.map((assurance, index) => {
+                  const AssuranceIcon = assuranceIcons[index];
+                  return (
+                    <span key={assurance}>
+                      <AssuranceIcon aria-hidden="true" size={17} />
+                      {assurance}
+                    </span>
+                  );
+                })}
+              </div>
+            </div>
+            <WhatsAppIntakePanel content={t.whatsapp} locale={locale} />
+            <div className="hidden-pledge-form" hidden>
+              <PledgeForm
+                locale={locale}
+                content={t.form}
+                turnstileSiteKey={turnstileSiteKey}
+              />
+            </div>
+          </div>
+        </section>
+
+        <section className="section overview-band" aria-labelledby="overview-title">
+          <div className="section-inner">
+            <h2 className="overview-cards-title" id="overview-title">
+              {t.overview.title}
+            </h2>
+            <div className="link-card-grid link-card-grid-five">
               {overviewCards.map((card) => (
                 <TrackedLink
                   className="link-card"
