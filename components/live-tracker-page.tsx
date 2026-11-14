@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { Activity, ArrowDown } from "lucide-react";
 import type { Locale } from "@/lib/content";
 import {
@@ -21,8 +22,9 @@ const COPY: Record<
     /** plain reading of the chart for someone landing here first */
     explainer: string;
     methodology: string;
-    /** one line under the intro: since when, how it is measured, a jump to the method */
-    facts: { since: string; method: string; how: string };
+    /** one line under the intro: since when and where, how it is measured, a jump to
+     *  the method, and a link to the homepage mission for readers new to the protest */
+    facts: { since: string; method: string; how: string; about: string; aboutHref: string };
     disclaimer: string;
     labels: ChartLabels;
   }
@@ -43,9 +45,11 @@ const COPY: Record<
     methodology:
       "Indeks i pjesëmarrjes së vlerësuar, i normalizuar: 100 = dita më e madhe (20 qershor). Tubimet më të mëdha (6 qershor, 20 qershor dhe 4 korrik) janë ankoruar me vlerësime gjeometrike në terren; ditët e tjera pasqyrojnë intensitetin e dukshëm në kamerat e News24, të analizuar me një model numërimi turme.",
     facts: {
-      since: "Çdo natë që nga 31 maji",
+      since: "Çdo natë në Tiranë që nga 31 maji",
       method: "vlerësim me AI nga transmetimet live",
       how: "Si llogaritet",
+      about: "Rreth protestës",
+      aboutHref: "/#mission",
     },
     disclaimer:
       "Shënim: shifrat nuk mund të jenë plotësisht të sakta, për shkak të kufizimeve të kamerave gjatë transmetimit si dhe saktësisë së modeleve të inteligjencës artificiale.",
@@ -130,9 +134,11 @@ const COPY: Record<
     methodology:
       "An estimated participation index, normalized so 100 = the largest day (20 June). The largest gatherings (6 June, 20 June and 4 July) are anchored to on-the-ground geometry estimates; other days reflect camera-visible intensity from News24 livestreams, analyzed with a crowd-counting model.",
     facts: {
-      since: "Every night since 31 May",
+      since: "Every night in Tirana since 31 May",
       method: "AI estimate from livestreams",
       how: "How it's counted",
+      about: "About the protest",
+      aboutHref: "/en#mission",
     },
     disclaimer:
       "Note: the numbers cannot be fully accurate due to camera limitations during the livestream and the accuracy of machine-learning models.",
@@ -259,6 +265,10 @@ export function LiveTrackerPage({ locale }: { locale: Locale }) {
                   {t.facts.how}
                   <ArrowDown aria-hidden="true" size={14} />
                 </a>
+                <span aria-hidden="true"> · </span>
+                <Link className="context-link" href={t.facts.aboutHref}>
+                  {t.facts.about}
+                </Link>
               </p>
             </div>
             <figure className="participation-figure">

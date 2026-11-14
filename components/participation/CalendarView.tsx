@@ -107,6 +107,40 @@ const MEASURED = participation.filter(isMeasured);
 const LOWEST = Math.min(...MEASURED.map((d) => d.peak));
 const BELOW_TEN = MEASURED.filter((d) => d.peak < 10).length;
 
+/** Keys that move between nights: the arrows step one night, Page Up and Page Down a
+ *  week, Home and End jump to the ends. Returns the night to move to, or null. */
+export function stepNight(key: string, current: number, nights: number[]): number | null {
+  const i = nights.indexOf(current);
+  if (i < 0) return null;
+  const to =
+    key === "ArrowRight" || key === "ArrowDown"
+      ? i + 1
+      : key === "ArrowLeft" || key === "ArrowUp"
+        ? i - 1
+        : key === "PageDown"
+          ? i + 7
+          : key === "PageUp"
+            ? i - 7
+            : key === "Home"
+              ? 0
+              : key === "End"
+                ? nights.length - 1
+                : null;
+  if (to == null) return null;
+  return nights[Math.max(0, Math.min(nights.length - 1, to))];
+}
+
+const NIGHTS = participation.map((d) => d.day);
+// The grid runs a week per column on wide screens, nights going down it, and a week
+// per row on narrow ones, nights going across, so the arrows follow the picture.
+const WIDE_KEYS: Record<string, string> = {
+  ArrowUp: "ArrowLeft",
+  ArrowDown: "ArrowRight",
+  ArrowLeft: "PageUp",
+  ArrowRight: "PageDown",
+};
+const NARROW_KEYS: Record<string, string> = { ArrowUp: "PageUp", ArrowDown: "PageDown" };
+
 export type CalendarLabels = {
   legendTitle: string;
   /** `{below}` and `{total}` are filled in from the data. */
@@ -126,6 +160,7 @@ export function CalendarView({
   dayLabel,
   active,
   pinned,
+  tabDay,
   onHover,
   onFocusDay,
   onBlurDay,
@@ -143,6 +178,8 @@ export function CalendarView({
   dayLabel: (d: ParticipationDay) => string;
   active: number | null;
   pinned: number | null;
+  /** the one square that takes Tab; the arrow keys move between the rest */
+  tabDay: number;
   onHover: (day: number) => void;
   onFocusDay: (day: number) => void;
   onBlurDay: () => void;
@@ -286,9 +323,21 @@ export function CalendarView({
               }
               aria-label={mark ? `${dayLabel(d)}. ${mark.label}` : dayLabel(d)}
               aria-pressed={pinned === d.day}
+              tabIndex={d.day === tabDay ? 0 : -1}
               onMouseEnter={() => onHover(d.day)}
               onFocus={() => onFocusDay(d.day)}
               onBlur={onBlurDay}
+              onKeyDown={(e) => {
+                const keys = window.matchMedia("(max-width: 720px)").matches
+                  ? NARROW_KEYS
+                  : WIDE_KEYS;
+                const next = stepNight(keys[e.key] ?? e.key, d.day, NIGHTS);
+                if (next == null) return;
+                e.preventDefault();
+                gridRef.current
+                  ?.querySelector<HTMLButtonElement>(`[data-cal-day="${next}"]`)
+                  ?.focus();
+              }}
               onClick={() => onToggle(d.day)}
             >
               {dots ? (

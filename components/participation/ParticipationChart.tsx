@@ -34,7 +34,7 @@ import {
   type ParticipationEvent,
 } from "@/data/participation";
 import { axisFor, buildGeometry, VIEW, type Scale } from "@/components/participation/geometry";
-import { CalendarView, type CalendarMark } from "@/components/participation/CalendarView";
+import { CalendarView, stepNight, type CalendarMark } from "@/components/participation/CalendarView";
 
 type Locale = "sq" | "en";
 
@@ -569,6 +569,12 @@ export function ParticipationChart({
   // link stays clickable) while the pointer travels across neighboring days.
   const [hovered, setHovered] = useState<number | null>(null);
   const [pinned, setPinned] = useState<number | null>(null);
+  // Keyboard: the chart is one Tab stop and the arrow keys move between nights (a
+  // roving tabindex), so the rest of the page is a few presses away, not 167.
+  const [focusDay, setFocusDay] = useState<number | null>(null);
+  // Phones: what to bring into view after the next render, and the render trigger.
+  const revealTarget = useRef<"card" | "chart" | null>(null);
+  const [revealTick, setRevealTick] = useState(0);
   const [railOpen, setRailOpen] = useState(false);
   const weeksRef = useRef<HTMLDivElement | null>(null);
   const hoverTimer = useRef<number | null>(null);
@@ -582,6 +588,12 @@ export function ParticipationChart({
     () => participation.filter((d) => d.day >= range.from && d.day <= range.to),
     [range],
   );
+  // The night that takes Tab: the one last focused, else the pinned one, else the
+  // newest in view. The calendars show the whole run, so they skip the range test.
+  const lineTabDay =
+    [focusDay, pinned].find((d) => d != null && d >= range.from && d <= range.to) ??
+    days[days.length - 1]?.day;
+  const calTabDay = focusDay ?? pinned ?? participation[participation.length - 1].day;
 
   const axis = useMemo(
     () => axisFor(days, scale, range.key === "all"),
@@ -648,6 +660,7 @@ export function ParticipationChart({
     cancelHover();
     setHovered(null);
     setPinned((day) => (day != null && day >= next.from && day <= next.to ? day : null));
+    revealSoon("chart");
   }
 
   function selectView(next: View) {
@@ -711,6 +724,30 @@ export function ParticipationChart({
       rootRef.current;
     target?.scrollIntoView({ behavior: "smooth", block: "center" });
   }, [pinned]);
+
+  // Phones: a tap, a slide or a range pick can change something off screen. The day
+  // card opens under the chart, and a week or month pick redraws the chart above the
+  // buttons. When most of it is out of view, bring it in.
+  function revealSoon(what: "card" | "chart") {
+    if (!window.matchMedia("(max-width: 720px)").matches) return;
+    revealTarget.current = what;
+    setRevealTick((n) => n + 1);
+  }
+
+  useEffect(() => {
+    const what = revealTarget.current;
+    revealTarget.current = null;
+    if (!what) return;
+    const el = what === "card" ? panelRef.current : rootRef.current;
+    if (!el?.offsetParent) return;
+    const r = el.getBoundingClientRect();
+    const headerBottom =
+      document.querySelector(".site-header")?.getBoundingClientRect().bottom ?? 0;
+    const room = Math.min(r.height, window.innerHeight - headerBottom);
+    const seen = Math.min(r.bottom, window.innerHeight) - Math.max(r.top, headerBottom);
+    if (seen >= room * 0.6) return;
+    el.scrollIntoView({ behavior: "smooth", block: "nearest" });
+  }, [revealTick]);
 
   // Arm before paint so SSR/no-JS shows the finished chart, JS animates it.
   // The server cannot see the screen, so phones swap to their own opening range
@@ -1058,7 +1095,10 @@ export function ParticipationChart({
         onPointerUp={() => {
           // a slide that ends where it began can still fire a click, which would
           // toggle the day it just selected back off
-          if (scrub.current?.moved) swallowClick.current = true;
+          if (scrub.current?.moved) {
+            swallowClick.current = true;
+            revealSoon("card");
+          }
           scrub.current = null;
         }}
         onPointerCancel={() => {
@@ -1155,7 +1195,7 @@ export function ParticipationChart({
               }
               x={plot.left + 4}
               y={g.y - 6}
-              fill="#8a8378"
+              fill="#5f625f"
             >
               {g.label}
             </text>
@@ -1166,7 +1206,7 @@ export function ParticipationChart({
         <text
           className="pc-ylabel pc-ytitle"
           transform={`translate(${plot.left / 2}, ${(plot.top + plot.bottom) / 2}) rotate(-90)`}
-          fill="#8a8378"
+          fill="#5f625f"
           textAnchor="middle"
           dominantBaseline="central"
         >
@@ -1315,7 +1355,8 @@ export function ParticipationChart({
             width={slotWidth}
             height={plot.bottom - plot.top}
             fill="transparent"
-            tabIndex={0}
+            data-day={d.day}
+            tabIndex={d.day === lineTabDay ? 0 : -1}
             role="button"
             aria-label={dayLabel(d)}
             aria-pressed={pinned === d.day}
@@ -1325,12 +1366,33 @@ export function ParticipationChart({
             onFocus={() => {
               cancelHover();
               setHovered(d.day);
+              setFocusDay(d.day);
             }}
-            onBlur={() => setHovered(null)}
+            onBlur={(e) => {
+              // Tab from a night into its tooltip (the broadcast link) keeps it open
+              if (tipRef.current?.contains(e.relatedTarget as Node | null)) return;
+              setHovered(null);
+            }}
+            onKeyDown={(e) => {
+              if (e.key === "Enter" || e.key === " ") {
+                e.preventDefault();
+                cancelHover();
+                setHovered(d.day);
+                setPinned(pinned === d.day ? null : d.day);
+                return;
+              }
+              const next = stepNight(e.key, d.day, days.map((x) => x.day));
+              if (next == null) return;
+              e.preventDefault();
+              e.currentTarget.ownerSVGElement
+                ?.querySelector<SVGRectElement>(`.pc-hit[data-day="${next}"]`)
+                ?.focus();
+            }}
             onClick={() => {
               cancelHover();
               setHovered(d.day);
               setPinned(pinned === d.day ? null : d.day);
+              if (pinned !== d.day) revealSoon("card");
             }}
           />
         ))}
@@ -1402,6 +1464,11 @@ export function ParticipationChart({
             left: `${(activeAnchor.x / view.width) * 100}%`,
             top: tipSide?.day === active ? `${tipSide.top}px` : `${(activeAnchor.y / view.height) * 100}%`,
           }}
+          onBlur={(e) => {
+            // focus leaving the tooltip, after its link, closes an unpinned preview
+            if (e.currentTarget.contains(e.relatedTarget as Node | null)) return;
+            setHovered(null);
+          }}
           role="status"
         >
           <TipBody
@@ -1434,9 +1501,11 @@ export function ParticipationChart({
           onHover={(day) => {
             if (pinned == null) hoverDay(day);
           }}
+          tabDay={calTabDay}
           onFocusDay={(day) => {
             cancelHover();
             setHovered(day);
+            setFocusDay(day);
           }}
           onBlurDay={() => setHovered(null)}
           onToggle={toggleCalendarDay}
