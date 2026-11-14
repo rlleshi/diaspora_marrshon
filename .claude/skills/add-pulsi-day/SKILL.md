@@ -1,6 +1,6 @@
 ---
 name: add-pulsi-day
-description: Add a new day entry to the /pulsi protest participation tracker in this repo (diaspora_zbarkon), pulling raw crowd-model numbers and the narrative summary from the sibling research repo. Use this whenever the user says a new protest day's data/analysis is available and asks to add it to pulsi — phrasing like "add day N to pulsi", "day N is available now, add it", "the ML results for day N are ready". Covers both the numeric normalization and writing the bilingual (sq/en) story note in house style, plus bumping every hardcoded day-count on the site.
+description: Add a new day entry to the /pulsi protest participation tracker in this repo (diaspora_zbarkon), pulling raw crowd-model numbers and the narrative summary from the sibling research repo. Use this whenever the user says a new protest day's data/analysis is available and asks to add it to pulsi — phrasing like "add day N to pulsi", "day N is available now, add it", "the ML results for day N are ready". Covers both the numeric normalization and writing the bilingual (sq/en) story note in house style, plus bumping every hardcoded day-count on the site and refreshing the Flamingo Map numbers the site quotes.
 ---
 
 # Add a day to the pulsi tracker
@@ -259,6 +259,40 @@ clean typecheck has been sufficient for this recurring task.
 
 Don't commit or push — this repo's standing rule is to only do that when
 the user explicitly asks.
+
+## 8. Check the Flamingo Map and refresh its numbers
+
+Every time you add a day, also check whether the volunteer Flamingo Map
+(https://pomodoren.github.io/flamingo-map/) has new protests, because the site
+quotes its numbers (the user's request, 13 Nov 2026). They live in
+`mapSnapshot` in `lib/map-content.ts`, and every count and date the site shows
+for the map is built from it: the homepage map band, the history text on
+/marshimi, and the stats and "as of" note on /harta, in both languages.
+
+1. Run `node scripts/refresh-map-snapshot.mjs`. It reads the map's
+   `data/locations.json` and rewrites the five `mapSnapshot` fields: protests,
+   cities and countries outside Albania, `lastRecord` (the latest protest on
+   the map) and `asOf` (today).
+2. Run `git diff lib/map-content.ts`. If only `asOf` moved, the map has nothing
+   new: keep the change, since the "as of" date is then simply current, and
+   report "map unchanged" in one line. If a count or `lastRecord` changed,
+   report old → new.
+3. When the counts change, check the hand-written phrases the numbers don't
+   drive, in `lib/content.ts` and the metadata of `app/(sq)/harta/page.tsx` and
+   `app/en/harta/page.tsx`: "qindra protesta … dhjetëra qytete" / "hundreds of
+   protests … dozens of cities", and "nga Vankuveri te Melburni" / "from
+   Vancouver to Melbourne" (are those still the farthest cities?). The summer
+   sentence ("Në Mynih, Londër, Milano, Berlin dhe Vjenë … gjatë gjithë verës")
+   is history and stays.
+4. When new cities appear, offer to retake the map still
+   `public/map/flamingo-map-preview.jpg` (a 1280×550 JPEG, a cropped screenshot
+   of the live map with Europe and North America in view), which the homepage
+   and /harta show before the live map loads. Ask first.
+5. If the script fails (network, a changed data format), say so and leave the
+   numbers as they are.
+
+Keep the OpenStreetMap credit next to the map pictures: the map's licence
+requires it.
 
 ## Background: how the chart absorbs new days
 
