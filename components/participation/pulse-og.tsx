@@ -9,7 +9,7 @@ const COPY: Record<
 > = {
   sq: {
     kicker: "PULSI I PROTESTËS",
-    title: (n) => `${n} netë radhazi`,
+    title: (n) => `${n} net radhazi`,
     sub: "Turmat e mëdha erdhën në qershor; protesta nuk u ndal kurrë.",
     key: ["Një pikë për çdo natë.", "Sa më e madhe pika, aq më e madhe turma."],
     source: "Vlerësim me AI nga transmetimet live · diaspora-zbarkon.com/pulsi",

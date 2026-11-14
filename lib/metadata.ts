@@ -131,7 +131,7 @@ export function pulsiDatasetJsonLd(locale: Locale, days: number, first: string, 
       : "Protestat në Shqipëri 2026: indeksi ditor i pjesëmarrjes (Tiranë)",
     description: en
       ? `A day-by-day participation index for the anti-government protests in Tirana, Albania (the Flamingo Revolution), covering ${days} consecutive nights from ${first} to ${last}. Each night is estimated by a crowd-counting model from News24 livestreams, normalized so 100 = the largest day (20 June 2026), with a short note on what happened.`
-      : `Indeksi ditor i pjesëmarrjes në protestat kundër qeverisë në Tiranë (Revolucioni Flamingo), për ${days} netë radhazi nga ${first} deri më ${last}. Çdo natë vlerësohet me një model numërimi turme nga transmetimet live të News24, i normalizuar me 100 = dita më e madhe (20 qershor 2026), me një shënim të shkurtër për ç'ndodhi.`,
+      : `Indeksi ditor i pjesëmarrjes në protestat kundër qeverisë në Tiranë (Revolucioni Flamingo), për ${days} net radhazi nga ${first} deri më ${last}. Çdo natë vlerësohet me një model numërimi turme nga transmetimet live të News24, e normalizuar me 100 = dita më e madhe (20 qershor 2026), me një shënim të shkurtër për ç'ndodhi.`,
     url: `${SITE_URL}${en ? "/en/pulsi" : "/pulsi"}`,
     inLanguage: locale,
     keywords: en

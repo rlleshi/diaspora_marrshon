@@ -41,7 +41,7 @@ export const contactPageContent: Record<Locale, ContactPageContent> = {
       email: "Email",
       organisation: "Organizata (opsionale)",
       message: "Mesazhi",
-      messagePlaceholder: "Si dëshiron të ndihmosh, ose çfarë do të dish?",
+      messagePlaceholder: "Si dëshiron të ndihmosh ose çfarë do të dish?",
       privacy: "Duke dërguar mesazhin, pranon që të ruajmë emrin, email-in dhe mesazhin tënd për të të kthyer përgjigje.",
       privacyLink: "Privatësia",
       privacyHref: "/privacy",

@@ -58,20 +58,20 @@ export const methodologyPageContent: Record<Locale, MethodologyPageContent> = {
       {
         title: "Numërimi i çdo kuadri",
         paragraphs: [
-          "Çdo kuadër kalon nëpër CLIP-EBC, një model i hapur numërimi turmash, me dy versionet e publikuara që janë trajnuar në të dhënat NWPU-Crowd; dy vlerësimet mesatarizohen. Kuadrot me më pak se 100 njerëz të dukshëm hidhen poshtë si plane të afërta, grafika ose pamje bosh.",
+          "Çdo kuadër kalon nëpër CLIP-EBC, një model të hapur numërimi turmash, me dy versionet e publikuara që janë trajnuar në të dhënat NWPU-Crowd; dy vlerësimet mesatarizohen. Kuadrot me më pak se 100 njerëz të dukshëm hidhen poshtë si plane të afërta, grafika ose pamje bosh.",
         ],
       },
       {
         title: "Kontrolli me sy",
         paragraphs: [
-          "Transmetimi shpesh e vendos turmën pranë një folësi ose studioje në ekran të ndarë, ose e shfaq turmën në murin me ekrane të studios. Këto kuadro mund t'i fryjnë shifrat e natës, prandaj një fletë me kuadrin më të fortë të çdo plani kontrollohet me sy dhe kuadrot e tilla hiqen. Që nga fundi i shtatorit hiqen nga të tria shifrat; për ditët më të hershme janë hequr nga piku, aty ku i gjeti rishikimi. Vendimet e çdo dite shënohen pranë të dhënave në GitHub.",
+          "Transmetimi shpesh e vendos turmën pranë një folësi ose studioje në ekran të ndarë ose e shfaq turmën në murin me ekrane të studios. Këto kuadro mund t'i fryjnë shifrat e natës, prandaj një fletë me kuadrin më të fortë të çdo plani kontrollohet me sy dhe kuadrot e tilla hiqen. Që nga fundi i shtatorit hiqen nga të tria shifrat; për ditët më të hershme janë hequr nga piku, aty ku i gjeti rishikimi. Vendimet e çdo dite shënohen pranë të dhënave në GitHub.",
         ],
       },
       {
         title: "Tri shifra për çdo natë",
         paragraphs: [
           "Piku është mesatarja e 10 kuadrove më të larta. Dhjetë kuadro në vend të një e pengojnë një kuadër të vetëm të çuditshëm të vendosë për gjithë natën.",
-          "Mesatarja dhe mediana llogariten mbi të gjithë kuadrot e mbajtur dhe e përshkruajnë natën në tërësi.",
+          "Mesatarja dhe mediana llogariten mbi të gjitha kuadrot e mbajtura dhe e përshkruajnë natën në tërësi.",
         ],
       },
       {

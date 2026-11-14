@@ -61,7 +61,7 @@ export const scandalsPageContent: Record<
       intro:
         "Çdo dosje këtu është hulumtuar dhe kontrolluar veç e veç kundrejt gazetarisë investigative shqiptare (kryesisht portalet investigative Citizens.al dhe Reporter.al), plus BIRN, SPAK, KLSH dhe burime ndërkombëtare. Teksti ndjek hulumtimin origjinal, pa u ripërmbledhur.",
       methodology:
-        "Çdo pretendim është shënuar si i konfirmuar, pjesërisht i konfirmuar, i paverifikuar, ose i kundërshtuar nga burimet. Emrat e personave trajtohen sipas statusit real ligjor: \"i akuzuar\"/\"nën hetim\" për çështje aktive, \"i dënuar\" vetëm kur ka vendim gjyqësor.",
+        "Çdo pretendim është shënuar si i konfirmuar, pjesërisht i konfirmuar, i paverifikuar ose i kundërshtuar nga burimet. Emrat e personave trajtohen sipas statusit real ligjor: \"i akuzuar\"/\"nën hetim\" për çështje aktive, \"i dënuar\" vetëm kur ka vendim gjyqësor.",
     },
     dashboard: {
       totalLabel: "Dosje të dokumentuara",

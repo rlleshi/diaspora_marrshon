@@ -96,7 +96,7 @@ const COPY: Record<
         "Një katror për çdo natë, një rresht për çdo javë proteste, të shtunat në kolonën e fundit.",
       calendarLegend: "Indeksi i turmës",
       calendarLegendNote:
-        "Hapat janë të pabarabartë me qëllim: {below} nga {total} netë janë nën 10.",
+        "Hapat janë të pabarabartë me qëllim: {below} nga {total} net janë nën 10.",
       viewDots: "Pika",
       viewDotsHintWide:
         "Një pikë për çdo natë, një kolonë për çdo javë proteste. Sa më e madhe pika, aq më e madhe turma.",
@@ -104,7 +104,7 @@ const COPY: Record<
         "Një pikë për çdo natë, një rresht për çdo javë proteste. Sa më e madhe pika, aq më e madhe turma.",
       dotsLegendNote:
         "Sipërfaqja e pikës është në përpjesëtim të drejtë me indeksin: 100 zë dhjetë herë më shumë vend se 10.",
-      dotsTitleLead: "{n} netë pa asnjë pushim.",
+      dotsTitleLead: "{n} net pa asnjë pushim.",
       dotsTitleRest: "Turmat e mëdha erdhën në qershor; protesta nuk u ndal kurrë.",
       howLineWide:
         "Lëviz mbi një ditë për detaje dhe kliko për ta fiksuar; zgjidh një periudhë ose një javë më poshtë për ta parë nga afër.",
