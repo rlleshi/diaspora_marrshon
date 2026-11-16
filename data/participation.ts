@@ -628,7 +628,22 @@
 // maximum (01:31:00). Kept frames run from about 15:12 to 19:00, 401 of the 603 after about 17:00. The
 // analysed window starts after the rally at the ministry began (14:00), so its first hour and the
 // morning in Manëz are not in the figure.
-// The notes for days 134 to 168 follow their research files (protest_story_notes_1_134 to _168); day
+// Day 169 has no figure. It arrived as one News24 stream, a short evening programme (protesta_169,
+// xbeWpJq-Ym0, 00:31:37, released at 19:00, analysed whole from 00:00:00 with no opening skip), not
+// the whole evening: 286 frames counted and 9 retained; the run finished at 09:05 on 16 November,
+// before the research file (09:34). All nine are blue-framed splits (rings +83 to +98) with the
+// gathering outside the PM's office in the narrower panel and recorded footage in the wider one. Eight
+// bring in other crowds: night protests with flamingo cut-outs (00:00:22, 00:17:28 and 00:18:10),
+// daytime protest crowds (00:17:00, 00:18:31, 00:18:58 and the 321.0 raw maximum at 00:17:35) and the
+// Socialist Party Assembly audience (00:14:46). The ninth (189.9, 00:27:26) passes the day-168 rule on
+// paper, since its second panel, a foreign news item on digging, shows no people, but the model finds
+// 177.2 of its count in that panel's soil and leaves. Summed from the stored density maps, the
+// gathering's panel holds 10.4 to 19.1 of each count and the other panel 86.3 to 302.5; a part-screen
+// panel undercounts, so that is a diagnostic, not a ceiling. Keeping all nine (fewer than ten, so the
+// peak is their mean) would read 163.9 / 163.9 / 143.3. The 96 clean full-screen frames, all in scene
+// 4 (00:02:46 to 00:13:51), are live street interviews with the gathering behind, 31.4 raw at most
+// (00:10:07). Missing, not zero.
+// The notes for days 134 to 169 follow their research files (protest_story_notes_1_134 to _169); day
 // 141's injury and arrest figures follow its refresh of 20 October, day 142's those of 21 October,
 // day 143's those of 22 October and day 144's those of 23 October, and the notes for days 156 and 157
 // follow their refresh of 5 November (day 157's rights statement has 15 signatories, not 13). Day
@@ -638,9 +653,16 @@
 // six taken to police, as they left the gathering, were first reported at 17:26 (CNA), before the
 // effigies were reported (News24, 19:23). Tuesday's police notice of 16 fines for Monday, 14 of them to people taken to
 // police, is the official follow-up; it does not name the six or reconcile with them. Day 168's note
-// follows a same-evening file (cutoff 21:52) with no Sunday follow-up. At the user's request it leaves
-// out the morning custody figure in Manëz, which two outlets reported as ten and twelve; the afternoon
-// one has no number. Rama's Assembly remarks were checked against the BalkanWeb report of 12:08.
+// follows a same-evening file (cutoff 21:52). At the user's request it leaves out the morning custody
+// figure in Manëz, which two outlets reported as ten and twelve; the afternoon one has no number. Rama's
+// Assembly remarks were checked against the BalkanWeb report of 12:08. Its refresh of 16 November
+// (cutoff 09:34) changes nothing in the note: the ten-versus-twelve report stays unresolved, the police
+// figures it adds were announced on Sunday and sit in day 169's note, and the police place the morning
+// eggs at Kameras, on the road from Maminas to Gjiri i Lalzit, which the refresh calls a refinement of
+// the broader Manëz the note names. Day 169's Tirana figures follow the police statement of 15 November,
+// its Durrës ones the police bulletin of that day, tied to the eggs by the police notice Lapsi
+// reproduced; News24's report of protesters taken to police on Sunday and Report TV's of no other
+// incident are both given.
 
 export type ParticipationDay = {
   day: number;
@@ -1020,6 +1042,8 @@ export const participation: ParticipationDay[] = [
     note: { sq: "E premtja, dita e tridhjetedytë e studentëve: studentë dhe qytetarë mblidhen në mbrëmje para Kryeministrisë, duke kërkuar dorëheqjen e Ramës dhe duke refuzuar dialogun. Sindikata e punonjësve të universiteteve fton pedagogët dhe stafin universitar t'i bashkohen protestës kombëtare të studentëve të shtunën, 14 nëntor, në orën 14:00 para Ministrisë së Arsimit. News24 shkruan për një studim mbi zgjerimin e Bashkimit Evropian, të kërkuar nga Komisioni i Punëve të Jashtme i Parlamentit Evropian, që trajton edhe protestat e verës me të dhëna deri në fund të korrikut; sipas një të intervistuari në studim, protestat nxorën në pah përqendrimin e pushtetit. Autorët shënojnë se mendimet e tyre nuk përfaqësojnë qëndrimin zyrtar të Parlamentit. Pa shifër: transmetimi i mbrëmjes përzien studion me pamje nga rruga dhe numërimi i tij u ndërpre; në tri video të shkurtra nga rruga asnjë pamje nuk arrin pragun prej 100 vetësh që përdor indeksi.", en: "Friday, the students' thirty-second day: students and citizens gather in the evening outside the PM's office, demanding Rama's resignation and rejecting dialogue. The university employees' union invites lecturers and university staff to join the students' national protest on Saturday 14 November at 14:00 outside the Education Ministry. News24 reports on a study of European Union enlargement, requested by the European Parliament's Foreign Affairs Committee, which also covers the summer protests with evidence up to the end of July; according to one interviewee in the study, the protests exposed a concentration of power. The authors note that their views are not the Parliament's official position. No figure: the evening broadcast mixes studio and street footage and its count was stopped; in three short street clips no shot reaches the 100-person threshold the index uses." } },
   { day: 168, date: "2026-11-14", saturday: true, peak: 5.13, mean: 2.59, median: 2.39, source: yt("VrE2yx6sM6I"),
     note: { sq: "E shtuna, dita e tridhjetetretë e studentëve: nën shi, protesta kombëtare e studentëve nis në orën 14:00 para Ministrisë së Arsimit, ku studentë dhe qytetarë bllokojnë Rrugën e Durrësit dhe kërkojnë dorëheqjen e Ramës, jo dialog; sipas mediave vendase, u bashkohen edhe pedagogë dhe përfaqësues të diasporës. Pas rreth një ore e gjysmë, protestuesit marshojnë nëpër Zogun e Zi, 21 Dhjetorin dhe Rrugën Vasil Shanto drejt Kryeministrisë; sipas mediave vendase, gjatë rrugës disa prej tyre dëmtojnë panele reklamash, parmakë e stacione autobusi. Më pas, sipas Euronews Albania, dy protestues tentojnë të thyejnë me një shtyllë hekuri derën e Kryesisë së Kuvendit, ndërsa media të tjera raportojnë gurë të hedhur drejt godinës dhe disa persona të shoqëruar nga policia. Në mëngjes, në Manëz, protestues hedhin vezë drejt eskortës së Ramës, që po shkonte në Asamblenë e Partisë Socialiste. Në Asamble, Rama mbron mandatin zgjedhor dhe u bën thirrje socialistëve të dalin në çdo lagje e fshat për të biseduar me qytetarët.", en: "Saturday, the students' thirty-third day: in the rain, the students' national protest starts at 14:00 outside the Education Ministry, where students and citizens block Rruga e Durrësit and demand Rama's resignation, not dialogue; according to local media, lecturers and representatives of the diaspora join them. After about an hour and a half the protesters march through Zogu i Zi, 21 Dhjetori and Rruga Vasil Shanto towards the PM's office; according to local media, some of them damage advertising panels, railings and bus stops along the way. Later, according to Euronews Albania, two protesters try to break down the door of the Parliament presidency with a metal pole, while other outlets report stones thrown at the building and several people taken away by police. In the morning in Manëz, protesters throw eggs at Rama's convoy on its way to the Socialist Party Assembly. At the Assembly, Rama defends the electoral mandate and calls on Socialists to go out to every neighbourhood and village to talk with citizens." } },
+  { day: 169, date: "2026-11-15", saturday: false, peak: null, mean: null, median: null, source: yt("xbeWpJq-Ym0"),
+    note: { sq: "E diela, dita e tridhjetekatërt e studentëve: qytetarë dhe studentë mblidhen sërish në mbrëmje para Kryeministrisë, duke kërkuar dorëheqjen e Ramës dhe duke refuzuar dialogun; disa të rinj gjuajnë topa futbolli drejt godinës. Sipas News24, policia shoqëron disa protestues ndonëse tubimi është paqësor; sipas Report TV, tubimi i shkurtër ka pak pjesëmarrës dhe asnjë incident tjetër përveç topave. Për protestën e së shtunës në Tiranë, policia njofton tre të arrestuar (njëri 15 vjeç), 18 persona të tjerë të proceduar penalisht dhe 44 masa administrative, mes tyre dy gjoba nga 500 mijë lekë; për vezët e hedhura po atë mëngjes drejt eskortës së Ramës, njofton dy të arrestuar në Durrës dhe nëntë persona të tjerë të proceduar penalisht. Në një intervistë për News24, një aktivist i diasporës thotë se po bëhen koordinimet e fundit për protestën kombëtare të diasporës në Tiranë më 28 nëntor. Pa shifër: në transmetimin e mbrëmjes pragun prej 100 vetësh që përdor indeksi e kalojnë vetëm nëntë pamje, të gjitha me ekran të ndarë, ku tubimi zë një panel dhe pjesën më të madhe të numërimit e sjellin pamjet e tjera të regjistruara pranë tij.", en: "Sunday, the students' thirty-fourth day: citizens and students gather again in the evening outside the PM's office, demanding Rama's resignation and rejecting dialogue; some young people kick footballs towards the building. According to News24, police take several protesters away although the gathering is peaceful; according to Report TV, the short gathering has few participants and no other incident besides the footballs. Over Saturday's protest in Tirana, police announce three people arrested (one aged 15), 18 other people facing criminal proceedings and 44 administrative measures, among them two fines of about €5,500 each; over the eggs thrown at Rama's convoy that morning, they announce two people arrested in Durrës and nine other people facing criminal proceedings. In an interview with News24, a diaspora activist says final arrangements are under way for the diaspora's national protest in Tirana on 28 November. No figure: in the evening broadcast only nine shots pass the 100-person threshold the index uses, all split screens in which the gathering fills one panel and most of the count comes from the other recorded footage beside it." } },
 ];
 export type ParticipationEvent = {
   day: number;
