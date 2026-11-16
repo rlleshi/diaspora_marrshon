@@ -1,6 +1,6 @@
 ---
 name: add-pulsi-day
-description: Add a new day entry to the /pulsi protest participation tracker in this repo (diaspora_zbarkon), pulling raw crowd-model numbers and the narrative summary from the sibling research repo. Use this whenever the user says a new protest day's data/analysis is available and asks to add it to pulsi — phrasing like "add day N to pulsi", "day N is available now, add it", "the ML results for day N are ready". Covers both the numeric normalization and writing the bilingual (sq/en) story note in house style, plus bumping every hardcoded day-count on the site and refreshing the Flamingo Map numbers the site quotes.
+description: Add a new day entry to the /pulsi protest participation tracker in this repo (diaspora_zbarkon), pulling raw crowd-model numbers and the narrative summary from the sibling research repo. Use this whenever the user says a new protest day's data/analysis is available and asks to add it to pulsi — phrasing like "add day N to pulsi", "day N is available now, add it", "the ML results for day N are ready". Covers both the numeric normalization and writing the bilingual (sq/en) story note in house style, plus bumping every hardcoded day-count on the site and refreshing the Flamingo Map numbers the site quotes, and, once the day is pushed, republishing the site chatbot's knowledge so it knows the new day.
 ---
 
 # Add a day to the pulsi tracker
@@ -299,6 +299,84 @@ for the map is built from it: the homepage map band, the history text on
 
 Keep the OpenStreetMap credit next to the map pictures: the map's licence
 requires it.
+
+## 9. After the push: refresh the chatbot's knowledge
+
+The site's chatbot (Flamingo Bot, `~/projects/miscellaneous/albanian/demos/flamingo-bot`,
+served from Cloud Run) answers from a snapshot of this repo, the research
+notes in `protesta_summary/research/`, articles from Lapsi and Citizens.al, and
+a few other sources. It never updates itself: a new day stays unknown to it
+until the snapshot is republished. On 16 Nov 2026 the user decided to keep the
+bot until early December, refresh it after every new day, and judge it on its
+usage after the 28–29 November weekend. They also asked for Lapsi and Citizens
+to be collected every time: that is where most of the outside reporting comes from.
+
+Run this only after the day is committed and pushed, which the user asks for
+separately. Ingestion stamps this repo's commit into the snapshot, refuses a
+checkout with uncommitted changes, and the commit must exist on GitHub. Run
+everything from the bot folder, and keep each run's reports in
+`.local/index-refresh-YYYYMMDD/` (git-ignored), as the user's own refreshes do.
+
+1. Check that the four source checkouts are clean and on `main`: this repo,
+   `flamingo-dossier`, `flamingo-revolution-site` and `flamingo-map` (the bot's
+   `.env` names them as `*_REPO`; read only those lines, never the rest of that
+   file). If one has changes, stop and say which; never stash or commit someone
+   else's work.
+2. **Citizens.al.** Collect its new and edited protest articles:
+   ```bash
+   .venv/bin/python scripts/snapshot_citizens.py --dry-run --licensed-full-text --pretty \
+     > .local/index-refresh-YYYYMMDD/citizens-dry-run.json 2> .local/index-refresh-YYYYMMDD/citizens-dry-run.log
+   ```
+   Check `new`, `updated` and `removed` and the titles, then run the same with
+   `--write` in place of `--dry-run`. `--licensed-full-text` applies the
+   full-text permission the user has from Citizens.al (the bot's
+   `docs/runbooks/ingestion.md`); no other outlet has one. The collector waits 10
+   seconds between requests, so a scan takes a minute or more. On 16 Nov it found
+   2 new articles and 1 edit.
+3. **Lapsi.** Lapsi's sitemap has answered 403 since at least 13 Nov, so the
+   collector's normal scan (`snapshot_lapsi.py --dry-run --pretty`) stops with
+   "HTTP Error 403". Don't work around that block. Try the normal scan first,
+   since the block may lift; while it stands, hand the collector the Lapsi
+   articles the research notes cite:
+   - Take every `https://lapsi.al/<slug>-i<number>` link in the research files
+     that changed since the last refresh (normally `day_N_sources.json`, plus
+     `day_N-1` when it was refreshed) and is not yet in `.local/lapsi/index.json`.
+     Leave out listing pages (`/kategoria/`, `/category/`) and links with a date
+     path or `/english/` before the slug: the collector refuses those as "not a
+     Lapsi article URL" and stops.
+   - Dry run with each link as `--url`:
+     `.venv/bin/python scripts/snapshot_lapsi.py --dry-run --pretty --url <link> --url <link>`.
+     It applies its own relevance and date rules (on 16 Nov it kept 7 of 12 and
+     called 5 unrelated). Then `--write` with the links it kept.
+   - The user's Codex chat once collected Lapsi through the site's own search (13 Nov).
+     That stays out of this routine unless the user says otherwise.
+4. Dry run of the ingestion. It writes nothing, locally or in production:
+   ```bash
+   .venv/bin/python -m flamingo_bot.ingest --dry-run --pretty \
+     > .local/index-refresh-YYYYMMDD/dry-run.json 2> .local/index-refresh-YYYYMMDD/dry-run.log
+   ```
+   Compare it with the last `.local/*/publish.json`. `issues` must be empty and
+   `failed_files` 0. Only `diaspora-zbarkon`, `protest-research`,
+   `citizens-articles` and `lapsi-references` should have a new revision. A day
+   adds a few dozen chunks and replaces about a dozen (16 Nov, days 169 and 170
+   before the collectors ran: 72 new, 12 removed, 5,918 reused). Hundreds of
+   removals, or another source changing, means stop and ask.
+5. Publish as the dedicated ingestion service account, the one the user's own
+   Codex chat for the bot uses. Its name is in the private memory note
+   `flamingo-bot-refresh`, not in this public file:
+   ```bash
+   GCP_IMPERSONATE_SERVICE_ACCOUNT=<ingestion account> .venv/bin/python -m flamingo_bot.ingest --publish --pretty \
+     > .local/index-refresh-YYYYMMDD/publish.json 2> .local/index-refresh-YYYYMMDD/publish.log
+   ```
+   It takes about three minutes. Claude Code's auto mode blocked this
+   production write on 16 Nov; if it is blocked again, give the user the
+   command to approve or run with `!`. Never retry a failed publish blindly:
+   read the error first (the bot's `docs/runbooks/ingestion.md` covers failures
+   and rollback).
+6. Check the live bot: `curl -s https://flamingo-bot-949711463853.europe-west3.run.app/status`
+   must show the new generation as `active_generation`, with the publish's chunk
+   count. Don't send it test questions: each answer adds to the usage count the
+   user is judging the bot by.
 
 ## Background: how the chart absorbs new days
 
