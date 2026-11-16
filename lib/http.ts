@@ -1,8 +1,11 @@
 import { getAllowedOrigins, isProduction } from "@/lib/env";
 import { SITE_URL } from "@/lib/metadata";
 
-/** The live site always accepts its own forms, with or without www, whatever the env lists. */
-const siteOrigins = [SITE_URL, SITE_URL.replace("://www.", "://")];
+/** flamingodiaspora.eu serves the same site directly (English outreach links point there). */
+const siteUrls = [SITE_URL, "https://www.flamingodiaspora.eu"];
+
+/** The live site always accepts its own forms, on either domain, with or without www, whatever the env lists. */
+const siteOrigins = siteUrls.flatMap((url) => [url, url.replace("://www.", "://")]);
 
 export function getClientIp(request: Request) {
   const forwarded = request.headers.get("x-forwarded-for");
