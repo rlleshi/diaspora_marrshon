@@ -476,7 +476,7 @@ export const content: Record<Locale, SiteContent> = {
     mapTeaser: {
       kicker: "Harta e protestave",
       title: `${protestsAbroad} protesta në ${citiesAbroad} qytete jashtë Shqipërisë.`,
-      body: `Nga Vankuveri te Melburni, në ${countriesAbroad} shtete. Në Mynih, Londër, Milano, Berlin dhe Vjenë, diaspora protestoi pothuajse çdo javë gjatë gjithë verës.`,
+      body: `Nga Vankuveri te Melburni, në ${countriesAbroad} shtete. Në Mynih, Londër, Milano, Berlin, Frankfurt dhe Vjenë, diaspora protestoi pothuajse çdo javë gjatë gjithë verës.`,
       source: `Sipas hartës vullnetare Flamingo Map, gjendja më ${mapDate(mapSnapshot.asOf, "sq")}. Sfondi i hartës: © kontribuesit e OpenStreetMap.`,
       href: "/harta",
       cta: "Hap hartën",
@@ -683,7 +683,7 @@ Mund ta ndihmoj protestën me: [si mund të ndihmosh]`,
       abroad: {
         kicker: "Jashtë Shqipërisë",
         title: "Qindra protesta në qytetet ku jetojmë.",
-        body: `Jashtë Shqipërisë janë mbajtur ${protestsAbroad} protesta në ${citiesAbroad} qytete të ${countriesAbroad} shteteve, sipas hartës vullnetare Flamingo Map (gjendja më ${mapDate(mapSnapshot.asOf, "sq")}). Në shumë qytete protestat u bënë të përjavshme: në Mynih, Londër, Milano, Berlin dhe Vjenë, diaspora doli pothuajse çdo javë gjatë gjithë verës.`,
+        body: `Jashtë Shqipërisë janë mbajtur ${protestsAbroad} protesta në ${citiesAbroad} qytete të ${countriesAbroad} shteteve, sipas hartës vullnetare Flamingo Map (gjendja më ${mapDate(mapSnapshot.asOf, "sq")}). Në shumë qytete protestat u bënë të përjavshme: në Mynih, Londër, Milano, Berlin, Frankfurt dhe Vjenë, diaspora doli pothuajse çdo javë gjatë gjithë verës.`,
         highlightsTitle: "Disa nga momentet kryesore",
         carousel: {
           regionLabel: "Disa nga momentet kryesore të protestave jashtë Shqipërisë",
@@ -1014,7 +1014,7 @@ Mund ta ndihmoj protestën me: [si mund të ndihmosh]`,
     mapTeaser: {
       kicker: "The protest map",
       title: `${protestsAbroad} protests in ${citiesAbroad} cities outside Albania.`,
-      body: `From Vancouver to Melbourne, in ${countriesAbroad} countries. In Munich, London, Milan, Berlin and Vienna, the diaspora protested almost every week all summer.`,
+      body: `From Vancouver to Melbourne, in ${countriesAbroad} countries. In Munich, London, Milan, Berlin, Frankfurt and Vienna, the diaspora protested almost every week all summer.`,
       source: `According to the volunteer Flamingo Map, as of ${mapDate(mapSnapshot.asOf, "en")}. Base map: © OpenStreetMap contributors.`,
       href: "/en/harta",
       cta: "Open the map",
@@ -1221,7 +1221,7 @@ I can help the protest with: [how you can help]`,
       abroad: {
         kicker: "Outside Albania",
         title: "Hundreds of protests in the cities where we live.",
-        body: `Outside Albania, ${protestsAbroad} protests have been held in ${citiesAbroad} cities in ${countriesAbroad} countries, according to the volunteer Flamingo Map (as of ${mapDate(mapSnapshot.asOf, "en")}). In many cities they became weekly: in Munich, London, Milan, Berlin and Vienna the diaspora came out almost every week all summer.`,
+        body: `Outside Albania, ${protestsAbroad} protests have been held in ${citiesAbroad} cities in ${countriesAbroad} countries, according to the volunteer Flamingo Map (as of ${mapDate(mapSnapshot.asOf, "en")}). In many cities they became weekly: in Munich, London, Milan, Berlin, Frankfurt and Vienna the diaspora came out almost every week all summer.`,
         highlightsTitle: "Some of the highlights",
         carousel: {
           regionLabel: "Some highlights of the protests outside Albania",

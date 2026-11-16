@@ -282,7 +282,7 @@ for the map is built from it: the homepage map band, the history text on
    `app/en/harta/page.tsx`: "qindra protesta … dhjetëra qytete" / "hundreds of
    protests … dozens of cities", and "nga Vankuveri te Melburni" / "from
    Vancouver to Melbourne" (are those still the farthest cities?). The summer
-   sentence ("Në Mynih, Londër, Milano, Berlin dhe Vjenë … gjatë gjithë verës")
+   sentence ("Në Mynih, Londër, Milano, Berlin, Frankfurt dhe Vjenë … gjatë gjithë verës")
    is history and stays.
 4. When new cities appear, offer to retake the map still
    `public/map/flamingo-map-preview.jpg` (a 1280×550 JPEG, a cropped screenshot
