@@ -118,8 +118,14 @@ Established conventions:
   against the source file (e.g. an explicit mobilization call with a date
   and time is exactly the kind of detail that belongs in the note).
 
-Five standing rules the user has corrected notes for more than once. Apply
-them while drafting rather than waiting to be told:
+Six standing rules the user has corrected notes for more than once, or set
+outright. Apply them while drafting rather than waiting to be told:
+
+- **No student day count.** From day 170 on, leave out the students' own
+  day count, "dita e tridhjetekatërt e studentëve" / "the students'
+  thirty-fourth day" (the user's call, 16 Nov 2026). Open with the weekday
+  alone ("E hëna: ..." / "Monday: ...") or with the fact itself. Notes up to
+  day 169 keep the count; don't sweep them unasked.
 
 - **No singular activist names.** The source file names individuals freely;
   the site refers to participants collectively — "aktivistë", "protestuesit",
