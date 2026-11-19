@@ -98,8 +98,9 @@ Open `data/participation.ts` and read the last 5-10 entries in the
 `participation` array to recalibrate on house style before writing anything.
 Established conventions:
 
-- One sentence, occasionally two clauses joined by `;` — not a paragraph.
-  Existing notes run roughly 15-40 words in Albanian.
+- Short. Early notes were one sentence of 15-40 words; from October they grew
+  into paragraphs, and on 19 Nov 2026 the user set about 60 to 100 words for
+  phone reading (the first standing rule below).
 - Dry, factual, present tense. No hedging language, no "it seems" — state
   what happened.
 - Weekday-flavored openers are common for non-Saturday days ("E mërkura...",
@@ -118,8 +119,23 @@ Established conventions:
   against the source file (e.g. an explicit mobilization call with a date
   and time is exactly the kind of detail that belongs in the note).
 
-Six standing rules the user has corrected notes for more than once, or set
+Eight standing rules the user has corrected notes for more than once, or set
 outright. Apply them while drafting rather than waiting to be told:
+
+- **Short enough for a phone.** The notes are read on phones. Keep each to the
+  day's main facts: about 60 to 100 words in Albanian, three to five short
+  sentences (the user had days 171 and 172 cut from about 250 words to that on
+  19 Nov 2026). Leave out secondary interviews, closing stops, side events and
+  breakdowns of figures; record in the header log what was left out.
+
+- **Local media, not outlet names.** For routine facts, attribute to "sipas
+  mediave vendase" / "according to local media" (or state them plainly when
+  they obviously happened), not to News24, Report TV, Piranjat, SYRI, Exit and
+  the like: a foreign reader doesn't know them (the user's call, 19 Nov 2026).
+  Name the source only where it matters: official bodies (police, prosecutors,
+  courts), organisations speaking for themselves, or an outlet reporting about
+  its own staff ("a local TV channel says ... its reporter"). The header log
+  keeps the outlets.
 
 - **No student day count.** From day 170 on, leave out the students' own
   day count, "dita e tridhjetekatërt e studentëve" / "the students'
