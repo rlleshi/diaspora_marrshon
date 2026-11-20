@@ -687,7 +687,16 @@
 // Later in the evening the gathering passes the threshold only beside the chamber (scenes 63 to 81,
 // about 19:08 to 19:16) or not at all; the stop in Skanderbeg Square and the close outside Parliament
 // came after the capture ended.
-// The notes for days 134 to 172 follow their research files (protest_story_notes_1_134 to _172); day
+// Day 173 has no figure. It arrived as two News24 streams: the evening broadcast from the PM's office
+// (protesta_173.1, poR1omtx6aE, 01:21:59, broadcast start 17:33, analysed from 00:08:35 to 01:15:20,
+// the left street camera cropped where a studio panel shares the screen) and Prime News24 from 21:00
+// (protesta_173.2, Q8nSAI-TPwk, the first 40 minutes, street footage only); 469 and 186 frames counted
+// (407 and 165 of them cropped), none reaching 100. The runs finished at 22:28 and 22:45, before the
+// research file (23:05). The highs are 71.5 raw (173.1, 00:53:11, a full street frame with police and
+// protesters) and 71.0 (173.2, 00:00:29, the opening wide outdoor shot, which may be replayed footage);
+// the research file warns that the cropped panels cover different parts of the scene, that police may
+// add to the counts and that the two broadcasts are not to be added up. Missing, not zero.
+// The notes for days 134 to 173 follow their research files (protest_story_notes_1_134 to _173); day
 // 141's injury and arrest figures follow its refresh of 20 October, day 142's those of 21 October,
 // day 143's those of 22 October and day 144's those of 23 October, and the notes for days 156 and 157
 // follow their refresh of 5 November (day 157's rights statement has 15 signatories, not 13). Day
@@ -744,6 +753,18 @@
 // Square, the letter's 246 recipients and its other demands. Left out of day 172's: the protesters'
 // objection to the restrictions, the stop in Skanderbeg Square and the close outside Parliament, the
 // budget vote after midnight and the 28 administrative measures with their fines.
+// Day 173's note follows a same-evening file (cutoff 23:03): Thunberg's criticism of the police is her
+// own, in a video from the boulevard and an interview with News24; the push onto the pavement and the
+// people taken away are the reports of Report TV, News24 and Piranjat, the irritant spray News24's and
+// Report TV's; the gathering at Police Station No. 1 and
+// the further people taken away there are News24's 22:44 dispatch, with no total. The committee
+// approval is Report TV's report, not a plenary vote or a court ruling; the objection is opposition MP
+// Jorida Tabaku's and the reply Deputy Interior Minister Xhemal Qefalia's. A SYRI TV item numbering the
+// day 174 is set aside, as the research file does. Left out for phone screens: the march along the
+// Lana, over the Vasil Shanto bridge and through Tirana e Re towards Wilson Square, and the return to
+// the boulevard; the people who felt unwell and were helped on the spot (News24's reporter); SYRI TV's report that its own crew was hit by the spray; Thunberg's link between
+// defending nature and opposing corruption; the photo advertising the 28–29 November gatherings; and
+// the studio debate between Gazment Bardhi and Poli Hoxha.
 
 export type ParticipationDay = {
   day: number;
@@ -1131,6 +1152,8 @@ export const participation: ParticipationDay[] = [
     note: { sq: "E marta: sipas mediave vendase, policia i shtyn protestuesit nga bulevardi para Kryeministrisë në trotuar dhe shoqëron disa prej tyre; një vajzë i bie të fikët gjatë ndërhyrjes. Një avokate dhe mediat vendase flasin për 17 të shoqëruar, mes tyre një fotoreporter. Një letër e hapur e 51 organizatave shqiptaro-amerikane, sipas publikuesve të saj, i kërkon Ramës dorëheqjen dhe hetim të pavarur për abuzimet e pretenduara të policisë. Gjykata e Durrësit liron dy protestuesit e arrestuar për vezët e hedhura të shtunën drejt eskortës së Ramës dhe e shpall arrestimin e tyre të paligjshëm. Pa shifër: vetëm një pamje kalon pragun prej 100 vetësh që përdor indeksi.", en: "Tuesday: according to local media, police push protesters off the boulevard outside the PM's office onto the pavement and take several away; a young woman faints during the intervention. A lawyer and local media report 17 people taken away, among them a photojournalist. An open letter from 51 Albanian-American organisations, according to its publishers, calls on Rama to resign and asks for an independent investigation of alleged police abuses. The Durrës court releases the two protesters arrested over the eggs thrown at Rama's convoy on Saturday and rules their arrest unlawful. No figure: only one shot passes the 100-person threshold the index uses." } },
   { day: 172, date: "2026-11-18", saturday: false, peak: 3.16, mean: 2.51, median: 2.57, source: yt("L_Hn-ZgryLQ"),
     note: { sq: "E mërkura: protestuesit marshojnë nga Ministria e Arsimit drejt Kuvendit gjatë debatit për buxhetin e vitit 2027; në mbrëmje, para Kryeministrisë, policia i zhvendos nga bulevardi në trotuar. Një televizion vendas thotë se efektivët ushtruan forcë ndaj gazetares së tij; Asociacioni i Gazetarëve të Shqipërisë kërkon verifikim të pavarur. Policia e Shtetit njofton se 24 persona procedohen penalisht për tubimin e së martës dhe se dy efektivë u lënduan. Shifra vjen nga pamjet me ekran të ndarë, ku protesta shfaqet pranë një folësi në Kuvend.", en: "Wednesday: protesters march from the Ministry of Education to Parliament during the debate on the 2027 budget; in the evening, outside the PM's office, police move them off the boulevard onto the pavement. A local TV channel says officers used force against its reporter; the Association of Journalists of Albania calls for an independent check. The State Police announce that 24 people face criminal proceedings over Tuesday's gathering and that two officers were injured. The figure comes from split screens showing the protest beside a speaker in Parliament." } },
+  { day: 173, date: "2026-11-19", saturday: false, peak: null, mean: null, median: null, source: yt("poR1omtx6aE"),
+    note: { sq: "E enjtja: protestuesit kthehen para Kryeministrisë duke kërkuar dorëheqjen e Ramës; aktivistja Greta Thunberg u bashkohet atyre dhe kritikon trajtimin e tyre nga policia. Sipas mediave vendase, policia i shtyn në trotuar, shoqëron disa prej tyre dhe përdor spraj irritues. Në mbrëmje, një grup mblidhet në solidaritet para Komisariatit Nr. 1, ku shoqërohen të tjerë. Dy komisione parlamentare miratojnë dy masa të qeverisë për tubimet: një deputete e opozitës vë në dyshim kushtetutshmërinë e tyre, ndërsa zëvendësministri i Brendshëm thotë se synojnë dhunën, jo protestën paqësore. Pa shifër: asnjë pamje e rrugës nuk arrin pragun prej 100 vetësh që përdor indeksi.", en: "Thursday: protesters return to the PM's office, demanding Rama's resignation; activist Greta Thunberg joins them and criticises how the police treat them. According to local media, police push them onto the pavement, take several away and use irritant spray. In the evening, a group gathers in solidarity outside Police Station No. 1, where more are taken away. Two parliamentary committees approve two government measures on assemblies: an opposition MP questions their constitutionality, while the deputy interior minister says they target violence, not peaceful protest. No figure: no street shot reaches the 100-person threshold the index uses." } },
 ];
 export type ParticipationEvent = {
   day: number;
