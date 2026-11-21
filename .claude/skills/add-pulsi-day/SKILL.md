@@ -1,6 +1,6 @@
 ---
 name: add-pulsi-day
-description: Add a new day entry to the /pulsi protest participation tracker in this repo (diaspora_zbarkon), pulling raw crowd-model numbers and the narrative summary from the sibling research repo. Use this whenever the user says a new protest day's data/analysis is available and asks to add it to pulsi — phrasing like "add day N to pulsi", "day N is available now, add it", "the ML results for day N are ready". Covers both the numeric normalization and writing the bilingual (sq/en) story note in house style, plus bumping every hardcoded day-count on the site and refreshing the Flamingo Map numbers the site quotes, and, once the day is pushed, republishing the site chatbot's knowledge so it knows the new day.
+description: Add a new day entry to the /pulsi protest participation tracker in this repo (diaspora_zbarkon), pulling raw crowd-model numbers and the narrative summary from the sibling research repo. Use this whenever the user says a new protest day's data/analysis is available and asks to add it to pulsi — phrasing like "add day N to pulsi", "day N is available now, add it", "the ML results for day N are ready". Covers both the numeric normalization and writing the bilingual (sq/en) story note in house style, plus bumping every hardcoded day-count on the site, refreshing the Flamingo Map numbers the site quotes, checking for new diaspora contributions (letters, petitions, meetings) for the /marshimi section "Ndihmë për sheshin, zë jashtë vendit" and proposing them to the user, and, once the day is pushed, republishing the site chatbot's knowledge so it knows the new day.
 ---
 
 # Add a day to the pulsi tracker
@@ -316,7 +316,85 @@ for the map is built from it: the homepage map band, the history text on
 Keep the OpenStreetMap credit next to the map pictures: the map's licence
 requires it.
 
-## 9. After the push: refresh the chatbot's knowledge
+## 9. Check for new diaspora contributions
+
+The /marshimi page has a section on what the diaspora does besides protesting:
+"Ndihmë për sheshin, zë jashtë vendit" / "Help for the square, a voice abroad"
+(`history.beyond` in `lib/content.ts`, both locales). On 20 Nov 2026 the user
+asked for it to stay current. Every time you add a day, look for diaspora
+contributions made since the last check, and propose the ones worth adding.
+
+**What counts:** actions by Albanians abroad, as groups or organisations,
+other than protests:
+- letters, petitions and statements to governments, parliaments or EU
+  institutions;
+- meetings with politicians;
+- reports or evidence handed to institutions;
+- fundraising, supplies or legal help;
+- work with the media.
+
+Protests abroad belong to the Flamingo Map and the "Jashtë Shqipërisë"
+carousel, not here. Initiatives from inside Albania, or by MEPs or foreign
+organisations, don't count either, even when they echo diaspora demands.
+
+1. **Find the window.** The private log
+   `/home/rejnald/projects/miscellaneous/media_outreach/diaspora_contributions_log.md`
+   records the date of each check and every item found, with its status:
+   lead, pending, proposed, added or declined. Search from the last check. The
+   research behind the section as built is in
+   `diaspora_contributions_research_2026-11-12.md`, in the same folder.
+2. **Look, cheapest first.**
+   - Grep the new day's research file and `research/day_N_sources.json` for
+     diaspora items: diaspor, emigrant, mërgat, letër, peticion, Bundestag,
+     Bruksel.
+   - Run a handful of web searches limited to the window, in Albanian and
+     English, and in German when Germany comes up. For example: "diaspora
+     shqiptare letër", "diaspora peticion", "diaspora takon", "Albanian
+     diaspora letter", "Albanian American organizations".
+   - Check the two publishers that recur: Diaspora Akademike
+     (diaspora-akademike.org) and Albanians Without Borders
+     (albanianswithoutborders.com).
+
+   Don't skip the searches: the 19 Nov letter to the Bundestag was in no
+   research file. Keep the pass light, though, with no Codex agents.
+3. **Verify before proposing.** A search summary is only a lead. Open the
+   report and, if it is public, the letter or statement itself. Pin down:
+   - the date;
+   - who sent it: an organisation's name, or how the reports describe them;
+   - who it is addressed to, kept apart from who was only copied;
+   - what it asks for.
+
+   Attribute signatory and recipient counts to whoever published them, and
+   say when sources disagree. The 17 Nov Albanian-American letter's own site
+   gives 246 copied recipients in one place and 192 in another. Name no
+   private individuals.
+4. **Log every item,** with its sources (opened, or snippet only) and its
+   status. Log the items the user declines as well, with their reason, so
+   they aren't raised again. URLs and names stay in the log, not in this
+   public file.
+5. **Propose; don't edit.** Show the user the new wording in both languages,
+   written under the note rules in step 3: no comma before "dhe", no
+   em-dashes, no abbreviations, no activists' names, the objective register,
+   and short enough for a phone. Edit `lib/content.ts` only once they agree,
+   then run `npm run typecheck` again.
+   - Prefer adding a sentence to the card that fits.
+   - Use "we" only when the user confirms the action was their own
+     network's. Write other groups' actions in the third person, and name
+     the group when it has a name, as the academics and open-letter cards do.
+     When it's unclear whose action it was, ask.
+   - The six cards sit in two rows of three on wide screens.
+     `beyondIcons` in `components/march-page.tsx` gives them their icons by
+     position. Adding, removing or reordering a card therefore means updating
+     that array and its comment, and a seventh card would sit alone on a
+     third row.
+   - Changing the set of cards, or replacing the dated `highlight` above them
+     (the 26 Oct meeting with the Austrian chancellor), is the user's call.
+6. **Report the result.** If nothing is new, say "no new diaspora
+   contributions" in one line. Otherwise give the proposal. Approved text goes
+   into the same commit as the day, so the chatbot learns it at the next
+   refresh.
+
+## 10. After the push: refresh the chatbot's knowledge
 
 The site's chatbot (Flamingo Bot, `~/projects/miscellaneous/albanian/demos/flamingo-bot`,
 served from Cloud Run) answers from a snapshot of this repo, the research
