@@ -696,7 +696,20 @@
 // protesters) and 71.0 (173.2, 00:00:29, the opening wide outdoor shot, which may be replayed footage);
 // the research file warns that the cropped panels cover different parts of the scene, that police may
 // add to the counts and that the two broadcasts are not to be added up. Missing, not zero.
-// The notes for days 134 to 173 follow their research files (protest_story_notes_1_134 to _173); day
+// Day 174 has no figure. It arrived as two News24 streams: the evening broadcast from the PM's office
+// and the march (protesta_174.1, Vwf_5_zg1us, 01:52:39, broadcast start 17:36, analysed from 00:50:00
+// to 01:35:00) and a later News24 programme with a street inset (protesta_174.2, ZZ25ppWxFVo, 01:13:43,
+// broadcast start 19:32, the first 35 minutes, every frame cropped to the street); 303 and 243 frames
+// counted (200 and 243 of them cropped). The runs finished at 22:10 and 22:17, before the research
+// file (22:26). Only three frames reach 100, all in scene 2 of 174.1 and seven seconds apart (00:56:03,
+// 00:56:10 and 00:56:17, 101.2, 120.5 and 102.7 raw): one clean full-width night view of the crowd on
+// the pavement beside the boulevard (rings -34 to -41), riot police along the road behind it. The
+// scene's other 87 frames stay at 99.1 or below, and 174.2 tops out at 53.3 (00:12:00, the street
+// inset during the march). The clean-frame rule would give 108.1 / 108.1 / 102.7 (2.09 / 2.09 / 1.99
+// on the index). Three samples of one shot sit between day 171's single frame, which the user ruled
+// too thin on 17 November, and the four frames that carry days 132 and 160. It was proposed blank,
+// with that figure as the alternative, and committed blank on 21 November. Missing, not zero.
+// The notes for days 134 to 174 follow their research files (protest_story_notes_1_134 to _174); day
 // 141's injury and arrest figures follow its refresh of 20 October, day 142's those of 21 October,
 // day 143's those of 22 October and day 144's those of 23 October, and the notes for days 156 and 157
 // follow their refresh of 5 November (day 157's rights statement has 15 signatories, not 13). Day
@@ -764,7 +777,21 @@
 // Lana, over the Vasil Shanto bridge and through Tirana e Re towards Wilson Square, and the return to
 // the boulevard; the people who felt unwell and were helped on the spot (News24's reporter); SYRI TV's report that its own crew was hit by the spray; Thunberg's link between
 // defending nature and opposing corruption; the photo advertising the 28–29 November gatherings; and
-// the studio debate between Gazment Bardhi and Poli Hoxha.
+// the studio debate between Gazment Bardhi and Poli Hoxha. Its refresh of 20 November (cutoff 22:24)
+// changes nothing in the note: Lapsi's Friday recap says the gathering at Police Station No. 1 asked
+// for the release of those taken in, with no outcome reported, and Euronews Albania adds people taken
+// away after the return to the PM's office, with no total. The State Police bulletin it adds came out
+// on Friday and sits in day 174's note, as the notices on days 160, 163, 165, 166, 170 and 172 do.
+// Day 174's note follows a same-evening file (cutoff 22:24): the push onto the pavement and the
+// scuffles are News24's and Report TV's reports, the people taken away News24's, which gives no number;
+// the march towards Myslym Shyri Street, with police following, is News24's (its 19:47 report), the
+// banner for 28 November News24's and the students' and lecturers' gatherings for Saturday Euronews
+// Albania's. The three people facing criminal proceedings over Thursday's gathering are the State Police
+// bulletin of 20 November; its 29 administrative measures in 48 hours are not split by day and are left
+// out. Left out for phone screens: the traffic clearance that Report TV and Euronews Albania give as
+// the reason for the push, and the protesters' objection to the assembly restrictions; the birthday
+// cake protesters brought for an older participant (Report TV, Start News); the studio debate on the
+// normative act; and an opposition MP's forecast for 28 November (a News24 interview, quoted by SYRI TV).
 
 export type ParticipationDay = {
   day: number;
@@ -1154,6 +1181,8 @@ export const participation: ParticipationDay[] = [
     note: { sq: "E mërkura: protestuesit marshojnë nga Ministria e Arsimit drejt Kuvendit gjatë debatit për buxhetin e vitit 2027; në mbrëmje, para Kryeministrisë, policia i zhvendos nga bulevardi në trotuar. Një televizion vendas thotë se efektivët ushtruan forcë ndaj gazetares së tij; Asociacioni i Gazetarëve të Shqipërisë kërkon verifikim të pavarur. Policia e Shtetit njofton se 24 persona procedohen penalisht për tubimin e së martës dhe se dy efektivë u lënduan. Shifra vjen nga pamjet me ekran të ndarë, ku protesta shfaqet pranë një folësi në Kuvend.", en: "Wednesday: protesters march from the Ministry of Education to Parliament during the debate on the 2027 budget; in the evening, outside the PM's office, police move them off the boulevard onto the pavement. A local TV channel says officers used force against its reporter; the Association of Journalists of Albania calls for an independent check. The State Police announce that 24 people face criminal proceedings over Tuesday's gathering and that two officers were injured. The figure comes from split screens showing the protest beside a speaker in Parliament." } },
   { day: 173, date: "2026-11-19", saturday: false, peak: null, mean: null, median: null, source: yt("poR1omtx6aE"),
     note: { sq: "E enjtja: protestuesit kthehen para Kryeministrisë duke kërkuar dorëheqjen e Ramës; aktivistja Greta Thunberg u bashkohet atyre dhe kritikon trajtimin e tyre nga policia. Sipas mediave vendase, policia i shtyn në trotuar, shoqëron disa prej tyre dhe përdor spraj irritues. Në mbrëmje, një grup mblidhet në solidaritet para Komisariatit Nr. 1, ku shoqërohen të tjerë. Dy komisione parlamentare miratojnë dy masa të qeverisë për tubimet: një deputete e opozitës vë në dyshim kushtetutshmërinë e tyre, ndërsa zëvendësministri i Brendshëm thotë se synojnë dhunën, jo protestën paqësore. Pa shifër: asnjë pamje e rrugës nuk arrin pragun prej 100 vetësh që përdor indeksi.", en: "Thursday: protesters return to the PM's office, demanding Rama's resignation; activist Greta Thunberg joins them and criticises how the police treat them. According to local media, police push them onto the pavement, take several away and use irritant spray. In the evening, a group gathers in solidarity outside Police Station No. 1, where more are taken away. Two parliamentary committees approve two government measures on assemblies: an opposition MP questions their constitutionality, while the deputy interior minister says they target violence, not peaceful protest. No figure: no street shot reaches the 100-person threshold the index uses." } },
+  { day: 174, date: "2026-11-20", saturday: false, peak: null, mean: null, median: null, source: yt("Vwf_5_zg1us"),
+    note: { sq: "E premtja: protestuesit mblidhen sërish para Kryeministrisë duke kërkuar dorëheqjen e Ramës. Sipas mediave vendase, policia i shtyn nga bulevardi në trotuar, ku ka përplasje, shoqëron disa prej tyre dhe i ndjek kur tubimi marshon nëpër Tiranë drejt Myslym Shyrit. Një banderolë fton për protestën e 28 nëntorit, ndërsa studentët dhe pedagogët njoftojnë tubime për të shtunën. Policia e Shtetit njofton se tre persona procedohen penalisht për tubimin e së enjtes. Pa shifër: vetëm tri pamje, të gjitha nga e njëjta skenë, kalojnë pragun prej 100 vetësh që përdor indeksi.", en: "Friday: protesters gather again outside the PM's office, demanding Rama's resignation. According to local media, police push them off the boulevard onto the pavement, where there are scuffles, take several of them away and follow them as the gathering marches through Tirana towards Myslym Shyri Street. A banner calls for the protest on 28 November, while students and lecturers announce gatherings for Saturday. The State Police announce that three people face criminal proceedings over Thursday's gathering. No figure: only three shots, all from the same scene, pass the 100-person threshold the index uses." } },
 ];
 export type ParticipationEvent = {
   day: number;

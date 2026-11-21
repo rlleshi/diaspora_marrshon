@@ -751,7 +751,7 @@ Mund ta ndihmoj protestën me: [si mund të ndihmosh]`,
           {
             title: "Me politikanët evropianë",
             body:
-              "Kemi kontaktuar shumë politikanë: deputetë të Parlamentit Evropian dhe politikanë gjermanë nga i gjithë spektri politik. Në Vjenë takuam kancelarin austriak, Christian Stocker. Në Mynih ftuam një nënkryetar të Parlamentit të Bavarisë.",
+              "Kemi kontaktuar shumë politikanë: deputetë të Parlamentit Evropian dhe politikanë gjermanë nga i gjithë spektri politik. Në Vjenë takuam kancelarin austriak, Christian Stocker. Në Mynih ftuam një nënkryetar të Parlamentit të Bavarisë. Në tetor, një grup mjekësh shqiptarë në Gjermani i kërkoi me peticion Bundestagut dhe eurodeputetëve gjermanë një hetim të pavarur për përdorimin e forcës nga policia dhe që ambulancat dhe personeli mjekësor t'u shërbejnë vetëm të lënduarve. Më 19 nëntor, aktivistë të diasporës nga disa qytete të Gjermanisë u kërkuan katër grupeve parlamentare të Bundestagut të dënojnë dhunën e policisë dhe të kërkojnë një hetim të pavarur.",
           },
           {
             title: "Me mediat",
@@ -769,9 +769,9 @@ Mund ta ndihmoj protestën me: [si mund të ndihmosh]`,
               "Akademikët shqiptarë jashtë vendit (të mbledhur te Diaspora Akademike) e mbështetën protestën që në qershor, i shkruan Komisionit Evropian në korrik dhe në tetor kërkuan një hetim të pavarur për dhunën e policisë.",
           },
           {
-            title: "Letër e hapur për Evropën",
+            title: "Letra të hapura",
             body:
-              "Në qershor, një kolektiv qytetarësh të diasporës shqiptare në Evropë u dërgoi liderëve evropianë një letër të hapur, të botuar në Le Courrier des Balkans.",
+              "Në qershor, një kolektiv qytetarësh të diasporës shqiptare në Evropë u dërgoi liderëve evropianë një letër të hapur, të botuar në Le Courrier des Balkans. Më 17 nëntor, 51 organizata shqiptaro-amerikane i kërkuan Ramës të mos përdorë “forcën joproporcionale” ndaj protestuesve dhe të japë dorëheqjen. Letrën ua dërguan në kopje edhe presidentëve të Komisionit Evropian, Këshillit Evropian dhe Parlamentit Evropian.",
           },
         ],
       },
@@ -1289,7 +1289,7 @@ I can help the protest with: [how you can help]`,
           {
             title: "With European politicians",
             body:
-              "We have reached out to many politicians: members of the European Parliament and German politicians from across the political spectrum. In Vienna we met the Austrian chancellor, Christian Stocker. In Munich we invited a vice-president of the Bavarian state parliament.",
+              "We have reached out to many politicians: members of the European Parliament and German politicians from across the political spectrum. In Vienna we met the Austrian chancellor, Christian Stocker. In Munich we invited a vice-president of the Bavarian state parliament. In October, a group of Albanian doctors in Germany petitioned the Bundestag and German MEPs for an independent investigation into the police's use of force, and asked that ambulances and medical staff serve only the injured. On 19 November, diaspora activists from several German cities asked the four parliamentary groups in the Bundestag to condemn police violence and to call for an independent investigation.",
           },
           {
             title: "With the media",
@@ -1307,9 +1307,9 @@ I can help the protest with: [how you can help]`,
               "Albanian academics abroad, through Diaspora Akademike, backed the protest in June, wrote to the European Commission in July and in October called for an independent inquiry into police violence.",
           },
           {
-            title: "An open letter to Europe",
+            title: "Open letters",
             body:
-              "In June, a collective of Albanian diaspora citizens in Europe sent European leaders an open letter, published in Le Courrier des Balkans.",
+              "In June, a collective of Albanian diaspora citizens in Europe sent European leaders an open letter, published in Le Courrier des Balkans. On 17 November, 51 Albanian-American organisations asked Rama to stop using “disproportionate force” against protesters and to resign. They copied the letter to the presidents of the European Commission, the European Council and the European Parliament.",
           },
         ],
       },
