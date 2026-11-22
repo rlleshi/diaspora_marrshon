@@ -729,7 +729,18 @@
 // in, as on days 161 and 170; without them the figure would read 230.4 / 138.4 / 129.2. Nothing later
 // in the broadcast (to about 19:27) reaches 100. Clock times are approximate: the repaired copy runs 31
 // seconds shorter than the source.
-// The notes for days 134 to 175 follow their research files (protest_story_notes_1_134 to _175); day
+// Day 176 has no figure and, as on day 153, no stream: the research pass (cutoff 22:08) found no
+// date-verified street broadcast for Sunday (News24, SYRI and Ora News checked), and neither did a
+// recheck of the live archives of News24, SYRI, Ora News, A2 CNN, Euronews Albania, Panorama TV, Top
+// Channel, RTV Klan and ABC News at about 00:30 on 23 November. The News24 and Euronews Albania lives
+// about the protest since Saturday's stream are studio or talk programmes (QAv0RKAvQiU and
+// uW5x-BQIoaM by their thumbnails, 9FBNftwv-ro by its title). Panorama TV's 3:28:59 march stream
+// (07J8ol-0zNA) is Saturday's by its thumbnails, in daylight on Rruga Mine Peza, Rruga e Kavajës and
+// Myslym Shyri, the route of the day 175 file. Sunday's street footage is in a 2:08 News24 clip
+// uploaded on Sunday (mg7-AxdnChQ) and the News24 bulletin at 19:00 (x1TBwwNyous). A2 CNN's 15-hour
+// recording of its whole Sunday programme (aGSMm0MJfyM) was not opened. Nothing was counted, and the
+// source is the Ora News report of the day. Missing, not zero.
+// The notes for days 134 to 176 follow their research files (protest_story_notes_1_134 to _176); day
 // 141's injury and arrest figures follow its refresh of 20 October, day 142's those of 21 October,
 // day 143's those of 22 October and day 144's those of 23 October, and the notes for days 156 and 157
 // follow their refresh of 5 November (day 157's rights statement has 15 signatories, not 13). Day
@@ -828,6 +839,17 @@
 // the ministry (News24); the water cannon vehicles there, whose use is not reported; the police cordon
 // on Kavaja Street and the rubbish-bin fire on Myslym Shyri; the flags on the Skanderbeg monument; the
 // calls for 28 November; and Rama's release on Saturday of footage from Friday's meeting.
+// Day 176's note follows a same-evening file (cutoff 22:08): the gathering near the PM's office and
+// the march through central Tirana in the rain after almost an hour there are Ora News's, with Panorama
+// and BoldNews also reporting the march in the rain. The forcible removal of people from the pavement
+// outside the building is News24's (at 18:52), which Panorama and BoldNews place before the march;
+// Ora News's later recap describes no police incidents, and the file does not reconcile the two, so the
+// note gives both, attributed. The State Police tally for Saturday (ten people under criminal
+// proceedings, 13 administrative violation reports), published on Sunday, follows day 175's refresh of
+// 22 November and sits in day 176, the day it was announced, as on days 169, 172 and 174. Left out for
+// phone screens: the protesters' objection that they were denied space even off the road; the announced
+// larger protest with the diaspora on 28 November; and the News24 interview, aired on Sunday, with a
+// teenager taken in on Saturday night.
 
 export type ParticipationDay = {
   day: number;
@@ -1221,6 +1243,8 @@ export const participation: ParticipationDay[] = [
     note: { sq: "E premtja: protestuesit mblidhen sërish para Kryeministrisë duke kërkuar dorëheqjen e Ramës. Sipas mediave vendase, policia i shtyn nga bulevardi në trotuar, ku ka përplasje, shoqëron disa prej tyre dhe i ndjek kur tubimi marshon nëpër Tiranë drejt Myslym Shyrit. Një banderolë fton për protestën e 28 nëntorit, ndërsa studentët dhe pedagogët njoftojnë tubime për të shtunën. Policia e Shtetit njofton se tre persona procedohen penalisht për tubimin e së enjtes. Të premten vonë në mbrëmje, Rama takon në Pallatin e Brigadave një grup që ai e quan studentë. Pa shifër: vetëm tri pamje, të gjitha nga e njëjta skenë, kalojnë pragun prej 100 vetësh që përdor indeksi.", en: "Friday: protesters gather again outside the PM's office, demanding Rama's resignation. According to local media, police push them off the boulevard onto the pavement, where there are scuffles, take several of them away and follow them as the gathering marches through Tirana towards Myslym Shyri Street. A banner calls for the protest on 28 November, while students and lecturers announce gatherings for Saturday. The State Police announce that three people face criminal proceedings over Thursday's gathering. Late on Friday evening, Rama meets a group he describes as students at the Palace of Brigades. No figure: only three shots, all from the same scene, pass the 100-person threshold the index uses." } },
   { day: 175, date: "2026-11-21", saturday: true, peak: 4.46, mean: 2.66, median: 2.49, source: yt("WlC5A3tQX80"),
     note: { sq: "E shtuna: në Universitetin Politeknik, studentë shpallin Lëvizjen Studentore Kombëtare, një organizim të pavarur që e quan veten vijim të protestës qytetare. Lëvizja kërkon llogaridhënie nga institucionet dhe një hetim të pavarur për dhunën; thotë se nuk do të hyjë në bisedime me Ramën. Pas një tubimi para Ministrisë së Arsimit, protestuesit marshojnë nëpër qendrën e Tiranës drejt Kryeministrisë e më pas drejt Sheshit Skënderbej. Në mbrëmje, sipas mediave vendase, policia hyn në lokale pranë Kullave Binjake dhe shoqëron me forcë disa protestues.", en: "Saturday: at the Polytechnic University, students announce the National Student Movement, an independent organisation that calls itself a continuation of the civic protest. The movement asks for accountability from institutions and an independent investigation into the violence, and says it will not enter talks with Rama. After a rally outside the Education Ministry, protesters march through central Tirana to the PM's office and then on to Skanderbeg Square. In the evening, according to local media, police enter venues near the Twin Towers and take several protesters away by force." } },
+  { day: 176, date: "2026-11-22", saturday: false, peak: null, mean: null, median: null, source: "https://oranews.tv/protesta-ne-diten-e-176-te-qytetaret-marshojne-ne-tirane-mes-reshjeve-te-shiut-i1369775",
+    note: { sq: "E diela: protestuesit mblidhen në Bulevardin Dëshmorët e Kombit pranë Kryeministrisë dhe pas afro një ore marshojnë në shi nëpër qendrën e Tiranës, duke kërkuar dorëheqjen e Ramës. Sipas disa mediave vendase, policia largon me forcë njerëzit që qëndronin në trotuar para godinës, ndërsa një medium tjetër nuk raporton incidente. Policia e Shtetit njofton se për protestën e së shtunës dhjetë persona procedohen penalisht dhe u mbajtën 13 procesverbale për kundërvajtje administrative. Pa shifër: për të dielën nuk u gjet asnjë transmetim i drejtpërdrejtë nga rruga.", en: "Sunday: protesters gather on Bulevardi Dëshmorët e Kombit near the PM's office and, after almost an hour, march through central Tirana in the rain, demanding Rama's resignation. According to some local media, police forcibly remove people standing on the pavement outside the building, while another outlet reports no incidents. The State Police announce that ten people face criminal proceedings over Saturday's protest and that 13 reports of administrative violations were drawn up. No figure: no live stream from the street was found for Sunday." } },
 ];
 export type ParticipationEvent = {
   day: number;
