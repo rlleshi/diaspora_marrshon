@@ -709,7 +709,27 @@
 // on the index). Three samples of one shot sit between day 171's single frame, which the user ruled
 // too thin on 17 November, and the four frames that carry days 132 and 160. It was proposed blank,
 // with that figure as the alternative, and committed blank on 21 November. Missing, not zero.
-// The notes for days 134 to 174 follow their research files (protest_story_notes_1_134 to _174); day
+// Day 175 arrived as one News24 stream (protesta_175.2, WlC5A3tQX80, 05:00:51, broadcast start
+// 14:26:56), analysed from 00:00:00 to 05:00:00 over the street regions chosen at launch: full-width
+// outdoor views, and the street panel alone where the layout splits, with ad slates, studio shots and
+// layout transitions left out. The morning studio programme (PB2UnuUNmv0) was not counted. The research
+// file (22:22) carries no figure, because the source had failed a decode check; the rerun on the
+// repaired local copy finished at 03:43 on 22 November, after it, as on day 121. 2,395 frames counted
+// (947 of them cropped to a street panel) and 273 retained. Four retained frames are blue-framed splits
+// inside regions marked full-width and are dropped: 01:51:42 and 01:51:49 (the march beside the studio
+// presenter, 126.2 and 124.8 raw) and 02:19:59 and 02:20:06 (a reporter or a second street view beside
+// the march, 108.8 and 107.8). Their top and side borders score +92 to +94 blue minus red, every other
+// retained frame +33 or below. That leaves 269 clean street views, two of them the cropped centre panel
+// (scene 47, 02:36) (top-10 peak avg 230.4, mean 137.6, median 128.4); keeping all 273 would read
+// 230.4 / 137.3 / 128.4, the same stored values. The ten highest, headed by 256.4 raw (01:25:17), are
+// daylight views from scenes 35 and 37 (about 15:33 to 15:41, the gathering before the march, outside
+// the Education Ministry by its timing) and scene 40 (about 15:52 to 16:03, the march setting off, with
+// Rruga Mine Peza on screen at its end). Kept frames run from about 14:30 to about 17:37. The six of
+// scene 3 (about 14:35, 101.6 to 109.3 raw) show mostly the police cordon outside the ministry and stay
+// in, as on days 161 and 170; without them the figure would read 230.4 / 138.4 / 129.2. Nothing later
+// in the broadcast (to about 19:27) reaches 100. Clock times are approximate: the repaired copy runs 31
+// seconds shorter than the source.
+// The notes for days 134 to 175 follow their research files (protest_story_notes_1_134 to _175); day
 // 141's injury and arrest figures follow its refresh of 20 October, day 142's those of 21 October,
 // day 143's those of 22 October and day 144's those of 23 October, and the notes for days 156 and 157
 // follow their refresh of 5 November (day 157's rights statement has 15 signatories, not 13). Day
@@ -792,6 +812,22 @@
 // the reason for the push, and the protesters' objection to the assembly restrictions; the birthday
 // cake protesters brought for an older participant (Report TV, Start News); the studio debate on the
 // normative act; and an opposition MP's forecast for 28 November (a News24 interview, quoted by SYRI TV).
+// Its refresh of 21 November (cutoff 22:19) adds Rama's meeting late on Friday evening at the Palace of Brigades
+// with a group he describes as students (Report TV, 23:22; Exit), which the note now carries. Left out:
+// his remark that he agrees with some of their concerns, which the file does not date to Friday or to
+// Saturday morning, and the footage he released on Saturday without the discussion. The group's
+// mandate from the street is unverified. The refresh finds no Friday police tally or dispersal point.
+// Day 175's note follows a same-evening file (cutoff 22:19): the National Student Movement's aims and
+// its refusal of talks with Rama are its own statement (carried by News24 and Report TV), the group's
+// position rather than a mandate for every protester, and the file keeps the group apart from the one
+// Rama met on Friday. The gathering outside the Education Ministry is Euronews Albania's and News24's,
+// the march to the PM's office SYRI TV's (by about 17:26) and the close in Skanderbeg Square News24's
+// (Lapsi's recap ends at the PM's office); the police entering venues near the Twin Towers and taking
+// people away by force is News24's report, which Piranjat covers too, with no count. Left out for phone
+// screens: the faculty representatives chosen in place of a chair; the photograph of Rama set alight at
+// the ministry (News24); the water cannon vehicles there, whose use is not reported; the police cordon
+// on Kavaja Street and the rubbish-bin fire on Myslym Shyri; the flags on the Skanderbeg monument; the
+// calls for 28 November; and Rama's release on Saturday of footage from Friday's meeting.
 
 export type ParticipationDay = {
   day: number;
@@ -1182,7 +1218,9 @@ export const participation: ParticipationDay[] = [
   { day: 173, date: "2026-11-19", saturday: false, peak: null, mean: null, median: null, source: yt("poR1omtx6aE"),
     note: { sq: "E enjtja: protestuesit kthehen para Kryeministrisë duke kërkuar dorëheqjen e Ramës; aktivistja Greta Thunberg u bashkohet atyre dhe kritikon trajtimin e tyre nga policia. Sipas mediave vendase, policia i shtyn në trotuar, shoqëron disa prej tyre dhe përdor spraj irritues. Në mbrëmje, një grup mblidhet në solidaritet para Komisariatit Nr. 1, ku shoqërohen të tjerë. Dy komisione parlamentare miratojnë dy masa të qeverisë për tubimet: një deputete e opozitës vë në dyshim kushtetutshmërinë e tyre, ndërsa zëvendësministri i Brendshëm thotë se synojnë dhunën, jo protestën paqësore. Pa shifër: asnjë pamje e rrugës nuk arrin pragun prej 100 vetësh që përdor indeksi.", en: "Thursday: protesters return to the PM's office, demanding Rama's resignation; activist Greta Thunberg joins them and criticises how the police treat them. According to local media, police push them onto the pavement, take several away and use irritant spray. In the evening, a group gathers in solidarity outside Police Station No. 1, where more are taken away. Two parliamentary committees approve two government measures on assemblies: an opposition MP questions their constitutionality, while the deputy interior minister says they target violence, not peaceful protest. No figure: no street shot reaches the 100-person threshold the index uses." } },
   { day: 174, date: "2026-11-20", saturday: false, peak: null, mean: null, median: null, source: yt("Vwf_5_zg1us"),
-    note: { sq: "E premtja: protestuesit mblidhen sërish para Kryeministrisë duke kërkuar dorëheqjen e Ramës. Sipas mediave vendase, policia i shtyn nga bulevardi në trotuar, ku ka përplasje, shoqëron disa prej tyre dhe i ndjek kur tubimi marshon nëpër Tiranë drejt Myslym Shyrit. Një banderolë fton për protestën e 28 nëntorit, ndërsa studentët dhe pedagogët njoftojnë tubime për të shtunën. Policia e Shtetit njofton se tre persona procedohen penalisht për tubimin e së enjtes. Pa shifër: vetëm tri pamje, të gjitha nga e njëjta skenë, kalojnë pragun prej 100 vetësh që përdor indeksi.", en: "Friday: protesters gather again outside the PM's office, demanding Rama's resignation. According to local media, police push them off the boulevard onto the pavement, where there are scuffles, take several of them away and follow them as the gathering marches through Tirana towards Myslym Shyri Street. A banner calls for the protest on 28 November, while students and lecturers announce gatherings for Saturday. The State Police announce that three people face criminal proceedings over Thursday's gathering. No figure: only three shots, all from the same scene, pass the 100-person threshold the index uses." } },
+    note: { sq: "E premtja: protestuesit mblidhen sërish para Kryeministrisë duke kërkuar dorëheqjen e Ramës. Sipas mediave vendase, policia i shtyn nga bulevardi në trotuar, ku ka përplasje, shoqëron disa prej tyre dhe i ndjek kur tubimi marshon nëpër Tiranë drejt Myslym Shyrit. Një banderolë fton për protestën e 28 nëntorit, ndërsa studentët dhe pedagogët njoftojnë tubime për të shtunën. Policia e Shtetit njofton se tre persona procedohen penalisht për tubimin e së enjtes. Të premten vonë në mbrëmje, Rama takon në Pallatin e Brigadave një grup që ai e quan studentë. Pa shifër: vetëm tri pamje, të gjitha nga e njëjta skenë, kalojnë pragun prej 100 vetësh që përdor indeksi.", en: "Friday: protesters gather again outside the PM's office, demanding Rama's resignation. According to local media, police push them off the boulevard onto the pavement, where there are scuffles, take several of them away and follow them as the gathering marches through Tirana towards Myslym Shyri Street. A banner calls for the protest on 28 November, while students and lecturers announce gatherings for Saturday. The State Police announce that three people face criminal proceedings over Thursday's gathering. Late on Friday evening, Rama meets a group he describes as students at the Palace of Brigades. No figure: only three shots, all from the same scene, pass the 100-person threshold the index uses." } },
+  { day: 175, date: "2026-11-21", saturday: true, peak: 4.46, mean: 2.66, median: 2.49, source: yt("WlC5A3tQX80"),
+    note: { sq: "E shtuna: në Universitetin Politeknik, studentë shpallin Lëvizjen Studentore Kombëtare, një organizim të pavarur që e quan veten vijim të protestës qytetare. Lëvizja kërkon llogaridhënie nga institucionet dhe një hetim të pavarur për dhunën; thotë se nuk do të hyjë në bisedime me Ramën. Pas një tubimi para Ministrisë së Arsimit, protestuesit marshojnë nëpër qendrën e Tiranës drejt Kryeministrisë e më pas drejt Sheshit Skënderbej. Në mbrëmje, sipas mediave vendase, policia hyn në lokale pranë Kullave Binjake dhe shoqëron me forcë disa protestues.", en: "Saturday: at the Polytechnic University, students announce the National Student Movement, an independent organisation that calls itself a continuation of the civic protest. The movement asks for accountability from institutions and an independent investigation into the violence, and says it will not enter talks with Rama. After a rally outside the Education Ministry, protesters march through central Tirana to the PM's office and then on to Skanderbeg Square. In the evening, according to local media, police enter venues near the Twin Towers and take several protesters away by force." } },
 ];
 export type ParticipationEvent = {
   day: number;

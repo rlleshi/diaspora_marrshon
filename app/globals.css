@@ -4968,6 +4968,10 @@ a.source-chip-link:hover {
   background: #fff1df;
 }
 
+.safety-unverified:first-child {
+  margin-top: 0;
+}
+
 .safety-unverified strong {
   color: #713e18;
   font-size: .78rem;

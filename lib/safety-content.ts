@@ -273,14 +273,7 @@ export const safetyPageContent: Record<Locale, SafetyPageContent> = {
         lead: "Ruaji numrat përpara protestës. Pyet nëse shërbimi është ende aktiv.",
         summary: "Ndihmë juridike, mjekësore dhe psikologjike falas.",
         contacts: {
-          confirmed: [
-            {
-              tag: "Partia Demokratike · 24/7",
-              name: "Grupi i avokatëve të PD-së",
-              body: "Ndihmë juridike në polici, prokurori dhe gjykatë për protestues të shoqëruar, ndaluar ose arrestuar. Është shërbim i një partie politike. Avokatët: Marash Logu, Eda Grimci, Adriana Kalaja, Franc Nuri, Shaqir Manjani, Besart Logu dhe Ledio Nuraj.",
-              phone: "067 482 5149",
-            },
-          ],
+          confirmed: [],
           unverified: {
             title: "Listë e pakonfirmuar",
             body: "Numrat më poshtë janë ndarë në rrjete sociale. Nuk i kemi verifikuar.",
@@ -662,14 +655,7 @@ export const safetyPageContent: Record<Locale, SafetyPageContent> = {
         lead: "Save the numbers before the protest. Ask whether the service is still running.",
         summary: "Free legal, medical and psychological help.",
         contacts: {
-          confirmed: [
-            {
-              tag: "Democratic Party · 24/7",
-              name: "PD lawyers' group",
-              body: "Legal help at the police, the prosecutor's office and court for protesters taken in, detained or arrested. It is a service of a political party. The lawyers: Marash Logu, Eda Grimci, Adriana Kalaja, Franc Nuri, Shaqir Manjani, Besart Logu and Ledio Nuraj.",
-              phone: "067 482 5149",
-            },
-          ],
+          confirmed: [],
           unverified: {
             title: "Unconfirmed list",
             body: "The numbers below were shared on social media. We have not verified them.",
