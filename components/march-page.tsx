@@ -30,8 +30,8 @@ import routeMapImage from "@/docs/marshimi_i_diaspores_bulevard_sheshi.png";
 const googleMapsRouteUrl =
   "https://www.google.com/maps/dir/?api=1&origin=Sheshi+N%C3%ABn%C3%AB+Tereza%2C+Tiran%C3%AB&destination=Sheshi+Sk%C3%ABnderbej%2C+Tiran%C3%AB&travelmode=walking";
 
-// one per item of "beyond the square": funds and supplies, politicians, media, human rights, academics, the open letter
-const beyondIcons = [HandHeart, Landmark, Newspaper, Scale, GraduationCap, Mail];
+// one per item of "beyond the square", in order: funds and supplies, media, academics, politicians, human rights, the open letters
+const beyondIcons = [HandHeart, Newspaper, GraduationCap, Landmark, Scale, Mail];
 
 const practicalAdviceIcons = [
   Droplets,

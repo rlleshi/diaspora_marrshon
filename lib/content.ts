@@ -749,24 +749,24 @@ Mund ta ndihmoj protestën me: [si mund të ndihmosh]`,
               "Kemi mbledhur fonde dhe i kemi dërguar në Shqipëri. Kur shpërthyen protestat e studentëve, dërguam materiale të ndihmës së parë dhe pajisje mbrojtëse për protestuesit.",
           },
           {
-            title: "Me politikanët evropianë",
-            body:
-              "Kemi kontaktuar shumë politikanë: deputetë të Parlamentit Evropian dhe politikanë gjermanë nga i gjithë spektri politik. Në Vjenë takuam kancelarin austriak, Christian Stocker. Në Mynih ftuam një nënkryetar të Parlamentit të Bavarisë. Në tetor, një grup mjekësh shqiptarë në Gjermani i kërkoi me peticion Bundestagut dhe eurodeputetëve gjermanë një hetim të pavarur për përdorimin e forcës nga policia dhe që ambulancat dhe personeli mjekësor t'u shërbejnë vetëm të lënduarve. Më 19 nëntor, aktivistë të diasporës nga disa qytete të Gjermanisë u kërkuan katër grupeve parlamentare të Bundestagut të dënojnë dhunën e policisë dhe të kërkojnë një hetim të pavarur.",
-          },
-          {
             title: "Me mediat",
             body:
               "Kemi kontaktuar shumë media ndërkombëtare për protestën. Pulsin (indeksin tonë ditor të pjesëmarrjes) e kanë cituar media në Itali dhe në Gjermani.",
           },
           {
-            title: "Për të drejtat e njeriut",
-            body:
-              "U dërgojmë disa institucioneve të Bashkimit Evropian raporte të rregullta për shkeljet e të drejtave të njeriut gjatë protestave.",
-          },
-          {
             title: "Akademikët e diasporës",
             body:
               "Akademikët shqiptarë jashtë vendit (të mbledhur te Diaspora Akademike) e mbështetën protestën që në qershor, i shkruan Komisionit Evropian në korrik dhe në tetor kërkuan një hetim të pavarur për dhunën e policisë.",
+          },
+          {
+            title: "Me politikanët evropianë",
+            body:
+              "Kemi kontaktuar shumë politikanë: deputetë të Parlamentit Evropian dhe politikanë gjermanë nga i gjithë spektri politik. Në Mynih ftuam një nënkryetar të Parlamentit të Bavarisë. Më 19 nëntor, aktivistë të diasporës nga disa qytete të Gjermanisë u kërkuan katër grupeve parlamentare të Bundestagut të dënojnë dhunën e policisë dhe të kërkojnë një hetim të pavarur.",
+          },
+          {
+            title: "Për të drejtat e njeriut",
+            body:
+              "U dërgojmë disa institucioneve të Bashkimit Evropian raporte të rregullta për shkeljet e të drejtave të njeriut gjatë protestave. Në tetor, një grup mjekësh shqiptarë në Gjermani i kërkoi me peticion Bundestagut dhe eurodeputetëve gjermanë një hetim të pavarur për përdorimin e forcës nga policia dhe që ambulancat dhe personeli mjekësor t'u shërbejnë vetëm të lënduarve.",
           },
           {
             title: "Letra të hapura",
@@ -1287,24 +1287,24 @@ I can help the protest with: [how you can help]`,
               "We have raised funds and sent them to Albania. When the student protests broke out, we sent first-aid supplies and protective gear for the protesters.",
           },
           {
-            title: "With European politicians",
-            body:
-              "We have reached out to many politicians: members of the European Parliament and German politicians from across the political spectrum. In Vienna we met the Austrian chancellor, Christian Stocker. In Munich we invited a vice-president of the Bavarian state parliament. In October, a group of Albanian doctors in Germany petitioned the Bundestag and German MEPs for an independent investigation into the police's use of force, and asked that ambulances and medical staff serve only the injured. On 19 November, diaspora activists from several German cities asked the four parliamentary groups in the Bundestag to condemn police violence and to call for an independent investigation.",
-          },
-          {
             title: "With the media",
             body:
               "We have reached out to many international news organisations about the protest. Pulsi, our daily participation index, has been cited by outlets in Italy and Germany.",
           },
           {
-            title: "For human rights",
-            body:
-              "We send regular reports of human rights violations during the protests to several institutions of the European Union.",
-          },
-          {
             title: "Diaspora academics",
             body:
               "Albanian academics abroad, through Diaspora Akademike, backed the protest in June, wrote to the European Commission in July and in October called for an independent inquiry into police violence.",
+          },
+          {
+            title: "With European politicians",
+            body:
+              "We have reached out to many politicians: members of the European Parliament and German politicians from across the political spectrum. In Munich we invited a vice-president of the Bavarian state parliament. On 19 November, diaspora activists from several German cities asked the four parliamentary groups in the Bundestag to condemn police violence and to call for an independent investigation.",
+          },
+          {
+            title: "For human rights",
+            body:
+              "We send regular reports of human rights violations during the protests to several institutions of the European Union. In October, a group of Albanian doctors in Germany petitioned the Bundestag and German members of the European Parliament for an independent investigation into the police's use of force, and asked that ambulances and medical staff serve only the injured.",
           },
           {
             title: "Open letters",

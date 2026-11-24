@@ -740,7 +740,18 @@
 // uploaded on Sunday (mg7-AxdnChQ) and the News24 bulletin at 19:00 (x1TBwwNyous). A2 CNN's 15-hour
 // recording of its whole Sunday programme (aGSMm0MJfyM) was not opened. Nothing was counted, and the
 // source is the Ora News report of the day. Missing, not zero.
-// The notes for days 134 to 176 follow their research files (protest_story_notes_1_134 to _176); day
+// Day 177 has no figure. It arrived as one News24 stream (protesta_177, iw7RzDE2s20, 02:27:44,
+// broadcast start 17:35:06), analysed whole; 1,305 frames counted and 12 retained, the run finished at
+// 06:37 on 24 November, before the research file (08:32). Eight of the 12 are blue-framed splits
+// (rings +63 to +69) pairing the Tirana street view with an unrelated crowd: a Serbia rally (329.8 and
+// 148.8 raw), the COP31 conference hall (327.9 and 273.2), an indoor audience beside a studio guest
+// (119.6 and 134.0), a march abroad (105.1) and a book launch (122.4). The four clean ones are one
+// full-width night view of the gathering outside the PM's office with riot police behind it, scene 68,
+// 00:49:15 to 00:49:36 (105.9, 129.3, 115.2 and 115.6 raw; rings -32 to +1). The clean-frame rule
+// would give 116.5 / 116.5 / 115.4 (2.26 / 2.26 / 2.23 on the index). Four samples of one 21-second
+// shot sit with day 174's three, which was committed blank, rather than day 160's four, which came
+// from four scenes. Proposed blank, with that figure as the alternative. Missing, not zero.
+// The notes for days 134 to 177 follow their research files (protest_story_notes_1_134 to _177); day
 // 141's injury and arrest figures follow its refresh of 20 October, day 142's those of 21 October,
 // day 143's those of 22 October and day 144's those of 23 October, and the notes for days 156 and 157
 // follow their refresh of 5 November (day 157's rights statement has 15 signatories, not 13). Day
@@ -850,6 +861,15 @@
 // phone screens: the protesters' objection that they were denied space even off the road; the announced
 // larger protest with the diaspora on 28 November; and the News24 interview, aired on Sunday, with a
 // teenager taken in on Saturday night.
+// Day 177's note follows its research file (cutoff 08:30 on 24 November): the refusal of dialogue
+// without Rama's resignation is the position voiced by participants in News24's coverage (BalkanWeb),
+// not every protester's. The push off the boulevard towards the pavement near Parliament is NOA's
+// (18:56), the attempt to remove people from the pavement outside the PM's office Ora News's (19:09);
+// the file does not establish their sequence. The march on the ring road is SYRI's and Piranjat's
+// (19:31 to 19:32), and the call to join on 28 November from across Albania and the diaspora is
+// Piranjat's and News24's. No official tally for Monday was found by the cutoff. Left out for phone
+// screens: the leg along Rruga e Elbasanit (Pamfleti, indexed excerpt only) and the name "Nëntori i
+// Tretë" some coverage gives the 28 November mobilization.
 
 export type ParticipationDay = {
   day: number;
@@ -1245,6 +1265,8 @@ export const participation: ParticipationDay[] = [
     note: { sq: "E shtuna: në Universitetin Politeknik, studentë shpallin Lëvizjen Studentore Kombëtare, një organizim të pavarur që e quan veten vijim të protestës qytetare. Lëvizja kërkon llogaridhënie nga institucionet dhe një hetim të pavarur për dhunën; thotë se nuk do të hyjë në bisedime me Ramën. Pas një tubimi para Ministrisë së Arsimit, protestuesit marshojnë nëpër qendrën e Tiranës drejt Kryeministrisë e më pas drejt Sheshit Skënderbej. Në mbrëmje, sipas mediave vendase, policia hyn në lokale pranë Kullave Binjake dhe shoqëron me forcë disa protestues.", en: "Saturday: at the Polytechnic University, students announce the National Student Movement, an independent organisation that calls itself a continuation of the civic protest. The movement asks for accountability from institutions and an independent investigation into the violence, and says it will not enter talks with Rama. After a rally outside the Education Ministry, protesters march through central Tirana to the PM's office and then on to Skanderbeg Square. In the evening, according to local media, police enter venues near the Twin Towers and take several protesters away by force." } },
   { day: 176, date: "2026-11-22", saturday: false, peak: null, mean: null, median: null, source: "https://oranews.tv/protesta-ne-diten-e-176-te-qytetaret-marshojne-ne-tirane-mes-reshjeve-te-shiut-i1369775",
     note: { sq: "E diela: protestuesit mblidhen në Bulevardin Dëshmorët e Kombit pranë Kryeministrisë dhe pas afro një ore marshojnë në shi nëpër qendrën e Tiranës, duke kërkuar dorëheqjen e Ramës. Sipas disa mediave vendase, policia largon me forcë njerëzit që qëndronin në trotuar para godinës, ndërsa një medium tjetër nuk raporton incidente. Policia e Shtetit njofton se për protestën e së shtunës dhjetë persona procedohen penalisht dhe u mbajtën 13 procesverbale për kundërvajtje administrative. Pa shifër: për të dielën nuk u gjet asnjë transmetim i drejtpërdrejtë nga rruga.", en: "Sunday: protesters gather on Bulevardi Dëshmorët e Kombit near the PM's office and, after almost an hour, march through central Tirana in the rain, demanding Rama's resignation. According to some local media, police forcibly remove people standing on the pavement outside the building, while another outlet reports no incidents. The State Police announce that ten people face criminal proceedings over Saturday's protest and that 13 reports of administrative violations were drawn up. No figure: no live stream from the street was found for Sunday." } },
+  { day: 177, date: "2026-11-23", saturday: false, peak: null, mean: null, median: null, source: yt("iw7RzDE2s20"),
+    note: { sq: "E hëna: protestuesit mblidhen para Kryeministrisë duke kërkuar dorëheqjen e Ramës; disa prej tyre thonë se pa dorëheqjen e tij nuk ka dialog. Sipas mediave vendase, policia i shtyn njerëzit nga bulevardi drejt trotuarit pranë Kuvendit dhe tenton të largojë të tjerë nga trotuari para Kryeministrisë. Më pas protestuesit marshojnë përgjatë Unazës së Tiranës. Ata u bëjnë thirrje qytetarëve nga gjithë Shqipëria dhe diaspora të bashkohen në protestën e Ditës së Pavarësisë, të shtunën më 28 nëntor. Pa shifër: vetëm katër pamje, të gjitha nga e njëjta skenë, kalojnë pragun prej 100 vetësh që përdor indeksi.", en: "Monday: protesters gather outside the PM's office, demanding Rama's resignation; some of them say there can be no dialogue without it. According to local media, police push people off the boulevard towards the pavement near Parliament and try to remove others from the pavement outside the PM's office. Protesters then march along Tirana's ring road. They call on people from across Albania and the diaspora to join the Independence Day protest on Saturday, 28 November. No figure: only four shots, all from the same scene, pass the 100-person threshold the index uses." } },
 ];
 export type ParticipationEvent = {
   day: number;
