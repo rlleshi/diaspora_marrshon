@@ -751,7 +751,16 @@
 // would give 116.5 / 116.5 / 115.4 (2.26 / 2.26 / 2.23 on the index). Four samples of one 21-second
 // shot sit with day 174's three, which was committed blank, rather than day 160's four, which came
 // from four scenes. Proposed blank, with that figure as the alternative. Missing, not zero.
-// The notes for days 134 to 177 follow their research files (protest_story_notes_1_134 to _177); day
+// Day 178 has no figure. It arrived as one News24 stream (protesta_178, 70WmiZMYOvs, 01:11:01,
+// broadcast start 17:36:52), analysed whole; 674 frames counted and 8 retained, the run finished at
+// 08:54 on 25 November, before the research file (09:11). One of the 8 is a blue-framed split (01:08:30,
+// 101.2 raw, ring +79): the street beside a studio guest and the presenter. The seven clean ones are one
+// full-width night view of the gathering outside the PM's office with riot police behind it, scene 197,
+// 01:09:05 to 01:10:08 (128.0, 108.5, 114.8, 129.6, 113.2, 122.5 and 108.8 raw; rings -40 to -5). The
+// clean-frame rule would give 117.9 / 117.9 / 114.8 (2.28 / 2.28 / 2.22 on the index). One scene of
+// about a minute, like day 177's four frames, committed blank. Proposed blank, with that figure as the
+// alternative. Missing, not zero.
+// The notes for days 134 to 178 follow their research files (protest_story_notes_1_134 to _178); day
 // 141's injury and arrest figures follow its refresh of 20 October, day 142's those of 21 October,
 // day 143's those of 22 October and day 144's those of 23 October, and the notes for days 156 and 157
 // follow their refresh of 5 November (day 157's rights statement has 15 signatories, not 13). Day
@@ -870,6 +879,11 @@
 // Piranjat's and News24's. No official tally for Monday was found by the cutoff. Left out for phone
 // screens: the leg along Rruga e Elbasanit (Pamfleti, indexed excerpt only) and the name "Nëntori i
 // Tretë" some coverage gives the 28 November mobilization.
+// Day 178's note follows its research file (cutoff 09:11 on 25 November): the gathering and the call
+// for a national mobilization on 28 November are News24's (BalkanWeb, 18:25); the tension and the push
+// off the roadway towards the pavement near Parliament are NOA's (19:00) and SYRI's (19:15); the march
+// is News24's (19:31) and the return to Bulevardi Dëshmorët e Kombit Report TV's (19:54, updated 20:05).
+// No official tally for Tuesday was found by the cutoff.
 
 export type ParticipationDay = {
   day: number;
@@ -1267,6 +1281,8 @@ export const participation: ParticipationDay[] = [
     note: { sq: "E diela: protestuesit mblidhen në Bulevardin Dëshmorët e Kombit pranë Kryeministrisë dhe pas afro një ore marshojnë në shi nëpër qendrën e Tiranës, duke kërkuar dorëheqjen e Ramës. Sipas disa mediave vendase, policia largon me forcë njerëzit që qëndronin në trotuar para godinës, ndërsa një medium tjetër nuk raporton incidente. Policia e Shtetit njofton se për protestën e së shtunës dhjetë persona procedohen penalisht dhe u mbajtën 13 procesverbale për kundërvajtje administrative. Pa shifër: për të dielën nuk u gjet asnjë transmetim i drejtpërdrejtë nga rruga.", en: "Sunday: protesters gather on Bulevardi Dëshmorët e Kombit near the PM's office and, after almost an hour, march through central Tirana in the rain, demanding Rama's resignation. According to some local media, police forcibly remove people standing on the pavement outside the building, while another outlet reports no incidents. The State Police announce that ten people face criminal proceedings over Saturday's protest and that 13 reports of administrative violations were drawn up. No figure: no live stream from the street was found for Sunday." } },
   { day: 177, date: "2026-11-23", saturday: false, peak: null, mean: null, median: null, source: yt("iw7RzDE2s20"),
     note: { sq: "E hëna: protestuesit mblidhen para Kryeministrisë duke kërkuar dorëheqjen e Ramës; disa prej tyre thonë se pa dorëheqjen e tij nuk ka dialog. Sipas mediave vendase, policia i shtyn njerëzit nga bulevardi drejt trotuarit pranë Kuvendit dhe tenton të largojë të tjerë nga trotuari para Kryeministrisë. Më pas protestuesit marshojnë përgjatë Unazës së Tiranës. Ata u bëjnë thirrje qytetarëve nga gjithë Shqipëria dhe diaspora të bashkohen në protestën e Ditës së Pavarësisë, të shtunën më 28 nëntor. Pa shifër: vetëm katër pamje, të gjitha nga e njëjta skenë, kalojnë pragun prej 100 vetësh që përdor indeksi.", en: "Monday: protesters gather outside the PM's office, demanding Rama's resignation; some of them say there can be no dialogue without it. According to local media, police push people off the boulevard towards the pavement near Parliament and try to remove others from the pavement outside the PM's office. Protesters then march along Tirana's ring road. They call on people from across Albania and the diaspora to join the Independence Day protest on Saturday, 28 November. No figure: only four shots, all from the same scene, pass the 100-person threshold the index uses." } },
+  { day: 178, date: "2026-11-24", saturday: false, peak: null, mean: null, median: null, source: yt("70WmiZMYOvs"),
+    note: { sq: "E marta: protestuesit mblidhen para Kryeministrisë duke kërkuar dorëheqjen e Ramës dhe bëjnë thirrje për mobilizim kombëtar të shtunën më 28 nëntor. Sipas mediave vendase, ka tension dhe policia i shtyn protestuesit nga rruga drejt trotuarit pranë Kuvendit. Më pas ata marshojnë nëpër rrugët e Tiranës dhe kthehen në Bulevardin Dëshmorët e Kombit. Pa shifër: vetëm shtatë pamje, të gjitha nga e njëjta skenë, kalojnë pragun prej 100 vetësh që përdor indeksi.", en: "Tuesday: protesters gather outside the PM's office, demanding Rama's resignation, and call for a national mobilization on Saturday, 28 November. According to local media, there is tension and police push protesters off the road towards the pavement near Parliament. They then march through the streets of Tirana and return to Bulevardi Dëshmorët e Kombit. No figure: only seven shots, all from the same scene, pass the 100-person threshold the index uses." } },
 ];
 export type ParticipationEvent = {
   day: number;
