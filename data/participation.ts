@@ -760,7 +760,24 @@
 // clean-frame rule would give 117.9 / 117.9 / 114.8 (2.28 / 2.28 / 2.22 on the index). One scene of
 // about a minute, like day 177's four frames, committed blank. Proposed blank, with that figure as the
 // alternative. Missing, not zero.
-// The notes for days 134 to 178 follow their research files (protest_story_notes_1_134 to _178); day
+// Day 179 has no figure. It arrived as one News24 stream (protesta_179, K1Jf3U7b6Do, 01:11:02,
+// broadcast start 17:35:41), analysed from 00:50:00 to the end; a frame every two minutes before that
+// shows only studio interviews and holding slates. The first run stopped at 01:00:12 on a
+// fragment-read error (90 frames, finished 20:26, after the research file of 20:22); the rerun on a
+// full local copy finished at 22:24 and counted 183 frames, none reaching 100. The high is 51.4 raw
+// (00:53:08), a blue-framed split of the gathering beside Rama at the EU-Western Balkans summit in
+// Brussels (scenes 4 to 6, 00:50:42 to 00:56:32); the full-width night views of the gathering in the
+// rain that follow (scenes 7 and 8, to 01:11:02) top out at 30.4 (01:07:31). Missing, not zero.
+// Day 180 has no figure. It arrived as one News24 archive (protesta_180.1, Xr8HcGjgNdY, 01:43:29,
+// broadcast start 17:37:23) and a 21-second Dosja vertical clip (protesta_180.2, iFPLbOoR2AY). The
+// research pass counted native-pixel crops of the protest panel beside the Parliament and studio feed:
+// the wider right panel from 00:46:26 to 01:04:52 (166 frames) and the narrower left one from 01:05:02
+// to 01:19:12 (128 frames), leaving out the full-screen Parliament cut between them; the Dosja clip
+// gave 3 frames. The runs finished at 12:35 on 27 November, before the research file (12:46). None of
+// the 297 frames reaches 100: the high is 19.2 raw (00:46:27, right panel), the left panel tops out at
+// 13.6 and the Dosja clip at 9.4. The research file puts that down to narrow views, umbrellas and the
+// clip's text overlay, not to fewer than 100 people. Missing, not zero.
+// The notes for days 134 to 180 follow their research files (protest_story_notes_1_134 to _180); day
 // 141's injury and arrest figures follow its refresh of 20 October, day 142's those of 21 October,
 // day 143's those of 22 October and day 144's those of 23 October, and the notes for days 156 and 157
 // follow their refresh of 5 November (day 157's rights statement has 15 signatories, not 13). Day
@@ -884,6 +901,29 @@
 // off the roadway towards the pavement near Parliament are NOA's (19:00) and SYRI's (19:15); the march
 // is News24's (19:31) and the return to Bulevardi Dëshmorët e Kombit Report TV's (19:54, updated 20:05).
 // No official tally for Tuesday was found by the cutoff.
+// Day 179's note follows its research file (cutoff 20:22 on 25 November): the gathering with umbrellas
+// in the rain is CNA's (18:49, from indexed publisher text; direct access was blocked); the demand for
+// Rama's resignation, the call for nationwide mobilization on 28 November and the pledge to continue
+// afterwards are News24's (BalkanWeb, 18:33). The police request to the Administrative Court to enforce
+// earlier protest fines is Euronews Albania's; the file does not establish that the court granted it or
+// how many fines date from 24 or 25 November. No march route and no official tally for Wednesday were
+// verified by the cutoff. Left out for phone screens: the Citizens.al account of the restrictions on
+// assembly and the shift from the boulevard to the pavement.
+// Day 180's note follows its research file (cutoff 12:41 on 27 November): the gathering in the rain is
+// CNA's (18:37), News24's (18:38) and Dosja's (18:43); the resignation as non-negotiable and the renewed
+// call for 28 November are News24's (BalkanWeb, 18:38). The push from the roadway on Dëshmorët e Kombit
+// onto the opposite pavement near the Parliament offices is Panorama's (18:56), an attributed report,
+// and the march after the gathering News24's (19:06); no route, dispersal time or Thursday tally was
+// verified by the cutoff. The Constitutional Court's interim order of 26 November suspends only Article
+// 24/1(2) of the assemblies law (added by Article 5 of Normative Act No. 5/2026), the administrative
+// sanction for blocking roads and obstructing traffic during a gathering; it does not suspend the whole
+// act, decide the challenge or say that earlier fines are cancelled. At the user's request the note
+// adds the political initiative "Të Bashkuar për Shqipërinë", announced by a group of students and
+// others who say they have begun collecting signatures (Shqiptarja.com; the founders told A2 CNN it grew
+// out of their part in the protests); the file establishes neither a party registration nor that the
+// movement as a whole adopted it. Left out for phone screens: the Assembly's 79-21 vote on Act No. 5
+// (its 27 November plenary recap) and La Radio Plus's report of a solidarity gathering at Place des
+// Nations, Geneva, on 28 November at 14:00.
 
 export type ParticipationDay = {
   day: number;
@@ -1283,6 +1323,10 @@ export const participation: ParticipationDay[] = [
     note: { sq: "E hëna: protestuesit mblidhen para Kryeministrisë duke kërkuar dorëheqjen e Ramës; disa prej tyre thonë se pa dorëheqjen e tij nuk ka dialog. Sipas mediave vendase, policia i shtyn njerëzit nga bulevardi drejt trotuarit pranë Kuvendit dhe tenton të largojë të tjerë nga trotuari para Kryeministrisë. Më pas protestuesit marshojnë përgjatë Unazës së Tiranës. Ata u bëjnë thirrje qytetarëve nga gjithë Shqipëria dhe diaspora të bashkohen në protestën e Ditës së Pavarësisë, të shtunën më 28 nëntor. Pa shifër: vetëm katër pamje, të gjitha nga e njëjta skenë, kalojnë pragun prej 100 vetësh që përdor indeksi.", en: "Monday: protesters gather outside the PM's office, demanding Rama's resignation; some of them say there can be no dialogue without it. According to local media, police push people off the boulevard towards the pavement near Parliament and try to remove others from the pavement outside the PM's office. Protesters then march along Tirana's ring road. They call on people from across Albania and the diaspora to join the Independence Day protest on Saturday, 28 November. No figure: only four shots, all from the same scene, pass the 100-person threshold the index uses." } },
   { day: 178, date: "2026-11-24", saturday: false, peak: null, mean: null, median: null, source: yt("70WmiZMYOvs"),
     note: { sq: "E marta: protestuesit mblidhen para Kryeministrisë duke kërkuar dorëheqjen e Ramës dhe bëjnë thirrje për mobilizim kombëtar të shtunën më 28 nëntor. Sipas mediave vendase, ka tension dhe policia i shtyn protestuesit nga rruga drejt trotuarit pranë Kuvendit. Më pas ata marshojnë nëpër rrugët e Tiranës dhe kthehen në Bulevardin Dëshmorët e Kombit. Pa shifër: vetëm shtatë pamje, të gjitha nga e njëjta skenë, kalojnë pragun prej 100 vetësh që përdor indeksi.", en: "Tuesday: protesters gather outside the PM's office, demanding Rama's resignation, and call for a national mobilization on Saturday, 28 November. According to local media, there is tension and police push protesters off the road towards the pavement near Parliament. They then march through the streets of Tirana and return to Bulevardi Dëshmorët e Kombit. No figure: only seven shots, all from the same scene, pass the 100-person threshold the index uses." } },
+  { day: 179, date: "2026-11-25", saturday: false, peak: null, mean: null, median: null, source: yt("K1Jf3U7b6Do"),
+    note: { sq: "E mërkura: pavarësisht shiut, qytetarë, studentë, pedagogë dhe aktivistë mblidhen me çadra para Kryeministrisë, duke kërkuar dorëheqjen e Ramës. Ata bëjnë thirrje për mobilizim mbarëkombëtar në protestën e Ditës së Pavarësisë, të shtunën më 28 nëntor; thonë se protesta do të vijojë edhe pas saj. Sipas mediave vendase, policia e Tiranës i kërkon Gjykatës Administrative ekzekutimin e gjobave të vendosura më parë ndaj protestuesve. Pa shifër: asnjë pamje e rrugës nuk arrin pragun prej 100 vetësh që përdor indeksi.", en: "Wednesday: despite the rain, citizens, students, lecturers and activists gather with umbrellas outside the PM's office, demanding Rama's resignation. They call for a nationwide mobilization for the Independence Day protest on Saturday, 28 November, and say the protest will continue after it. According to local media, Tirana police ask the Administrative Court to enforce fines previously imposed on protesters. No figure: no street shot reaches the 100-person threshold the index uses." } },
+  { day: 180, date: "2026-11-26", saturday: false, peak: null, mean: null, median: null, source: yt("Xr8HcGjgNdY"),
+    note: { sq: "E enjtja: në shi, protestuesit mblidhen para Kryeministrisë; thonë se dorëheqja e Ramës nuk negociohet dhe përsërisin thirrjen për protestën e Ditës së Pavarësisë, të shtunën më 28 nëntor. Sipas mediave vendase, policia i shtyn njerëzit nga rruga drejt trotuarit përballë, pranë zyrave të Kuvendit. Pas tubimit, protestuesit marshojnë nëpër Tiranë. Gjykata Kushtetuese pezullon, deri në vendimin përfundimtar, vetëm dispozitën që parashikon gjoba për bllokimin e rrugëve gjatë tubimeve. Një grup studentësh dhe protestuesish të tjerë shpall nismën politike \"Të Bashkuar për Shqipërinë\" dhe thotë se ka nisur mbledhjen e firmave. Pa shifër: asnjë pamje e rrugës nuk arrin pragun prej 100 vetësh që përdor indeksi.", en: "Thursday: in the rain, protesters gather outside the PM's office; they say Rama's resignation is not negotiable and renew the call for the Independence Day protest on Saturday, 28 November. According to local media, police push people off the road onto the opposite pavement, near the Parliament offices. After the gathering, protesters march through Tirana. The Constitutional Court suspends, until its final ruling, only the provision that imposes fines for blocking roads during gatherings. A group of students and other protesters announces a political initiative, \"Të Bashkuar për Shqipërinë\" (United for Albania), and says it has begun collecting signatures. No figure: no street shot reaches the 100-person threshold the index uses." } },
 ];
 export type ParticipationEvent = {
   day: number;
