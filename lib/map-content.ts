@@ -16,7 +16,7 @@ export const FLAMINGO_MAP_REPO_URL = "https://github.com/pomodoren/flamingo-map"
  * latest protest date in it. Refresh with `node scripts/refresh-map-snapshot.mjs`.
  */
 export const mapSnapshot = {
-  asOf: "2026-11-27",
+  asOf: "2026-11-28",
   lastRecord: "2026-10-30",
   protestsAbroad: 293,
   citiesAbroad: 67,

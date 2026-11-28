@@ -777,7 +777,15 @@
 // the 297 frames reaches 100: the high is 19.2 raw (00:46:27, right panel), the left panel tops out at
 // 13.6 and the Dosja clip at 9.4. The research file puts that down to narrow views, umbrellas and the
 // clip's text overlay, not to fewer than 100 people. Missing, not zero.
-// The notes for days 134 to 180 follow their research files (protest_story_notes_1_134 to _180); day
+// Day 181 has no figure and no stream: the research pass (cutoff 08:24 on 28 November) verified no
+// continuous public stream for Friday, and its spot checks of the News24 evening archive found studio or
+// break footage rather than an on-location segment. The only footage counted is an 18-second Report TV
+// clip of the gathering outside the PM's office (protesta_181, i5TBx19wnvM, 00:00 to 00:17.56, native
+// 1920x1080), analysed whole at seven-second spacing: 49.1, 58.0 and 74.5 raw (00:01, 00:08, 00:15),
+// one wide view with passing traffic partly hiding the pavement; none reaches 100. The run finished at
+// 08:22 on 28 November, before the research file (08:27). A Dosja clip (QwwRy2yf8wM) and a News24 reel
+// were viewed for context, not counted. The source is the Report TV clip. Missing, not zero.
+// The notes for days 134 to 181 follow their research files (protest_story_notes_1_134 to _181); day
 // 141's injury and arrest figures follow its refresh of 20 October, day 142's those of 21 October,
 // day 143's those of 22 October and day 144's those of 23 October, and the notes for days 156 and 157
 // follow their refresh of 5 November (day 157's rights statement has 15 signatories, not 13). Day
@@ -924,6 +932,24 @@
 // movement as a whole adopted it. Left out for phone screens: the Assembly's 79-21 vote on Act No. 5
 // (its 27 November plenary recap) and La Radio Plus's report of a solidarity gathering at Place des
 // Nations, Geneva, on 28 November at 14:00.
+// Day 181's note follows its research file (cutoff 08:24 on 28 November): the gathering outside the PM's
+// office is Report TV's (18:42, with traffic still moving on Dëshmorët e Kombit) and Dosja's (19:02); the
+// police cordon and the demand for Rama's resignation are News24's (BalkanWeb, 19:05), and the push from
+// the boulevard onto the opposite pavement near the Parliament offices is News24's (19:01), an attributed
+// report the file does not tie to a moment shared with the open-road reports. The march is Panorama's
+// (19:20) and News24's (19:24); no departure time, route, end point or Friday tally was verified by the
+// cutoff. The two announced starts for 28 November are Report TV's (15:39, opened with plain curl):
+// "organisers of the so-called 'Revolucioni Flamingo'" give 10:00 in Skanderbeg Square, then a march to
+// the PM's office, over two days, 28 and 29 November; "groups that say they represent students" give
+// 12:00, for 28 November only. They are announcements, not a common schedule or turnout. The normative act is the Council of
+// Ministers' decision of 27 November: state compensation for qualifying property damage caused by
+// violence during gatherings, recovered from those responsible. Left out for phone screens: the act's
+// Article 5 (attendance alone creates no liability) and Article 9 (organisers jointly liable, with an
+// exception); the Assembly's overnight 80-20 vote on October's Act No. 6, which covers damage from 13 to
+// 22 October; an administrative court's stay, while the challenge is heard, of an earlier 500,000-lek
+// fine against a minor (Report TV), not dated to this gathering; the call for diaspora participation;
+// and an activist's interview (Report TV) saying the "Të Bashkuar për Shqipërinë" initiative does not
+// represent the whole gathering.
 
 export type ParticipationDay = {
   day: number;
@@ -1327,6 +1353,8 @@ export const participation: ParticipationDay[] = [
     note: { sq: "E mërkura: pavarësisht shiut, qytetarë, studentë, pedagogë dhe aktivistë mblidhen me çadra para Kryeministrisë, duke kërkuar dorëheqjen e Ramës. Ata bëjnë thirrje për mobilizim mbarëkombëtar në protestën e Ditës së Pavarësisë, të shtunën më 28 nëntor; thonë se protesta do të vijojë edhe pas saj. Sipas mediave vendase, policia e Tiranës i kërkon Gjykatës Administrative ekzekutimin e gjobave të vendosura më parë ndaj protestuesve. Pa shifër: asnjë pamje e rrugës nuk arrin pragun prej 100 vetësh që përdor indeksi.", en: "Wednesday: despite the rain, citizens, students, lecturers and activists gather with umbrellas outside the PM's office, demanding Rama's resignation. They call for a nationwide mobilization for the Independence Day protest on Saturday, 28 November, and say the protest will continue after it. According to local media, Tirana police ask the Administrative Court to enforce fines previously imposed on protesters. No figure: no street shot reaches the 100-person threshold the index uses." } },
   { day: 180, date: "2026-11-26", saturday: false, peak: null, mean: null, median: null, source: yt("Xr8HcGjgNdY"),
     note: { sq: "E enjtja: në shi, protestuesit mblidhen para Kryeministrisë; thonë se dorëheqja e Ramës nuk negociohet dhe përsërisin thirrjen për protestën e Ditës së Pavarësisë, të shtunën më 28 nëntor. Sipas mediave vendase, policia i shtyn njerëzit nga rruga drejt trotuarit përballë, pranë zyrave të Kuvendit. Pas tubimit, protestuesit marshojnë nëpër Tiranë. Gjykata Kushtetuese pezullon, deri në vendimin përfundimtar, vetëm dispozitën që parashikon gjoba për bllokimin e rrugëve gjatë tubimeve. Një grup studentësh dhe protestuesish të tjerë shpall nismën politike \"Të Bashkuar për Shqipërinë\" dhe thotë se ka nisur mbledhjen e firmave. Pa shifër: asnjë pamje e rrugës nuk arrin pragun prej 100 vetësh që përdor indeksi.", en: "Thursday: in the rain, protesters gather outside the PM's office; they say Rama's resignation is not negotiable and renew the call for the Independence Day protest on Saturday, 28 November. According to local media, police push people off the road onto the opposite pavement, near the Parliament offices. After the gathering, protesters march through Tirana. The Constitutional Court suspends, until its final ruling, only the provision that imposes fines for blocking roads during gatherings. A group of students and other protesters announces a political initiative, \"Të Bashkuar për Shqipërinë\" (United for Albania), and says it has begun collecting signatures. No figure: no street shot reaches the 100-person threshold the index uses." } },
+  { day: 181, date: "2026-11-27", saturday: false, peak: null, mean: null, median: null, source: yt("i5TBx19wnvM"),
+    note: { sq: "E premtja: protestuesit mblidhen para Kryeministrisë duke kërkuar dorëheqjen e Ramës; sipas mediave vendase, policia i shtyn njerëzit nga bulevardi në trotuarin përballë. Më pas ata marshojnë nëpër Tiranë. Për të shtunën, Ditën e Pavarësisë, organizatorë të “Revolucionit të Flamingove” thërrasin qytetarët në Sheshin Skënderbej në orën 10:00, me vijim më 29 nëntor, ndërsa grupe që thonë se përfaqësojnë studentët njoftojnë orën 12:00. Këshilli i Ministrave miraton një akt normativ që lejon shtetin të dëmshpërblejë dëmet në pronë nga dhuna gjatë tubimeve dhe t'ua kërkojë shumat përgjegjësve. Pa shifër: u numërua vetëm një klip prej 18 sekondash, nën pragun prej 100 vetësh që përdor indeksi.", en: "Friday: protesters gather outside the PM's office, demanding Rama's resignation; according to local media, police push people off the boulevard onto the opposite pavement. They then march through Tirana. For Saturday, Independence Day, organisers of the “Flamingo Revolution” call people to Skanderbeg Square at 10:00, with the protest continuing on 29 November, while groups that say they represent students announce 12:00. The Council of Ministers adopts a normative act that lets the state compensate property damage caused by violence during gatherings and recover the payments from those liable. No figure: only an 18-second clip was counted, below the 100-person threshold the index uses." } },
 ];
 export type ParticipationEvent = {
   day: number;
